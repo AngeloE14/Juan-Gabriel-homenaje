@@ -1,0 +1,860 @@
+/* 1. RESETEO DE ESTILOS POR DEFECTO */
+* {
+  margin: 0;      /* Elimina márgenes por defecto */
+  padding: 0;     /* Elimina espacios internos por defecto */
+  box-sizing: border-box;  /* Hace que padding no aumente el tamaño */
+}
+
+/* 2. ESTILOS DEL CUERPO (body) */
+body {
+  font-family: 'Arial', sans-serif;  /* Tipo de letra */
+  font-size: 16px;                    /* Tamaño base de texto */
+  line-height: 1.6;                   /* Espaciado entre líneas */
+  color: #333;                        /* Color del texto */
+  background-color: #f4f4f4;          /* Color de fondo */
+  overflow-x: hidden;                 /* Evita el hueco/blanco por desborde horizontal */
+}
+
+/* 3. ENCABEZADO (header)
+   Nota de aprendizaje:
+   - Mantengo un fondo elegante, pero SIN limitar el alto del logo.
+   - El logo vuelve a su tamaño original (el width del HTML manda: 1200). */
+header {
+  background: linear-gradient(180deg, #2c3e50 0%, #243447 100%);
+  color: #fff8f8;
+  padding: 10px 20px 48px;
+  text-align: center;                 /* Alinear al centro */
+}
+
+header figure {
+  margin: 0;
+}
+
+/* Logo restaurado:
+   - width: auto => respeta el width="1200" que ya tienes en HTML
+   - max-width: 100% => evita que se rompa en pantallas pequeñas */
+header img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+header p {
+  margin-top: 6px;
+  font-size: 1.1rem;
+  color: #fbe7e9;
+}
+
+/* 4. CONTENEDOR PRINCIPAL */
+.container {
+  max-width: 1200px;                  /* Ancho máximo */
+  margin: 0 auto;                     /* Centra horizontalmente */
+  padding: 20px;                      /* Espacio interno */
+}
+
+/* 5. BOTONES */
+button {
+  background-color: #3498db;          /* Color azul */
+  color: white;                       /* Texto blanco */
+  padding: 10px 20px;                 /* Espacio interno */
+  border: none;                       /* Sin bordes */
+  border-radius: 5px;                 /* Esquinas redondeadas */
+  cursor: pointer;                    /* Cursor de mano */
+  font-size: 16px;                    /* Tamaño de texto */
+}
+
+/* 6. EFECTO AL PASAR EL MOUSE */
+button:hover {
+  background-color: #2980b9;          /* Color más oscuro */
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+/* 7. TÍTULOS */
+h1, h2, h3 {
+  color: #2c3e50;                     /* Color oscuro */
+  margin-bottom: 15px;                /* Espacio inferior */
+}
+
+/* 8. PIE DE PÁGINA */
+footer {
+  background: linear-gradient(180deg, #27486b 0%, #1c3550 100%);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* 8.1 REDES SOCIALES */
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.social-links a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(9, 26, 52, 0.35);
+  box-shadow: 0 0 0 1px rgba(207, 166, 111, 0.25) inset;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(207, 166, 111, 0.55) inset,
+    0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.social-links img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* 9. MENU DE NAVEGACION (estilo "Juan Gabriel")
+   Idea visual:
+   - Base clara (marfil/rosa) + acentos vino y dorado
+   - Botones tipo "etiqueta" elegantes
+   - Sombra suave para separar del contenido */
+.main-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin-top: 0;
+  background: linear-gradient(90deg, #0b1f3b 0%, #12345f 55%, #0f2746 100%);
+  border-top: 2px solid #cfa66f;
+  border-bottom: 2px solid #cfa66f;
+  box-shadow:
+    0 10px 26px rgba(4, 14, 33, 0.5),
+    0 0 18px rgba(207, 166, 111, 0.18);
+}
+
+.main-nav__list {
+  list-style: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 22px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffe9b0;
+  background: linear-gradient(135deg, #183454 0%, #112945 50%, #0f223a 100%);
+  border: 2px solid #d0af6a;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.25px;
+  text-shadow: 0 0 8px rgba(255, 221, 142, 0.35);
+  box-shadow:
+    0 0 10px rgba(208, 175, 106, 0.22),
+    inset 0 0 8px rgba(255, 217, 120, 0.06),
+    0 5px 12px rgba(0, 0, 0, 0.32);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  background: linear-gradient(135deg, #1e3f66 0%, #163455 50%, #122a45 100%);
+  color: #ffed4e;
+  border-color: #ffd700;
+  transform: translateY(-2px);
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.75);
+  box-shadow:
+    0 0 16px rgba(255, 215, 0, 0.28),
+    inset 0 0 10px rgba(255, 215, 0, 0.1),
+    0 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+main {
+  padding-top: 24px;
+}
+
+/* 10. CARRUSEL MULTIMEDIA */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 18px 0 0;
+  overflow: hidden;
+  background: #111;
+}
+
+.carousel__slides {
+  position: relative;
+  display: grid;
+}
+
+.carousel__slide {
+  grid-area: 1 / 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.carousel__slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(16px) brightness(0.45);
+  transform: scale(1.08);
+}
+
+.carousel__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.carousel__slide img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: clamp(360px, 58vw, 680px);
+  object-fit: contain;
+  object-position: center;
+}
+
+.carousel__dots {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0;
+}
+
+.carousel__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(215, 223, 235, 0.55);
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.carousel__dot.is-active {
+  background: #ffffff;
+  transform: scale(1.08);
+}
+
+/* 11. TARJETA NETFLIX EN FILA MULTIMEDIA */
+.multimedia-grid {
+  display: grid;
+  /* APRENDIZAJE CSS:
+     - Todas las tarjetas usan el mismo ancho maximo.
+     - justify-content:center evita que se estiren raro en pantallas anchas. */
+  grid-template-columns: repeat(5, minmax(190px, 250px));
+  justify-content: center;
+  gap: 16px;
+  align-items: start;
+}
+
+.multimedia-card {
+  text-align: center;
+}
+
+.multimedia-card p {
+  margin-top: 8px;
+}
+
+.multimedia-netflix {
+  text-align: center;
+  vertical-align: top;
+}
+
+.multimedia-netflix__cover {
+  display: block;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.multimedia-netflix p {
+  margin-top: 8px;
+}
+
+/* APRENDIZAJE CSS:
+   - .netflix-cta alinea texto + botón en una sola línea
+   - .btn-netflix ahora contiene una imagen en vez de texto */
+.netflix-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.btn-netflix {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-netflix img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.btn-netflix:hover,
+.btn-netflix:focus-visible {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.youtube-open {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.youtube-open img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.youtube-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 58px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(229, 9, 20, 0.92);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 21px;
+  line-height: 1;
+  padding-left: 3px;
+}
+
+/* APRENDIZAJE CSS:
+   - .youtube-modal se muestra/oculta con la clase .is-open desde JS.
+   - El iframe se mantiene en 16:9 para verse como reproductor real. */
+.youtube-modal {
+  position: fixed;
+  inset: 0;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 3000;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.youtube-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.youtube-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  /* APRENDIZAJE CSS:
+     backdrop-filter aplica desenfoque al fondo detras del overlay. */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.youtube-modal__content {
+  position: relative;
+  /* APRENDIZAJE CSS:
+     modo cine: el modal ocupa casi todo el ancho visible.
+     min(..., 99vw) evita desbordes en pantallas pequeñas. */
+  width: min(1540px, 99vw);
+  margin: 1.2vh auto 0;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  transform: scale(0.97);
+  transition: transform 0.28s ease;
+}
+
+.youtube-modal.is-open .youtube-modal__content {
+  transform: scale(1);
+}
+
+.youtube-modal__content iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.youtube-modal__close {
+  position: absolute;
+  /* APRENDIZAJE CSS:
+     boton de cierre mas visible, pero sin color rojo. */
+  top: 12px;
+  right: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.62);
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  z-index: 2;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.youtube-modal__close:hover,
+.youtube-modal__close:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* 10. AJUSTE PARA MOVIL */
+@media (max-width: 700px) {
+  header {
+    padding-bottom: 34px;
+  }
+
+  header img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .main-nav {
+    margin-top: 0;
+  }
+
+  .main-nav__list {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 12px;
+    padding-bottom: 14px;
+  }
+
+  main {
+    padding-top: 16px;
+  }
+
+  .carousel__slide img {
+    height: 320px;
+    object-fit: contain;
+  }
+
+  .multimedia-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .multimedia-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================
+   BOTÓN Hasta que te conoci
+   ========================= */
+
+#modo-bellas-artes-switch {
+  text-align: center;
+  padding: 40px 20px;
+  margin: 40px 0;
+}
+
+.bellas-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ocultamos el input checkbox */
+#bellasToggle {
+  display: none;
+}
+
+/* Estilo del botón (label) */
+.bellas-slider {
+  display: inline-block;
+  padding: 16px 48px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+  color: #ffd700;
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  border: 3px solid #cfa66f;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 
+    0 0 20px rgba(207, 166, 111, 0.4),
+    inset 0 0 10px rgba(255, 215, 0, 0.1),
+    0 8px 20px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Contenido inicial del botón */
+.bellas-slider::after {
+  content: "Hasta que te conocí...";
+}
+
+/* Hover del botón */
+.bellas-slider:hover {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 50%, #2d2d2d 100%);
+  color: #ffed4e;
+  border-color: #ffd700;
+  box-shadow: 
+    0 0 30px rgba(255, 215, 0, 0.6),
+    inset 0 0 15px rgba(255, 215, 0, 0.2),
+    0 12px 30px rgba(0, 0, 0, 0.8);
+  transform: translateY(-3px);
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+/* Cuando el checkbox está activado */
+#bellasToggle:checked + .bellas-slider {
+  background: linear-gradient(135deg, #d4af37 0%, #8c6b1f 50%, #d4af37 100%);
+  color: #000;
+  border-color: #ffd700;
+  box-shadow: 
+    0 0 40px rgba(255, 215, 0, 0.8),
+    inset 0 0 20px rgba(255, 215, 0, 0.3),
+    0 12px 40px rgba(212, 175, 55, 0.6);
+}
+
+/* Contenido cuando está activado */
+#bellasToggle:checked + .bellas-slider::after {
+  content: "Cargando...";
+}
+
+/* Hover cuando está activado */
+#bellasToggle:checked + .bellas-slider:hover {
+  background: linear-gradient(135deg, #e6c200 0%, #a8810f 50%, #e6c200 100%);
+  color: #000;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================
+   MODAL BELLAS ARTES
+   ========================= */
+
+.bellas-modal {
+  position: fixed;
+  inset: 0;  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 4000;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.bellas-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Overlay oscuro */
+.bellas-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* Contenedor principal del modal */
+.bellas-modal__content {
+  position: relative;
+  width: min(1120px, 96vw);
+  max-height: 92vh;
+  background: #000;
+  border: 3px solid #cfa66f;
+  border-radius: 12px;
+  overflow: auto;
+  z-index: 1;
+  box-shadow: 
+    0 0 40px rgba(207, 166, 111, 0.6),
+    0 20px 60px rgba(0, 0, 0, 0.8);
+  animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: scale(0.9) translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Botón de cerrar */
+.bellas-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  border: 2px solid #cfa66f;
+  background: linear-gradient(180deg, rgba(15, 15, 15, 0.96) 0%, rgba(0, 0, 0, 0.96) 100%);
+  color: #ffd700;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  box-shadow:
+    0 0 12px rgba(207, 166, 111, 0.35),
+    0 6px 16px rgba(0, 0, 0, 0.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+}
+
+.bellas-modal__close:hover,
+.bellas-modal__close:focus-visible {
+  background: rgba(207, 166, 111, 0.2);
+  border-color: #ffd700;
+  color: #ffed4e;
+  transform: translateY(-1px) scale(1.06);
+  box-shadow:
+    0 0 18px rgba(255, 215, 0, 0.55),
+    0 8px 20px rgba(0, 0, 0, 0.65);
+}
+
+/* Marco dorado tipo escenario */
+.bellas-stage-frame {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 64px 32px 32px;
+  text-align: center;
+}
+
+/* Título */
+.bellas-title {
+  color: #cfa66f;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Video player */
+.bellas-video {
+  display: block;
+  width: min(100%, 980px);
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 2px solid #cfa66f;
+  border-radius: 8px;
+  background: #000;
+  box-shadow: 
+    0 0 20px rgba(207, 166, 111, 0.4),
+    inset 0 0 20px rgba(0, 0, 0, 0.8);
+  margin: 0 auto 24px;
+}
+
+/* Frase decorativa */
+.bellas-quote {
+  color: #ffd700;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+/* Responsive para el modal */
+@media (max-width: 700px) {
+  .bellas-modal__content {
+    width: min(100vw, 100%);
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .bellas-stage-frame {
+    padding: 56px 14px 20px;
+  }
+
+  .bellas-title {
+    font-size: 1.5rem;
+  }
+
+  .bellas-modal__close {
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+    font-size: 26px;
+  }
+}
+
+#discografia {
+  padding: 64px 20px 80px;
+  background:
+    radial-gradient(980px 340px at 50% -80px, rgba(207, 166, 111, 0.2), transparent 72%),
+    linear-gradient(180deg, #211812 0%, #14100d 100%);
+  border-top: 1px solid rgba(207, 166, 111, 0.35);
+}
+
+.discografia-title {
+  margin: 0 auto 28px;
+  width: fit-content;
+  padding: 10px 22px;
+  color: #f2d9a0;
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, rgba(38, 28, 20, 0.95) 0%, rgba(20, 14, 10, 0.95) 100%);
+  border: 1px solid rgba(207, 166, 111, 0.75);
+  border-radius: 3px;
+  box-shadow:
+    0 0 14px rgba(207, 166, 111, 0.2),
+    inset 0 0 8px rgba(255, 215, 130, 0.08);
+  text-shadow: 0 0 10px rgba(242, 217, 160, 0.28);
+}
+
+.discografia-gallery {
+  width: min(1500px, 96vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 210px));
+  justify-content: center;
+  grid-auto-rows: auto;
+  gap: 24px;
+}
+
+.album-frame {
+  margin: 0;
+  padding: 6px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #302418 0%, #1a130e 100%);
+  border: 2px solid #cfa66f;
+  border-radius: 4px;
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.48),
+    0 0 16px rgba(207, 166, 111, 0.2);
+  position: relative;
+}
+
+.album-frame::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(255, 215, 142, 0.25);
+  pointer-events: none;
+}
+
+.album-frame img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #130d09;
+  border: 1px solid #8f6a3c;
+  filter: saturate(1.02) contrast(1.06);
+}
+
+.album-frame:nth-child(6n + 2) {
+  transform: rotate(-0.5deg);
+}
+
+.album-frame:nth-child(8n + 5) {
+  transform: rotate(0.5deg);
+}
+
+.album-frame:nth-child(5n) {
+  transform: rotate(-0.3deg);
+}
+
+@media (max-width: 900px) {
+  .discografia-gallery {
+    width: min(100%, 900px);
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .discografia-gallery {
+    width: min(100%, 560px);
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .album-frame {
+    transform: none !important;
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+}
