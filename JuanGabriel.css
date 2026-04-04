@@ -308,6 +308,102 @@ main {
   margin-top: 8px;
 }
 
+/* 11. FOTOS ICONICAS
+   Esta sección se amplió casi a todo el ancho visible
+   para evitar espacios blancos laterales y hacer más grandes las fotos. */
+#fotos-iconicas {
+  width: calc(100% - 8px);
+  margin: 0 auto 42px;
+  padding: 40px 18px 44px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 227, 179, 0.24), transparent 30%),
+    linear-gradient(180deg, #f7efe4 0%, #efe3d3 100%);
+  border: 1px solid rgba(184, 139, 84, 0.2);
+  border-radius: 28px;
+  box-shadow: 0 20px 44px rgba(27, 41, 62, 0.12);
+}
+
+#fotos-iconicas h2 {
+  color: #b27a3f;
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: 0.6px;
+  margin-bottom: 10px;
+}
+
+#fotos-iconicas p {
+  max-width: 760px;
+  margin: 0 0 26px;
+  color: #614e3e;
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+
+.fotos-mosaico {
+  /* CSS Columns reparte las tarjetas en columnas verticales
+     y permite que cada imagen conserve mejor su proporción. */
+  column-count: 3;
+  column-gap: 16px;
+}
+
+.foto-card {
+  /* break-inside evita que una tarjeta se parta entre columnas. */
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 16px;
+  background: rgba(255, 250, 244, 0.98);
+  border-radius: 24px;
+  overflow: hidden;
+  break-inside: avoid;
+  box-shadow: 0 14px 34px rgba(20, 35, 53, 0.1);
+  border: 1px solid rgba(120, 86, 47, 0.14);
+}
+
+.foto-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #ead8c2;
+}
+
+.foto-card figcaption {
+  padding: 16px 18px 18px;
+  color: #5d4b3c;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(248, 239, 228, 0.96) 0%, rgba(244, 232, 216, 0.98) 100%);
+}
+
+.foto-card--frase img {
+  padding: 14px;
+  background: linear-gradient(180deg, rgba(234, 216, 194, 0.95), rgba(247, 238, 225, 0.98));
+}
+
+/* En pantallas medianas bajamos a 2 columnas para que las tarjetas sigan grandes. */
+@media (max-width: 1100px) {
+  #fotos-iconicas {
+    width: calc(100% - 12px);
+    padding: 34px 20px 38px;
+  }
+
+  .fotos-mosaico {
+    column-count: 2;
+    column-gap: 18px;
+  }
+}
+
+/* El hover solo se aplica cuando el usuario no ha pedido reducir movimiento. */
+@media (prefers-reduced-motion: no-preference) {
+  .foto-card {
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .foto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px rgba(20, 35, 53, 0.14);
+  }
+}
+
 /* APRENDIZAJE CSS:
    - .netflix-cta alinea texto + botón en una sola línea
    - .btn-netflix ahora contiene una imagen en vez de texto */
@@ -486,6 +582,23 @@ main {
 
   main {
     padding-top: 16px;
+  }
+
+  /* En móvil usamos una sola columna para mantener lectura y scroll simples. */
+  #fotos-iconicas {
+    width: calc(100% - 10px);
+    padding: 28px 18px 32px;
+    border-radius: 22px;
+  }
+
+  .fotos-mosaico {
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  .foto-card {
+    margin-bottom: 18px;
+    border-radius: 20px;
   }
 
   .carousel__slide img {
