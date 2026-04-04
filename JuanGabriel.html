@@ -35,7 +35,6 @@
       <li><a href="#letras">Letras</a></li>
       <li><a href="#multimedia">Multimedia</a></li>
       <li><a href="#fotos-iconicas">Fotos Icónicas</a></li>
-      <li><a href="#others">Galería Extra</a></li>
       <li><a href="#discografia">Discografía</a></li>
     </ul>
   </nav>
@@ -304,79 +303,80 @@
 
     </div>
 
-    <!-- Galería histórica -->
+    <!-- Galería histórica:
+         usamos tarjetas <figure> dentro de un contenedor flexible
+         para poder seguir agregando fotos sin depender de tablas. -->
     <section id="fotos-iconicas">
       <h2>Fotos Icónicas</h2>
-      <p>Momentos inolvidables de Juan Gabriel junto a otros artistas.</p>
+      <p>Un homenaje visual con recuerdos, retratos y momentos inolvidables de Juan Gabriel.</p>
 
-      <div class="fotos-grid">
-        <figure>
+      <!-- Mosaico visual:
+           cada .foto-card puede crecer sola según la proporción de la imagen. -->
+      <div class="fotos-mosaico">
+        <figure class="foto-card">
           <img src="Fotos/juan-gabriel-jose-jose-.webp"
                alt="Juan Gabriel junto a Jose Jose"
                loading="lazy">
           <figcaption>Juan Gabriel junto a José José.</figcaption>
         </figure>
 
-        <figure>
+        <figure class="foto-card">
           <img src="Fotos/Juan Gabriel y Maria felix.jpg"
                alt="Juan Gabriel con Maria Felix"
                loading="lazy">
-          <figcaption>Con María Félix, una imagen legendaria.</figcaption>
+          <figcaption>Con María Félix, en una imagen ya legendaria.</figcaption>
         </figure>
 
-        <figure>
+        <figure class="foto-card">
           <img src="Fotos/JG_ inicios.avif"
                alt="Infancia de Juan Gabriel"
                loading="lazy">
           <figcaption>Infancia de Juan Gabriel.</figcaption>
         </figure>
 
-        <figure>
+        <figure class="foto-card">
           <img src="Fotos/JG y otras estrellas.avif"
                alt="Juan Gabriel en una fotografia iconica con artistas invitados"
                loading="lazy">
           <figcaption>Juan Gabriel con otras estrellas.</figcaption>
         </figure>
 
-        <figure>
+        <figure class="foto-card">
           <img src="Fotos/JG y Meche.avif"
                alt="Juan Gabriel con Meche"
                loading="lazy">
           <figcaption>Juan Gabriel con Meche.</figcaption>
         </figure>
 
-        <figure>
+        <figure class="foto-card">
           <img src="Fotos/JG_El patio.avif"
                alt="Juan Gabriel en El Patio"
                loading="lazy">
           <figcaption>Juan Gabriel en El Patio.</figcaption>
         </figure>
 
-        <figure>
+        <figure class="foto-card">
+          <img src="Fotos/Juan Gabriel.jpg"
+               alt="Retrato clasico de Juan Gabriel"
+               loading="lazy">
+          <figcaption>Retrato clásico de Juan Gabriel.</figcaption>
+        </figure>
+
+        <figure class="foto-card">
           <img src="Fotos/Mural Juan Gabriel.jpeg"
                alt="Mural de Juan Gabriel en Juarez"
                loading="lazy">
           <figcaption>Mural de Juan Gabriel en Juárez.</figcaption>
         </figure>
-      </div>
-    </section>
 
-    <section id="others">
-      <!-- Galería adicional -->
-      <table role="presentation" cellspacing="18" align="center">
-        <tbody>
-          <tr>
-            <td>
-              <figure>
-                <img src="Others/Frase.jpg"
-                     alt="Frase destacada de Juan Gabriel"
-                     width="420"
-                     loading="lazy">
-              </figure>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <!-- Variante especial para una imagen con texto/frase. -->
+        <figure class="foto-card foto-card--frase">
+          <img src="Others/Frase.jpg"
+               alt="Frase destacada de Juan Gabriel"
+               loading="lazy">
+          <figcaption>Una frase para cerrar la galería con su esencia.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section id="discografia" aria-label="Discografía de Juan Gabriel">
