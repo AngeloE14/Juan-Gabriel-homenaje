@@ -313,4 +313,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // 11) Frases rotativas en discografia (fade simple con setInterval)
+  const frasesRotativas = document.querySelectorAll(".frase-rotativa");
+
+  if (frasesRotativas.length > 1) {
+    let indiceFraseActual = 0;
+
+    window.setInterval(function () {
+      frasesRotativas[indiceFraseActual].classList.remove("is-active");
+      indiceFraseActual = (indiceFraseActual + 1) % frasesRotativas.length;
+      frasesRotativas[indiceFraseActual].classList.add("is-active");
+    }, 4000);
+  }
 });
