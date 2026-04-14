@@ -13,7 +13,12 @@ body {
   color: #333;                        /* Color del texto */
   background-color: #f4f4f4;          /* Color de fondo */
   overflow-x: hidden;                 /* Evita el hueco/blanco por desborde horizontal */
+  background: linear-gradient(to bottom, #0a0a0a, #000000);
+  color: #e0e0e0;
+  font-family: 'Segoe UI', sans-serif;
 }
+
+
 
 /* 3. ENCABEZADO (header)
    Nota de aprendizaje:
@@ -181,6 +186,34 @@ footer {
   box-shadow:
     0 10px 26px rgba(4, 14, 33, 0.5),
     0 0 18px rgba(207, 166, 111, 0.18);
+}
+
+.biografia {
+    max-width: 800px;   /* limita el ancho */
+    margin: 0 auto;     /* centra horizontalmente */
+    padding: 20px;      /* espacio interno */
+    text-align: left;   /* texto alineado normal */
+}
+
+article {
+    max-width: 800px;   /* limita el ancho */
+    margin: 0 auto;     /* centra el bloque */
+    padding: 20px;      /* espacio interno */
+    text-align: left;   /* mantiene lectura normal */
+}
+
+#logros {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#logros ul {
+    padding-left: 20px; /* separa las viñetas del borde */
+}
+
+#logros li {
+    margin-bottom: 8px;
 }
 
 .main-nav__list {
