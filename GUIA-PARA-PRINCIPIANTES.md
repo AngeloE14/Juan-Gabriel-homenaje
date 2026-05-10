@@ -159,14 +159,48 @@ python3 -m http.server 8000
 - Escribe `console.log("Hola mundo!")`
 - Modifica funciones existentes
 
-### 4. Practica con ejemplos
+### 5. Practica con ejemplos
 ¡Mira el archivo `js/ejemplo.js`! Contiene funciones simples con explicaciones detalladas para que experimentes y aprendas.
 
-### 5. Aprende más
-- **HTML**: w3schools.com/html
-- **CSS**: w3schools.com/css
-- **JavaScript**: javascript.info
-- **MDN Web Docs**: developer.mozilla.org
+### 6. Sistema de audio mejorado
+**¿Por qué no se oye el audio automáticamente?**
+- Los navegadores modernos bloquean el audio automático por privacidad
+- El sitio reproduce el audio en la primera interacción del usuario
+- **Volumen configurado al 90%** para máxima audibilidad
+- Indicador visual muestra cuando el audio se está reproduciendo
+
+**Cómo funciona:**
+1. Al cargar la página, intenta reproducir automáticamente
+2. Si el navegador lo bloquea, espera el primer click/tecla/toque
+3. Una vez desbloqueado, reproduce con volumen alto
+4. Muestra indicadores visuales durante la reproducción
+
+---
+
+## 🔊 Audio en la Web - Conceptos Avanzados
+
+### Políticas de Autoplay
+```javascript
+// Los navegadores bloquean audio automático sin interacción del usuario
+audio.play().catch(error => {
+  // Manejar el bloqueo - reproducir en primera interacción
+  document.addEventListener("click", () => audio.play());
+});
+```
+
+### Control de Volumen
+```javascript
+// Volumen va de 0.0 (silencio) a 1.0 (máximo)
+audio.volume = 0.9;  // 90% del volumen
+audio.muted = false;  // No silenciado
+```
+
+### Estados del Audio
+- `loadstart` - Empezando a cargar
+- `canplay` - Listo para reproducir
+- `play` - Reproducción iniciada
+- `ended` - Reproducción terminada
+- `error` - Error de reproducción
 
 ---
 

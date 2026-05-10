@@ -35,6 +35,7 @@ La estructura general está definida y las secciones principales se encuentran i
 - **Reorganización de imágenes**: La carpeta `Fotos` ha sido renombrada a `Pictures` para mayor claridad
 - **Limpieza del proyecto**: Archivo CSS original eliminado para mantener estructura limpia para mejorar la mantenibilidad y legibilidad.
 - **Modularización JavaScript**: La lógica se ha separado en módulos ES6 organizados en la carpeta `js/` para mejor mantenibilidad
+- **Audio mejorado**: Volumen aumentado al 90% e indicadores visuales para mejor experiencia de usuario
 
 ## 📁 Estructura de archivos CSS
 
