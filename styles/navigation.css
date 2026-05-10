@@ -1,0 +1,107 @@
+/*
+  ===========================================
+  NAVIGATION.CSS - ESTILOS DE NAVEGACIÓN
+  ===========================================
+
+  CONCEPTO: MENÚ DE NAVEGACIÓN
+  La navegación permite a los usuarios saltar entre secciones.
+  Es como el "índice" de un libro pero interactivo.
+
+  CONCEPTOS CSS AVANZADOS:
+  - POSITION: Cómo se posiciona un elemento (sticky = se pega arriba)
+  - Z-INDEX: "Capas" - qué elemento aparece encima de otros
+  - FLEXBOX: Sistema para alinear elementos horizontal/verticalmente
+  - PSEUDO-CLASES: :hover, :focus (estados especiales)
+  - BOX-SHADOW: Sombras alrededor de elementos
+  - BORDER-RADIUS: Esquinas redondeadas
+*/
+
+/* Barra de navegación principal */
+.main-nav {
+  /* POSITION STICKY: Se pega arriba cuando haces scroll */
+  position: sticky;
+  top: 0;              /* Se pega a 0px desde arriba */
+
+  /* Z-INDEX: Aparece encima de otros elementos */
+  z-index: 1000;       /* Número alto = aparece encima */
+
+  margin-top: 0;
+
+  /* BACKGROUND: Degradado horizontal */
+  background: linear-gradient(90deg, #0b1f3b 0%, #12345f 55%, #0f2746 100%);
+
+  /* BORDES: Líneas arriba y abajo */
+  border-top: 2px solid #cfa66f;
+  border-bottom: 2px solid #cfa66f;
+
+  /* BOX-SHADOW: Sombras múltiples para efecto 3D */
+  box-shadow:
+    0 10px 26px rgba(4, 14, 33, 0.5),    /* Sombra grande, semitransparente */
+    0 0 18px rgba(207, 166, 111, 0.18);  /* Sombra dorada sutil */
+}
+
+/*
+  LISTA DE NAVEGACIÓN
+  La lista que contiene todos los enlaces del menú.
+*/
+.main-nav__list {
+  list-style: none;     /* Sin viñetas (puntos) en la lista */
+
+  max-width: 1200px;   /* Ancho máximo */
+  margin: 0 auto;      /* Centrado horizontal */
+
+  padding: 14px 22px;  /* Espacio interno */
+
+  /* FLEXBOX: Sistema de layout moderno */
+  display: flex;       /* Activa flexbox */
+  gap: 16px;          /* Espacio entre elementos */
+  justify-content: center;  /* Centra horizontalmente */
+  align-items: center;      /* Centra verticalmente */
+  flex-wrap: wrap;     /* Permite que los elementos bajen de línea */
+}
+
+/*
+  ENLACES DE NAVEGACIÓN
+  Los botones clickeables del menú.
+*/
+.main-nav a {
+  display: inline-block;  /* Se comporta como bloque pero en línea */
+
+  text-decoration: none;  /* Sin subrayado */
+
+  color: #ffe9b0;         /* Color del texto */
+
+  /* BACKGROUND: Degradado diagonal */
+  background: linear-gradient(135deg, #183454 0%, #112945 50%, #0f223a 100%);
+
+  /* BORDE: Línea alrededor */
+  border: 2px solid #d0af6a;
+
+  padding: 9px 18px;      /* Espacio interno */
+
+  /* BORDER-RADIUS: Esquinas completamente redondeadas */
+  border-radius: 999px;   /* Número alto = círculos perfectos */
+
+  font-weight: 700;       /* Texto en negrita */
+  letter-spacing: 0.25px;
+  text-shadow: 0 0 8px rgba(255, 221, 142, 0.35);
+  box-shadow:
+    0 0 10px rgba(208, 175, 106, 0.22),
+    inset 0 0 8px rgba(255, 217, 120, 0.06),
+    0 5px 12px rgba(0, 0, 0, 0.32);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Efectos hover y focus para navegación */
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  background: linear-gradient(135deg, #1e3f66 0%, #163455 50%, #122a45 100%);
+  color: #ffed4e;
+  border-color: #ffd700;
+  transform: translateY(-2px);
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.75);
+  box-shadow:
+    0 0 16px rgba(255, 215, 0, 0.28),
+    inset 0 0 10px rgba(255, 215, 0, 0.1),
+    0 8px 18px rgba(0, 0, 0, 0.45);
+}

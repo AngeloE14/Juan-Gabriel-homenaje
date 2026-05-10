@@ -1,0 +1,66 @@
+/*
+  ===========================================
+  HEADER.CSS - ESTILOS DEL ENCABEZADO
+  ===========================================
+
+  CONCEPTO: HEADER/ENCABEZADO
+  El header es la parte superior de la página web.
+  Normalmente contiene el logo, navegación y elementos importantes.
+
+  CONCEPTOS CSS DE LAYOUT:
+  - PADDING: Espacio interno del elemento
+  - TEXT-ALIGN: Alineación horizontal del texto
+  - BACKGROUND: Color o imagen de fondo
+  - MARGIN: Espacio exterior del elemento
+
+  UNIDADES CSS:
+  - px: Píxeles (fijo)
+  - rem: Relativo al tamaño base del texto
+  - %: Porcentaje del contenedor padre
+  - auto: Automático (deja que el navegador decida)
+*/
+
+/* Encabezado principal */
+header {
+  /* BACKGROUND: Degradado lineal de arriba hacia abajo */
+  background: linear-gradient(180deg, #2c3e50 0%, #243447 100%);
+  /* 180deg = de arriba hacia abajo, colores del azul oscuro al negro */
+
+  /* COLOR: Color del texto dentro del header */
+  color: #fff8f8;  /* Blanco ligeramente rosado */
+
+  /* PADDING: Espacio interno - arriba, izquierda/derecha, abajo */
+  padding: 10px 20px 48px;
+
+  /* TEXT-ALIGN: Centra horizontalmente el contenido */
+  text-align: center;
+}
+
+/*
+  FIGURE - ELEMENTO SEMÁNTICO
+  <figure> se usa para contenido multimedia (imágenes, videos)
+  que tiene un contexto o necesita una descripción.
+*/
+header figure {
+  margin: 0;  /* MARGEN: Sin espacio exterior */
+}
+
+/*
+  IMÁGENES EN EL HEADER
+  Reglas específicas para las imágenes dentro del header.
+*/
+header img {
+  width: auto;      /* ANCHO: Automático (mantiene proporción) */
+  max-width: 100%;  /* MÁXIMO: No más ancho que su contenedor */
+  height: auto;     /* ALTO: Automático (mantiene proporción) */
+}
+
+/*
+  PÁRRAFO EN EL HEADER
+  El texto descriptivo debajo del logo.
+*/
+header p {
+  margin-top: 6px;      /* MARGEN SUPERIOR: 6px de espacio arriba */
+  font-size: 1.1rem;    /* TAMAÑO: 1.1 veces el tamaño base (16px = 17.6px) */
+  color: #fbe7e9;       /* COLOR: Rosa claro */
+}

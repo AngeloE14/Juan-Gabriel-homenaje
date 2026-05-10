@@ -1,0 +1,60 @@
+/* ===========================================
+   ANIMATIONS.CSS - Animaciones y keyframes
+   ===========================================
+
+   Este archivo contiene todas las animaciones CSS, keyframes
+   y efectos de transición utilizados en el sitio.
+
+   Contenido:
+   - Animación del logo de Juan Gabriel
+   - Animación de entrada del modal
+   - Keyframes para efectos visuales
+*/
+
+/* Animación de aparición del logo */
+.logo-juan {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: aparecerLogo 4s ease forwards;
+}
+
+@keyframes aparecerLogo {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+    filter: drop-shadow(0 0 0px rgba(255,255,255,0));
+  }
+
+  25% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter:
+      drop-shadow(0 0 40px rgba(255,255,255,1))
+      drop-shadow(0 0 30px rgba(212,175,55,0.9));
+  }
+
+  55% {
+    transform: scale(0.97);
+    filter:
+      drop-shadow(0 0 10px rgba(255,255,255,0.3))
+      drop-shadow(0 0 6px rgba(212,175,55,0.2));
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: none; /* limpio total */
+  }
+}
+
+/* Animación de entrada del modal de Bellas Artes */
+@keyframes modalSlideIn {
+  from {
+    transform: scale(0.9) translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}

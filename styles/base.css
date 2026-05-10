@@ -1,0 +1,137 @@
+/*
+  ===========================================
+  BASE.CSS - ESTILOS BASE Y COMPONENTES COMUNES
+  ===========================================
+
+  CONCEPTO: COMPONENTES REUTILIZABLES
+  Este archivo contiene estilos para elementos que se usan en múltiples lugares.
+  Es como tener "piezas de Lego" que puedes usar en cualquier parte del sitio.
+
+  CONCEPTOS CSS IMPORTANTES:
+  - CLASES: Seleccionan elementos con class="nombre-clase"
+  - SELECTORES MÚLTIPLES: h1, h2, h3 aplica a todos los títulos
+  - PSEUDO-CLASES: :hover (cuando pasas el mouse)
+  - FLEXBOX: Sistema moderno para alinear elementos
+*/
+
+/*
+  CONTENEDOR PRINCIPAL
+  Un contenedor limita el ancho máximo y centra el contenido.
+  Es útil para evitar que el contenido se extienda demasiado en pantallas grandes.
+*/
+.container {
+  max-width: 1200px;    /* MÁXIMO: No crece más allá de 1200px */
+  margin: 0 auto;       /* MARGEN: 0 arriba/abajo, auto izquierda/derecha = centrado */
+  padding: 20px;        /* PADDING: 20px de espacio interno en todos los lados */
+}
+
+/*
+  BOTONES - COMPONENTE INTERACTIVO
+  Los botones son elementos clickeables que llaman a acciones.
+*/
+button {
+  background-color: #3498db;    /* FONDO: Color azul */
+  color: white;                 /* TEXTO: Blanco */
+  padding: 10px 20px;          /* PADDING: 10px arriba/abajo, 20px izquierda/derecha */
+  border: none;                /* BORDE: Sin borde visible */
+  border-radius: 5px;          /* RADIO: Esquinas redondeadas de 5px */
+  cursor: pointer;             /* CURSOR: Muestra mano cuando pasas encima */
+  font-size: 16px;             /* FUENTE: Tamaño 16px */
+}
+
+/*
+  PSEUDO-CLASE :HOVER
+  Se activa cuando el usuario pasa el mouse sobre el elemento.
+  Es como decir "cuando el mouse esté encima, haz esto"
+*/
+button:hover {
+  background-color: #2980b9;    /* FONDO: Azul más oscuro */
+  transform: scale(1.05);       /* TRANSFORM: Agranda un 5% */
+  transition: all 0.3s ease;    /* TRANSICIÓN: Anima el cambio en 0.3 segundos */
+}
+
+/*
+  TÍTULOS - JERARQUÍA DE TEXTO
+  HTML tiene títulos desde h1 (más importante) hasta h6 (menos importante)
+  Los buscadores usan esto para entender la estructura de la página.
+*/
+h1, h2, h3 {
+  color: #2c3e50;         /* COLOR: Azul grisáceo oscuro */
+  margin-bottom: 15px;   /* MARGEN INFERIOR: Espacio debajo del título */
+}
+
+/*
+  ENLACES SOCIALES - FLEXBOX EN ACCIÓN
+  Flexbox es un sistema moderno para alinear elementos horizontal/verticalmente.
+*/
+.social-links {
+  display: flex;                /* DISPLAY FLEX: Activa flexbox */
+  justify-content: center;      /* JUSTIFY: Centra horizontalmente los elementos */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.social-links a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(9, 26, 52, 0.35);
+  box-shadow: 0 0 0 1px rgba(207, 166, 111, 0.25) inset;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(207, 166, 111, 0.55) inset,
+    0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.social-links img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* Contenedor principal del contenido */
+main {
+  padding-top: 24px;
+}
+
+/* Sección de biografía */
+.biografia {
+    max-width: 800px;   /* limita el ancho */
+    margin: 0 auto;     /* centra horizontalmente */
+    padding: 20px;      /* espacio interno */
+    text-align: left;   /* texto alineado normal */
+}
+
+/* Estilos para artículos */
+article {
+    max-width: 800px;   /* limita el ancho */
+    margin: 0 auto;     /* centra el bloque */
+    padding: 20px;      /* espacio interno */
+    text-align: left;   /* mantiene lectura normal */
+}
+
+/* Sección de logros */
+#logros {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#logros ul {
+    padding-left: 20px; /* separa las viñetas del borde */
+}
+
+#logros li {
+    margin-bottom: 8px;
+}

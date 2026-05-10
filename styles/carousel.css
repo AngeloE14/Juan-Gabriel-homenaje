@@ -1,0 +1,98 @@
+/* ===========================================
+   CAROUSEL.CSS - Estilos del carrusel multimedia
+   ===========================================
+
+   Este archivo contiene los estilos del carrusel de imágenes
+   que muestra contenido multimedia en la sección principal.
+
+   Contenido:
+   - Contenedor del carrusel
+   - Slides del carrusel
+   - Puntos de navegación (dots)
+   - Efectos de transición
+*/
+
+/* Contenedor del carrusel */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 18px 0 0;
+  overflow: hidden;
+  background: #111;
+}
+
+/* Grid de slides */
+.carousel__slides {
+  position: relative;
+  display: grid;
+}
+
+/* Cada slide individual */
+.carousel__slide {
+  grid-area: 1 / 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.carousel__slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(16px) brightness(0.45);
+  transform: scale(1.08);
+}
+
+/* Slide activo */
+.carousel__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Imágenes del carrusel */
+.carousel__slide img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: clamp(360px, 58vw, 680px);
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Puntos de navegación */
+.carousel__dots {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0;
+}
+
+.carousel__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(215, 223, 235, 0.55);
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.carousel__dot.is-active {
+  background: #ffffff;
+  transform: scale(1.08);
+}

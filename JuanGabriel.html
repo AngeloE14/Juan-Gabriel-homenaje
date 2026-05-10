@@ -1,66 +1,237 @@
+<!--
+  ===========================================
+  HOMENAJE A JUAN GABRIEL - ARCHIVO HTML
+  ===========================================
+
+  Este archivo contiene la estructura completa de la página web.
+  HTML (HyperText Markup Language) es el lenguaje que define la estructura y contenido de las páginas web.
+
+  CONCEPTOS BÁSICOS PARA PRINCIPIANTES:
+  - Las etiquetas HTML van entre < > y la mayoría tienen apertura y cierre
+  - <etiqueta> contenido </etiqueta>
+  - El DOCTYPE declara que tipo de documento HTML estamos usando
+  - La etiqueta <html> envuelve todo el contenido de la página
+  - <head> contiene información sobre la página (no visible para usuarios)
+  - <body> contiene todo el contenido visible de la página
+-->
+
 <!DOCTYPE html>
+<!--
+  DOCTYPE: Declara que este es un documento HTML5.
+  HTML5 es la versión más moderna y recomendada del lenguaje HTML.
+-->
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Angelo">
-  <meta name="description" content="Página  en homenaje a Juan Gabriel. Proyecto personal sin fines de lucro.">
-  <link rel="stylesheet" href="JuanGabriel.css" />
-  <title>Juan Gabriel - Homenaje</title>
-  <!-- Ícono del sitio (pestaña del navegador) -->
-  <link rel="icon" href="assets/icono.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="assets/icono.ico" type="image/x-icon">
+  <!--
+    <html>: Etiqueta raíz que envuelve todo el documento
+    lang="es": Indica que el contenido está en español (importante para accesibilidad y SEO)
+  -->
 
-</head>
+  <head>
+    <!--
+      HEAD: Contiene metadatos (información sobre la página) que no se muestran visualmente
+      pero son importantes para navegadores, motores de búsqueda y accesibilidad
+    -->
 
-<body>
-  <audio id="dialogo-audio" preload="auto">
-    <source src="audios/dialogo.mp3" type="audio/mpeg">
-  </audio>
+    <meta charset="UTF-8">
+    <!--
+      META CHARSET: Define la codificación de caracteres.
+      UTF-8 soporta todos los caracteres incluyendo acentos, ñ, etc.
+      SIN ESTO, las letras con acentos aparecerían mal.
+    -->
 
-  <header>
-    <center>
-      <figure>
-        <img src="assets/Logo.png" class="logo-juan" alt="Logo de Juan Gabriel" width="1200">
-      </figure>
-    </center>
-    <p>Este sitio es un homenaje a la voz que transformó el dolor en canción</p>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+      META VIEWPORT: Hace que la página sea responsive (se adapte a móviles).
+      width=device-width: El ancho de la página = ancho del dispositivo
+      initial-scale=1.0: Zoom inicial del 100%
+    -->
 
-  </header>
+    <meta name="author" content="Angelo">
+    <!-- META AUTHOR: Indica quién creó la página -->
 
-  <!-- Navegación interna: cada enlace apunta a una sección con id -->
-  <nav class="main-nav" aria-label="Navegación principal">
-    <ul class="main-nav__list">
-      <li><a href="#biografia">Biografía</a></li>
-      <li><a href="#letras">Letras</a></li>
-      <li><a href="#multimedia">Multimedia</a></li>
-      <li><a href="#fotos-iconicas">Fotos Icónicas</a></li>
-      <li><a href="#discografia">Discografía</a></li>
-    </ul>
-  </nav>
-  <main>
+    <meta name="description" content="Página  en homenaje a Juan Gabriel. Proyecto personal sin fines de lucro.">
+    <!--
+      META DESCRIPTION: Descripción de la página.
+      Los motores de búsqueda la muestran en los resultados.
+    -->
 
-    <!-- Sección biográfica -->
-    <section id="biografia">
+    <!--
+      ===========================================
+      ESTILOS CSS - ORGANIZACIÓN MODULAR
+      ===========================================
+
+      Los estilos están separados en múltiples archivos por organización.
+      Cada archivo tiene una responsabilidad específica.
+      Se cargan en orden: primero lo básico, luego componentes específicos.
+    -->
+    <link rel="stylesheet" href="styles/reset.css" />
+    <!-- RESET: Reinicia estilos por defecto de navegadores para consistencia -->
+
+    <link rel="stylesheet" href="styles/base.css" />
+    <!-- BASE: Estilos básicos y componentes comunes -->
+
+    <link rel="stylesheet" href="styles/header.css" />
+    <!-- HEADER: Estilos específicos del encabezado -->
+
+    <link rel="stylesheet" href="styles/footer.css" />
+    <!-- FOOTER: Estilos del pie de página -->
+
+    <link rel="stylesheet" href="styles/navigation.css" />
+    <!-- NAVIGATION: Estilos del menú de navegación -->
+
+    <link rel="stylesheet" href="styles/carousel.css" />
+    <!-- CAROUSEL: Estilos del carrusel de imágenes -->
+
+    <link rel="stylesheet" href="styles/multimedia.css" />
+    <!-- MULTIMEDIA: Estilos de videos y contenido multimedia -->
+
+    <link rel="stylesheet" href="styles/discografia.css" />
+    <!-- DISCOGRAFIA: Estilos de la sección de discos -->
+
+    <link rel="stylesheet" href="styles/bellas-artes.css" />
+    <!-- BELLAS ARTES: Estilos del modal especial -->
+
+    <link rel="stylesheet" href="styles/responsive.css" />
+    <!-- RESPONSIVE: Estilos para móviles y tablets -->
+
+    <link rel="stylesheet" href="styles/animations.css" />
+    <!-- ANIMATIONS: Animaciones y transiciones -->
+
+    <title>Juan Gabriel - Homenaje</title>
+    <!-- TITLE: Aparece en la pestaña del navegador -->
+
+    <!-- ÍCONO DEL SITIO (pestaña del navegador) -->
+    <link rel="icon" href="assets/icono.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/icono.ico" type="image/x-icon">
+
+  </head>
+
+  <body>
+    <!--
+      BODY: Contiene todo el contenido visible de la página.
+      Aquí va todo lo que los usuarios ven y con lo que interactúan.
+    -->
+
+    <!--
+      AUDIO ELEMENT: Reproduce sonido automáticamente (diálogo de Juan Gabriel)
+      preload="auto": Carga el audio cuando se carga la página
+      volume será configurado por JavaScript al 90%
+    -->
+    <audio id="dialogo-audio" preload="auto" volume="0.9">
+      <source src="audios/dialogo.mp3" type="audio/mpeg">
+      <!-- SOURCE: Especifica el archivo de audio y su tipo -->
+      Tu navegador no soporta reproducción de audio.
+    </audio>
+
+    <!-- INDICADOR DE AUDIO: Muestra estado de reproducción -->
+    <div id="audio-indicator" style="display: none; position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 5px; z-index: 1000;">
+      🔊 Reproduciendo diálogo...
+    </div>
+
+    <!--
+      ===========================================
+      HEADER - ENCABEZADO DE LA PÁGINA
+      ===========================================
+
+      El header contiene el logo y una descripción introductoria.
+      Es la primera impresión que tienen los visitantes.
+    -->
+    <header>
+      <!-- CENTER: Centra el contenido (aunque está obsoleto, funciona) -->
       <center>
         <figure>
-          <img src="https://s3.amazonaws.com/gex.lifeandstyle/uploads/image/file/7236/01-QUI137JUANGABRIEL1scan.jpg"
-               alt="Foto de Juan Gabriel"
-               width="550">
+          <!--
+            FIGURE: Etiqueta semántica para contenido multimedia con caption
+            IMG: Muestra una imagen. SRC indica dónde está el archivo
+            ALT: Texto alternativo (accesibilidad - se lee si la imagen no carga)
+            WIDTH: Ancho de la imagen en píxeles
+          -->
+          <img src="assets/Logo.png" class="logo-juan" alt="Logo de Juan Gabriel" width="1200">
         </figure>
       </center>
-     <article>
+      <!-- P: Párrafo de texto -->
+      <p>Este sitio es un homenaje a la voz que transformó el dolor en canción</p>
+    </header>
 
-  <p>
-    Juan Gabriel fue <em>un cantautor y actor mexicano</em>. 
-    Es considerado uno de los artistas más importantes de América Latina.
-  </p>
+    <!--
+      ===========================================
+      NAVIGATION - MENÚ DE NAVEGACIÓN
+      ===========================================
 
-  <p>
-    Alberto Aguilera Valadez, conocido como Juan Gabriel y cariñosamente llamado «El Divo de Juárez», 
-    nació en Parácuaro, Michoacán. Inició su carrera como Adán Luna, presentándose en bares y pequeños escenarios.
-    <br> Su primer éxito, «No Tengo Dinero», marcó el inicio de una trayectoria que lo llevaría a consolidarse como una de las figuras más importantes de la música en español, con canciones como «Amor Eterno», «Querida» y «El Noa Noa».
-  </p>
+      La navegación permite saltar rápidamente a diferentes secciones.
+      aria-label: Atributo de accesibilidad para lectores de pantalla
+    -->
+    <nav class="main-nav" aria-label="Navegación principal">
+      <!-- UL: Lista no ordenada -->
+      <ul class="main-nav__list">
+        <!-- LI: Elemento de lista. A: Enlace a una sección de la página -->
+        <li><a href="#biografia">Biografía</a></li>
+        <li><a href="#letras">Letras</a></li>
+        <li><a href="#multimedia">Multimedia</a></li>
+        <li><a href="#fotos-iconicas">Fotos Icónicas</a></li>
+        <li><a href="#discografia">Discografía</a></li>
+      </ul>
+  </nav>
+
+    <!--
+      ===========================================
+      MAIN - CONTENIDO PRINCIPAL
+      ===========================================
+
+      La etiqueta <main> contiene el contenido principal de la página.
+      Debe haber solo una etiqueta <main> por página.
+      Es importante para SEO y accesibilidad.
+    -->
+    <main>
+
+      <!--
+        ===========================================
+        SECCIÓN BIOGRAFÍA
+        ===========================================
+
+        Una sección agrupa contenido relacionado temáticamente.
+        El atributo id="biografia" permite que los enlaces del menú salten aquí.
+      -->
+      <section id="biografia">
+        <!-- CENTER: Centra horizontalmente el contenido -->
+        <center>
+          <figure>
+            <!--
+              FIGURE: Etiqueta semántica para imágenes con contexto
+              IMG: Muestra imagen externa (de internet)
+              ALT: Texto descriptivo para accesibilidad
+              WIDTH: Ancho fijo en píxeles
+            -->
+            <img src="https://s3.amazonaws.com/gex.lifeandstyle/uploads/image/file/7236/01-QUI137JUANGABRIEL1scan.jpg"
+                 alt="Foto de Juan Gabriel"
+                 width="550">
+          </figure>
+        </center>
+
+        <!--
+          ARTICLE: Etiqueta semántica para contenido independiente y autocontenido.
+          Representa contenido que podría ser distribuido independientemente.
+        -->
+        <article>
+
+          <!--
+            P: Párrafo - unidad básica de texto en HTML
+            EM: Énfasis (normalmente se muestra en cursiva, significa "enfatizar")
+          -->
+          <p>
+            Juan Gabriel fue <em>un cantautor y actor mexicano</em>.
+            Es considerado uno de los artistas más importantes de América Latina.
+          </p>
+
+          <!--
+            BR: Salto de línea forzado (break)
+            Se usa cuando quieres forzar un salto sin crear un nuevo párrafo
+          -->
+          <p>
+            Alberto Aguilera Valadez, conocido como Juan Gabriel y cariñosamente llamado «El Divo de Juárez»,
+            nació en Parácuaro, Michoacán. Inició su carrera como Adán Luna, presentándose en bares y pequeños escenarios.
+            <br> Su primer éxito, «No Tengo Dinero», marcó el inicio de una trayectoria que lo llevaría a consolidarse como una de las figuras más importantes de la música en español, con canciones como «Amor Eterno», «Querida» y «El Noa Noa».
+          </p>
 
   <p>
     Con más de 47 álbumes y un legado atemporal, se convirtió en un referente de la música latina, compartiendo su pasión con el mundo y recordando siempre sus raíces.
@@ -220,22 +391,22 @@
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel cantando con pasión en el escenario.">
-            <img src="Fotos/CANTANDO.png"
+            <img src="Pictures/CANTANDO.png"
                  alt="Juan Gabriel cantando en vivo"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Interpretación icónica de Juan Gabriel en concierto.">
-            <img src="Fotos/CANTANDO 2.png"
+            <img src="Pictures/CANTANDO 2.png"
                  alt="Juan Gabriel en concierto cantando"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Otro momento memorable de Juan Gabriel sobre el escenario.">
-            <img src="Fotos/CANTANDO 3.png"
-                 alt="Juan Gabriel cantando durante presentación"
-                 loading="lazy">
-          </figure>
+            <img src="Pictures/CANTANDO 3.png"
+               alt="Juan Gabriel cantando durante presentación"
+               loading="lazy">
+            </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel en material documental.">
-            <img src="Fotos/Juan Gabriel doc.jpg"
+            <img src="Pictures/Juan Gabriel doc.jpg"
                  alt="Juan Gabriel en fotografía documental"
                  loading="lazy">
           </figure>
@@ -250,7 +421,7 @@
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Por los siglos, homenaje visual a Juan Gabriel.">
-            <img src="Fotos/Por los siglos.jpeg"
+            <img src="Pictures/Por los siglos.jpeg"
                  alt="Por los siglos, homenaje a Juan Gabriel"
                  loading="lazy">
           </figure>
@@ -318,98 +489,98 @@
            cada .foto-card puede crecer sola según la proporción de la imagen. -->
       <div class="fotos-mosaico">
         <figure class="foto-card">
-          <img src="Fotos/juan-gabriel-jose-jose-.webp"
+          <img src="Pictures/juan-gabriel-jose-jose-.webp"
                alt="Juan Gabriel junto a Jose Jose"
                loading="lazy">
           <figcaption>Juan Gabriel junto a José José.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/Juan Gabriel y Maria felix.jpg"
+          <img src="Pictures/Juan Gabriel y Maria felix.jpg"
                alt="Juan Gabriel con Maria Felix"
                loading="lazy">
           <figcaption>Con María Félix, en una imagen ya legendaria.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/JG_ inicios.avif"
+          <img src="Pictures/JG_ inicios.avif"
                alt="Infancia de Juan Gabriel"
                loading="lazy">
           <figcaption>Infancia de Juan Gabriel.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/JG y otras estrellas.avif"
+          <img src="Pictures/JG y otras estrellas.avif"
                alt="Juan Gabriel en una fotografia iconica con artistas invitados"
                loading="lazy">
           <figcaption>Rocío Dúrcal, José José, Juan Gabriel y Camilo Sesto.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/JG y Meche.avif"
+          <img src="Pictures/JG y Meche.avif"
                alt="Juan Gabriel con Meche"
                loading="lazy">
           <figcaption>Juan Gabriel con Meche.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/JG_El patio.avif"
+          <img src="Pictures/JG_El patio.avif"
                alt="Juan Gabriel en El Patio"
                loading="lazy">
           <figcaption>Juan Gabriel en El Patio.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/JG BA 1990 TX.jpg"
+          <img src="Pictures/JG BA 1990 TX.jpg"
                alt="Juan Gabriel en Bellas Artes en 1990"
                loading="lazy">
           <figcaption>Juan Gabriel en Bellas Artes, 1990.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/homenaje en BA.jpg"
+          <img src="Pictures/homenaje en BA.jpg"
                alt="Homenaje póstumo a Juan Gabriel en el Palacio de Bellas Artes en 2016"
                loading="lazy">
           <figcaption>Homenaje póstumo en Bellas Artes, 2016.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/JG ESTRELLA EN PASEO DE LA FAMA.avif"
+          <img src="Pictures/JG ESTRELLA EN PASEO DE LA FAMA.avif"
                alt="Juan Gabriel junto a su estrella en el Paseo de la Fama"
                loading="lazy">
           <figcaption>Juan Gabriel y su estrella en el Paseo de la Fama.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/JG y su manager.jpeg"
+          <img src="Pictures/JG y su manager.jpeg"
                alt="Juan Gabriel con su manager María de la Paz Arcaraz"
                loading="lazy">
           <figcaption>Juan Gabriel con su manager, María de la Paz Arcaraz.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/JG y Luis Miguel.jpeg"
+          <img src="Pictures/JG y Luis Miguel.jpeg"
                alt="Juan Gabriel y Luis Miguel durante la filmación de La Media Vuelta"
                loading="lazy">
           <figcaption>Juan Gabriel, Luis Miguel y Lola Beltrán en la filmación del videoclip de Luis Miguel, "La Media Vuelta".</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/Juan Gabriel.jpg"
+          <img src="Pictures/Juan Gabriel.jpg"
                alt="Retrato clasico de Juan Gabriel"
                loading="lazy">
           <figcaption>Retrato clásico de Juan Gabriel.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/Juan Gabriel GRAMMY.jpg"
+          <img src="Pictures/Juan Gabriel GRAMMY.jpg"
                alt="Juan Gabriel en los Latin Grammy"
                loading="lazy">
           <figcaption>Juan Gabriel en los Latin Grammy.</figcaption>
         </figure>
 
         <figure class="foto-card">
-          <img src="Fotos/Mural Juan Gabriel.jpeg"
+          <img src="Pictures/Mural Juan Gabriel.jpeg"
                alt="Mural de Juan Gabriel en Juarez"
                loading="lazy">
           <figcaption>Mural de Juan Gabriel en Juárez.</figcaption>
@@ -428,45 +599,45 @@
     <section id="discografia" aria-label="Discografía de Juan Gabriel">
       <h2 class="discografia-title">LEGADO</h2>
       <div class="discografia-gallery">
-        <figure class="album-frame"><img src="Discografia/10 de los grandes.jpg" alt="Portada de 10 de los grandes" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/10 exitos.jpeg" alt="Portada de 10 exitos" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/50 años de ser el DIvo.jpg" alt="Portada de 50 anos de ser el Divo" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/A mi guitarra.jpeg" alt="Portada de A mi guitarra" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Abrázame muy Fuerte.jpeg" alt="Portada de Abrazame muy fuerte" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Celebrando 25 años.jpeg" alt="Portada de Celebrando 25 anos" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Celebrando.jpg" alt="Portada de Celebrando" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Con Mariachi.jpeg" alt="Portada de Con Mariachi" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Con el Mariachi Vargas de Tecalitlán.jpg" alt="Portada de Con el Mariachi Vargas de Tecalitlan" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Con el Recodo.jpeg" alt="Portada de Con el Recodo" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Con tu amor.jpeg" alt="Portada de Con tu amor" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/El Alma Joven II.jpg" alt="Portada de El Alma Joven II" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/El Alma Joven III.jpg" alt="Portada de El Alma Joven III" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/El Mexico que se nos fue.avif" alt="Portada de El Mexico que se nos fue" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Ella.jpg" alt="Portada de Ella" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Espectacular.jpg" alt="Portada de Espectacular" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Eterno.jpeg" alt="Portada de Eterno" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Gracias por Esperar.jpg" alt="Portada de Gracias por esperar" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Inocente de ti.jpeg" alt="Portada de Inocente de ti" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Juan Gabriel en el Palacio de Bellas Artes.jpg" alt="Portada de Juan Gabriel en el Palacio de Bellas Artes" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Juan Gabriel.jpeg" alt="Portada de Juan Gabriel" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Juan_Gabriel_con_Mariachi,_Vol._2.jpg" alt="Portada de Juan Gabriel con Mariachi Volumen 2" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Juntos_otra_vez.jpg" alt="Portada de Juntos otra vez" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Los Dúo.jpeg" alt="Portada de Los Duo" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Los Dúos 2.jpg" alt="Portada de Los Duos 2" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Los duo 3.webp" alt="Portada de Los duo 3" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Mis 40 en Bellas Artes.jpg" alt="Portada de Mis 40 en Bellas Artes" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Mis ojos tristes.jpeg" alt="Portada de Mis ojos tristes" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/México con Escalas.jpg" alt="Portada de Mexico con Escalas" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Pensamientos.jpeg" alt="Portada de Pensamientos" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Recuerdos II.jpg" alt="Portada de Recuerdos II" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Te llegara mi olvido.jpeg" alt="Portada de Te llegara mi olvido" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Todo esta bien.jpeg" alt="Portada de Todo esta bien" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Todo.jpeg" alt="Portada de Todo" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Vestido de Etiqueta.jpeg" alt="Portada de Vestido de Etiqueta" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Recuerdos.jpg" alt="Portada de Recuerdos" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/El alma joven.jpeg" alt="Portada de El alma joven" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Siempre en mi mente.jpeg" alt="Portada de Siempre en mi mente" loading="lazy"></figure>
-        <figure class="album-frame"><img src="Discografia/Cosas de Enamorados.jpeg" alt="Portada de Cosas de Enamorados" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/10 de los grandes.jpg" alt="Portada de 10 de los grandes" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/10 exitos.jpeg" alt="Portada de 10 exitos" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/50 años de ser el DIvo.jpg" alt="Portada de 50 anos de ser el Divo" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/A mi guitarra.jpeg" alt="Portada de A mi guitarra" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Abrázame muy Fuerte.jpeg" alt="Portada de Abrazame muy fuerte" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Celebrando 25 años.jpeg" alt="Portada de Celebrando 25 anos" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Celebrando.jpg" alt="Portada de Celebrando" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Con Mariachi.jpeg" alt="Portada de Con Mariachi" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Con el Mariachi Vargas de Tecalitlán.jpg" alt="Portada de Con el Mariachi Vargas de Tecalitlan" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Con el Recodo.jpeg" alt="Portada de Con el Recodo" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Con tu amor.jpeg" alt="Portada de Con tu amor" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/El Alma Joven II.jpg" alt="Portada de El Alma Joven II" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/El Alma Joven III.jpg" alt="Portada de El Alma Joven III" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/El Mexico que se nos fue.avif" alt="Portada de El Mexico que se nos fue" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Ella.jpg" alt="Portada de Ella" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Espectacular.jpg" alt="Portada de Espectacular" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Eterno.jpeg" alt="Portada de Eterno" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Gracias por Esperar.jpg" alt="Portada de Gracias por esperar" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Inocente de ti.jpeg" alt="Portada de Inocente de ti" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Juan Gabriel en el Palacio de Bellas Artes.jpg" alt="Portada de Juan Gabriel en el Palacio de Bellas Artes" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Juan Gabriel.jpeg" alt="Portada de Juan Gabriel" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Juan_Gabriel_con_Mariachi,_Vol._2.jpg" alt="Portada de Juan Gabriel con Mariachi Volumen 2" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Juntos_otra_vez.jpg" alt="Portada de Juntos otra vez" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Los Dúo.jpeg" alt="Portada de Los Duo" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Los Dúos 2.jpg" alt="Portada de Los Duos 2" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Los duo 3.webp" alt="Portada de Los duo 3" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Mis 40 en Bellas Artes.jpg" alt="Portada de Mis 40 en Bellas Artes" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Mis ojos tristes.jpeg" alt="Portada de Mis ojos tristes" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/México con Escalas.jpg" alt="Portada de Mexico con Escalas" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Pensamientos.jpeg" alt="Portada de Pensamientos" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Recuerdos II.jpg" alt="Portada de Recuerdos II" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Te llegara mi olvido.jpeg" alt="Portada de Te llegara mi olvido" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Todo esta bien.jpeg" alt="Portada de Todo esta bien" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Todo.jpeg" alt="Portada de Todo" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Vestido de Etiqueta.jpeg" alt="Portada de Vestido de Etiqueta" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Recuerdos.jpg" alt="Portada de Recuerdos" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/El alma joven.jpeg" alt="Portada de El alma joven" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Siempre en mi mente.jpeg" alt="Portada de Siempre en mi mente" loading="lazy"></figure>
+        <figure class="album-frame"><img src="albums/Cosas de Enamorados.jpeg" alt="Portada de Cosas de Enamorados" loading="lazy"></figure>
       </div>
 
       <div class="discografia-firma">
@@ -525,6 +696,6 @@
       </a>
     </p>
   </footer>
-  <script src="JuanGabriel.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

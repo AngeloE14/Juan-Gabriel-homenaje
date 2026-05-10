@@ -1,0 +1,70 @@
+/*
+  ===========================================
+  RESET.CSS - ESTILOS DE REINICIO GLOBAL
+  ===========================================
+
+  CONCEPTO BÁSICO DE CSS PARA PRINCIPIANTES:
+  CSS (Cascading Style Sheets) es el lenguaje que da estilo a las páginas web.
+  Las reglas CSS tienen esta estructura:
+  selector {
+    propiedad: valor;
+  }
+
+  Este archivo "resetea" los estilos por defecto de los navegadores para que
+  todas las páginas se vean iguales en cualquier navegador.
+
+  ¿POR QUÉ HACER RESET?
+  - Cada navegador tiene estilos por defecto diferentes
+  - El reset asegura que empezamos con una "pizarra limpia"
+  - Evita inconsistencias visuales entre navegadores
+*/
+
+/*
+  SELECTOR UNIVERSAL (*)
+  Selecciona TODOS los elementos HTML de la página.
+  Es como decir "para todos los elementos, aplica estas reglas"
+*/
+* {
+  margin: 0;      /* MARGIN: Espacio exterior (fuera del borde del elemento) */
+  padding: 0;     /* PADDING: Espacio interior (dentro del borde del elemento) */
+  box-sizing: border-box;  /* BOX-SIZING: Cómo se calcula el tamaño total del elemento */
+}
+
+/*
+  BOX-SIZING EXPLICADO:
+  - content-box (por defecto): width/height = solo contenido
+  - border-box: width/height = contenido + padding + borde
+
+  EJEMPLO:
+  Si un div tiene width: 100px, padding: 20px:
+  - content-box: tamaño total = 140px (100 + 20*2)
+  - border-box: tamaño total = 100px (el padding se resta del contenido)
+*/
+
+/*
+  BODY - EL CUERPO DE LA PÁGINA
+  El elemento <body> contiene todo el contenido visible.
+  Aquí definimos los estilos base que heredarán todos los elementos.
+*/
+body {
+  /* FONT-FAMILY: Define qué fuente (tipo de letra) usar */
+  font-family: 'Segoe UI', sans-serif;
+  /* sans-serif = letras sin "patitas" (como Arial, Helvetica) */
+
+  /* FONT-SIZE: Tamaño del texto en píxeles */
+  font-size: 16px;
+
+  /* LINE-HEIGHT: Espacio entre líneas de texto (1.6 = 160% del font-size) */
+  line-height: 1.6;
+
+  /* COLOR: Color del texto (en hexadecimal: #RRGGBB) */
+  color: #e0e0e0;
+
+  /* BACKGROUND: Color de fondo */
+  background: linear-gradient(to bottom, #0a0a0a, #000000);
+  /* LINEAR-GRADIENT: Crea un degradado de color */
+
+  /* OVERFLOW-X: Qué hacer con contenido que se sale horizontalmente */
+  overflow-x: hidden;
+  /* hidden = oculta el contenido que se sale */
+}

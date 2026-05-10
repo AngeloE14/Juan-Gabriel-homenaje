@@ -1,0 +1,201 @@
+/* ===========================================
+   DISCOGRAFIA.CSS - Estilos de la discografía
+   ===========================================
+
+   Este archivo contiene los estilos para la sección de discografía,
+   incluyendo la galería de álbumes, citas y firma.
+
+   Contenido:
+   - Contenedor de discografía
+   - Galería de álbumes
+   - Marcos de álbumes
+   - Citas y firma
+   - Frases rotativas
+*/
+
+/* Sección de discografía */
+#discografia {
+  padding: 64px 20px 80px;
+  background:
+    radial-gradient(980px 340px at 50% -80px, rgba(207, 166, 111, 0.2), transparent 72%),
+    linear-gradient(180deg, #211812 0%, #14100d 100%);
+  border-top: 1px solid rgba(207, 166, 111, 0.35);
+}
+
+/* Título de discografía */
+.discografia-title {
+  margin: 0 auto 28px;
+  width: fit-content;
+  padding: 10px 22px;
+  color: #f2d9a0;
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, rgba(38, 28, 20, 0.95) 0%, rgba(20, 14, 10, 0.95) 100%);
+  border: 1px solid rgba(207, 166, 111, 0.75);
+  border-radius: 3px;
+  box-shadow:
+    0 0 14px rgba(207, 166, 111, 0.2),
+    inset 0 0 8px rgba(255, 215, 130, 0.08);
+  text-shadow: 0 0 10px rgba(242, 217, 160, 0.28);
+}
+
+/* Galería de álbumes */
+.discografia-gallery {
+  width: min(1500px, 96vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 210px));
+  justify-content: center;
+  grid-auto-rows: auto;
+  gap: 24px;
+}
+
+/* Cita de discografía */
+.discografia-cita {
+  width: fit-content;
+  max-width: min(760px, 92%);
+  margin: 34px auto 0;
+  padding: 14px 22px;
+  color: #f2ddb0;
+  font-size: clamp(1.05rem, 2vw, 1.22rem);
+  font-style: italic;
+  line-height: 1.65;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(207, 166, 111, 0.26);
+  border-radius: 999px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 240, 200, 0.03),
+    0 12px 24px rgba(0, 0, 0, 0.16);
+}
+
+/* Firma de discografía */
+.discografia-firma {
+  width: fit-content;
+  max-width: 100%;
+  margin: 34px auto 0;
+  padding: 8px 12px;
+  position: relative;
+}
+
+.discografia-firma::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(500px, 88vw);
+  height: 150px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 236, 190, 0.34) 0%, rgba(212, 175, 55, 0.16) 42%, transparent 76%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.discografia-firma img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(460px, 86vw);
+  height: auto;
+  margin: 0 auto;
+  filter:
+    brightness(1.1)
+    contrast(1.14)
+    drop-shadow(0 0 12px rgba(255, 238, 198, 0.28))
+    drop-shadow(0 0 28px rgba(212, 175, 55, 0.14))
+    drop-shadow(0 8px 14px rgba(0, 0, 0, 0.28));
+}
+
+/* Frases rotativas */
+.frases-rotativas {
+  position: relative;
+  width: min(860px, 92%);
+  min-height: 116px;
+  margin: 24px auto 0;
+  padding-top: 20px;
+}
+
+.frases-rotativas::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(180px, 40%);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.7), transparent);
+}
+
+.frase-rotativa {
+  position: absolute;
+  inset: 20px 0 0;
+  margin: 0;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f3dfb1;
+  font-size: clamp(1.02rem, 2vw, 1.28rem);
+  font-style: italic;
+  line-height: 1.7;
+  letter-spacing: 0.2px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.frase-rotativa.is-active {
+  opacity: 1;
+}
+
+/* Marcos de álbum */
+.album-frame {
+  margin: 0;
+  padding: 6px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #302418 0%, #1a130e 100%);
+  border: 2px solid #cfa66f;
+  border-radius: 4px;
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.48),
+    0 0 16px rgba(207, 166, 111, 0.2);
+  position: relative;
+}
+
+.album-frame::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(255, 215, 142, 0.25);
+  pointer-events: none;
+}
+
+.album-frame img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #130d09;
+  border: 1px solid #8f6a3c;
+  filter: saturate(1.02) contrast(1.06);
+}
+
+/* Rotaciones sutiles para algunos marcos */
+.album-frame:nth-child(6n + 2) {
+  transform: rotate(-0.5deg);
+}
+
+.album-frame:nth-child(8n + 5) {
+  transform: rotate(0.5deg);
+}
+
+.album-frame:nth-child(5n) {
+  transform: rotate(-0.3deg);
+}
