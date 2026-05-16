@@ -60,8 +60,12 @@ body {
   /* COLOR: Color del texto (en hexadecimal: #RRGGBB) */
   color: #e0e0e0;
 
-  /* BACKGROUND: Color de fondo */
-  background: linear-gradient(to bottom, #0a0a0a, #000000);
+  /* BACKGROUND: Fondo azul noche con matices dorados (sin negro plano) */
+  background:
+    radial-gradient(980px 360px at 50% -120px, rgba(218, 165, 32, 0.2), transparent 72%),
+    radial-gradient(760px 320px at 8% 20%, rgba(46, 80, 133, 0.2), transparent 72%),
+    radial-gradient(700px 300px at 92% 24%, rgba(123, 48, 74, 0.15), transparent 72%),
+    linear-gradient(180deg, #152235 0%, #101a2a 48%, #0c1420 100%);
   /* LINEAR-GRADIENT: Crea un degradado de color */
 
   /* OVERFLOW-X: Qué hacer con contenido que se sale horizontalmente */

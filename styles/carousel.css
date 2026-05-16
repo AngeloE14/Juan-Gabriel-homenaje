@@ -74,25 +74,30 @@
 .carousel__dots {
   position: absolute;
   left: 50%;
-  bottom: 18px;
+  bottom: 8px;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   padding: 0;
 }
 
 .carousel__dot {
-  width: 14px;
-  height: 14px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(215, 223, 235, 0.55);
+  border: none;
+  background: rgba(255, 255, 255, 0.25);
   cursor: pointer;
-  transition: transform 0.25s ease, background-color 0.25s ease;
+  transition: background 0.25s ease;
+  appearance: none;        /* ← elimina estilos del navegador */
+  -webkit-appearance: none;
+  padding: 0;              /* ← quita padding interno del botón */
+  margin: 0;
+  box-shadow: none;        /* ← quita el relieve/sombra */
+  outline: none;
 }
 
 .carousel__dot.is-active {
-  background: #ffffff;
-  transform: scale(1.08);
+  background: #ffffff; /* blanco puro */
 }

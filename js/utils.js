@@ -109,64 +109,63 @@ export function reproducirDialogoAlCargar() {
   function intentarReproducir() {
     console.log("🎵 Intentando reproducir diálogo...");
 
-    // Verificar que el audio esté listo
-    if (dialogoAudio.readyState < 2) {
-      console.log("⏳ Audio aún no está listo, esperando...");
-      dialogoAudio.addEventListener("canplay", intentarReproducir, { once: true });
-      return false;
-    }
+    return new Promise((resolve) => {
+      if (dialogoAudio.readyState < 2) {
+        console.log("⏳ Audio aún no está listo, esperando...");
+        dialogoAudio.addEventListener("canplay", () => {
+          intentarReproducir().then(resolve);
+        }, { once: true });
+        return;
+      }
 
-    const intento = dialogoAudio.play();
+      const intento = dialogoAudio.play();
 
-    if (intento && typeof intento.catch === "function") {
-      return intento
-        .then(() => {
-          console.log("✅ Diálogo reproduciéndose correctamente");
-          return true;
-        })
-        .catch((error) => {
-          console.warn("⚠️ Autoplay bloqueado por navegador:", error.message);
-          return false;
-        });
-    }
-
-    console.log("✅ Reproducción iniciada");
-    return true;
+      if (intento && typeof intento.then === "function") {
+        intento
+          .then(() => {
+            console.log("✅ Diálogo reproduciéndose correctamente");
+            resolve(true);
+          })
+          .catch((error) => {
+            console.warn("⚠️ Autoplay bloqueado por navegador:", error.message);
+            resolve(false);
+          });
+      } else {
+        console.log("✅ Reproducción iniciada");
+        resolve(true);
+      }
+    });
   }
 
   // Intentar reproducir inmediatamente al cargar
-  const exitoInmediato = intentarReproducir();
+  intentarReproducir().then((exito) => {
+    if (!exito) {
+      console.log("🎯 Configurando reproducción en primera interacción...");
 
-  // Si no se pudo reproducir inmediatamente, configurar para primera interacción
-  if (!exitoInmediato) {
-    console.log("🎯 Configurando reproducción en primera interacción...");
+      function desbloquearYReproducir() {
+        console.log("👆 Primera interacción detectada, intentando reproducir...");
 
-    function desbloquearYReproducir() {
-      console.log("👆 Primera interacción detectada, reproduciendo...");
+        dialogoAudio.volume = 0.9;
+        dialogoAudio.muted = false;
 
-      // Asegurar volumen alto antes de reproducir
-      dialogoAudio.volume = 0.9;
-      dialogoAudio.muted = false;
+        dialogoAudio.play().then(() => {
+          console.log("✅ Audio reproduciéndose después de interacción");
+        }).catch((error) => {
+          console.error("❌ Error al reproducir después de interacción:", error);
+        });
 
-      dialogoAudio.play().then(() => {
-        console.log("✅ Audio reproduciéndose después de interacción");
-      }).catch((error) => {
-        console.error("❌ Error al reproducir después de interacción:", error);
-      });
+        document.removeEventListener("click", desbloquearYReproducir);
+        document.removeEventListener("keydown", desbloquearYReproducir);
+        document.removeEventListener("touchstart", desbloquearYReproducir);
+      }
 
-      // Remover listeners después de la primera reproducción
-      document.removeEventListener("click", desbloquearYReproducir);
-      document.removeEventListener("keydown", desbloquearYReproducir);
-      document.removeEventListener("touchstart", desbloquearYReproducir);
+      document.addEventListener("click", desbloquearYReproducir, { once: true });
+      document.addEventListener("keydown", desbloquearYReproducir, { once: true });
+      document.addEventListener("touchstart", desbloquearYReproducir, { once: true });
+
+      console.log("🎧 Listo para reproducir en primera interacción (click, tecla o toque)");
     }
-
-    // Escuchar primera interacción del usuario
-    document.addEventListener("click", desbloquearYReproducir, { once: true });
-    document.addEventListener("keydown", desbloquearYReproducir, { once: true });
-    document.addEventListener("touchstart", desbloquearYReproducir, { once: true });
-
-    console.log("🎧 Listo para reproducir en primera interacción (click, tecla o toque)");
-  }
+  });
 
   // Agregar indicadores de estado del audio para debugging y usuario
   const audioIndicator = document.getElementById("audio-indicator");
