@@ -41,7 +41,6 @@
 import { colocarAnioActual, marcarEnlaceActivo, inicializarNavegacion, reproducirDialogoAlCargar } from './utils.js';
 import { inicializarCarrusel } from './carousel.js';
 import { inicializarYouTubeModal } from './youtube-modal.js';
-import { inicializarBellasArtesModal } from './bellas-artes-modal.js';
 import { inicializarFrasesRotativas } from './quotes-rotator.js';
 
 /*
@@ -65,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // INICIALIZAR COMPONENTES ESPECÍFICOS
   inicializarCarrusel();         // Configura el carrusel de imágenes
   inicializarYouTubeModal();     // Configura modal de YouTube
-  inicializarBellasArtesModal(); // Configura modal de Bellas Artes
   inicializarFrasesRotativas();  // Configura rotación de frases
 
   console.log("✅ Aplicación inicializada correctamente");
