@@ -24,6 +24,38 @@
   }
 }
 
+/* Base responsiva para la sección de fragmentos (tablas heredadas) */
+#letras {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 12px 10px;
+}
+
+#letras table[role="presentation"] {
+  width: 100% !important;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 14px;
+  margin: 0 auto;
+}
+
+#letras td {
+  padding: 0;
+}
+
+#letras figure {
+  margin: 0;
+}
+
+#letras img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
 /* Ajustes para móviles */
 @media (max-width: 700px) {
   body {
@@ -81,8 +113,23 @@
     padding-bottom: 14px;
   }
 
+  .main-nav a {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+
   main {
     padding-top: 16px;
+  }
+
+  #biografia article,
+  #logros {
+    padding: 14px;
+  }
+
+  #biografia blockquote {
+    margin: 8px auto 0;
+    padding: 14px 14px;
   }
 
   /* En móvil usamos una sola columna para mantener lectura y scroll simples */
@@ -108,7 +155,36 @@
   }
 
   .multimedia-grid {
-    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #letras {
+    padding: 0 8px 8px;
+  }
+
+  #letras table[role="presentation"],
+  #letras tbody,
+  #letras tr,
+  #letras td {
+    display: block;
+    width: 100% !important;
+  }
+
+  #letras table[role="presentation"] {
+    border-spacing: 0;
+  }
+
+  #letras td {
+    margin-bottom: 12px;
+  }
+
+  #letras td[colspan] {
+    margin-bottom: 0;
+  }
+
+  #letras img {
+    max-width: 100%;
+    border-radius: 10px;
   }
 
   /* Reglas específicas de Bellas Artes eliminadas */
@@ -127,6 +203,11 @@
 @media (max-width: 560px) {
   .multimedia-grid {
     grid-template-columns: 1fr;
+  }
+
+  #letras {
+    padding-left: 6px;
+    padding-right: 6px;
   }
 }
 

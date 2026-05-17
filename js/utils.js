@@ -21,7 +21,7 @@
  * Este archivo contiene funciones de utilidad generales como:
  * - Colocación del año actual
  * - Navegación del menú
- * - Reproducción de audio de diálogo
+ * - Reproducción de intro en video
  */
 
 // MODO ESTRICTO - Ayuda a encontrar errores
@@ -88,111 +88,150 @@ export function inicializarNavegacion() {
 }
 
 /**
- * Maneja la reproducción del audio de diálogo con manejo de autoplay
- * CONFIGURACIÓN: Volumen alto (0.9) para asegurar que se oiga bien
- * MEJORA: Intentos múltiples y indicadores visuales
+ * Reproduce el video de introducción al cargar la página.
+ * Cuando termina la intro, revela el contenido principal y deja
+ * que se ejecute la animación del logo en el header.
  */
-export function reproducirDialogoAlCargar() {
-  const dialogoAudio = document.getElementById("dialogo-audio");
-  if (!dialogoAudio) {
-    console.warn("⚠️ Elemento de audio 'dialogo-audio' no encontrado");
+export function reproducirIntroAlCargar() {
+  const body = document.body;
+  const introOverlay = document.getElementById("intro-overlay");
+  const introVideo = document.getElementById("intro-video");
+  const visualViewport = window.visualViewport;
+
+  if (!body) {
     return;
   }
 
-  // CONFIGURAR VOLUMEN MUY ALTO - 0.9 = 90% del volumen máximo
-  dialogoAudio.volume = 0.9;
-  dialogoAudio.muted = false; // Asegurar que no esté silenciado
-  dialogoAudio.loop = false; // No repetir automáticamente
-  console.log("🔊 Volumen configurado al 90%:", dialogoAudio.volume);
-
-  // Función auxiliar para reproducir con manejo de errores mejorado
-  function intentarReproducir() {
-    console.log("🎵 Intentando reproducir diálogo...");
-
-    return new Promise((resolve) => {
-      if (dialogoAudio.readyState < 2) {
-        console.log("⏳ Audio aún no está listo, esperando...");
-        dialogoAudio.addEventListener("canplay", () => {
-          intentarReproducir().then(resolve);
-        }, { once: true });
-        return;
-      }
-
-      const intento = dialogoAudio.play();
-
-      if (intento && typeof intento.then === "function") {
-        intento
-          .then(() => {
-            console.log("✅ Diálogo reproduciéndose correctamente");
-            resolve(true);
-          })
-          .catch((error) => {
-            console.warn("⚠️ Autoplay bloqueado por navegador:", error.message);
-            resolve(false);
-          });
-      } else {
-        console.log("✅ Reproducción iniciada");
-        resolve(true);
-      }
-    });
+  if (!introOverlay || !introVideo) {
+    console.warn("No se encontró el contenedor de intro en video");
+    body.classList.remove("intro-activa");
+    return;
   }
 
-  // Intentar reproducir inmediatamente al cargar
-  intentarReproducir().then((exito) => {
-    if (!exito) {
-      console.log("🎯 Configurando reproducción en primera interacción...");
+  // Se intenta con audio primero.
+  introVideo.defaultMuted = false;
+  introVideo.muted = false;
+  introVideo.playsInline = true;
 
-      function desbloquearYReproducir() {
-        console.log("👆 Primera interacción detectada, intentando reproducir...");
+  let introFinalizada = false;
+  let desbloqueoAudioRegistrado = false;
 
-        dialogoAudio.volume = 0.9;
-        dialogoAudio.muted = false;
+  function ajustarAlturaIntro() {
+    if (introFinalizada) {
+      return;
+    }
 
-        dialogoAudio.play().then(() => {
-          console.log("✅ Audio reproduciéndose después de interacción");
-        }).catch((error) => {
-          console.error("❌ Error al reproducir después de interacción:", error);
+    const altoViewport = visualViewport ? visualViewport.height : window.innerHeight;
+    if (altoViewport && Number.isFinite(altoViewport)) {
+      introOverlay.style.height = Math.round(altoViewport) + "px";
+    }
+  }
+
+  function limpiarEventosViewport() {
+    window.removeEventListener("resize", ajustarAlturaIntro);
+    window.removeEventListener("orientationchange", ajustarAlturaIntro);
+    if (visualViewport) {
+      visualViewport.removeEventListener("resize", ajustarAlturaIntro);
+      visualViewport.removeEventListener("scroll", ajustarAlturaIntro);
+    }
+  }
+
+  ajustarAlturaIntro();
+  window.addEventListener("resize", ajustarAlturaIntro);
+  window.addEventListener("orientationchange", ajustarAlturaIntro);
+  if (visualViewport) {
+    visualViewport.addEventListener("resize", ajustarAlturaIntro);
+    visualViewport.addEventListener("scroll", ajustarAlturaIntro);
+  }
+
+  function quitarDesbloqueoAudio() {
+    if (!desbloqueoAudioRegistrado) {
+      return;
+    }
+
+    document.removeEventListener("click", desbloquearAudio);
+    document.removeEventListener("keydown", desbloquearAudio);
+    document.removeEventListener("touchstart", desbloquearAudio);
+    desbloqueoAudioRegistrado = false;
+  }
+
+  function desbloquearAudio() {
+    if (introFinalizada) {
+      return;
+    }
+
+    introVideo.muted = false;
+    introVideo.defaultMuted = false;
+
+    const intentoAudio = introVideo.play();
+    if (intentoAudio && typeof intentoAudio.then === "function") {
+      intentoAudio
+        .then(function () {
+          console.log("[Intro] Audio activado por interacción del usuario");
+          quitarDesbloqueoAudio();
+        })
+        .catch(function (errorAudio) {
+          console.warn("[Intro] Aún no se pudo activar audio tras interacción", errorAudio);
         });
+    }
+  }
 
-        document.removeEventListener("click", desbloquearYReproducir);
-        document.removeEventListener("keydown", desbloquearYReproducir);
-        document.removeEventListener("touchstart", desbloquearYReproducir);
+  function registrarDesbloqueoAudio() {
+    if (desbloqueoAudioRegistrado) {
+      return;
+    }
+
+    desbloqueoAudioRegistrado = true;
+    document.addEventListener("click", desbloquearAudio, { once: true });
+    document.addEventListener("keydown", desbloquearAudio, { once: true });
+    document.addEventListener("touchstart", desbloquearAudio, { once: true });
+  }
+
+  function finalizarIntro(motivo) {
+    if (introFinalizada) {
+      return;
+    }
+
+    introFinalizada = true;
+    quitarDesbloqueoAudio();
+    limpiarEventosViewport();
+    body.classList.remove("intro-activa");
+    body.classList.add("intro-finalizada");
+    introOverlay.classList.add("is-hidden");
+
+    window.setTimeout(function () {
+      if (introOverlay.parentElement) {
+        introOverlay.remove();
       }
+    }, 700);
 
-      document.addEventListener("click", desbloquearYReproducir, { once: true });
-      document.addEventListener("keydown", desbloquearYReproducir, { once: true });
-      document.addEventListener("touchstart", desbloquearYReproducir, { once: true });
+    console.log("[Intro] Intro finalizada:", motivo);
+  }
 
-      console.log("🎧 Listo para reproducir en primera interacción (click, tecla o toque)");
-    }
-  });
+  introVideo.addEventListener("ended", function () {
+    finalizarIntro("video-ended");
+  }, { once: true });
 
-  // Agregar indicadores de estado del audio para debugging y usuario
-  const audioIndicator = document.getElementById("audio-indicator");
+  introVideo.addEventListener("error", function (errorEvento) {
+    console.error("[Intro] Error al reproducir Intro.mp4", errorEvento);
+    finalizarIntro("video-error");
+  }, { once: true });
 
-  dialogoAudio.addEventListener("loadstart", () => console.log("📥 Audio empezando a cargar"));
-  dialogoAudio.addEventListener("canplay", () => console.log("🎵 Audio listo para reproducir"));
-  dialogoAudio.addEventListener("play", () => {
-    console.log("▶️ Audio empezado");
-    if (audioIndicator) {
-      audioIndicator.style.display = "block";
-      audioIndicator.textContent = "🔊 Reproduciendo diálogo...";
-      // Ocultar indicador después de 3 segundos
-      setTimeout(() => {
-        audioIndicator.style.display = "none";
-      }, 3000);
-    }
-  });
-  dialogoAudio.addEventListener("pause", () => console.log("⏸️ Audio pausado"));
-  dialogoAudio.addEventListener("ended", () => {
-    console.log("🏁 Audio terminado");
-    if (audioIndicator) {
-      audioIndicator.style.display = "block";
-      audioIndicator.textContent = "✅ Diálogo completado";
-      setTimeout(() => {
-        audioIndicator.style.display = "none";
-      }, 2000);
-    }
-  });
-  dialogoAudio.addEventListener("error", (e) => console.error("❌ Error de audio:", e));
+  const intentoReproduccion = introVideo.play();
+
+  if (intentoReproduccion && typeof intentoReproduccion.then === "function") {
+    intentoReproduccion.catch(function (errorAutoplay) {
+      console.warn("[Intro] Autoplay con audio bloqueado. Activando fallback en silencio.", errorAutoplay);
+      introVideo.defaultMuted = true;
+      introVideo.muted = true;
+
+      introVideo.play().then(function () {
+        console.log("[Intro] Reproducción iniciada en silencio por políticas del navegador");
+        registrarDesbloqueoAudio();
+      }).catch(function (errorFinal) {
+        console.error("[Intro] No se pudo reproducir Intro.mp4 automáticamente", errorFinal);
+        finalizarIntro("autoplay-blocked");
+      });
+    });
+  }
 }

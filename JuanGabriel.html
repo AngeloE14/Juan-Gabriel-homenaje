@@ -105,27 +105,26 @@
 
   </head>
 
-  <body>
+  <body class="intro-activa">
     <!--
       BODY: Contiene todo el contenido visible de la página.
       Aquí va todo lo que los usuarios ven y con lo que interactúan.
     -->
 
     <!--
-      AUDIO ELEMENT: Reproduce sonido automáticamente (diálogo de Juan Gabriel)
-      preload="auto": Carga el audio cuando se carga la página
-      volume será configurado por JavaScript al 90%
+      INTRO EN VIDEO:
+      Se reproduce automáticamente al cargar y, al finalizar,
+      revela el contenido principal con la animación del logo.
+      Se intenta con audio primero; si el navegador lo bloquea, aplica fallback silencioso.
     -->
-    <audio id="dialogo-audio" preload="auto" volume="0.9">
-      <source src="audios/dialogo.mp3" type="audio/mpeg">
-      <!-- SOURCE: Especifica el archivo de audio y su tipo -->
-      Tu navegador no soporta reproducción de audio.
-    </audio>
-
-    <!-- INDICADOR DE AUDIO: Muestra estado de reproducción -->
-    <div id="audio-indicator" style="display: none; position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 5px; z-index: 1000;">
-      🔊 Reproduciendo diálogo...
+    <div id="intro-overlay">
+      <video id="intro-video" autoplay playsinline preload="auto" aria-hidden="true" tabindex="-1">
+        <source src="assets/Intro.mp4" type="video/mp4">
+        Tu navegador no soporta reproducción de video.
+      </video>
     </div>
+
+    <div id="page-content">
 
     <!--
       ===========================================
@@ -677,6 +676,7 @@
       </a>
     </p>
   </footer>
+  </div>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
