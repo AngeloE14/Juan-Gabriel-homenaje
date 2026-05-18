@@ -7,20 +7,8 @@
   <img src="Pictures/Por los siglos.jpeg" alt="Homenaje a Juan Gabriel por los siglos" width="760">
 </p>
 
-Proyecto personal en homenaje a Juan Gabriel y ejercicio práctico de aprendizaje en desarrollo web con **HTML, CSS y JavaScript**.
-
+Proyecto personal en homenaje a Juan Gabriel.
 La página reúne fragmentos visuales, letras y momentos icónicos como una experiencia sencilla y respetuosa de su legado.
-
-## � 🆕 GUÍA PARA PRINCIPIANTES
-
-¡Si estás empezando en desarrollo web, esta guía es para ti!
-
-📖 **[Lee la guía completa aquí](GUIA-PARA-PRINCIPIANTES.md)**
-
-Aprende conceptos básicos de HTML, CSS y JavaScript con ejemplos prácticos de este proyecto.
-
----
-
 ## �📌 Estado del proyecto
 La estructura general está definida y las secciones principales se encuentran implementadas.
 
@@ -35,10 +23,8 @@ La estructura general está definida y las secciones principales se encuentran i
 - **Reorganización de imágenes**: La carpeta `Fotos` ha sido renombrada a `Pictures` para mayor claridad
 - **Limpieza del proyecto**: Archivo CSS original eliminado para mantener estructura limpia para mejorar la mantenibilidad y legibilidad.
 - **Modularización JavaScript**: La lógica se ha separado en módulos ES6 organizados en la carpeta `js/` para mejor mantenibilidad
-- **Intro actualizada (mayo 2026)**: Se eliminó `audios/dialogo.mp3` y ahora la página inicia con `assets/Intro.mp4` en reproducción automática; al terminar el video, se muestra el contenido y se activa la animación del logo
 - **Autoplay priorizado (mayo 2026)**: La intro intenta reproducción automática con audio; si el navegador la bloquea, activa fallback en silencio (`playsinline`) y permite reactivar audio en la primera interacción
 - **Mejoras móviles (mayo 2026)**: Se corrigió el intro full-screen en teléfonos (sin franjas visibles y con ajuste dinámico de altura del viewport) y se reforzó el responsive de `Fragmentos`/grillas para una lectura más cómoda en pantallas pequeñas
-- **Footer de plataformas actualizado (mayo 2026)**: Se simplificó el bloque de redes/plataformas oficiales a formato de puros logos y se integró Deezer (`https://www.deezer.com/mx/artist/71813`) junto con YouTube Music y Amazon Music
 - **Video local en Multimedia (mayo 2026)**: Se integró un video local (`videos/Juan Gabriel - Ensayo (Debo Hacerlo).mp4`) embebido con reproductor web nativo y diseño responsive para móvil/escritorio
 
 ## 📁 Estructura de archivos CSS
