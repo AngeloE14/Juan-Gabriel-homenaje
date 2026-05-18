@@ -39,6 +39,7 @@ La estructura general está definida y las secciones principales se encuentran i
 - **Autoplay priorizado (mayo 2026)**: La intro intenta reproducción automática con audio; si el navegador la bloquea, activa fallback en silencio (`playsinline`) y permite reactivar audio en la primera interacción
 - **Mejoras móviles (mayo 2026)**: Se corrigió el intro full-screen en teléfonos (sin franjas visibles y con ajuste dinámico de altura del viewport) y se reforzó el responsive de `Fragmentos`/grillas para una lectura más cómoda en pantallas pequeñas
 - **Footer de plataformas actualizado (mayo 2026)**: Se simplificó el bloque de redes/plataformas oficiales a formato de puros logos y se integró Deezer (`https://www.deezer.com/mx/artist/71813`) junto con YouTube Music y Amazon Music
+- **Video local en Multimedia (mayo 2026)**: Se integró un video local (`videos/Juan Gabriel - Ensayo (Debo Hacerlo).mp4`) embebido con reproductor web nativo y diseño responsive para móvil/escritorio
 
 ## 📁 Estructura de archivos CSS
 

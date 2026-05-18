@@ -1,32 +1,7 @@
-<!--
-  ===========================================
-  HOMENAJE A JUAN GABRIEL - ARCHIVO HTML
-  ===========================================
-
-  Este archivo contiene la estructura completa de la página web.
-  HTML (HyperText Markup Language) es el lenguaje que define la estructura y contenido de las páginas web.
-
-  CONCEPTOS BÁSICOS PARA PRINCIPIANTES:
-  - Las etiquetas HTML van entre < > y la mayoría tienen apertura y cierre
-  - <etiqueta> contenido </etiqueta>
-  - El DOCTYPE declara que tipo de documento HTML estamos usando
-  - La etiqueta <html> envuelve todo el contenido de la página
-  - <head> contiene información sobre la página (no visible para usuarios)
-  - <body> contiene todo el contenido visible de la página
--->
-
 <!DOCTYPE html>
-<!--
-  DOCTYPE: Declara que este es un documento HTML5.
-  HTML5 es la versión más moderna y recomendada del lenguaje HTML.
--->
 <html lang="es">
-  <!--
-    <html>: Etiqueta raíz que envuelve todo el documento
-    lang="es": Indica que el contenido está en español (importante para accesibilidad y SEO)
-  -->
-
-  <head>
+ 
+ <head>
     <!--
       HEAD: Contiene metadatos (información sobre la página) que no se muestran visualmente
       pero son importantes para navegadores, motores de búsqueda y accesibilidad
@@ -165,7 +140,7 @@
         <!-- LI: Elemento de lista. A: Enlace a una sección de la página -->
         <li><a href="#biografia">Biografía</a></li>
         <li><a href="#letras">Letras</a></li>
-        <li><a href="#multimedia">Multimedia</a></li>
+        <li><a href="#multimedia">Videos</a></li>
         <li><a href="#fotos-iconicas">Fotos Icónicas</a></li>
         <li><a href="#discografia">Discografía</a></li>
       </ul>
@@ -308,7 +283,7 @@
     </section>
 
     <section id="multimedia">
-      <h2>Multimedia</h2>
+      <h2>Videos</h2>
 
       <!-- Grid semántico: cada tarjeta es un <article> -->
       <div class="multimedia-grid">
@@ -357,11 +332,11 @@
         </article>
 
         <article class="multimedia-card">
-          <button class="youtube-open" type="button" data-video-id="5HrqtftOc5U" data-video-title="Juan Gabriel - Amor Eterno (en vivo)">
-            <img src="https://img.youtube.com/vi/5HrqtftOc5U/hqdefault.jpg" alt="Miniatura: Juan Gabriel - Amor Eterno (en vivo)" loading="lazy">
-            <span class="youtube-play" aria-hidden="true">&#9658;</span>
-          </button>
-          <p><strong>Juan Gabriel, un torbellino de libertad | María José Cuevas</strong></p>
+          <video controls preload="metadata" playsinline aria-label="Video: Juan Gabriel - Ensayo Debo Hacerlo 1990">
+            <source src="videos/Juan%20Gabriel%20-%20Ensayo%20%28Debo%20Hacerlo%29.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+          <p><strong>Juan Gabriel - Ensayo &quot;Debo Hacerlo 1990&quot;</strong></p>
         </article>
 
       </div>
@@ -484,7 +459,7 @@
 
         <figure class="foto-card">
           <img src="Pictures/JG y otras estrellas.avif"
-               alt="Juan Gabriel en una fotografia iconica con artistas invitados"
+               alt="Juan Gabriel en una fotografia iconica"
                loading="lazy">
           <figcaption>Rocío Dúrcal, José José, Juan Gabriel y Camilo Sesto.</figcaption>
         </figure>
