@@ -38,6 +38,7 @@ La estructura general está definida y las secciones principales se encuentran i
 - **Intro actualizada (mayo 2026)**: Se eliminó `audios/dialogo.mp3` y ahora la página inicia con `assets/Intro.mp4` en reproducción automática; al terminar el video, se muestra el contenido y se activa la animación del logo
 - **Autoplay priorizado (mayo 2026)**: La intro intenta reproducción automática con audio; si el navegador la bloquea, activa fallback en silencio (`playsinline`) y permite reactivar audio en la primera interacción
 - **Mejoras móviles (mayo 2026)**: Se corrigió el intro full-screen en teléfonos (sin franjas visibles y con ajuste dinámico de altura del viewport) y se reforzó el responsive de `Fragmentos`/grillas para una lectura más cómoda en pantallas pequeñas
+- **Footer de plataformas actualizado (mayo 2026)**: Se simplificó el bloque de redes/plataformas oficiales a formato de puros logos y se integró Deezer (`https://www.deezer.com/mx/artist/71813`) junto con YouTube Music y Amazon Music
 
 ## 📁 Estructura de archivos CSS
 
@@ -46,7 +47,7 @@ Los estilos CSS han sido organizados en archivos separados por funcionalidad den
 - **`styles/reset.css`**: Estilos de reinicio global y configuración base del documento
 - **`styles/base.css`**: Estilos base, componentes comunes (botones, títulos, contenedores)
 - **`styles/header.css`**: Estilos del encabezado y logo
-- **`styles/footer.css`**: Estilos del pie de página y firma
+- **`styles/footer.css`**: Estilos del pie de página, bloque de plataformas y firma
 - **`styles/navigation.css`**: Estilos del menú de navegación
 - **`styles/carousel.css`**: Estilos del carrusel multimedia
 - **`styles/multimedia.css`**: Estilos de multimedia, fotos icónicas, YouTube
