@@ -74,17 +74,94 @@ export function marcarEnlaceActivo() {
 */
 export function inicializarNavegacion() {
   const enlacesMenu = document.querySelectorAll(".main-nav a");
+  const botonNavegacion = document.getElementById("nav-toggle");
+  const barraLateral = document.getElementById("sidebar-nav");
+  const overlayNavegacion = document.getElementById("nav-overlay");
+  const body = document.body;
+
+  function cerrarNavegacion() {
+    if (!body) {
+      return;
+    }
+
+    body.classList.remove("nav-open");
+
+    if (botonNavegacion) {
+      botonNavegacion.setAttribute("aria-expanded", "false");
+      botonNavegacion.setAttribute("aria-label", "Abrir navegación");
+    }
+
+    if (overlayNavegacion) {
+      overlayNavegacion.setAttribute("aria-hidden", "true");
+    }
+
+    if (barraLateral) {
+      barraLateral.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  function abrirNavegacion() {
+    if (!body) {
+      return;
+    }
+
+    body.classList.add("nav-open");
+
+    if (botonNavegacion) {
+      botonNavegacion.setAttribute("aria-expanded", "true");
+      botonNavegacion.setAttribute("aria-label", "Cerrar navegación");
+    }
+
+    if (overlayNavegacion) {
+      overlayNavegacion.setAttribute("aria-hidden", "false");
+    }
+
+    if (barraLateral) {
+      barraLateral.setAttribute("aria-hidden", "false");
+    }
+  }
+
+  function alternarNavegacion() {
+    if (!body) {
+      return;
+    }
+
+    const estaAbierta = body.classList.contains("nav-open");
+    if (estaAbierta) {
+      cerrarNavegacion();
+      return;
+    }
+
+    abrirNavegacion();
+  }
 
   enlacesMenu.forEach(function (enlace) {
     // addEventListener() - "Escucha" cuando pasa un evento
     enlace.addEventListener("click", function () {
       console.log("Navegando a:", enlace.getAttribute("href"));
       marcarEnlaceActivo();
+      cerrarNavegacion();
     });
+  });
+
+  if (botonNavegacion) {
+    botonNavegacion.addEventListener("click", alternarNavegacion);
+  }
+
+  if (overlayNavegacion) {
+    overlayNavegacion.addEventListener("click", cerrarNavegacion);
+  }
+
+  window.addEventListener("keydown", function (evento) {
+    if (evento.key === "Escape") {
+      cerrarNavegacion();
+    }
   });
 
   // Evento cuando cambia el hash manualmente
   window.addEventListener("hashchange", marcarEnlaceActivo);
+
+  cerrarNavegacion();
 }
 
 /**

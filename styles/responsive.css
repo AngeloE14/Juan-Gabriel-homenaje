@@ -100,24 +100,6 @@
     padding: 0 8px;
   }
 
-  .main-nav {
-    margin-top: 0;
-  }
-
-  .main-nav__list {
-    justify-content: flex-start;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    gap: 12px;
-    padding-bottom: 14px;
-  }
-
-  .main-nav a {
-    font-size: 0.9rem;
-    padding: 8px 14px;
-  }
-
   main {
     padding-top: 16px;
   }

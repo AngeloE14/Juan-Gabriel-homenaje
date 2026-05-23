@@ -16,73 +16,158 @@
   - BORDER-RADIUS: Esquinas redondeadas
 */
 
-/* Barra de navegación principal */
-.main-nav {
-  /* POSITION STICKY: Se pega arriba cuando haces scroll */
-  position: sticky;
-  top: 0;              /* Se pega a 0px desde arriba */
+:root {
+  --nav-drawer-width: 232px;
+  --nav-offset: 16px;
+}
 
-  /* Z-INDEX: Aparece encima de otros elementos */
-  z-index: 1000;       /* Número alto = aparece encima */
-
-  margin-top: 0;
-
-  /* BACKGROUND: Degradado horizontal */
-  background: linear-gradient(90deg, #0b1f3b 0%, #12345f 55%, #0f2746 100%);
-
-  /* BORDES: Líneas arriba y abajo */
-  border-top: 2px solid #cfa66f;
-  border-bottom: 2px solid #cfa66f;
-
-  /* BOX-SHADOW: Sombras múltiples para efecto 3D */
+/* Botón hamburguesa: visible en escritorio y móvil para un menú compacto. */
+.nav-toggle {
+  position: fixed;
+  top: var(--nav-offset);
+  left: var(--nav-offset);
+  z-index: 2200;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 2px solid #d0af6a;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #183454 0%, #112945 50%, #0f223a 100%);
+  color: #ffe9b0;
+  cursor: pointer;
   box-shadow:
-    0 10px 26px rgba(4, 14, 33, 0.5),    /* Sombra grande, semitransparente */
-    0 0 18px rgba(207, 166, 111, 0.18);  /* Sombra dorada sutil */
+    0 0 12px rgba(208, 175, 106, 0.25),
+    0 6px 14px rgba(0, 0, 0, 0.32);
+  transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.nav-toggle:focus-visible,
+.nav-toggle:hover {
+  border-color: #ffd700;
+  color: #ffed4e;
+  box-shadow:
+    0 0 18px rgba(255, 215, 0, 0.32),
+    0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.nav-toggle__icon {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-toggle__icon span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 99px;
+  background: currentColor;
+  transform-origin: center;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle__text {
+  display: none;
+}
+
+/* Estado visual del ícono cuando el menú está abierto. */
+body.nav-open .nav-toggle__icon span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+body.nav-open .nav-toggle__icon span:nth-child(2) {
+  opacity: 0;
+}
+
+body.nav-open .nav-toggle__icon span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Capa oscura para foco visual al abrir navegación. */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1950;
+  background: rgba(6, 15, 28, 0.52);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+/* Barra lateral principal */
+.main-nav {
+  position: fixed;
+  top: var(--nav-offset);
+  left: var(--nav-offset);
+  z-index: 2100;
+  width: var(--nav-drawer-width);
+  max-height: calc(100vh - (var(--nav-offset) * 2));
+  margin-top: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(calc(-100% - 24px));
+  transition: transform 0.3s ease, opacity 0.24s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 2px solid #cfa66f;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #0b1f3b 0%, #12345f 55%, #0f2746 100%);
+  box-shadow:
+    0 16px 36px rgba(4, 14, 33, 0.55),
+    0 0 18px rgba(207, 166, 111, 0.18);
+}
+
+body.nav-open .main-nav {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+body.nav-open .nav-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.nav-open {
+  overflow: hidden;
 }
 
 /*
   LISTA DE NAVEGACIÓN
-  La lista que contiene todos los enlaces del menú.
+  La lista ahora se organiza en columna para la barra lateral.
 */
 .main-nav__list {
-  list-style: none;     /* Sin viñetas (puntos) en la lista */
+  list-style: none;
+  margin: 0;
+  padding: 70px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
 
-  max-width: 1200px;   /* Ancho máximo */
-  margin: 0 auto;      /* Centrado horizontal */
-
-  padding: 14px 22px;  /* Espacio interno */
-
-  /* FLEXBOX: Sistema de layout moderno */
-  display: flex;       /* Activa flexbox */
-  gap: 16px;          /* Espacio entre elementos */
-  justify-content: center;  /* Centra horizontalmente */
-  align-items: center;      /* Centra verticalmente */
-  flex-wrap: wrap;     /* Permite que los elementos bajen de línea */
+.main-nav__list li {
+  width: 100%;
 }
 
 /*
   ENLACES DE NAVEGACIÓN
-  Los botones clickeables del menú.
+  Se conserva el estilo visual actual de botones.
 */
 .main-nav a {
-  display: inline-block;  /* Se comporta como bloque pero en línea */
-
-  text-decoration: none;  /* Sin subrayado */
-
-  color: #ffe9b0;         /* Color del texto */
-
-  /* BACKGROUND: Degradado diagonal */
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: #ffe9b0;
   background: linear-gradient(135deg, #183454 0%, #112945 50%, #0f223a 100%);
-
-  /* BORDE: Línea alrededor */
   border: 2px solid #d0af6a;
-
-  padding: 9px 18px;      /* Espacio interno */
-
-  /* BORDER-RADIUS: Esquinas completamente redondeadas */
-  border-radius: 999px;   /* Número alto = círculos perfectos */
-
-  font-weight: 700;       /* Texto en negrita */
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.98rem;
   letter-spacing: 0.25px;
   text-shadow: 0 0 8px rgba(255, 221, 142, 0.35);
   box-shadow:
@@ -92,9 +177,10 @@
   transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Efectos hover y focus para navegación */
+/* Efectos hover, focus y enlace activo */
 .main-nav a:hover,
-.main-nav a:focus-visible {
+.main-nav a:focus-visible,
+.main-nav a[aria-current="page"] {
   background: linear-gradient(135deg, #1e3f66 0%, #163455 50%, #122a45 100%);
   color: #ffed4e;
   border-color: #ffd700;
@@ -104,4 +190,34 @@
     0 0 16px rgba(255, 215, 0, 0.28),
     inset 0 0 10px rgba(255, 215, 0, 0.1),
     0 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Vista móvil/tablet: el panel ocupa más alto para facilitar scroll táctil. */
+@media (max-width: 900px) {
+  .main-nav {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(84vw, 320px);
+    max-height: none;
+    border: 0;
+    border-right: 2px solid #cfa66f;
+    border-radius: 0 18px 18px 0;
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, 0.45),
+      0 0 20px rgba(207, 166, 111, 0.2);
+  }
+
+  .main-nav__list {
+    padding: 74px 14px 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav-toggle {
+    top: 10px;
+    left: 10px;
+    width: 42px;
+    height: 42px;
+  }
 }

@@ -2,18 +2,7 @@
 <html lang="es">
  
  <head>
-    <!--
-      HEAD: Contiene metadatos (información sobre la página) que no se muestran visualmente
-      pero son importantes para navegadores, motores de búsqueda y accesibilidad
-    -->
-
     <meta charset="UTF-8">
-    <!--
-      META CHARSET: Define la codificación de caracteres.
-      UTF-8 soporta todos los caracteres incluyendo acentos, ñ, etc.
-      SIN ESTO, las letras con acentos aparecerían mal.
-    -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--
       META VIEWPORT: Hace que la página sea responsive (se adapte a móviles).
@@ -22,8 +11,6 @@
     -->
 
     <meta name="author" content="Angelo">
-    <!-- META AUTHOR: Indica quién creó la página -->
-
     <meta name="description" content="Página  en homenaje a Juan Gabriel. Proyecto personal sin fines de lucro.">
     <!--
       META DESCRIPTION: Descripción de la página.
@@ -63,7 +50,6 @@
     <link rel="stylesheet" href="styles/discografia.css" />
     <!-- DISCOGRAFIA: Estilos de la sección de discos -->
 
-    <!-- BELLAS ARTES eliminado temporalmente -->
 
     <link rel="stylesheet" href="styles/responsive.css" />
     <!-- RESPONSIVE: Estilos para móviles y tablets -->
@@ -79,18 +65,10 @@
     <link rel="shortcut icon" href="assets/icono.ico" type="image/x-icon">
 
   </head>
-
   <body class="intro-activa">
     <!--
       BODY: Contiene todo el contenido visible de la página.
       Aquí va todo lo que los usuarios ven y con lo que interactúan.
-    -->
-
-    <!--
-      INTRO EN VIDEO:
-      Se reproduce automáticamente al cargar y, al finalizar,
-      revela el contenido principal con la animación del logo.
-      Se intenta con audio primero; si el navegador lo bloquea, aplica fallback silencioso.
     -->
     <div id="intro-overlay">
       <video id="intro-video" autoplay playsinline preload="auto" aria-hidden="true" tabindex="-1">
@@ -134,7 +112,16 @@
       La navegación permite saltar rápidamente a diferentes secciones.
       aria-label: Atributo de accesibilidad para lectores de pantalla
     -->
-    <nav class="main-nav" aria-label="Navegación principal">
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="sidebar-nav" aria-expanded="false" aria-label="Abrir navegación">
+      <span class="nav-toggle__icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <span class="nav-toggle__text">Secciones</span>
+    </button>
+
+    <nav class="main-nav" id="sidebar-nav" aria-label="Navegación principal">
       <!-- UL: Lista no ordenada -->
       <ul class="main-nav__list">
         <!-- LI: Elemento de lista. A: Enlace a una sección de la página -->
@@ -145,26 +132,8 @@
         <li><a href="#discografia">Discografía</a></li>
       </ul>
   </nav>
-
-    <!--
-      ===========================================
-      MAIN - CONTENIDO PRINCIPAL
-      ===========================================
-
-      La etiqueta <main> contiene el contenido principal de la página.
-      Debe haber solo una etiqueta <main> por página.
-      Es importante para SEO y accesibilidad.
-    -->
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
     <main>
-
-      <!--
-        ===========================================
-        SECCIÓN BIOGRAFÍA
-        ===========================================
-
-        Una sección agrupa contenido relacionado temáticamente.
-        El atributo id="biografia" permite que los enlaces del menú salten aquí.
-      -->
       <section id="biografia">
         <!-- CENTER: Centra horizontalmente el contenido -->
         <center>
@@ -180,11 +149,6 @@
                  width="550">
           </figure>
         </center>
-
-        <!--
-          ARTICLE: Etiqueta semántica para contenido independiente y autocontenido.
-          Representa contenido que podría ser distribuido independientemente.
-        -->
         <article>
           <h2>Sobre Juan Gabriel</h2>
           <p>
@@ -429,8 +393,6 @@
       </div>
     </section>
 
-    <!-- Contenido de Modo Bellas Artes eliminado temporalmente -->
-
     <!-- Galería histórica:
          usamos tarjetas <figure> dentro de un contenedor flexible
          para poder seguir agregando fotos sin depender de tablas. -->
@@ -447,7 +409,11 @@
                alt="Foto adicional del vinil de Juan Gabriel en Bellas Artes 1990"
                loading="lazy">
         </div>
-        <figcaption>Fotos del vinil del concierto en Bellas Artes, 1990.</figcaption>
+        <figcaption>Del 9 al 12 de mayo de 1990, Juan Gabriel ofreció su primer concierto en el 
+          Palacio de Bellas Artes de la Ciudad de México, acompañado por la Orquesta Sinfónica Nacional 
+          dirigida por Enrique Patrón de Rueda, convirtiéndose en el primer cantautor de música popular 
+          mexicana en presentarse en el Palacio de Bellas Artes.
+        </figcaption>
       </figure>
 
       <!-- Mosaico visual:
@@ -513,7 +479,7 @@
           <img src="Pictures/iconic_photos/PB_SEGUNDA NOCHE.png"
                alt="Segunda noche del homenaje a Juan Gabriel en el Palacio de Bellas Artes"
                loading="lazy">
-          <figcaption>Segunda noche del homenaje en el Palacio de Bellas Artes.</figcaption>
+          <figcaption>Segunda noche en el Palacio de Bellas Artes 1990.</figcaption>
         </figure>
 
         <figure class="foto-card">
@@ -563,7 +529,7 @@
           <img src="Pictures/iconic_photos/Frase.jpg"
                alt="Frase destacada de Juan Gabriel"
                loading="lazy">
-          <figcaption>Una frase para cerrar la galería con su esencia.</figcaption>
+          <figcaption>...</figcaption>
         </figure>
       </div>
     </section>
