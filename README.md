@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="Pictures/Por los siglos.jpeg" alt="Homenaje a Juan Gabriel por los siglos" width="760">
+  <img src="Pictures/carousel_photos/Por los siglos.jpeg" alt="Homenaje a Juan Gabriel por los siglos" width="760">
 </p>
 
 Proyecto personal en homenaje a Juan Gabriel.
