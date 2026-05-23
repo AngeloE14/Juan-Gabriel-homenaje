@@ -98,14 +98,12 @@
 
 /* Mosaico de fotos */
 .fotos-mosaico {
-  /* CSS Columns reparte las tarjetas en columnas verticales */
   column-count: 3;
   column-gap: 16px;
 }
 
 /* Tarjetas de foto */
 .foto-card {
-  /* break-inside evita que una tarjeta se parta entre columnas */
   display: inline-block;
   width: 100%;
   margin: 0 0 16px;
@@ -122,6 +120,27 @@
   width: 100%;
   height: auto;
   background: #ead8c2;
+}
+
+.foto-card--vinyl {
+  display: block;
+  max-width: none;
+  margin: 0 0 18px;
+}
+
+.foto-card__duo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 8px;
+  background: #ead8c2;
+}
+
+.foto-card__duo img {
+  aspect-ratio: 1;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 .foto-card figcaption {
