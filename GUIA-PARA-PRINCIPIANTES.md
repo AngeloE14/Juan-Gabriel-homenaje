@@ -18,12 +18,12 @@ Una página web es como un documento digital que combina:
 ```
 tu-proyecto/
 ├── index.html          ← El archivo principal (HTML)
-├── styles/             ← Carpeta con archivos CSS
+├── css/                ← Carpeta con archivos CSS
 │   ├── reset.css       ← Reinicio de estilos
 │   ├── base.css        ← Estilos básicos
 │   └── header.css      ← Estilos del encabezado
 ├── js/                 ← Carpeta con archivos JavaScript
-│   ├── main.js         ← Archivo principal de JS
+│   ├── index.js        ← Archivo principal de JS
 │   └── utils.js        ← Funciones útiles
 └── assets/             ← Imágenes, sonidos, etc.
 ```

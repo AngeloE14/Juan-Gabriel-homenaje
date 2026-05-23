@@ -19,7 +19,7 @@ La estructura general está definida y las secciones principales se encuentran i
 - Ajuste del layout para mejorar el aprovechamiento del espacio
 - Integración de imágenes en una sola galería principal
 - Cambios enfocados en HTML y CSS sin necesidad de modificar JavaScript
-- **Reorganización completa**: Los estilos se han separado en múltiples archivos organizados por componentes dentro de la carpeta `styles/`
+- **Reorganización completa**: Los estilos se han separado en múltiples archivos organizados por componentes dentro de la carpeta `css/`
 - **Reorganización de imágenes**: La carpeta `Fotos` ha sido renombrada a `Pictures` para mayor claridad
 - **Limpieza del proyecto**: Archivo CSS original eliminado para mantener estructura limpia para mejorar la mantenibilidad y legibilidad.
 - **Modularización JavaScript**: La lógica se ha separado en módulos ES6 organizados en la carpeta `js/` para mejor mantenibilidad
@@ -29,19 +29,19 @@ La estructura general está definida y las secciones principales se encuentran i
 
 ## 📁 Estructura de archivos CSS
 
-Los estilos CSS han sido organizados en archivos separados por funcionalidad dentro de la carpeta `styles/`:
+Los estilos CSS han sido organizados en archivos separados por funcionalidad dentro de la carpeta `css/`:
 
-- **`styles/reset.css`**: Estilos de reinicio global y configuración base del documento
-- **`styles/base.css`**: Estilos base, componentes comunes (botones, títulos, contenedores)
-- **`styles/header.css`**: Estilos del encabezado y logo
-- **`styles/footer.css`**: Estilos del pie de página, bloque de plataformas y firma
-- **`styles/navigation.css`**: Estilos del menú de navegación
-- **`styles/carousel.css`**: Estilos del carrusel multimedia
-- **`styles/multimedia.css`**: Estilos de multimedia, fotos icónicas, YouTube
-- **`styles/discografia.css`**: Estilos de la sección de discografía
-- **`styles/bellas-artes.css`**: Estilos del modal especial "Bellas Artes"
-- **`styles/responsive.css`**: Media queries y estilos responsivos
-- **`styles/animations.css`**: Animaciones y keyframes
+- **`css/reset.css`**: Estilos de reinicio global y configuración base del documento
+- **`css/base.css`**: Estilos base, componentes comunes (botones, títulos, contenedores)
+- **`css/header.css`**: Estilos del encabezado y logo
+- **`css/footer.css`**: Estilos del pie de página, bloque de plataformas y firma
+- **`css/navigation.css`**: Estilos del menú de navegación
+- **`css/carousel.css`**: Estilos del carrusel multimedia
+- **`css/multimedia.css`**: Estilos de multimedia, fotos icónicas, YouTube
+- **`css/discografia.css`**: Estilos de la sección de discografía
+- **`css/bellas-artes.css`**: Estilos del modal especial "Bellas Artes"
+- **`css/responsive.css`**: Media queries y estilos responsivos
+- **`css/animations.css`**: Animaciones y keyframes
 
 Cada archivo incluye documentación detallada de su contenido y propósito.
 
@@ -49,7 +49,7 @@ Cada archivo incluye documentación detallada de su contenido y propósito.
 
 La lógica JavaScript ha sido modularizada usando ES6 modules y organizada en la carpeta `js/`:
 
-- **`js/main.js`**: Punto de entrada principal que importa y coordina todos los módulos
+- **`js/index.js`**: Punto de entrada principal que importa y coordina todos los módulos
 - **`js/utils.js`**: Utilidades generales (mostrar año, navegación, intro en video)
 - **`js/carousel.js`**: Funcionalidad del carrusel de imágenes con autoplay y controles
 - **`js/youtube-modal.js`**: Gestión del modal de YouTube y reproducción de videos

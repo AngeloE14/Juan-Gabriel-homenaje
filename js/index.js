@@ -1,6 +1,6 @@
 /*
   ===========================================
-  MAIN.JS - PUNTO DE ENTRADA PRINCIPAL
+  INDEX.JS - PUNTO DE ENTRADA PRINCIPAL
   ===========================================
 
   CONCEPTO BÁSICO DE JAVASCRIPT PARA PRINCIPIANTES:
@@ -23,7 +23,7 @@
 */
 
 /**
- * MAIN.JS - Archivo principal de JavaScript
+ * INDEX.JS - Archivo principal de JavaScript
  *
  * Punto de entrada principal que coordina todos los módulos
  * de la aplicación y maneja la inicialización.
