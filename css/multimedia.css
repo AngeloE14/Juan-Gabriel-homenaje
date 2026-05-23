@@ -17,7 +17,7 @@
 .multimedia-grid {
   display: grid;
   /* Todas las tarjetas usan el mismo ancho máximo */
-  grid-template-columns: repeat(6, minmax(170px, 220px));
+  grid-template-columns: repeat(8, minmax(140px, 190px));
   justify-content: center;
   gap: 16px;
   align-items: start;
