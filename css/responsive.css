@@ -24,36 +24,190 @@
   }
 }
 
-/* Base responsiva para la sección de fragmentos (tablas heredadas) */
+/* CAMBIO: Carrusel 3D de Fragmentos a ancho completo sin wrapper visual extra */
 #letras {
-  width: min(1200px, 100%);
-  margin: 0 auto;
-  padding: 0 12px 10px;
-}
-
-#letras table[role="presentation"] {
-  width: 100% !important;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 14px;
-  margin: 0 auto;
-}
-
-#letras td {
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: 0;
 }
 
-#letras figure {
-  margin: 0;
+#letras p {
+  margin-bottom: 14px;
+  padding-inline: clamp(12px, 2.6vw, 34px);
 }
 
-#letras img {
+/* CAMBIO: Wrapper del carrusel sin fondo/borde/sombra, con scroll horizontal oculto */
+.fragmentos-scroll {
+  width: 100%;
+  max-width: none;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding: 12px 0 0;
+  margin-top: 0;
+  min-height: 0;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: auto;
+  overscroll-behavior-x: none;
+  touch-action: pan-x;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.fragmentos-scroll::before,
+.fragmentos-scroll::after {
+  content: none;
+}
+
+.fragmentos-scroll:focus-visible {
+  outline: 2px solid rgba(255, 215, 0, 0.75);
+  outline-offset: 3px;
+}
+
+.fragmentos-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* CAMBIO: Track 3D con perspectiva y ancho completo */
+.fragmentos-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.2vw, 30px);
+  width: 100%;
+  min-width: max-content;
+  overflow-x: visible;
+  overflow-y: visible;
+  background: transparent;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+/* CAMBIO: Tarjetas como slides con transformaciones 3D por estado */
+.fragmento-card {
+  --card-size: clamp(220px, 24vw, 320px);
+  margin: 0;
+  flex: 0 0 var(--card-size);
+  aspect-ratio: 3 / 5;
+  position: relative;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  border-radius: 14px;
+  overflow: visible;
+  background: transparent;
+  opacity: 0.45;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  transform: rotateY(22deg) translateZ(-50px) scale(0.78);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.fragmento-card img {
   display: block;
   width: 100%;
-  max-width: 320px;
-  height: auto;
-  margin: 0 auto;
-  border-radius: 12px;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+}
+
+/* CAMBIO: Reflejo sutil inferior sin wrappers extra */
+.fragmento-card::after {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: calc(100% + 8px);
+  height: 28%;
+  opacity: 0.15;
+  transform-origin: top center;
+  transform: scaleY(-1);
+  background-image: var(--fragmento-img);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  -webkit-mask-image: linear-gradient(transparent, transparent);
+  mask-image: linear-gradient(transparent, transparent);
+  pointer-events: none;
+}
+
+/* CAMBIO: Estados 3D exactos por distancia a la tarjeta activa */
+.fragmento-card.is-active {
+  transform: rotateY(0deg) translateZ(0px) scale(1);
+  opacity: 1;
+  z-index: 5;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+}
+
+.fragmento-card.is-near-left {
+  transform: rotateY(12deg) translateZ(-20px) scale(0.82);
+  opacity: 0.75;
+  z-index: 4;
+}
+
+.fragmento-card.is-near-right {
+  transform: rotateY(-12deg) translateZ(-20px) scale(0.82);
+  opacity: 0.75;
+  z-index: 4;
+}
+
+.fragmento-card.is-far-left {
+  transform: rotateY(22deg) translateZ(-50px) scale(0.78);
+  opacity: 0.45;
+  z-index: 3;
+}
+
+.fragmento-card.is-far-right {
+  transform: rotateY(-22deg) translateZ(-50px) scale(0.78);
+  opacity: 0.45;
+  z-index: 3;
+}
+
+/* CAMBIO: Estados visuales durante arrastre */
+.fragmentos-scroll.is-dragging {
+  cursor: grabbing;
+}
+
+.fragmentos-scroll:not(.is-dragging) {
+  cursor: grab;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* CAMBIO: Feedback de clic en tarjetas laterales sin cambiar su diseño base */
+  .fragmento-card:not(.is-active):hover {
+    opacity: 0.8;
+  }
+}
+
+/* CAMBIO: En móvil se desactiva 3D y se usa scroll-snap nativo */
+@media (max-width: 768px) {
+  .fragmentos-scroll {
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 10px;
+  }
+
+  .fragmentos-track {
+    width: max-content;
+  }
+
+  .fragmento-card {
+    scroll-snap-align: center;
+  }
+
+  .card,
+  .fragmento-card {
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 
 /* Ajustes para móviles */
@@ -151,32 +305,21 @@
   }
 
   #letras {
-    padding: 0 8px 8px;
+    padding: 0;
   }
 
-  #letras table[role="presentation"],
-  #letras tbody,
-  #letras tr,
-  #letras td {
-    display: block;
-    width: 100% !important;
+  /* CAMBIO: Ajustes de layout del carrusel en móvil/tablet */
+  .fragmentos-scroll {
+    padding: 0;
   }
 
-  #letras table[role="presentation"] {
-    border-spacing: 0;
+  .fragmentos-track {
+    gap: 12px;
   }
 
-  #letras td {
-    margin-bottom: 12px;
-  }
-
-  #letras td[colspan] {
-    margin-bottom: 0;
-  }
-
-  #letras img {
-    max-width: 100%;
-    border-radius: 10px;
+  .fragmento-card {
+    --card-size: min(68vw, 260px);
+    border-radius: 12px;
   }
 
   /* Reglas específicas de Bellas Artes eliminadas */
@@ -200,6 +343,14 @@
   #letras {
     padding-left: 6px;
     padding-right: 6px;
+  }
+
+  .fragmentos-scroll {
+    padding: 0;
+  }
+
+  .fragmentos-track {
+    gap: 10px;
   }
 }
 

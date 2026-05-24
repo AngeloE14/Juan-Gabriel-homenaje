@@ -42,6 +42,8 @@ import { colocarAnioActual, marcarEnlaceActivo, inicializarNavegacion, reproduci
 import { inicializarCarrusel } from './carousel.js';
 import { inicializarYouTubeModal } from './youtube-modal.js';
 import { inicializarFrasesRotativas } from './quotes-rotator.js';
+/* CAMBIO: Importa la lógica del carrusel 3D de Fragmentos */
+import { inicializarCarruselFragmentos3D } from './fragmentos-carousel.js';
 
 /*
   DOMContentLoaded - EVENTO DE CARGA
@@ -65,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
   inicializarCarrusel();         // Configura el carrusel de imágenes
   inicializarYouTubeModal();     // Configura modal de YouTube
   inicializarFrasesRotativas();  // Configura rotación de frases
+  /* CAMBIO: Inicializa navegación 3D (drag, teclado, click lateral) en Fragmentos */
+  inicializarCarruselFragmentos3D();
 
   console.log("✅ Aplicación inicializada correctamente");
 });
