@@ -1,41 +1,11 @@
-/*
-  ===========================================
-  QUOTES-ROTATOR.JS - ROTACIÓN DE FRASES
-  ===========================================
-
-  CONCEPTO: ANIMACIÓN AUTOMÁTICA SIMPLE
-  Este módulo hace que las frases cambien automáticamente cada pocos segundos.
-  Es como un slideshow de texto.
-
-  CONCEPTOS JAVASCRIPT USADOS:
-  - ARRAYS: Lista de elementos a rotar
-  - TEMPORIZADORES: setInterval() para repetición automática
-  - MANIPULACIÓN DE CLASES: Mostrar/ocultar elementos
-  - OPERADOR MÓDULO: Ciclo infinito en arrays
-*/
-
-/**
- * QUOTES-ROTATOR.JS - Funcionalidad de frases rotativas
- *
- * Maneja la rotación automática de frases en la sección de discografía
- * con efectos de fade in/out.
- */
-
 // MODO ESTRICTO
 "use strict";
 
-/*
-  FUNCIÓN: inicializarFrasesRotativas()
-  OBJETIVO: Hacer que las frases cambien automáticamente
-  CONCEPTO: Animación cíclica con temporizador
-*/
 export function inicializarFrasesRotativas() {
-  // querySelectorAll() - Obtener TODAS las frases rotativas
   const frasesRotativas = document.querySelectorAll(".frase-rotativa");
 
-  // length - Propiedad que dice cuántos elementos hay
+  
   if (frasesRotativas.length > 1) {
-    // VARIABLE DE ESTADO - Recordar cuál frase está visible
     let indiceFraseActual = 0;
 
     /*

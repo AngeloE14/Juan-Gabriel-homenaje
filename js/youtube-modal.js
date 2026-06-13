@@ -1,11 +1,7 @@
-/**
- * YOUTUBE-MODAL.JS - Funcionalidad del modal de YouTube
- *
- * Maneja la apertura y cierre del modal de YouTube
- * con soporte para videos individuales y listas de reproducción.
- */
 
 "use strict";
+
+import { pausarAudioFondo, reanudarAudioFondo } from './utils.js';
 
 /**
  * Inicializa el modal de YouTube
@@ -44,6 +40,9 @@ export function inicializarYouTubeModal() {
 
     youtubeModal.classList.add("is-open");
     youtubeModal.setAttribute("aria-hidden", "false");
+
+    /* Al abrir un video de YouTube se pausa la música de fondo */
+    pausarAudioFondo();
   }
 
   /**
@@ -54,6 +53,9 @@ export function inicializarYouTubeModal() {
     youtubeModal.classList.remove("is-open");
     youtubeModal.setAttribute("aria-hidden", "true");
     youtubeFrame.src = "";
+
+    /* Al cerrar el modal se reanuda la música de fondo */
+    reanudarAudioFondo();
   }
 
   // Event listeners para botones de YouTube

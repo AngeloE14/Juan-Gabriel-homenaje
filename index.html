@@ -11,11 +11,45 @@
     -->
 
     <meta name="author" content="Angelo">
-    <meta name="description" content="Página  en homenaje a Juan Gabriel. Proyecto personal sin fines de lucro.">
-    <!--
-      META DESCRIPTION: Descripción de la página.
-      Los motores de búsqueda la muestran en los resultados.
-    -->
+    <meta name="description" content="Página en homenaje a Juan Gabriel. Proyecto personal sin fines de lucro.">
+
+    <!-- OPEN GRAPH: Previsualización al compartir en redes -->
+    <meta property="og:title" content="Juan Gabriel - Homenaje">
+    <meta property="og:description" content="Página en homenaje a Juan Gabriel. Proyecto personal sin fines de lucro.">
+    <meta property="og:image" content="https://example.com/assets/Logo.png">
+    <meta property="og:url" content="https://example.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:site_name" content="Juan Gabriel - Homenaje">
+
+    <!-- TWITTER CARD: Previsualización en X/Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Juan Gabriel - Homenaje">
+    <meta name="twitter:description" content="Página en homenaje a Juan Gabriel. Proyecto personal sin fines de lucro.">
+    <meta name="twitter:image" content="https://example.com/assets/Logo.png">
+
+    <!-- DATOS ESTRUCTURADOS (JSON-LD): Ayuda a Google a entender el contenido -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Juan Gabriel - Homenaje",
+      "description": "Página en homenaje a Juan Gabriel. Proyecto personal sin fines de lucro.",
+      "about": {
+        "@type": "Person",
+        "name": "Juan Gabriel",
+        "birthName": "Alberto Aguilera Valadez",
+        "birthDate": "1950-01-10",
+        "deathDate": "2016-08-28",
+        "birthPlace": "Parácuaro, Michoacán, México",
+        "sameAs": [
+          "https://www.juangabriel.com/",
+          "https://www.facebook.com/JuanGabrielPorLosSiglos/",
+          "https://www.instagram.com/soyjuangabriel_/"
+        ]
+      }
+    }
+    </script>
 
     <!--
       ===========================================
@@ -50,12 +84,20 @@
     <link rel="stylesheet" href="css/discografia.css" />
     <!-- DISCOGRAFIA: Estilos de la sección de discos -->
 
+    <link rel="stylesheet" href="css/artistas.css" />
+    <!-- ARTISTAS: Estilos de la galería de intérpretes -->
+
 
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- RESPONSIVE: Estilos para móviles y tablets -->
 
     <link rel="stylesheet" href="css/animations.css" />
     <!-- ANIMATIONS: Animaciones y transiciones -->
+
+    <!-- FUENTES: Tipografías ceremoniales para galería de homenaje -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
     <title>Juan Gabriel - Homenaje</title>
     <!-- TITLE: Aparece en la pestaña del navegador -->
@@ -122,15 +164,24 @@
     </button>
 
     <nav class="main-nav" id="sidebar-nav" aria-label="Navegación principal">
+      <div class="main-nav__logo">
+        <img src="assets/Logo.png" alt="Juan Gabriel">
+      </div>
       <!-- UL: Lista no ordenada -->
       <ul class="main-nav__list">
         <!-- LI: Elemento de lista. A: Enlace a una sección de la página -->
         <li><a href="#biografia">Biografía</a></li>
+        <li><a href="#artistas-composiciones">Artistas</a></li>
         <li><a href="#letras">Letras</a></li>
         <li><a href="#multimedia">Videos</a></li>
         <li><a href="#fotos-iconicas">Fotos Icónicas</a></li>
         <li><a href="#discografia">Discografía</a></li>
       </ul>
+      <button class="music-btn" id="music-btn" type="button" aria-label="Reproducir música de fondo">
+        <span class="music-btn__waves" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </span>
+      </button>
   </nav>
     <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
     <main>
@@ -207,13 +258,241 @@
           <li>Ingreso póstumo al Salón de la Fama de Compositores Latinos (2016)</li>
         </ul>
       </section>
-    <section id="letras">
+
+      <!--
+        ===========================================
+        SECCIÓN: ARTISTAS QUE INTERPRETARON SUS COMPOSICIONES
+        ===========================================
+        Esta sección muestra un carrusel horizontal de artistas
+        que cantaron canciones escritas por Juan Gabriel.
+        Cada artista aparece en una tarjeta con foto y nombre.
+        Las fotos vienen de Wikimedia Commons (licencias libres).
+      -->
+      <section id="artistas-composiciones" class="artistas-legado" aria-labelledby="artistas-composiciones-title">
+        <div class="artistas-legado__intro">
+          <h2 id="artistas-composiciones-title">Artistas que llevaron sus composiciones al mundo</h2>
+          <p>Las voces que llevaron las composiciones de Juan Gabriel a distintas generaciones y países.</p>
+        </div>
+
+        <!--
+          GALERÍA HORIZONTAL (SCROLL X)
+          -----------------------------------------
+          .artistas-gallery   → Contenedor con scroll horizontal oculto
+          .artistas-track     → Tira flexible (flex) que contiene todas las tarjetas
+          .artista-frame      → Cada tarjeta individual (figure)
+
+          El scroll horizontal permite agregar más artistas sin romper el diseño.
+          En móvil se desliza con el dedo (touch). En desktop con la rueda del mouse.
+          scroll-snap-type: x mandatory  → Las tarjetas "encajan" al hacer scroll.
+        -->
+        <div class="artistas-gallery" tabindex="0" aria-label="Galería de artistas que interpretaron composiciones de Juan Gabriel">
+          <div class="artistas-track">
+
+          <!--
+            Cada artista es un <figure> con:
+            - .artista-frame__image: Contenedor cuadrado con marco dorado
+            - <img>: Foto del artista (desde Wikimedia Commons)
+            - <figcaption>: Nombre del artista
+
+            FIGURE: Etiqueta semántica de HTML5 para contenido multimedia con caption
+            FIGCAPTION: Texto descriptivo (leyenda) asociado a la figura
+
+            SRC (Special:FilePath): Endpoint de Wikimedia para servir imágenes directamente
+            ?width=720: Pide la imagen redimensionada a 720px de ancho
+            loading="lazy": Carga diferida — la imagen solo se descarga cuando está cerca de verse
+            decoding="async": Decodificación asíncrona — no bloquea el renderizado
+            alt: Texto alternativo para accesibilidad (lectores de pantalla)
+          -->
+          <!--
+            Cada retrato evoca una galería de homenaje histórico,
+            con marco decorativo y placa conmemorativa.
+            La fotografía se conserva; el entorno visual se transforma
+            en un espacio museográfico de figuras legendarias.
+          -->
+          <figure class="artista-frame">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image">
+                    <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Mexican_singer_La_Prieta_Linda.jpg?width=720"
+                    alt="Enriqueta Jiménez «La Prieta Linda»"
+                    loading="lazy"
+                    decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque">
+              <span class="plaque-name">Enriqueta Jiménez</span>
+              <span class="plaque-alias">«La Prieta Linda»</span>
+            </figcaption>
+          </figure>
+
+          <figure class="artista-frame">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image">
+                    <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Lola_Beltr%C3%A1n_portrait,_c._1956_%28cropped%29.jpg?width=720"
+                    alt="Lola Beltrán"
+                    loading="lazy"
+                    decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque">
+              <span class="plaque-name">Lola Beltrán</span>
+            </figcaption>
+          </figure>
+
+          <figure class="artista-frame">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image">
+                    <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Lucha_Villa_en_1961_%28cropped%29.jpg?width=720"
+                    alt="Lucha Villa"
+                    loading="lazy"
+                    decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque">
+              <span class="plaque-name">Lucha Villa</span>
+            </figcaption>
+          </figure>
+
+          <figure class="artista-frame">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image">
+                    <img
+                    src="assets/angelica%20maria.jpg"
+                    alt="Angélica María"
+                    loading="lazy"
+                    decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque">
+              <span class="plaque-name">Angélica María</span>
+            </figcaption>
+          </figure>
+
+          <figure class="artista-frame">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image">
+                    <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Rocio_Durcal_1962.jpg?width=720"
+                    alt="Rocío Dúrcal"
+                    loading="lazy"
+                    decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque">
+              <span class="plaque-name">Rocío Dúrcal</span>
+            </figcaption>
+          </figure>
+
+          <figure class="artista-frame">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image">
+                    <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Jos%C3%A9_Jos%C3%A9_en_1982_%28cropped%29_%28cropped%29.jpg?width=720"
+                    alt="José José"
+                    loading="lazy"
+                    decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque">
+              <span class="plaque-name">José José</span>
+            </figcaption>
+          </figure>
+
+          <figure class="artista-frame">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image">
+                    <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Anagabrielguate.jpg?width=720"
+                    alt="Ana Gabriel"
+                    loading="lazy"
+                    decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque">
+              <span class="plaque-name">Ana Gabriel</span>
+            </figcaption>
+          </figure>
+
+          <figure class="artista-frame">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image">
+                    <img
+                    src="assets/daniela%20romo.jpg"
+                    alt="Daniela Romo"
+                    loading="lazy"
+                    decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque">
+              <span class="plaque-name">Daniela Romo</span>
+            </figcaption>
+          </figure>
+
+          <figure class="artista-frame">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image">
+                    <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Isabel_Pantoja_-_03.jpg?width=720"
+                    alt="Isabel Pantoja"
+                    loading="lazy"
+                    decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque">
+              <span class="plaque-name">Isabel Pantoja</span>
+            </figcaption>
+          </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="letras">
       <h2>Fragmentos</h2>
-      <p>Selección de frases memorables para inspiración y futuras dinámicas en esta página.</p>
 
       <!-- Galería horizontal para poder crecer sin romper el layout -->
       <div class="fragmentos-scroll" tabindex="0" aria-label="Galería horizontal de fragmentos de canciones de Juan Gabriel">
         <div class="fragmentos-track">
+          <figure class="fragmento-card"><img src="Letras/Que chasco me lleve.jpeg" alt="Fragmento de Que chasco me lleve" loading="lazy"></figure>
+          <figure class="fragmento-card"><img src="Letras/Que sea mi condena.jpeg" alt="Fragmento de Que sea mi condena" loading="lazy"></figure>
+          <figure class="fragmento-card"><img src="Letras/Se me olvido otra vez.jpeg" alt="Fragmento de Se me olvidó otra vez" loading="lazy"></figure>
           <figure class="fragmento-card"><img src="Letras/Amor Eterno.jpg" alt="Fragmento de Amor Eterno" loading="lazy"></figure>
           <figure class="fragmento-card"><img src="Letras/Asi fue.jpg" alt="Fragmento de Así fue" loading="lazy"></figure>
           <figure class="fragmento-card"><img src="Letras/Besame.jpg" alt="Fragmento de Bésame" loading="lazy"></figure>
@@ -225,7 +504,6 @@
           <figure class="fragmento-card"><img src="Letras/Querida.jpg" alt="Fragmento de Querida" loading="lazy"></figure>
           <figure class="fragmento-card"><img src="Letras/Abrazáme muy Fuerte.jpeg" alt="Fragmento de Abrazáme muy Fuerte" loading="lazy"></figure>
           <figure class="fragmento-card"><img src="Letras/Asi Se Quiere.jpeg" alt="Fragmento de Asi se Quiere" loading="lazy"></figure>
-          <figure class="fragmento-card"><img src="Letras/Debo Hacerlo.jpeg" alt="Fragmento de Debo Hacerlo" loading="lazy"></figure>
           <figure class="fragmento-card"><img src="Letras/Te Lo Pido por Favor.jpeg" alt="Fragmento de Te Lo Pido por Favor" loading="lazy"></figure>
           <figure class="fragmento-card"><img src="Letras/Ya lo Pasado Pasado.jpeg" alt="Fragmento de Ya lo Pasado Pasado" loading="lazy"></figure>
           <figure class="fragmento-card"><img src="Letras/Se me olvido otra vez.jpg" alt="Fragmento de Se me olvidó otra vez" loading="lazy"></figure>
@@ -240,12 +518,17 @@
       <!-- Grid semántico: cada tarjeta es un <article> -->
       <div class="multimedia-grid">
         <article class="multimedia-card multimedia-netflix">
-          <figure>
-            <img class="multimedia-netflix__cover"
-                 src="Others/Juan Gabriel Debo Puedo y Quiero.jpg"
-                 alt="Portada del documental Juan Gabriel Debo Puedo y Quiero"
-                 loading="lazy">
-          </figure>
+          <a href="https://www.netflix.com/mx/title/81977112?source=35&fromWatch=true"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Ver documental en Netflix">
+            <figure>
+              <img class="multimedia-netflix__cover"
+                   src="assets/Juan Gabriel Debo Puedo y Quiero.jpg"
+                   alt="Portada del documental Juan Gabriel Debo Puedo y Quiero"
+                   loading="lazy">
+            </figure>
+          </a>
           <p class="netflix-cta">
             Miralo en
             <a class="btn-netflix"
@@ -262,7 +545,7 @@
         <article class="multimedia-card">
           <button class="youtube-open" type="button" data-video-id="oETOnIz-DHc" data-video-title="Juan Gabriel: Debo, puedo y quiero | Tráiler oficial | Netflix">
             <img src="https://img.youtube.com/vi/oETOnIz-DHc/hqdefault.jpg" alt="Miniatura: Tráiler oficial actualizado de Juan Gabriel en Netflix" loading="lazy">
-            <span class="youtube-play" aria-hidden="true">&#9658;</span>
+            <span class="youtube-play" aria-hidden="true"></span>
           </button>
           <p><strong>Juan Gabriel: Debo, puedo y quiero | Tráiler oficial | Netflix</strong></p>
         </article>
@@ -270,7 +553,7 @@
         <article class="multimedia-card">
           <button class="youtube-open" type="button" data-video-id="dbH6dJCYWpw" data-video-title="Homenaje a Juan Gabriel - Google Doodle">
             <img src="https://img.youtube.com/vi/dbH6dJCYWpw/hqdefault.jpg" alt="Miniatura: Homenaje de Google Doodle a Juan Gabriel" loading="lazy">
-            <span class="youtube-play" aria-hidden="true">&#9658;</span>
+            <span class="youtube-play" aria-hidden="true"></span>
           </button>
           <p><strong>Homenaje de Google Doodle - Juan Gabriel</strong></p>
         </article>
@@ -278,7 +561,7 @@
         <article class="multimedia-card">
           <button class="youtube-open" type="button" data-video-id="wRydjoNp-30" data-video-title="La fan de Juanga | Debo, Puedo y Quiero">
             <img src="https://img.youtube.com/vi/wRydjoNp-30/hqdefault.jpg" alt="Miniatura: La fan de Juanga | Debo, Puedo y Quiero" loading="lazy">
-            <span class="youtube-play" aria-hidden="true">&#9658;</span>
+            <span class="youtube-play" aria-hidden="true"></span>
           </button>
           <p><strong>La fan de Juanga | Debo, Puedo y Quiero</strong></p>
         </article>
@@ -286,7 +569,7 @@
         <article class="multimedia-card">
           <button class="youtube-open" type="button" data-video-id="5HrqtftOc5U" data-video-title="Juan Gabriel | Video de YouTube">
             <img src="https://img.youtube.com/vi/5HrqtftOc5U/hqdefault.jpg" alt="Miniatura: Juan Gabriel en YouTube" loading="lazy">
-            <span class="youtube-play" aria-hidden="true">&#9658;</span>
+            <span class="youtube-play" aria-hidden="true"></span>
           </button>
           <p><strong>La gran conquista de Juan Gabriel. María José Cuevas, documentalista</strong></p>
         </article>
@@ -423,118 +706,132 @@
       <!-- Mosaico visual:
            cada .foto-card puede crecer sola según la proporción de la imagen. -->
       <div class="fotos-mosaico">
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/juan-gabriel-jose-jose-.webp"
-               alt="Juan Gabriel junto a Jose Jose"
-               loading="lazy">
-          <figcaption>Juan Gabriel junto a José José.</figcaption>
-        </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/Juan Gabriel y Maria felix.jpg"
-               alt="Juan Gabriel con Maria Felix"
-               loading="lazy">
-          <figcaption>Con María Félix, en una imagen ya legendaria.</figcaption>
-        </figure>
+        <div class="fotos-mosaico__col">
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/juan-gabriel-jose-jose-.webp"
+                 alt="Juan Gabriel junto a Jose Jose"
+                 loading="lazy">
+            <figcaption>Juan Gabriel junto a José José.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/JG_ inicios.avif"
-               alt="Infancia de Juan Gabriel"
-               loading="lazy">
-          <figcaption>Infancia de Juan Gabriel.</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/Juan Gabriel y Maria felix.jpg"
+                 alt="Juan Gabriel con Maria Felix"
+                 loading="lazy">
+            <figcaption>Con María Félix, en una imagen ya legendaria.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/JG y otras estrellas.avif"
-               alt="Juan Gabriel en una fotografia iconica"
-               loading="lazy">
-          <figcaption>Rocío Dúrcal, José José, Juan Gabriel y Camilo Sesto.</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/JG_ inicios.avif"
+                 alt="Infancia de Juan Gabriel"
+                 loading="lazy">
+            <figcaption>Infancia de Juan Gabriel.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/JG y Meche.avif"
-               alt="Juan Gabriel con Meche"
-               loading="lazy">
-          <figcaption>Juan Gabriel con Meche.</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/JG y otras estrellas.avif"
+                 alt="Juan Gabriel en una fotografia iconica"
+                 loading="lazy">
+            <figcaption>Rocío Dúrcal, José José, Juan Gabriel y Camilo Sesto.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/JG_El patio.avif"
-               alt="Juan Gabriel en El Patio"
-               loading="lazy">
-          <figcaption>Juan Gabriel en El Patio.</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/JG_El patio.avif"
+                 alt="Juan Gabriel en El Patio"
+                 loading="lazy">
+            <figcaption>Juan Gabriel en El Patio.</figcaption>
+          </figure>
+        </div>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/JG BA 1990 TX.jpg"
-               alt="Juan Gabriel en Bellas Artes en 1990"
-               loading="lazy">
-          <figcaption>Juan Gabriel en Bellas Artes, 1990.</figcaption>
-        </figure>
+        <div class="fotos-mosaico__col">
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/JG BA 1990 TX.jpg"
+                 alt="Juan Gabriel en Bellas Artes en 1990"
+                 loading="lazy">
+            <figcaption>Juan Gabriel en Bellas Artes, 1990.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/homenaje en BA.jpg"
-               alt="Homenaje póstumo a Juan Gabriel en el Palacio de Bellas Artes en 2016"
-               loading="lazy">
-          <figcaption>Homenaje póstumo en Bellas Artes, 2016.</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/homenaje en BA.jpg"
+                 alt="Homenaje póstumo a Juan Gabriel en el Palacio de Bellas Artes en 2016"
+                 loading="lazy">
+            <figcaption>Homenaje póstumo en Bellas Artes, 2016.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/PB_SEGUNDA NOCHE.png"
-               alt="Segunda noche del homenaje a Juan Gabriel en el Palacio de Bellas Artes"
-               loading="lazy">
-          <figcaption>Segunda noche en el Palacio de Bellas Artes 1990.</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/PB_SEGUNDA NOCHE.png"
+                 alt="Segunda noche del homenaje a Juan Gabriel en el Palacio de Bellas Artes"
+                 loading="lazy">
+            <figcaption>Segunda noche en el Palacio de Bellas Artes 1990.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/JG ESTRELLA EN PASEO DE LA FAMA.avif"
-               alt="Juan Gabriel junto a su estrella en el Paseo de la Fama"
-               loading="lazy">
-          <figcaption>Juan Gabriel y su estrella en el Paseo de la Fama.</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/JG ESTRELLA EN PASEO DE LA FAMA.avif"
+                 alt="Juan Gabriel junto a su estrella en el Paseo de la Fama"
+                 loading="lazy">
+            <figcaption>Juan Gabriel y su estrella en el Paseo de la Fama.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/JG y su manager.jpeg"
-               alt="Juan Gabriel con su manager María de la Paz Arcaraz"
-               loading="lazy">
-          <figcaption>Juan Gabriel con su manager, María de la Paz Arcaraz.</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/JG y su manager.jpeg"
+                 alt="Juan Gabriel con su manager María de la Paz Arcaraz"
+                 loading="lazy">
+            <figcaption>Juan Gabriel con su manager, María de la Paz Arcaraz.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/JG y Luis Miguel.jpeg"
-               alt="Juan Gabriel y Luis Miguel durante la filmación de La Media Vuelta"
-               loading="lazy">
-          <figcaption>Juan Gabriel, Luis Miguel y Lola Beltrán en la filmación del videoclip de Luis Miguel, "La Media Vuelta".</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/JG y Luis Miguel.jpeg"
+                 alt="Juan Gabriel y Luis Miguel durante la filmación de La Media Vuelta"
+                 loading="lazy">
+            <figcaption>Juan Gabriel, Luis Miguel y Lola Beltrán en la filmación del videoclip de Luis Miguel, "La Media Vuelta".</figcaption>
+          </figure>
+        </div>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/Juan Gabriel.jpg"
-               alt="Retrato clasico de Juan Gabriel"
-               loading="lazy">
-          <figcaption>Retrato clásico de Juan Gabriel.</figcaption>
-        </figure>
+        <div class="fotos-mosaico__col">
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/JG y Meche.avif"
+                 alt="Juan Gabriel con Meche"
+                 loading="lazy">
+            <figcaption>Juan Gabriel con Meche.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/Juan Gabriel BBC.webp"
-               alt="Juan Gabriel en una imagen histórica relacionada con Amor Eterno"
-               loading="lazy">
-          <figcaption>Pasaron muchos años para que Juan Gabriel interpretara "Amor eterno".</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/Juan Gabriel.jpg"
+                 alt="Retrato clasico de Juan Gabriel"
+                 loading="lazy">
+            <figcaption>Retrato clásico de Juan Gabriel.</figcaption>
+          </figure>
 
-        <figure class="foto-card">
-          <img src="Pictures/iconic_photos/Mural Juan Gabriel.jpeg"
-               alt="Mural de Juan Gabriel en Juarez"
-               loading="lazy">
-          <figcaption>Mural de Juan Gabriel en Juárez.</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/Maria felix a juan gabriel.jpeg"
+                 alt="María Félix y Juan Gabriel en una foto icónica"
+                 loading="lazy">
+            <figcaption>«Te va a ir muy bien porque tú eres estupendo. La cara del éxito es maravillosa».</figcaption>
+          </figure>
 
-        <!-- Variante especial para una imagen con texto/frase. -->
-        <figure class="foto-card foto-card--frase">
-          <img src="Pictures/iconic_photos/Frase.jpg"
-               alt="Frase destacada de Juan Gabriel"
-               loading="lazy">
-          <figcaption>...</figcaption>
-        </figure>
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/Juan Gabriel BBC.webp"
+                 alt="Juan Gabriel en una imagen histórica relacionada con Amor Eterno"
+                 loading="lazy">
+            <figcaption>Pasaron muchos años para que Juan Gabriel interpretara "Amor eterno".</figcaption>
+          </figure>
+
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/Mural Juan Gabriel.jpeg"
+                 alt="Mural de Juan Gabriel en Juarez"
+                 loading="lazy">
+            <figcaption>Mural de Juan Gabriel en Juárez.</figcaption>
+          </figure>
+
+          <figure class="foto-card foto-card--frase">
+            <img src="Pictures/iconic_photos/Frase.jpg"
+                 alt="Frase destacada de Juan Gabriel"
+                 loading="lazy">
+            <figcaption>...</figcaption>
+          </figure>
+        </div>
+
       </div>
     </section>
 

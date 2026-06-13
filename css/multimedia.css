@@ -98,19 +98,27 @@
 
 /* Mosaico de fotos */
 .fotos-mosaico {
-  column-count: 3;
-  column-gap: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.fotos-mosaico__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
 }
 
 /* Tarjetas de foto */
 .foto-card {
-  display: inline-block;
+  display: block;
   width: 100%;
-  margin: 0 0 16px;
+  margin: 0;
   background: rgba(255, 250, 244, 0.98);
   border-radius: 24px;
   overflow: hidden;
-  break-inside: avoid;
   box-shadow: 0 14px 34px rgba(20, 35, 53, 0.1);
   border: 1px solid rgba(120, 86, 47, 0.14);
 }
@@ -289,14 +297,29 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 58px;
-  height: 40px;
-  border-radius: 999px;
-  background: rgba(229, 9, 20, 0.92);
-  color: #ffffff;
-  display: grid;
-  place-items: center;
-  font-size: 21px;
-  line-height: 1;
-  padding-left: 3px;
+  width: 52px;
+  height: 36px;
+  border-radius: 8px;
+  background: #ff0000;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.youtube-play::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 9px 0 9px 16px;
+  border-color: transparent transparent transparent #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-45%, -50%);
+}
+
+.youtube-open:hover .youtube-play,
+.youtube-open:focus-visible .youtube-play {
+  background: #cc0000;
+  transform: translate(-50%, -50%) scale(1.05);
 }

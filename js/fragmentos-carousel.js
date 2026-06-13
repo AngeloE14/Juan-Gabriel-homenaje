@@ -13,8 +13,8 @@ export function inicializarCarruselFragmentos3D() {
 
   if (!viewport || !track) return;
 
-  /* CAMBIO: En móvil se usa scroll-snap nativo sin lógica 3D por JavaScript */
-  if (window.matchMedia("(max-width: 768px)").matches) return;
+  /* CAMBIO: Se usa scroll-snap nativo en todos los tamaños, sin lógica JS */
+  return;
 
   const tarjetas = Array.from(track.querySelectorAll(".fragmento-card"));
   if (!tarjetas.length) return;

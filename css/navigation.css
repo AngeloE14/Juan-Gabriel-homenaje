@@ -17,30 +17,37 @@
 */
 
 :root {
-  --nav-drawer-width: 232px;
+  --nav-drawer-width: 200px;
   --nav-offset: 16px;
 }
 
-/* Botón hamburguesa: visible en escritorio y móvil para un menú compacto. */
+/* Botón hamburguesa minimalista: solo las tres líneas, sin contenedor */
 .nav-toggle {
   position: fixed;
-  top: var(--nav-offset);
-  left: var(--nav-offset);
+  top: 20px;
+  left: 16px;
   z-index: 2200;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
-  border: 2px solid #d0af6a;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #183454 0%, #112945 50%, #0f223a 100%);
-  color: #ffe9b0;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #d4dce8;
   cursor: pointer;
-  box-shadow:
-    0 0 12px rgba(208, 175, 106, 0.25),
-    0 6px 14px rgba(0, 0, 0, 0.32);
-  transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid #FFD700;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.nav-toggle:hover {
+  color: #FFD700;
 }
 
 .nav-toggle:focus-visible,
@@ -134,6 +141,17 @@ body.nav-open {
   overflow: hidden;
 }
 
+/* Logo dentro del panel de navegación */
+.main-nav__logo {
+  padding: 10px 10px 0;
+}
+
+.main-nav__logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /*
   LISTA DE NAVEGACIÓN
   La lista ahora se organiza en columna para la barra lateral.
@@ -141,10 +159,10 @@ body.nav-open {
 .main-nav__list {
   list-style: none;
   margin: 0;
-  padding: 70px 12px 12px;
+  padding: 0 12px 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
   align-items: stretch;
 }
 
@@ -153,43 +171,33 @@ body.nav-open {
 }
 
 /*
-  ENLACES DE NAVEGACIÓN
-  Se conserva el estilo visual actual de botones.
+  ENLACES DE NAVEGACIÓN - Estilo texto, no botones
 */
 .main-nav a {
-  display: inline-block;
+  display: block;
   width: 100%;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
-  color: #ffe9b0;
-  background: linear-gradient(135deg, #183454 0%, #112945 50%, #0f223a 100%);
-  border: 2px solid #d0af6a;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.98rem;
-  letter-spacing: 0.25px;
-  text-shadow: 0 0 8px rgba(255, 221, 142, 0.35);
-  box-shadow:
-    0 0 10px rgba(208, 175, 106, 0.22),
-    inset 0 0 8px rgba(255, 217, 120, 0.06),
-    0 5px 12px rgba(0, 0, 0, 0.32);
-  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  color: #d4dce8;
+  padding: 10px 16px;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
 }
 
-/* Efectos hover, focus y enlace activo */
 .main-nav a:hover,
-.main-nav a:focus-visible,
+.main-nav a:focus-visible {
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.06);
+  padding-left: 22px;
+}
+
 .main-nav a[aria-current="page"] {
-  background: linear-gradient(135deg, #1e3f66 0%, #163455 50%, #122a45 100%);
-  color: #ffed4e;
-  border-color: #ffd700;
-  transform: translateY(-2px);
-  text-shadow: 0 0 12px rgba(255, 215, 0, 0.75);
-  box-shadow:
-    0 0 16px rgba(255, 215, 0, 0.28),
-    inset 0 0 10px rgba(255, 215, 0, 0.1),
-    0 8px 18px rgba(0, 0, 0, 0.45);
+  color: #FFD700;
+  border-left: 3px solid #FFD700;
+  padding-left: 13px;
 }
 
 /* Vista móvil/tablet: el panel ocupa más alto para facilitar scroll táctil. */
@@ -209,15 +217,123 @@ body.nav-open {
   }
 
   .main-nav__list {
-    padding: 74px 14px 20px;
+    padding: 12px 14px 20px;
   }
 }
 
+/* Botón de música dentro del panel de navegación */
+.music-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #d4dce8;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1;
+  transition: color 0.3s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.music-btn:hover {
+  color: #FFD700;
+}
+
+.music-btn:focus-visible {
+  outline: 2px solid #FFD700;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.music-btn__waves {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 24px;
+  opacity: 0.25;
+  transition: opacity 0.3s ease;
+}
+
+.music-btn.is-playing .music-btn__waves {
+  opacity: 1;
+}
+
+.music-btn__waves span {
+  display: block;
+  width: 3px;
+  height: 6px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.music-btn.is-playing .music-btn__waves span {
+  animation: music-wave 0.7s ease-in-out infinite alternate;
+}
+
+.music-btn.is-playing .music-btn__waves span:nth-child(3n+1) {
+  animation-duration: 0.65s;
+  animation-delay: 0.0s;
+}
+
+.music-btn.is-playing .music-btn__waves span:nth-child(3n+2) {
+  animation-duration: 0.85s;
+  animation-delay: 0.15s;
+}
+
+.music-btn.is-playing .music-btn__waves span:nth-child(3n) {
+  animation-duration: 0.75s;
+  animation-delay: 0.3s;
+}
+
+.music-btn.is-playing {
+  color: #FFD700;
+}
+
+@keyframes music-wave {
+  0% {
+    height: 6px;
+    opacity: 0.5;
+  }
+  100% {
+    height: 22px;
+    opacity: 0.9;
+  }
+}
+
+/* En móvil el botón necesita más contraste dentro del panel fullscreen */
 @media (max-width: 700px) {
+  .music-btn {
+    padding: 8px 12px;
+  }
+
+  .music-btn__waves {
+    height: 22px;
+    gap: 3px;
+  }
+
   .nav-toggle {
-    top: 10px;
-    left: 10px;
-    width: 42px;
-    height: 42px;
+    top: 12px;
+    left: 12px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .nav-toggle__icon span {
+    width: 20px;
+    height: 2px;
+  }
+
+  body.nav-open .nav-toggle__icon span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  body.nav-open .nav-toggle__icon span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
   }
 }

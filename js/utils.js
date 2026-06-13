@@ -27,6 +27,8 @@
 // MODO ESTRICTO - Ayuda a encontrar errores
 "use strict";
 
+let audioFondo;
+
 /*
   FUNCIÓN: colocarAnioActual()
   OBJETIVO: Mostrar el año actual en el footer
@@ -282,6 +284,7 @@ export function reproducirIntroAlCargar() {
       }
     }, 700);
 
+    document.dispatchEvent(new Event("intro-finalizada"));
     console.log("[Intro] Intro finalizada:", motivo);
   }
 
@@ -310,5 +313,148 @@ export function reproducirIntroAlCargar() {
         finalizarIntro("autoplay-blocked");
       });
     });
+  }
+}
+
+export function pausarAudioFondo() {
+  if (typeof audioFondo !== "undefined" && audioFondo && !audioFondo.paused) {
+    audioFondo.pause();
+  }
+}
+
+export function reanudarAudioFondo() {
+  if (typeof audioFondo !== "undefined" && audioFondo && audioFondo.paused) {
+    audioFondo.play().catch(function () {});
+  }
+}
+
+export function inicializarAudioFondo() {
+  const btn = document.getElementById("music-btn");
+  if (!btn) {
+    return;
+  }
+
+  const canciones = [
+    "audios/amor eterno.mp3",
+    "audios/de mi enamorate.mp3",
+    "audios/fue un placer conocerte.mp3",
+    "audios/te lo pido por favor.mp3",
+    "audios/debo hacerlo.mp3",
+    "audios/se me olvido otra vez.mp3",
+    "audios/dejame vivir.mp3"
+  ];
+
+  let indiceActual = Math.floor(Math.random() * canciones.length);
+  audioFondo = new Audio(canciones[indiceActual]);
+  audioFondo.volume = 0.46;
+  audioFondo.playsInline = true;
+  audioFondo.preload = "auto";
+
+  let desbloqueoRegistrado = false;
+
+  function cancionSiguiente() {
+    indiceActual = Math.floor(Math.random() * canciones.length);
+    audioFondo.src = canciones[indiceActual];
+    audioFondo.play().catch(function () {});
+  }
+
+  audioFondo.addEventListener("ended", cancionSiguiente);
+
+  function actualizarUI() {
+    const reproduciendo = !audioFondo.paused;
+    btn.classList.toggle("is-playing", reproduciendo);
+    btn.setAttribute(
+      "aria-label",
+      reproduciendo ? "Pausar música de fondo" : "Reproducir música de fondo"
+    );
+  }
+
+  function alternarReproduccion() {
+    if (audioFondo.paused) {
+      const intento = audioFondo.play();
+      if (intento && typeof intento.then === "function") {
+        intento.then(actualizarUI).catch(function (e) {
+          console.warn("[AudioFondo] No se pudo reanudar", e);
+        });
+      }
+    } else {
+      audioFondo.pause();
+      actualizarUI();
+    }
+  }
+
+  function quitarDesbloqueoAudio() {
+    if (!desbloqueoRegistrado) {
+      return;
+    }
+    document.removeEventListener("click", desbloquearAudio);
+    document.removeEventListener("keydown", desbloquearAudio);
+    document.removeEventListener("touchstart", desbloquearAudio);
+    desbloqueoRegistrado = false;
+  }
+
+  function desbloquearAudio() {
+    audioFondo.muted = false;
+    audioFondo.defaultMuted = false;
+
+    const intento = audioFondo.play();
+    if (intento && typeof intento.then === "function") {
+      intento
+        .then(function () {
+          console.log("[AudioFondo] Audio activado por interacción del usuario");
+          actualizarUI();
+          quitarDesbloqueoAudio();
+        })
+        .catch(function (e) {
+          console.warn("[AudioFondo] No se pudo activar tras interacción", e);
+        });
+    }
+  }
+
+  function registrarDesbloqueoAudio() {
+    if (desbloqueoRegistrado) {
+      return;
+    }
+    desbloqueoRegistrado = true;
+    document.addEventListener("click", desbloquearAudio, { once: true });
+    document.addEventListener("keydown", desbloquearAudio, { once: true });
+    document.addEventListener("touchstart", desbloquearAudio, { once: true });
+  }
+
+  function iniciarAudioFondo() {
+    const intento = audioFondo.play();
+
+    if (intento && typeof intento.then === "function") {
+      intento
+        .then(actualizarUI)
+        .catch(function () {
+          console.warn("[AudioFondo] Autoplay bloqueado. Esperando interacción.");
+          audioFondo.muted = true;
+          audioFondo.defaultMuted = true;
+          audioFondo.play().catch(function () {});
+          registrarDesbloqueoAudio();
+        });
+    }
+  }
+
+  btn.addEventListener("click", alternarReproduccion);
+
+  const videosLocales = document.querySelectorAll("#multimedia video");
+  videosLocales.forEach(function (video) {
+    video.addEventListener("play", function () {
+      pausarAudioFondo();
+    });
+    video.addEventListener("pause", function () {
+      reanudarAudioFondo();
+    });
+    video.addEventListener("ended", function () {
+      reanudarAudioFondo();
+    });
+  });
+
+  if (document.body.classList.contains("intro-activa")) {
+    document.addEventListener("intro-finalizada", iniciarAudioFondo, { once: true });
+  } else {
+    iniciarAudioFondo();
   }
 }

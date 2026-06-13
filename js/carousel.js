@@ -1,12 +1,4 @@
 /*
-  ===========================================
-  CAROUSEL.JS - CARRUSEL DE IMÁGENES INTERACTIVO
-  ===========================================
-
-  CONCEPTO: COMPONENTE INTERACTIVO COMPLEJO
-  Un carrusel muestra múltiples imágenes en secuencia.
-  Es como un slideshow automático con controles manuales.
-
   CONCEPTOS JAVASCRIPT AVANZADOS:
   - ARRAYS: Listas de elementos (slides)
   - TEMPORIZADORES: setInterval() para autoplay

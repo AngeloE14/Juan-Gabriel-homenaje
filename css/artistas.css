@@ -1,0 +1,365 @@
+#artistas-composiciones {
+  margin: 46px auto 54px;
+  padding: clamp(42px, 7vw, 78px) clamp(16px, 3vw, 34px);
+  background:
+    radial-gradient(780px 260px at 50% 0%, rgba(207, 166, 111, 0.22), transparent 70%),
+    radial-gradient(700px 280px at 12% 20%, rgba(46, 80, 133, 0.2), transparent 74%),
+    linear-gradient(180deg, rgba(27, 39, 54, 0.96) 0%, rgba(13, 18, 25, 0.98) 100%);
+  border-top: 1px solid rgba(207, 166, 111, 0.38);
+  border-bottom: 1px solid rgba(207, 166, 111, 0.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 238, 198, 0.06),
+    inset 0 -1px 0 rgba(255, 238, 198, 0.04);
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.artistas-legado__intro {
+  width: min(920px, 100%);
+  margin: 0 auto clamp(30px, 4vw, 46px);
+  text-align: center;
+}
+
+.artistas-legado__intro h2 {
+  margin: 0 0 14px;
+  color: #f4d794;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-shadow: 0 0 16px rgba(244, 215, 148, 0.18);
+}
+
+.artistas-legado__intro p {
+  width: min(780px, 100%);
+  margin: 0 auto;
+  color: #f0dfbb;
+  font-size: clamp(1.02rem, 2vw, 1.25rem);
+  line-height: 1.7;
+}
+
+.artistas-gallery {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: visible;
+  touch-action: pan-x;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: clamp(12px, 3vw, 40px);
+}
+.artistas-gallery::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.artistas-track {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(22px, 3vw, 38px);
+  width: max-content;
+  padding: clamp(8px, 1.5vw, 18px) clamp(12px, 3vw, 40px);
+}
+
+.artista-frame {
+  position: relative;
+  margin: 0;
+  flex: 0 0 clamp(195px, 25vw, 275px);
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: center;
+}
+
+.portrait-frame {
+  position: relative;
+  background:
+    linear-gradient(150deg,
+      #dab648 0%,
+      #c49a2a 15%,
+      #9c7420 30%,
+      #6b4f18 45%,
+      #3f2e0c 50%,
+      #5c4410 55%,
+      #8b6914 70%,
+      #b8962e 85%,
+      #dab648 100%
+    );
+  padding: clamp(12px, 1.8vw, 20px);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.55),
+    0 0 28px rgba(207, 166, 111, 0.08);
+}
+
+.portrait-frame::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-top-color: rgba(255, 235, 190, 0.02);
+  border-left-color: rgba(255, 235, 190, 0.02);
+  pointer-events: none;
+}
+
+.portrait-frame__inner {
+  position: relative;
+  background:
+    linear-gradient(160deg,
+      #8b6914 0%,
+      #6b4f18 25%,
+      #3f2e0c 50%,
+      #6b4f18 75%,
+      #8b6914 100%
+    );
+  padding: clamp(6px, 0.9vw, 12px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 235, 190, 0.08),
+    inset 1px 0 0 rgba(255, 235, 190, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    inset -1px 0 0 rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.portrait-frame__inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 235, 190, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.portrait-mat {
+  position: relative;
+  background:
+    linear-gradient(135deg, #1e1508 0%, #150e06 50%, #0f0a04 100%);
+  padding: clamp(7px, 1vw, 14px);
+  overflow: hidden;
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 235, 190, 0.06),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.portrait-mat::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.portrait-image {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #080c14;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.portrait-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 246, 219, 0.05), transparent 35%),
+    radial-gradient(circle at 50% 18%, transparent 40%, rgba(0, 0, 0, 0.25) 100%);
+  pointer-events: none;
+}
+
+.portrait-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: saturate(0.92) contrast(1.05);
+}
+
+.portrait-plaque {
+  position: relative;
+  margin: clamp(10px, 1.4vw, 16px) 0 0;
+  padding: clamp(18px, 2.2vw, 24px) clamp(14px, 1.6vw, 18px) clamp(16px, 2vw, 22px);
+  background:
+    radial-gradient(circle 3px at 9px 9px, rgba(207, 166, 111, 0.35) 0%, rgba(207, 166, 111, 0.1) 60%, transparent 100%),
+    radial-gradient(circle 3px at calc(100% - 9px) 9px, rgba(207, 166, 111, 0.35) 0%, rgba(207, 166, 111, 0.1) 60%, transparent 100%),
+    radial-gradient(circle 3px at 9px calc(100% - 9px), rgba(207, 166, 111, 0.35) 0%, rgba(207, 166, 111, 0.1) 60%, transparent 100%),
+    radial-gradient(circle 3px at calc(100% - 9px) calc(100% - 9px), rgba(207, 166, 111, 0.35) 0%, rgba(207, 166, 111, 0.1) 60%, transparent 100%),
+    linear-gradient(180deg, #2a1d0b 0%, #3a2812 12%, #150e06 40%, #120c05 55%, #2a1d0b 100%);
+  border: 2px solid #cfa66f;
+  border-radius: 2px;
+  text-align: center;
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 3px rgba(26, 18, 8, 0.3),
+    inset 0 1px 0 rgba(255, 235, 190, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.portrait-plaque::before {
+  content: "";
+  display: block;
+  width: clamp(32px, 4vw, 50px);
+  height: 1px;
+  margin: 0 auto 12px;
+  background: rgba(207, 166, 111, 0.25);
+}
+
+.plaque-name {
+  display: block;
+  font-family: "Cinzel", "Palatino Linotype", serif;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.5vw, 1.05rem);
+  line-height: 1.4;
+  color: #e8d5a8;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.75),
+    0 0 4px rgba(232, 213, 168, 0.03);
+}
+
+.plaque-alias {
+  display: block;
+  margin-top: 5px;
+  font-family: "Cormorant Garamond", "Palatino Linotype", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(0.74rem, 1.3vw, 0.9rem);
+  color: #d4af37;
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.portrait-plaque::after {
+  content: "";
+  display: block;
+  width: clamp(22px, 2.8vw, 36px);
+  height: 1px;
+  margin: 12px auto 0;
+  background: rgba(207, 166, 111, 0.18);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .artista-frame {
+    transition: transform 0.4s ease;
+  }
+
+  .artista-frame .portrait-frame,
+  .artista-frame .portrait-frame__inner,
+  .artista-frame .portrait-plaque {
+    transition:
+      transform 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+
+  .artista-frame .portrait-image img {
+    transition:
+      transform 0.5s ease,
+      filter 0.5s ease;
+  }
+
+  .artista-frame:hover {
+    transform: translateY(-3px);
+  }
+
+  .artista-frame:hover .portrait-frame {
+    transform: translateY(-2px);
+    box-shadow:
+      0 14px 38px rgba(0, 0, 0, 0.6),
+      0 0 36px rgba(207, 166, 111, 0.15);
+  }
+
+  .artista-frame:hover .portrait-frame__inner {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 235, 190, 0.12),
+      inset 1px 0 0 rgba(255, 235, 190, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+      inset -1px 0 0 rgba(0, 0, 0, 0.25),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  }
+
+  .artista-frame:hover .portrait-plaque {
+    transform: translateY(-2px);
+    box-shadow:
+      0 7px 24px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 3px rgba(26, 18, 8, 0.3),
+      inset 0 1px 0 rgba(255, 235, 190, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    border-color: #d6b144;
+  }
+
+  .artista-frame:hover .portrait-image img {
+    transform: scale(1.03);
+    filter: saturate(1) contrast(1.06);
+  }
+}
+
+@media (max-width: 760px) {
+  #artistas-composiciones {
+    margin: 34px auto 42px;
+  }
+
+  .artistas-track {
+    gap: 16px;
+  }
+
+  .artista-frame {
+    flex: 0 0 clamp(175px, 38vw, 245px);
+  }
+
+  .portrait-plaque {
+    padding: clamp(12px, 2vw, 15px) clamp(10px, 1.6vw, 12px) clamp(11px, 1.8vw, 14px);
+  }
+
+  .portrait-plaque::before {
+    width: clamp(24px, 3.5vw, 32px);
+    margin-bottom: 8px;
+  }
+
+  .portrait-plaque::after {
+    width: clamp(16px, 2.5vw, 24px);
+    margin-top: 8px;
+  }
+
+  .plaque-name {
+    font-size: clamp(0.74rem, 1.6vw, 0.88rem);
+    letter-spacing: 0.1em;
+  }
+
+  .plaque-alias {
+    font-size: clamp(0.68rem, 1.4vw, 0.82rem);
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (max-width: 460px) {
+  .artista-frame {
+    flex: 0 0 min(74vw, 265px);
+  }
+
+  .portrait-plaque {
+    padding: 10px 8px 9px;
+  }
+
+  .portrait-plaque::before {
+    width: 18px;
+    margin-bottom: 6px;
+  }
+
+  .portrait-plaque::after {
+    width: 12px;
+    margin-top: 6px;
+  }
+
+  .plaque-name {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .plaque-alias {
+    font-size: 0.66rem;
+    letter-spacing: 0.05em;
+  }
+}

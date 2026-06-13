@@ -38,7 +38,7 @@
   Sintaxis: import { función1, función2 } from './archivo.js'
   El ./ significa "en la misma carpeta"
 */
-import { colocarAnioActual, marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar } from './utils.js';
+import { colocarAnioActual, marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar, inicializarAudioFondo } from './utils.js';
 import { inicializarCarrusel } from './carousel.js';
 import { inicializarYouTubeModal } from './youtube-modal.js';
 import { inicializarFrasesRotativas } from './quotes-rotator.js';
@@ -61,7 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
   colocarAnioActual();        // Pone el año actual en el footer
   marcarEnlaceActivo();       // Resalta el enlace del menú actual
   inicializarNavegacion();    // Configura clics en el menú
-  reproducirIntroAlCargar(); // Reproduce intro en video al cargar
+  reproducirIntroAlCargar();  // Reproduce intro en video al cargar
+  inicializarAudioFondo();    // Reproduce audio de fondo cuando la página queda lista
 
   // INICIALIZAR COMPONENTES ESPECÍFICOS
   inicializarCarrusel();         // Configura el carrusel de imágenes

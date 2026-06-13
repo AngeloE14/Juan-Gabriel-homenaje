@@ -32,6 +32,11 @@
   padding: 0;
 }
 
+#letras h2 {
+  color: #ecd59b;
+  padding-inline: clamp(12px, 2.6vw, 34px);
+}
+
 #letras p {
   margin-bottom: 14px;
   padding-inline: clamp(12px, 2.6vw, 34px);
@@ -74,7 +79,7 @@
   height: 0;
 }
 
-/* CAMBIO: Track 3D con perspectiva y ancho completo */
+/* CAMBIO: Track horizontal plano */
 .fragmentos-track {
   display: flex;
   align-items: center;
@@ -84,29 +89,18 @@
   overflow-x: visible;
   overflow-y: visible;
   background: transparent;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  transition: transform 0.35s ease;
-  will-change: transform;
 }
 
-/* CAMBIO: Tarjetas como slides con transformaciones 3D por estado */
+/* CAMBIO: Tarjetas planas sin 3D */
 .fragmento-card {
-  --card-size: clamp(220px, 24vw, 320px);
+  --card-size: clamp(200px, 22vw, 300px);
   margin: 0;
   flex: 0 0 var(--card-size);
   aspect-ratio: 3 / 5;
-  position: relative;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  transform-origin: center center;
   border-radius: 14px;
-  overflow: visible;
+  overflow: hidden;
   background: transparent;
-  opacity: 0.45;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-  transform: rotateY(22deg) translateZ(-50px) scale(0.78);
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
 .fragmento-card img {
@@ -138,38 +132,6 @@
   pointer-events: none;
 }
 
-/* CAMBIO: Estados 3D exactos por distancia a la tarjeta activa */
-.fragmento-card.is-active {
-  transform: rotateY(0deg) translateZ(0px) scale(1);
-  opacity: 1;
-  z-index: 5;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-}
-
-.fragmento-card.is-near-left {
-  transform: rotateY(12deg) translateZ(-20px) scale(0.82);
-  opacity: 0.75;
-  z-index: 4;
-}
-
-.fragmento-card.is-near-right {
-  transform: rotateY(-12deg) translateZ(-20px) scale(0.82);
-  opacity: 0.75;
-  z-index: 4;
-}
-
-.fragmento-card.is-far-left {
-  transform: rotateY(22deg) translateZ(-50px) scale(0.78);
-  opacity: 0.45;
-  z-index: 3;
-}
-
-.fragmento-card.is-far-right {
-  transform: rotateY(-22deg) translateZ(-50px) scale(0.78);
-  opacity: 0.45;
-  z-index: 3;
-}
-
 /* CAMBIO: Estados visuales durante arrastre */
 .fragmentos-scroll.is-dragging {
   cursor: grabbing;
@@ -179,35 +141,22 @@
   cursor: grab;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  /* CAMBIO: Feedback de clic en tarjetas laterales sin cambiar su diseño base */
-  .fragmento-card:not(.is-active):hover {
-    opacity: 0.8;
-  }
+/* CAMBIO: Se desactiva 3D y se usa scroll-snap nativo en todos los tamaños */
+.fragmentos-scroll {
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: clamp(12px, 3vw, 40px);
 }
 
-/* CAMBIO: En móvil se desactiva 3D y se usa scroll-snap nativo */
-@media (max-width: 768px) {
-  .fragmentos-scroll {
-    overflow-x: auto;
-    overflow-y: visible;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 10px;
-  }
+.fragmentos-track {
+  width: max-content;
+}
 
-  .fragmentos-track {
-    width: max-content;
-  }
-
-  .fragmento-card {
-    scroll-snap-align: center;
-  }
-
-  .card,
-  .fragmento-card {
-    transform: none !important;
-    opacity: 1 !important;
-  }
+.fragmento-card {
+  scroll-snap-align: center;
+  transform: none !important;
+  opacity: 1 !important;
 }
 
 /* Ajustes para móviles */
@@ -276,8 +225,12 @@
   }
 
   .fotos-mosaico {
-    column-count: 1;
-    column-gap: 0;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .fotos-mosaico__col {
+    gap: 12px;
   }
 
   .foto-card {
@@ -362,8 +315,11 @@
   }
 
   .fotos-mosaico {
-    column-count: 2;
-    column-gap: 18px;
+    gap: 14px;
+  }
+
+  .fotos-mosaico__col {
+    gap: 14px;
   }
 }
 

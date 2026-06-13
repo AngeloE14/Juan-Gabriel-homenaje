@@ -1,12 +1,5 @@
 /*
   ===========================================
-  BASE.CSS - ESTILOS BASE Y COMPONENTES COMUNES
-  ===========================================
-
-  CONCEPTO: COMPONENTES REUTILIZABLES
-  Este archivo contiene estilos para elementos que se usan en múltiples lugares.
-  Es como tener "piezas de Lego" que puedes usar en cualquier parte del sitio.
-
   CONCEPTOS CSS IMPORTANTES:
   - CLASES: Seleccionan elementos con class="nombre-clase"
   - SELECTORES MÚLTIPLES: h1, h2, h3 aplica a todos los títulos
@@ -71,6 +64,23 @@ main {
     margin: 0 auto;     /* centra horizontalmente */
     padding: 20px;      /* espacio interno */
     text-align: left;   /* texto alineado normal */
+}
+
+/* Foto de Juan Gabriel: marco moderno minimalista */
+#biografia figure {
+  display: inline-block;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.08);
+  line-height: 0;
+}
+
+#biografia figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 
 /* Estilos para artículos */
