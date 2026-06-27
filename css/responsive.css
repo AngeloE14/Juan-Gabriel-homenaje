@@ -309,10 +309,24 @@
     margin-bottom: 14px;
   }
 
-  .bellas-quote {
-    padding-inline: 8px;
-    font-size: clamp(0.88rem, 3.8vw, 1.05rem);
-    letter-spacing: 0.4px;
+  .bellas-download {
+    max-width: min(100%, 310px);
+    padding: 6px 12px 6px 6px;
+  }
+
+  .bellas-download__cover {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .bellas-download__eyebrow {
+    font-size: 0.58rem;
+    letter-spacing: 1px;
+  }
+
+  .bellas-download__label {
+    font-size: 0.82rem;
   }
 
   .bellas-switch {
@@ -441,6 +455,10 @@
   .bellas-stage-frame {
     padding-inline: 8px;
   }
+
+  .bellas-download {
+    max-width: min(100%, 292px);
+  }
 }
 
 @media (max-width: 700px) and (orientation: landscape) {
@@ -456,9 +474,19 @@
     margin-bottom: 10px;
   }
 
-  .bellas-quote {
-    font-size: 0.86rem;
-    line-height: 1.25;
+  .bellas-download {
+    max-width: min(100%, 280px);
+    padding-block: 5px;
+  }
+
+  .bellas-download__cover {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .bellas-download__label {
+    font-size: 0.78rem;
   }
 
   .bellas-curtain__valance {

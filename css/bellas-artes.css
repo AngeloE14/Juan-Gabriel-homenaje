@@ -1249,17 +1249,103 @@
   margin: 0 auto 18px;
 }
 
-/* Frase decorativa */
-.bellas-quote {
-  color: #ffd700;
-  max-width: 920px;
-  margin: 0 auto;
-  font-size: clamp(1rem, 1.9vw, 1.25rem);
-  font-style: italic;
+/* Descarga del concierto */
+.bellas-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: min(100%, 360px);
+  padding: 7px 14px 7px 7px;
+  color: #f9df8a;
+  text-decoration: none;
+  text-align: left;
+  background:
+    linear-gradient(135deg, rgba(22, 16, 12, 0.96) 0%, rgba(7, 7, 8, 0.96) 100%);
+  border: 1px solid rgba(207, 166, 111, 0.72);
+  border-radius: 10px;
+  box-shadow:
+    0 0 18px rgba(207, 166, 111, 0.22),
+    0 12px 26px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 236, 184, 0.08);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, color 0.22s ease;
+}
+
+.bellas-download:hover,
+.bellas-download:focus-visible {
+  color: #fff2b8;
+  border-color: #ffd700;
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 24px rgba(255, 215, 0, 0.32),
+    0 16px 30px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 236, 184, 0.12);
+}
+
+.bellas-download:focus-visible {
+  outline: 2px solid rgba(255, 215, 0, 0.78);
+  outline-offset: 4px;
+}
+
+.bellas-download__cover {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 236, 184, 0.28);
+  background: #080808;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.42);
+}
+
+.bellas-download__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bellas-download__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.bellas-download__eyebrow {
+  color: rgba(207, 166, 111, 0.82);
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 1px;
-  line-height: 1.35;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+  letter-spacing: 1.4px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.bellas-download__label {
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.bellas-modal--celebrando .bellas-download {
+  color: #f4f4f4;
+  border-color: rgba(210, 210, 210, 0.76);
+  background:
+    linear-gradient(135deg, rgba(33, 33, 33, 0.97) 0%, rgba(10, 10, 10, 0.97) 100%);
+}
+
+.bellas-modal--celebrando .bellas-download__eyebrow {
+  color: rgba(230, 230, 230, 0.72);
+}
+
+.bellas-modal--2013 .bellas-download {
+  color: #eeeeee;
+  border-color: rgba(180, 180, 180, 0.76);
+  background:
+    linear-gradient(135deg, rgba(42, 42, 42, 0.97) 0%, rgba(14, 14, 14, 0.97) 100%);
+}
+
+.bellas-modal--2013 .bellas-download__eyebrow {
+  color: rgba(205, 205, 205, 0.72);
 }
 
 /* Botón de cerrar */
