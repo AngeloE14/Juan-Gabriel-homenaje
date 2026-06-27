@@ -87,6 +87,8 @@
     <link rel="stylesheet" href="css/artistas.css" />
     <!-- ARTISTAS: Estilos de la galería de intérpretes -->
 
+    <link rel="stylesheet" href="css/bellas-artes.css" />
+    <!-- BELLAS ARTES: Estilos del modal especial -->
 
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- RESPONSIVE: Estilos para móviles y tablets -->
@@ -203,38 +205,32 @@
         <article>
           <h2>Sobre Juan Gabriel</h2>
           <p>
-            Alberto Aguilera Valadez, conocido como Juan Gabriel y cariñosamente llamado <em>"El Divo de Juárez"</em>,
-            nació en Parácuaro, Michoacán, y saltó a la fama tras comenzar su carrera como Adán Luna,
-            cautivando audiencias en modestos bares.
-          </p>
-          <p>
-            Su primer éxito, <em>"No Tengo Dinero"</em>, marcó el inicio de un viaje artístico que conmovió a millones
-            con canciones llenas de sentimiento como <em>"Amor Eterno"</em>, <em>"Querida"</em> y <em>"El Noa Noa"</em>.
-            Con más de 47 álbumes, dejó un legado atemporal en la música latina.
+            Alberto Aguilera Valadez, conocido mundialmente como Juan Gabriel, nació el 7 de enero de 1950 en Parácuaro, Michoacán. Desde una infancia marcada por circunstancias difíciles, encontró en la música una forma de transformar la adversidad en expresión artística.
           </p>
 
-          <h3>Una larga trayectoria</h3>
+          <h3>El inicio de una trayectoria histórica</h3>
           <p>
-            Hablar de Juan Gabriel es hablar de música, letras y sentimientos a lo largo de más de 25 años
-            de éxitos ininterrumpidos.
+            En 1971 comenzó oficialmente su carrera profesional con "No Tengo Dinero", canción incluida en su álbum debut El Alma Joven. El tema se convirtió en su primer gran éxito y marcó el nacimiento de una de las carreras más importantes en la historia de la música en español.
           </p>
 
-          <h3>Un ser humano sencillo</h3>
+          <h3>Un compositor extraordinario</h3>
           <p>
-            Su niñez fue precaria por venir de una familia humilde, pero llena de amor.
-            Salió adelante gracias a su enorme talento, su empeño y su gran calidad humana.
+            A lo largo de su trayectoria escribió más de mil ochocientas composiciones, convirtiéndose en uno de los autores más prolíficos de Latinoamérica. Sus canciones fueron interpretadas por artistas de distintas generaciones y múltiples países.
           </p>
 
-          <h3>Uno de los cantautores mexicanos más importantes</h3>
+          <h3>La voz detrás de generaciones</h3>
           <p>
-            Ha vendido más de 30 millones de discos. Sus canciones, principalmente baladas y temas de corte ranchero,
-            siguen siendo interpretadas una y otra vez en México y Latinoamérica.
+            Su obra musical logró conectar profundamente con millones de personas gracias a composiciones que abordaban el amor, la pérdida, la nostalgia, la esperanza y la experiencia humana con una sensibilidad poco común dentro de la música popular.
           </p>
 
-          <h3>Grandes éxitos</h3>
+          <h3>Un momento histórico para México</h3>
           <p>
-            <em>"No tengo dinero"</em>, <em>"Esta rosa roja"</em>, <em>"Qué divino amor"</em> y
-            <em>"Siempre en mi mente"</em> marcaron el inicio de una época de éxitos en la década de 1970.
+            En 1990 se convirtió en el primer artista de música popular en presentarse en el Palacio de Bellas Artes, recinto tradicionalmente reservado para expresiones artísticas de carácter clásico, consolidando así un momento histórico dentro de la cultura mexicana.
+          </p>
+
+          <h3>Un legado universal</h3>
+          <p>
+            Más allá del reconocimiento comercial, Juan Gabriel dejó un legado artístico que trascendió fronteras. Su música continúa vigente como parte fundamental del patrimonio cultural de México y del mundo hispanohablante.
           </p>
         </article>
 
@@ -482,6 +478,7 @@
           </figure>
           </div>
         </div>
+
       </section>
 
       <section id="letras">
@@ -589,6 +586,98 @@
           </video>
           <p><strong>Ensayo Juan Gabriel - Bellas Artes</strong></p>
         </article>
+
+      </div>
+
+      <!-- Modo Bellas Artes: botones de concierto con modal propio -->
+      <section id="modo-bellas-artes-switch">
+        <div class="bellas-switch">
+          <div class="bellas-concert-selector" role="group" aria-label="Elegir concierto de Bellas Artes">
+            <button class="bellas-btn bellas-btn--1990" type="button" data-concierto="1990">
+              <span class="bellas-btn__cover">
+                <img src="albums/Juan Gabriel en el Palacio de Bellas Artes.jpg" alt="Concierto de 1990 en Bellas Artes" loading="lazy">
+                <span class="bellas-btn__play" aria-hidden="true">▶</span>
+              </span>
+              <span class="bellas-btn__info">
+                <span class="bellas-btn__title">Concierto 1990</span>
+                <span class="bellas-btn__sub">Bellas Artes</span>
+              </span>
+            </button>
+
+            <button class="bellas-btn bellas-btn--celebrando" type="button" data-concierto="celebrando">
+              <span class="bellas-btn__cover">
+                <img src="albums/Celebrando 25 años.jpeg" alt="Concierto celebrando 25 años" loading="lazy">
+                <span class="bellas-btn__play" aria-hidden="true">▶</span>
+              </span>
+              <span class="bellas-btn__info">
+                <span class="bellas-btn__title">Celebrando 25 años</span>
+                <span class="bellas-btn__sub">Historia viva</span>
+              </span>
+            </button>
+
+            <button class="bellas-btn bellas-btn--2013" type="button" data-concierto="2013">
+              <span class="bellas-btn__cover">
+                <img src="albums/Mis 40 en Bellas Artes.jpg" alt="Concierto de 2013 en Bellas Artes" loading="lazy">
+                <span class="bellas-btn__play" aria-hidden="true">▶</span>
+              </span>
+              <span class="bellas-btn__info">
+                <span class="bellas-btn__title">Concierto 2013</span>
+                <span class="bellas-btn__sub">Mis 40</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal Bellas Artes -->
+      <div class="bellas-modal" id="bellasModal" aria-hidden="true">
+        <!-- Overlay: capa para oscurecer el fondo -->
+        <div class="bellas-modal__overlay"></div>
+
+        <!-- role="dialog" + aria-modal mejoran accesibilidad -->
+        <div class="bellas-modal__content" role="dialog" aria-modal="true" aria-label="Concierto en Bellas Artes">
+          <!-- Botón de cierre -->
+          <button class="bellas-modal__close" type="button" aria-label="Cerrar Modo Bellas Artes">
+            &times;
+          </button>
+
+          <div class="bellas-curtain__rod" aria-hidden="true"></div>
+
+          <div class="bellas-curtain bellas-curtain--left" aria-hidden="true">
+            <div class="bellas-curtain__fabric"></div>
+            <div class="bellas-curtain__fringe"></div>
+            <div class="bellas-curtain__tieback"></div>
+          </div>
+          <div class="bellas-curtain bellas-curtain--right" aria-hidden="true">
+            <div class="bellas-curtain__fabric"></div>
+            <div class="bellas-curtain__fringe"></div>
+            <div class="bellas-curtain__tieback"></div>
+          </div>
+
+          <div class="bellas-curtain__valance" aria-hidden="true">
+            <div class="bellas-curtain__valance-body"></div>
+            <div class="bellas-curtain__valance-trim"></div>
+          </div>
+
+          <div class="bellas-stage-frame">
+            <iframe
+              id="bellasVideo"
+              class="bellas-video"
+              src="https://archive.org/embed/juan-gabriel-mis-40-en-bellas-artes"
+              width="800"
+              height="450"
+              allow="autoplay"
+              style="border:none;"
+              allowfullscreen>
+            </iframe>
+
+            <p id="bellasQuote" class="bellas-quote">
+            Juan Gabriel en Bellas Artes — 1990.
+            </p>
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -854,7 +943,7 @@
         <figure class="album-frame"><img src="albums/El Mexico que se nos fue.avif" alt="Portada de El Mexico que se nos fue" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Ella.jpg" alt="Portada de Ella" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Espectacular.jpg" alt="Portada de Espectacular" loading="lazy"></figure>
-        <figure class="album-frame"><img src="albums/Eterno.jpeg" alt="Portada de Eterno" loading="lazy"></figure>
+        <figure class="album-frame postumo"><img src="albums/Eterno.jpeg" alt="Portada de Eterno" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Gracias por Esperar.jpg" alt="Portada de Gracias por esperar" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Inocente de ti.jpeg" alt="Portada de Inocente de ti" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Juan Gabriel en el Palacio de Bellas Artes.jpg" alt="Portada de Juan Gabriel en el Palacio de Bellas Artes" loading="lazy"></figure>
@@ -863,10 +952,10 @@
         <figure class="album-frame"><img src="albums/Juntos_otra_vez.jpg" alt="Portada de Juntos otra vez" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Los Dúo.jpeg" alt="Portada de Los Duo" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Los Dúos 2.jpg" alt="Portada de Los Duos 2" loading="lazy"></figure>
-        <figure class="album-frame"><img src="albums/Los duo 3.webp" alt="Portada de Los duo 3" loading="lazy"></figure>
+        <figure class="album-frame postumo"><img src="albums/Los duo 3.webp" alt="Portada de Los duo 3" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Mis 40 en Bellas Artes.jpg" alt="Portada de Mis 40 en Bellas Artes" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Mis ojos tristes.jpeg" alt="Portada de Mis ojos tristes" loading="lazy"></figure>
-        <figure class="album-frame"><img src="albums/México con Escalas.jpg" alt="Portada de Mexico con Escalas" loading="lazy"></figure>
+        <figure class="album-frame postumo"><img src="albums/México con Escalas.jpg" alt="Portada de Mexico con Escalas" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Pensamientos.jpeg" alt="Portada de Pensamientos" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Recuerdos II.jpg" alt="Portada de Recuerdos II" loading="lazy"></figure>
         <figure class="album-frame"><img src="albums/Te llegara mi olvido.jpeg" alt="Portada de Te llegara mi olvido" loading="lazy"></figure>
@@ -881,7 +970,7 @@
 
       <div class="discografia-firma">
         <img src="assets/Firma_de_Juan_Gabriel.svg.png"
-             alt="Firma de Juan Gabriel"
+             alt="Firma de Juan Gabriel"po
              title="La icónica firma de Juan Gabriel">
       </div>
 

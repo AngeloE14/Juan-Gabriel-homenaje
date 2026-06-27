@@ -1,0 +1,1259 @@
+/* ===========================================
+   BELLAS-ARTES.CSS - Estilos de Bellas Artes
+   ===========================================
+
+   Este archivo contiene los estilos para la funcionalidad especial
+   de los conciertos de Bellas Artes.
+
+   Contenido:
+   - Botones de concierto (1990 y 2013)
+   - Modal de Bellas Artes
+   - Marco escénico
+   - Reproductor de video
+*/
+
+/* Contenedor del interruptor */
+#modo-bellas-artes-switch {
+  text-align: center;
+  padding: 40px 20px;
+  margin: 40px 0;
+}
+
+/* Contenedor flex para los botones de concierto */
+.bellas-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.bellas-concert-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+/* ===========================================
+   BOTONES DE CONCIERTO
+   =========================================== */
+
+/* Base de botón */
+.bellas-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 36px 10px 10px;
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.3),
+    0 8px 24px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  text-align: left;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.bellas-btn__cover {
+  position: relative;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 16px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.bellas-btn__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.bellas-btn:hover .bellas-btn__cover img {
+  transform: scale(1.08);
+}
+
+.bellas-btn__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 1.4rem;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.35s ease;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+  transform: scale(0.85);
+  backdrop-filter: blur(1px);
+}
+
+.bellas-btn:hover .bellas-btn__play {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bellas-btn__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bellas-btn__title {
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.bellas-btn__sub {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+/* ===========================================
+   BOTÓN 1990 — Traje de torero negro/dorado
+   =========================================== */
+
+.bellas-btn--1990 {
+  position: relative;
+  background:
+    radial-gradient(1px 1px at 15% 20%, rgba(255, 215, 0, 0.1), transparent),
+    radial-gradient(1px 1px at 40% 10%, rgba(255, 215, 0, 0.08), transparent),
+    radial-gradient(1px 1px at 65% 25%, rgba(255, 215, 0, 0.1), transparent),
+    radial-gradient(1px 1px at 85% 15%, rgba(255, 215, 0, 0.06), transparent),
+    radial-gradient(1px 1px at 30% 40%, rgba(255, 215, 0, 0.07), transparent),
+    radial-gradient(1px 1px at 70% 45%, rgba(255, 215, 0, 0.09), transparent),
+    linear-gradient(135deg, #000 0%, #0a0a0a 100%);
+  color: #ffd700;
+  border-color: #cfa66f;
+  box-shadow:
+    0 0 20px rgba(207, 166, 111, 0.3),
+    inset 0 1px 0 rgba(255, 215, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Borde de "trencilla" (galón dorado) */
+.bellas-btn--1990::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(255, 215, 0, 0.12);
+  border-radius: 11px;
+  pointer-events: none;
+}
+
+/* Cornisa dorada superior (bordado del traje) */
+.bellas-btn--1990::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease, left 0.4s ease, right 0.4s ease;
+  border-radius: 1px;
+}
+
+.bellas-btn--1990:hover::after {
+  opacity: 1;
+  left: 6%;
+  right: 6%;
+}
+
+/* Esquinas ornamentales (filigrana) */
+.bellas-btn--1990 .bellas-btn__cover {
+  position: relative;
+  border-color: rgba(207, 166, 111, 0.7);
+  box-shadow:
+    0 0 0 1px rgba(255, 215, 0, 0.12),
+    0 0 16px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 215, 0, 0.08);
+}
+
+.bellas-btn--1990 .bellas-btn__cover::before {
+  content: "✦";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: #ffd700;
+  opacity: 0.6;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bellas-btn--1990 .bellas-btn__cover::after {
+  content: "✦";
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: #ffd700;
+  opacity: 0.6;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bellas-btn--1990 .bellas-btn__cover .bellas-btn__play {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Título con brillo de bordado dorado */
+.bellas-btn--1990 .bellas-btn__title {
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
+  letter-spacing: 2.5px;
+}
+
+.bellas-btn--1990 .bellas-btn__title::before {
+  content: "◆";
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 0.55em;
+  color: #ffd700;
+  opacity: 0.5;
+  vertical-align: middle;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.2);
+}
+
+.bellas-btn--1990 .bellas-btn__sub {
+  color: rgba(207, 166, 111, 0.7);
+}
+
+/* Hover — más brillo y realce */
+.bellas-btn--1990:hover {
+  background:
+    radial-gradient(1.5px 1.5px at 15% 20%, rgba(255, 215, 0, 0.2), transparent),
+    radial-gradient(1.5px 1.5px at 40% 10%, rgba(255, 215, 0, 0.15), transparent),
+    radial-gradient(1.5px 1.5px at 65% 25%, rgba(255, 215, 0, 0.2), transparent),
+    radial-gradient(1.5px 1.5px at 85% 15%, rgba(255, 215, 0, 0.12), transparent),
+    radial-gradient(1.5px 1.5px at 30% 40%, rgba(255, 215, 0, 0.15), transparent),
+    radial-gradient(1.5px 1.5px at 70% 45%, rgba(255, 215, 0, 0.18), transparent),
+    linear-gradient(135deg, #0a0a0a 0%, #121212 100%);
+  color: #ffed4e;
+  border-color: #ffd700;
+  box-shadow:
+    0 0 50px rgba(255, 215, 0, 0.5),
+    inset 0 1px 0 rgba(255, 215, 0, 0.1),
+    0 14px 36px rgba(0, 0, 0, 0.6);
+  transform: translateY(-3px);
+}
+
+.bellas-btn--1990:hover .bellas-btn__cover {
+  border-color: #ffd700;
+  box-shadow:
+    0 0 24px rgba(255, 215, 0, 0.4),
+    0 0 16px rgba(0, 0, 0, 0.6);
+}
+
+.bellas-btn--1990:hover .bellas-btn__cover::before,
+.bellas-btn--1990:hover .bellas-btn__cover::after {
+  opacity: 0.9;
+  transform: scale(1.15);
+}
+
+.bellas-btn--1990:hover .bellas-btn__title {
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
+}
+
+.bellas-btn--1990:hover .bellas-btn__title::before {
+  opacity: 0.8;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.bellas-btn--1990:hover .bellas-btn__sub {
+  color: rgba(255, 215, 0, 0.6);
+}
+
+/* 1990 — opacidad reducida (próximamente) */
+.bellas-btn--1990 .bellas-btn__sub {
+  opacity: 0.6;
+}
+
+/* ===========================================
+   BOTÓN 25 AÑOS — Estilo blanco/plateado
+   =========================================== */
+
+.bellas-btn--celebrando {
+  position: relative;
+  background:
+    radial-gradient(1px 1px at 18% 22%, rgba(255, 255, 255, 0.12), transparent),
+    radial-gradient(1px 1px at 45% 12%, rgba(255, 255, 255, 0.08), transparent),
+    radial-gradient(1px 1px at 70% 20%, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1px 1px at 25% 38%, rgba(255, 255, 255, 0.07), transparent),
+    radial-gradient(1px 1px at 60% 42%, rgba(255, 255, 255, 0.09), transparent),
+    linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 50%, #ececec 100%);
+  color: #333;
+  border-color: #bbb;
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.bellas-btn--celebrando::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 11px;
+  pointer-events: none;
+}
+
+.bellas-btn--celebrando::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease, left 0.4s ease, right 0.4s ease;
+  border-radius: 1px;
+}
+
+.bellas-btn--celebrando:hover::after {
+  opacity: 1;
+  left: 6%;
+  right: 6%;
+}
+
+.bellas-btn--celebrando .bellas-btn__cover {
+  position: relative;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 0 16px rgba(0, 0, 0, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.bellas-btn--celebrando .bellas-btn__cover::before {
+  content: "✦";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.7;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bellas-btn--celebrando .bellas-btn__cover::after {
+  content: "✦";
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.7;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bellas-btn--celebrando .bellas-btn__cover .bellas-btn__play {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.bellas-btn--celebrando .bellas-btn__title {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+  letter-spacing: 2.5px;
+  font-size: 0.95rem;
+}
+
+.bellas-btn--celebrando .bellas-btn__title::before {
+  content: "◆";
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 0.55em;
+  color: #999;
+  opacity: 0.5;
+  vertical-align: middle;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.bellas-btn--celebrando .bellas-btn__sub {
+  color: #666;
+  opacity: 0.6;
+  font-size: 0.6rem;
+}
+
+.bellas-btn--celebrando:hover {
+  background:
+    radial-gradient(1.5px 1.5px at 18% 22%, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1.5px 1.5px at 45% 12%, rgba(255, 255, 255, 0.15), transparent),
+    radial-gradient(1.5px 1.5px at 70% 20%, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1.5px 1.5px at 25% 38%, rgba(255, 255, 255, 0.12), transparent),
+    radial-gradient(1.5px 1.5px at 60% 42%, rgba(255, 255, 255, 0.15), transparent),
+    linear-gradient(135deg, #fff 0%, #fff 50%, #fafafa 100%);
+  color: #111;
+  border-color: #888;
+  box-shadow:
+    0 0 50px rgba(255, 255, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 14px 36px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.bellas-btn--celebrando:hover .bellas-btn__cover {
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 0 24px rgba(255, 255, 255, 0.5),
+    0 0 16px rgba(0, 0, 0, 0.15);
+}
+
+.bellas-btn--celebrando:hover .bellas-btn__cover::before,
+.bellas-btn--celebrando:hover .bellas-btn__cover::after {
+  opacity: 0.9;
+  transform: scale(1.15);
+}
+
+.bellas-btn--celebrando:hover .bellas-btn__title {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.bellas-btn--celebrando:hover .bellas-btn__title::before {
+  opacity: 0.8;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.bellas-btn--celebrando:hover .bellas-btn__sub {
+  color: #444;
+}
+
+/* ===========================================
+   BOTÓN 2013 — Estilo plata/elegante
+   =========================================== */
+
+.bellas-btn--2013 {
+  position: relative;
+  background:
+    radial-gradient(1px 1px at 20% 15%, rgba(200, 200, 200, 0.12), transparent),
+    radial-gradient(1px 1px at 50% 20%, rgba(200, 200, 200, 0.08), transparent),
+    radial-gradient(1px 1px at 75% 12%, rgba(200, 200, 200, 0.1), transparent),
+    radial-gradient(1px 1px at 35% 35%, rgba(200, 200, 200, 0.06), transparent),
+    radial-gradient(1px 1px at 65% 40%, rgba(200, 200, 200, 0.09), transparent),
+    linear-gradient(135deg, #141414 0%, #222 50%, #1c1c1c 100%);
+  color: #d4d4d4;
+  border-color: #888;
+  box-shadow:
+    0 0 20px rgba(160, 160, 160, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Borde interior plateado (trencilla plata) */
+.bellas-btn--2013::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(200, 200, 200, 0.1);
+  border-radius: 11px;
+  pointer-events: none;
+}
+
+/* Línea plateada superior */
+.bellas-btn--2013::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(200, 200, 200, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease, left 0.4s ease, right 0.4s ease;
+  border-radius: 1px;
+}
+
+.bellas-btn--2013:hover::after {
+  opacity: 1;
+  left: 6%;
+  right: 6%;
+}
+
+.bellas-btn--2013 .bellas-btn__cover {
+  position: relative;
+  border-color: rgba(160, 160, 160, 0.6);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 16px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(200, 200, 200, 0.1);
+}
+
+/* Esquinas plateadas */
+.bellas-btn--2013 .bellas-btn__cover::before {
+  content: "✦";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: #ccc;
+  opacity: 0.5;
+  text-shadow: 0 0 6px rgba(200, 200, 200, 0.3);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bellas-btn--2013 .bellas-btn__cover::after {
+  content: "✦";
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: #ccc;
+  opacity: 0.5;
+  text-shadow: 0 0 6px rgba(200, 200, 200, 0.3);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Título con diamante plateado */
+.bellas-btn--2013 .bellas-btn__title {
+  letter-spacing: 2.5px;
+}
+
+.bellas-btn--2013 .bellas-btn__title::before {
+  content: "◆";
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 0.55em;
+  color: #ccc;
+  opacity: 0.45;
+  vertical-align: middle;
+  text-shadow: 0 0 6px rgba(200, 200, 200, 0.15);
+}
+
+.bellas-btn--2013 .bellas-btn__sub {
+  color: rgba(180, 180, 180, 0.7);
+}
+
+.bellas-btn--2013:hover {
+  background:
+    radial-gradient(1.5px 1.5px at 20% 15%, rgba(200, 200, 200, 0.2), transparent),
+    radial-gradient(1.5px 1.5px at 50% 20%, rgba(200, 200, 200, 0.15), transparent),
+    radial-gradient(1.5px 1.5px at 75% 12%, rgba(200, 200, 200, 0.18), transparent),
+    radial-gradient(1.5px 1.5px at 35% 35%, rgba(200, 200, 200, 0.12), transparent),
+    radial-gradient(1.5px 1.5px at 65% 40%, rgba(200, 200, 200, 0.15), transparent),
+    linear-gradient(135deg, #222 0%, #333 50%, #2a2a2a 100%);
+  color: #fff;
+  border-color: #aaa;
+  box-shadow:
+    0 0 50px rgba(180, 180, 180, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 14px 36px rgba(0, 0, 0, 0.6);
+  transform: translateY(-3px);
+}
+
+.bellas-btn--2013:hover .bellas-btn__cover {
+  border-color: #ccc;
+  box-shadow:
+    0 0 24px rgba(200, 200, 200, 0.35),
+    0 0 16px rgba(0, 0, 0, 0.6);
+}
+
+.bellas-btn--2013:hover .bellas-btn__cover::before,
+.bellas-btn--2013:hover .bellas-btn__cover::after {
+  opacity: 0.85;
+  transform: scale(1.15);
+}
+
+.bellas-btn--2013:hover .bellas-btn__title::before {
+  opacity: 0.75;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+}
+
+.bellas-btn--2013:hover .bellas-btn__sub {
+  color: rgba(220, 220, 220, 0.85);
+}
+
+/* ===========================================
+   MODAL DE BELLAS ARTES
+   =========================================== */
+
+.bellas-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 4000;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.bellas-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Modal blanco para 25 Años */
+.bellas-modal--celebrando .bellas-modal__overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.bellas-modal--celebrando .bellas-modal__content {
+  background: #111;
+  border-color: #ccc;
+  box-shadow:
+    0 0 40px rgba(200, 200, 200, 0.3),
+    0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.bellas-modal--celebrando .bellas-video {
+  border-color: #ccc;
+  box-shadow:
+    0 0 20px rgba(200, 200, 200, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.bellas-modal--celebrando .bellas-curtain__rod {
+  background:
+    linear-gradient(180deg, #ccc 0%, #aaa 40%, #888 60%, #ccc 100%);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.bellas-modal--celebrando .bellas-curtain__rod::before,
+.bellas-modal--celebrando .bellas-curtain__rod::after {
+  background:
+    radial-gradient(circle at 40% 40%, #ccc, #888 60%, #666 100%);
+}
+
+.bellas-modal--celebrando .bellas-modal__close {
+  border-color: #ccc;
+  background: linear-gradient(180deg, rgba(30, 30, 30, 0.96) 0%, rgba(10, 10, 10, 0.96) 100%);
+  color: #fff;
+  box-shadow:
+    0 0 12px rgba(200, 200, 200, 0.2),
+    0 6px 16px rgba(0, 0, 0, 0.55);
+}
+
+.bellas-modal--celebrando .bellas-modal__close:hover,
+.bellas-modal--celebrando .bellas-modal__close:focus-visible {
+  background: rgba(200, 200, 200, 0.2);
+  border-color: #fff;
+  color: #fff;
+  box-shadow:
+    0 0 18px rgba(255, 255, 255, 0.35),
+    0 8px 20px rgba(0, 0, 0, 0.65);
+}
+
+/* Modal gris para Mis 40 en Bellas Artes */
+.bellas-modal--2013 .bellas-modal__overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.bellas-modal--2013 .bellas-modal__content {
+  background: #2a2a2a;
+  border-color: #aaa;
+  box-shadow:
+    0 0 40px rgba(180, 180, 180, 0.3),
+    0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.bellas-modal--2013 .bellas-video {
+  border-color: #999;
+  box-shadow:
+    0 0 20px rgba(180, 180, 180, 0.25),
+    inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.bellas-modal--2013 .bellas-curtain__rod {
+  background:
+    linear-gradient(180deg, #bbb 0%, #999 40%, #777 60%, #bbb 100%);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.bellas-modal--2013 .bellas-curtain__rod::before,
+.bellas-modal--2013 .bellas-curtain__rod::after {
+  background:
+    radial-gradient(circle at 40% 40%, #bbb, #888 60%, #666 100%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.bellas-modal--2013 .bellas-modal__close {
+  border-color: #999;
+  background: linear-gradient(180deg, rgba(50, 50, 50, 0.96) 0%, rgba(30, 30, 30, 0.96) 100%);
+  color: #ddd;
+  box-shadow:
+    0 0 12px rgba(180, 180, 180, 0.2),
+    0 6px 16px rgba(0, 0, 0, 0.55);
+}
+
+.bellas-modal--2013 .bellas-modal__close:hover,
+.bellas-modal--2013 .bellas-modal__close:focus-visible {
+  background: rgba(180, 180, 180, 0.25);
+  border-color: #ccc;
+  color: #fff;
+  box-shadow:
+    0 0 18px rgba(180, 180, 180, 0.35),
+    0 8px 20px rgba(0, 0, 0, 0.65);
+}
+
+/* ===========================================
+   TELÓN DE TEATRO
+   =========================================== */
+
+/* Barra de cortina (cornisa) */
+.bellas-curtain__rod {
+  position: absolute;
+  top: 0;
+  left: -8px;
+  right: -8px;
+  height: 16px;
+  z-index: 6;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, #cfa66f 0%, #b8862d 40%, #8a6520 60%, #cfa66f 100%);
+  border-radius: 4px 4px 0 0;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 215, 0, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.bellas-curtain__rod::before,
+.bellas-curtain__rod::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  width: 14px;
+  height: 22px;
+  background:
+    radial-gradient(circle at 40% 40%, #cfa66f, #8a6520 60%, #5a4210 100%);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.bellas-curtain__rod::before {
+  left: 4px;
+}
+
+.bellas-curtain__rod::after {
+  right: 4px;
+}
+
+/* Cortina izquierda y derecha */
+.bellas-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 51%;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.bellas-curtain--left {
+  left: 0;
+  transform: translateX(0);
+  border-right: 2px solid rgba(180, 120, 60, 0.15);
+}
+
+.bellas-curtain--right {
+  right: 0;
+  transform: translateX(0);
+  border-left: 2px solid rgba(180, 120, 60, 0.15);
+}
+
+/* Base de terciopelo de las cortinas */
+.bellas-curtain--left .bellas-curtain__fabric,
+.bellas-curtain--right .bellas-curtain__fabric {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 30% at 50% 100%, rgba(100, 15, 15, 0.5) 0%, transparent 100%),
+    linear-gradient(180deg,
+      #3a0808 0%, #520c0c 10%, #6b1010 20%, #7a1515 30%,
+      #701212 40%, #5c0e0e 55%, #4a0a0a 70%, #3a0808 85%, #2a0505 100%
+    );
+}
+
+/* Pliegues verticales con sombras profundas */
+.bellas-curtain--left .bellas-curtain__fabric::after,
+.bellas-curtain--right .bellas-curtain__fabric::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 24px,
+      rgba(0, 0, 0, 0.2) 24px,
+      rgba(0, 0, 0, 0.35) 26px,
+      transparent 26px,
+      transparent 50px,
+      rgba(0, 0, 0, 0.08) 50px,
+      rgba(0, 0, 0, 0.15) 52px,
+      transparent 52px,
+      transparent 76px,
+      rgba(0, 0, 0, 0.12) 76px,
+      rgba(0, 0, 0, 0.22) 78px,
+      transparent 78px,
+      transparent 100px
+    );
+  pointer-events: none;
+}
+
+/* Brillo lateral que simula luz escénica */
+.bellas-curtain--left .bellas-curtain__fabric::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(180, 80, 30, 0.1) 0%,
+    transparent 15%,
+    transparent 85%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  pointer-events: none;
+}
+
+.bellas-curtain--right .bellas-curtain__fabric::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    transparent 15%,
+    transparent 85%,
+    rgba(180, 80, 30, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+/* Borde interior dorado (donde se juntan las cortinas) */
+.bellas-curtain--left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(180deg,
+    rgba(207, 166, 111, 0.5) 0%,
+    rgba(207, 166, 111, 0.8) 20%,
+    rgba(207, 166, 111, 0.9) 40%,
+    rgba(180, 140, 80, 0.8) 60%,
+    rgba(160, 120, 60, 0.6) 80%,
+    rgba(140, 100, 40, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+.bellas-curtain--right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(180deg,
+    rgba(207, 166, 111, 0.5) 0%,
+    rgba(207, 166, 111, 0.8) 20%,
+    rgba(207, 166, 111, 0.9) 40%,
+    rgba(180, 140, 80, 0.8) 60%,
+    rgba(160, 120, 60, 0.6) 80%,
+    rgba(140, 100, 40, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+/* Flecos dorados en la parte inferior */
+.bellas-curtain--left .bellas-curtain__fringe,
+.bellas-curtain--right .bellas-curtain__fringe {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bellas-curtain--left .bellas-curtain__fringe::before,
+.bellas-curtain--right .bellas-curtain__fringe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    rgba(207, 166, 111, 0.9),
+    rgba(255, 215, 0, 0.8),
+    rgba(207, 166, 111, 0.9)
+  );
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+  pointer-events: none;
+}
+
+.bellas-curtain--left .bellas-curtain__fringe::after,
+.bellas-curtain--right .bellas-curtain__fringe::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(207, 166, 111, 0.7) 2px,
+      rgba(207, 166, 111, 0.7) 3px,
+      transparent 3px,
+      transparent 5px,
+      rgba(180, 140, 80, 0.5) 5px,
+      rgba(180, 140, 80, 0.5) 6px,
+      transparent 6px,
+      transparent 8px
+    );
+  pointer-events: none;
+}
+
+/* Ataduras (tie-backs) visibles solo al abrir */
+.bellas-curtain--left .bellas-curtain__tieback,
+.bellas-curtain--right .bellas-curtain__tieback {
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 10px;
+  margin-top: -5px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bellas-curtain--left .bellas-curtain__tieback {
+  right: 0;
+  background:
+    radial-gradient(ellipse 100% 100% at 100% 50%, #cfa66f, #8a6520);
+  border-radius: 5px 0 0 5px;
+}
+
+.bellas-curtain--right .bellas-curtain__tieback {
+  left: 0;
+  background:
+    radial-gradient(ellipse 100% 100% at 0% 50%, #cfa66f, #8a6520);
+  border-radius: 0 5px 5px 0;
+}
+
+/* Borlas en las ataduras */
+.bellas-curtain--left .bellas-curtain__tieback::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  margin-top: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #ffd700, #8a6520);
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+}
+
+.bellas-curtain--right .bellas-curtain__tieback::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  margin-top: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #ffd700, #8a6520);
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+}
+
+/* Valance / Galería superior drapeada */
+.bellas-curtain__valance {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  height: 72px;
+  z-index: 5;
+  pointer-events: none;
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.1s;
+}
+
+.bellas-curtain__valance-body {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      #6b1010 0%, #801818 25%, #7a1515 50%,
+      #6b1010 75%, #520c0c 100%
+    );
+  border-bottom: none;
+  overflow: hidden;
+}
+
+/* Pliegues de la valance */
+.bellas-curtain__valance-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(0, 0, 0, 0.15) 20px,
+      rgba(0, 0, 0, 0.25) 22px,
+      transparent 22px,
+      transparent 46px,
+      rgba(0, 0, 0, 0.08) 46px,
+      rgba(0, 0, 0, 0.15) 48px,
+      transparent 48px,
+      transparent 72px,
+      rgba(0, 0, 0, 0.12) 72px,
+      rgba(0, 0, 0, 0.20) 74px,
+      transparent 74px,
+      transparent 96px
+    );
+  pointer-events: none;
+}
+
+/* Swag / festón de la valance (forma ondulada inferior) */
+.bellas-curtain__valance-body::after {
+  content: "";
+  position: absolute;
+  bottom: -24px;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background:
+    radial-gradient(ellipse 20% 100% at 10% 100%, rgba(107, 16, 16, 0.95) 0%, transparent 100%),
+    radial-gradient(ellipse 20% 100% at 30% 100%, rgba(107, 16, 16, 0.95) 0%, transparent 100%),
+    radial-gradient(ellipse 20% 100% at 50% 100%, rgba(107, 16, 16, 0.95) 0%, transparent 100%),
+    radial-gradient(ellipse 20% 100% at 70% 100%, rgba(107, 16, 16, 0.95) 0%, transparent 100%),
+    radial-gradient(ellipse 20% 100% at 90% 100%, rgba(107, 16, 16, 0.95) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Fleco dorado inferior de la valance */
+.bellas-curtain__valance-trim {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bellas-curtain__valance-trim::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    rgba(207, 166, 111, 0.6),
+    rgba(255, 215, 0, 0.9),
+    rgba(207, 166, 111, 0.8),
+    rgba(255, 215, 0, 0.9),
+    rgba(207, 166, 111, 0.6)
+  );
+  pointer-events: none;
+}
+
+.bellas-curtain__valance-trim::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 3px,
+      rgba(207, 166, 111, 0.5) 3px,
+      rgba(207, 166, 111, 0.5) 4px,
+      transparent 4px,
+      transparent 7px
+    );
+  pointer-events: none;
+}
+
+/* Luces escénicas superiores (spotlights sutiles) */
+.bellas-curtain__valance::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 100%;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 30% 100% at 30% 0%, rgba(255, 220, 150, 0.06), transparent 100%),
+    radial-gradient(ellipse 30% 100% at 70% 0%, rgba(255, 220, 150, 0.04), transparent 100%);
+  pointer-events: none;
+}
+
+/* Estado abierto: cortinas se apartan */
+.bellas-modal.is-open .bellas-curtain--left {
+  transform: translateX(-102%);
+  transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
+}
+
+.bellas-modal.is-open .bellas-curtain--right {
+  transform: translateX(102%);
+  transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
+}
+
+.bellas-modal.is-open .bellas-curtain__valance {
+  transform: translateY(-100%);
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.4s;
+}
+
+.bellas-modal.is-open .bellas-curtain--left .bellas-curtain__tieback,
+.bellas-modal.is-open .bellas-curtain--right .bellas-curtain__tieback {
+  opacity: 1;
+  transition: opacity 0.6s ease 0.6s;
+}
+
+/* Marco dorado tipo escenario */
+.bellas-stage-frame {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 64px 32px 32px;
+  text-align: center;
+}
+
+/* Video player */
+.bellas-video {
+  display: block;
+  width: min(100%, 980px);
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 2px solid #cfa66f;
+  border-radius: 8px;
+  background: #000;
+  box-shadow:
+    0 0 20px rgba(207, 166, 111, 0.4),
+    inset 0 0 20px rgba(0, 0, 0, 0.8);
+  margin: 0 auto 24px;
+}
+
+/* Frase decorativa */
+.bellas-quote {
+  color: #ffd700;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+/* Botón de cerrar */
+.bellas-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  border: 2px solid #cfa66f;
+  background: linear-gradient(180deg, rgba(15, 15, 15, 0.96) 0%, rgba(0, 0, 0, 0.96) 100%);
+  color: #ffd700;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  box-shadow:
+    0 0 12px rgba(207, 166, 111, 0.35),
+    0 6px 16px rgba(0, 0, 0, 0.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+}
+
+.bellas-modal__close:hover,
+.bellas-modal__close:focus-visible {
+  background: rgba(207, 166, 111, 0.2);
+  border-color: #ffd700;
+  color: #ffed4e;
+  transform: translateY(-1px) scale(1.06);
+  box-shadow:
+    0 0 18px rgba(255, 215, 0, 0.55),
+    0 8px 20px rgba(0, 0, 0, 0.65);
+}

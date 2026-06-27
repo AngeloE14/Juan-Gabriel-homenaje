@@ -1,10 +1,7 @@
 #artistas-composiciones {
   margin: 46px auto 54px;
   padding: clamp(42px, 7vw, 78px) clamp(16px, 3vw, 34px);
-  background:
-    radial-gradient(780px 260px at 50% 0%, rgba(207, 166, 111, 0.22), transparent 70%),
-    radial-gradient(700px 280px at 12% 20%, rgba(46, 80, 133, 0.2), transparent 74%),
-    linear-gradient(180deg, rgba(27, 39, 54, 0.96) 0%, rgba(13, 18, 25, 0.98) 100%);
+  background: radial-gradient(circle at center, #2b1808 0%, #1a0f05 35%, #080808 100%);
   border-top: 1px solid rgba(207, 166, 111, 0.38);
   border-bottom: 1px solid rgba(207, 166, 111, 0.32);
   box-shadow:
@@ -42,12 +39,11 @@
   margin: 0 auto;
   overflow-x: auto;
   overflow-y: visible;
-  touch-action: pan-x;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: clamp(12px, 3vw, 40px);
+  touch-action: pan-x;
 }
+
 .artistas-gallery::-webkit-scrollbar {
   display: none;
   width: 0;
@@ -68,7 +64,6 @@
   flex: 0 0 clamp(195px, 25vw, 275px);
   display: flex;
   flex-direction: column;
-  scroll-snap-align: center;
 }
 
 .portrait-frame {
@@ -332,6 +327,7 @@
     font-size: clamp(0.68rem, 1.4vw, 0.82rem);
     letter-spacing: 0.06em;
   }
+
 }
 
 @media (max-width: 460px) {

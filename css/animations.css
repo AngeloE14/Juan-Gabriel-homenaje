@@ -100,4 +100,14 @@ body:not(.intro-activa) .logo-juan {
   }
 }
 
-/* Animación de entrada del modal (el modal específico de Bellas Artes fue removido) */
+/* Animación de entrada del modal de Bellas Artes */
+@keyframes modalSlideIn {
+  from {
+    transform: scale(0.9) translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}

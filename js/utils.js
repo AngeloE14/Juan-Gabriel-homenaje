@@ -341,7 +341,8 @@ export function inicializarAudioFondo() {
     "audios/te lo pido por favor.mp3",
     "audios/debo hacerlo.mp3",
     "audios/se me olvido otra vez.mp3",
-    "audios/dejame vivir.mp3"
+    "audios/dejame vivir.mp3",
+    "audios/me nace del corazon.mp3"
   ];
 
   let indiceActual = Math.floor(Math.random() * canciones.length);

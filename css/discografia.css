@@ -187,6 +187,31 @@
   filter: saturate(1.02) contrast(1.06);
 }
 
+/* Medallón negro para álbumes póstumos */
+.album-frame.postumo {
+  overflow: visible;
+}
+
+.album-frame.postumo::after {
+  content: "✝";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 36px;
+  height: 36px;
+  background: #0d0d0d;
+  border: 2px solid #cfa66f;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 38px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
 /* Rotaciones sutiles para algunos marcos */
 .album-frame:nth-child(6n + 2) {
   transform: rotate(-0.5deg);
