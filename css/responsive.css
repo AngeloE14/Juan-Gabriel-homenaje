@@ -276,14 +276,43 @@
   }
 
   /* Modal de Bellas Artes en móvil */
+  .bellas-modal {
+    padding: 0;
+    align-items: stretch;
+    justify-items: stretch;
+  }
+
   .bellas-modal__content {
-    width: min(100vw, 100%);
+    width: 100vw;
     max-height: 100vh;
+    max-height: 100svh;
+    overflow-y: auto;
     border-radius: 0;
+    border-left: 0;
+    border-right: 0;
   }
 
   .bellas-stage-frame {
-    padding: 60px 14px 24px;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 58px 10px 18px;
+  }
+
+  .bellas-video {
+    width: min(100%, calc((100vh - 150px) * 16 / 9));
+    width: min(100%, calc((100svh - 150px) * 16 / 9));
+    border-width: 2px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+  }
+
+  .bellas-quote {
+    padding-inline: 8px;
+    font-size: clamp(0.88rem, 3.8vw, 1.05rem);
+    letter-spacing: 0.4px;
   }
 
   .bellas-switch {
@@ -300,6 +329,15 @@
     max-width: 340px;
   }
 
+  .bellas-btn__info {
+    min-width: 0;
+  }
+
+  .bellas-btn__title,
+  .bellas-btn__sub {
+    white-space: normal;
+  }
+
   .bellas-btn__cover {
     width: 48px;
     height: 48px;
@@ -311,8 +349,8 @@
   }
 
   .bellas-modal__close {
-    top: 10px;
-    right: 10px;
+    top: max(10px, env(safe-area-inset-top));
+    right: max(10px, env(safe-area-inset-right));
     width: 38px;
     height: 38px;
     font-size: 26px;
@@ -384,9 +422,9 @@
   }
 
   .bellas-btn {
-    max-width: 300px;
-    padding: 6px 14px 6px 6px;
-    font-size: 0.85rem;
+    max-width: min(320px, calc(100vw - 28px));
+    padding: 6px 12px 6px 6px;
+    font-size: 0.82rem;
     gap: 10px;
   }
 
@@ -396,7 +434,41 @@
   }
 
   .bellas-btn__sub {
-    font-size: 0.55rem;
+    font-size: 0.54rem;
+    line-height: 1.25;
+  }
+
+  .bellas-stage-frame {
+    padding-inline: 8px;
+  }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+  .bellas-stage-frame {
+    justify-content: flex-start;
+    padding-top: 48px;
+    padding-bottom: 12px;
+  }
+
+  .bellas-video {
+    width: min(100%, calc((100vh - 118px) * 16 / 9));
+    width: min(100%, calc((100svh - 118px) * 16 / 9));
+    margin-bottom: 10px;
+  }
+
+  .bellas-quote {
+    font-size: 0.86rem;
+    line-height: 1.25;
+  }
+
+  .bellas-curtain__valance {
+    height: 42px;
+  }
+
+  .bellas-modal__close {
+    width: 34px;
+    height: 34px;
+    font-size: 23px;
   }
 }
 
