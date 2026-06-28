@@ -395,6 +395,7 @@ export function inicializarAudioFondo() {
   }
 
   function desbloquearAudio() {
+    if (audioFondo.paused) return;
     audioFondo.muted = false;
     audioFondo.defaultMuted = false;
 
