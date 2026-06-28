@@ -200,513 +200,226 @@ body.nav-open {
   padding-left: 13px;
 }
 
-/*
-  TRAJE TORERO BELLAS ARTES 1990 - BOTÓN BIOGRAFÍA
-  Reproduce el traje negro y dorado de la actuación en Bellas Artes 1990:
-  grecas (patrón geométrico griego) en bordes de solapas, bordados
-  florales barrocos inspirados en Diego Rivera en hombros, 15 alamares
-  verticales dorados en el pecho, flecos con lentejuelas y borlas.
-  Actualizado con referencias visuales de la prenda real.
-*/
 .main-nav a[href="#biografia"] {
-  position: relative;
-  isolation: isolate;
   display: flex;
   align-items: center;
-  min-height: 52px;
-  padding: 12px 10px 14px 44px;
+  min-height: 60px;
+  padding: 12px 16px;
   overflow: hidden;
   font-weight: 700;
-  color: #ffe69a;
-  letter-spacing: 0.6px;
-  text-shadow:
-    0 1px 0 #000,
-    0 0 8px rgba(255, 215, 0, 0.55);
-  border: 1px solid rgba(216, 167, 44, 0.78);
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-  background-color: #020202;
-  background-image: url("../assets/biografia-traje-torero.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 235, 146, 0.18),
-    inset 0 -20px 24px rgba(0, 0, 0, 0.88),
-    inset 0 12px 18px rgba(255, 255, 255, 0.04),
-    0 0 0 1px rgba(82, 50, 4, 0.8),
-    0 8px 18px rgba(0, 0, 0, 0.28),
-    0 0 16px rgba(216, 167, 44, 0.18);
+  background-image: url("../pic_nav/foto 5.jpeg");
+  background-size: cover;
+  background-position: center 54%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
-}
-
-/* Reflejos de escenario: luz sobre bordados, flecos y lentejuelas. */
-.main-nav a[href="#biografia"]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 18% 16%, rgba(255, 218, 84, 0.18), transparent 26%),
-    radial-gradient(ellipse at 84% 16%, rgba(255, 218, 84, 0.14), transparent 27%),
-    radial-gradient(ellipse at 50% 54%, rgba(255, 255, 200, 0.03), transparent 32%),
-    linear-gradient(106deg, transparent 0 40%, rgba(255, 255, 255, 0.10) 47%, transparent 55%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.12), transparent 28%, transparent 72%, rgba(0, 0, 0, 0.28));
-  opacity: 0.7;
-}
-
-/* Sombra inferior sutil. */
-.main-nav a[href="#biografia"]::after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  right: 6px;
-  bottom: 0;
-  height: 4px;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent, rgba(180, 140, 40, 0.08), transparent);
-  opacity: 0.5;
 }
 
 .main-nav a[href="#biografia"]:hover,
 .main-nav a[href="#biografia"]:focus-visible {
-  color: #fff4bd;
-  padding-left: 44px;
-  border-color: rgba(255, 230, 128, 0.98);
-  filter: saturate(1.08);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 244, 190, 0.24),
-    inset 0 -20px 24px rgba(0, 0, 0, 0.86),
-    inset 0 12px 18px rgba(255, 255, 255, 0.06),
-    0 0 0 1px rgba(122, 77, 6, 0.85),
-    0 10px 22px rgba(0, 0, 0, 0.36),
-    0 0 24px rgba(255, 215, 0, 0.28);
+  color: #FFD700;
+  border-color: rgba(255, 215, 0, 0.5);
+  filter: brightness(1.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 215, 0, 0.15);
 }
 
 .main-nav a[href="#biografia"]:focus-visible {
-  outline: 2px solid rgba(255, 232, 128, 0.95);
+  outline: 2px solid rgba(255, 215, 0, 0.7);
   outline-offset: 3px;
 }
 
 .main-nav a[href="#biografia"][aria-current="page"] {
-  color: #fff0aa;
-  padding-left: 44px;
-  border-left-color: rgba(255, 230, 128, 0.98);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 244, 190, 0.26),
-    inset 0 -20px 24px rgba(0, 0, 0, 0.86),
-    0 0 0 1px rgba(122, 77, 6, 0.9),
-    0 0 24px rgba(255, 215, 0, 0.25);
+  color: #FFD700;
+  border-left: 3px solid #FFD700;
+  padding-left: 13px;
 }
 
-/*
-  TRAJE FLORAL - BOTÓN VIDEOS
-  Inspirado fielmente en el saco azul petróleo con bordado floral denso
-  de Juan Gabriel. Fondo azul marino oscuro con matices verde petróleo.
-  Flores bordadas de múltiples colores cubriendo toda la superficie.
-  Solapas negras satinadas en los bordes. Sin lentejuelas, sin brillos
-  excesivos — solo la tela bordada del traje real.
-*/
-.main-nav a[href="#multimedia"] {
-  --vid-petroleo: #0a1a2e;
-  --vid-petroleo-claro: #0d2840;
-  position: relative;
-  isolation: isolate;
+.main-nav a[href="#artistas-composiciones"] {
   display: flex;
   align-items: center;
-  min-height: 52px;
-  padding: 12px 10px 14px 44px;
+  min-height: 60px;
+  padding: 12px 16px;
   overflow: hidden;
   font-weight: 700;
-  color: #f5f0ea;
-  letter-spacing: 0.6px;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.85),
-    0 0 6px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(20, 40, 60, 0.5);
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-  background-color: var(--vid-petroleo);
-  background-image:
-    url("../assets/videos-traje-floral.svg"),
-    radial-gradient(ellipse at 50% 30%, rgba(20, 60, 100, 0.3), transparent 60%),
-    linear-gradient(180deg, #0d2840 0%, #081a30 30%, #051020 100%);
-  background-position:
-    center,
-    center,
-    center;
-  background-repeat:
-    no-repeat,
-    no-repeat,
-    no-repeat;
-  background-size:
-    100% 100%,
-    100% 100%,
-    100% 100%;
-  box-shadow:
-    inset 0 0 0 1px rgba(40, 80, 120, 0.2),
-    inset 0 -16px 20px rgba(0, 0, 0, 0.6),
-    inset 0 8px 12px rgba(255, 255, 255, 0.015),
-    0 0 1px 1px rgba(10, 25, 45, 0.5),
-    0 8px 18px rgba(0, 0, 0, 0.3),
-    0 0 16px rgba(30, 60, 90, 0.04);
+  background-image: url("../pic_nav/foto 1.jpeg");
+  background-size: cover;
+  background-position: center 23%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
-/* Solapas negras satinadas en bordes laterales. */
-.main-nav a[href="#multimedia"]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background:
-    linear-gradient(90deg, rgba(5, 10, 20, 0.4) 0%, transparent 6%, transparent 94%, rgba(5, 10, 20, 0.4) 100%),
-    radial-gradient(ellipse at 22% 18%, rgba(255, 255, 255, 0.035), transparent 28%),
-    radial-gradient(ellipse at 80% 18%, rgba(255, 255, 255, 0.025), transparent 28%),
-    linear-gradient(110deg, transparent 0 35%, rgba(255, 255, 255, 0.04) 45%, transparent 55%);
-  opacity: 0.7;
+.main-nav a[href="#artistas-composiciones"]:hover,
+.main-nav a[href="#artistas-composiciones"]:focus-visible {
+  color: #FFD700;
+  border-color: rgba(255, 215, 0, 0.5);
+  filter: brightness(1.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 215, 0, 0.15);
 }
 
-/* Borde inferior satinado tipo solapa. */
-.main-nav a[href="#multimedia"]::after {
-  content: "";
-  position: absolute;
-  left: 4px;
-  right: 4px;
-  bottom: 0;
-  height: 4px;
-  pointer-events: none;
-  z-index: 1;
-  background: linear-gradient(90deg, transparent, rgba(15, 35, 55, 0.4), transparent);
-  opacity: 0.5;
+.main-nav a[href="#artistas-composiciones"]:focus-visible {
+  outline: 2px solid rgba(255, 215, 0, 0.7);
+  outline-offset: 3px;
+}
+
+.main-nav a[href="#artistas-composiciones"][aria-current="page"] {
+  color: #FFD700;
+  border-left: 3px solid #FFD700;
+  padding-left: 13px;
+}
+
+.main-nav a[href="#multimedia"] {
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+  padding: 12px 16px;
+  overflow: hidden;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url("../pic_nav/foto 4.jpeg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
 .main-nav a[href="#multimedia"]:hover,
 .main-nav a[href="#multimedia"]:focus-visible {
-  color: #faf5f0;
-  padding-left: 44px;
-  border-color: rgba(40, 80, 120, 0.4);
-  filter: brightness(1.04);
-  background-color: #0d1a30;
-  box-shadow:
-    inset 0 0 0 1px rgba(60, 100, 140, 0.15),
-    inset 0 -20px 24px rgba(0, 0, 0, 0.55),
-    inset 0 12px 18px rgba(255, 255, 255, 0.02),
-    0 0 1px 1px rgba(15, 30, 50, 0.5),
-    0 10px 22px rgba(0, 0, 0, 0.38),
-    0 0 20px rgba(30, 60, 90, 0.06);
+  color: #FFD700;
+  border-color: rgba(255, 215, 0, 0.5);
+  filter: brightness(1.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 215, 0, 0.15);
 }
 
 .main-nav a[href="#multimedia"]:focus-visible {
-  outline: 2px solid rgba(40, 80, 120, 0.3);
+  outline: 2px solid rgba(255, 215, 0, 0.7);
   outline-offset: 3px;
 }
 
 .main-nav a[href="#multimedia"][aria-current="page"] {
-  color: #faf5f0;
-  padding-left: 44px;
-  border-left-color: rgba(40, 80, 120, 0.35);
-  box-shadow:
-    inset 0 0 0 1px rgba(60, 100, 140, 0.1),
-    inset 0 -20px 24px rgba(0, 0, 0, 0.55),
-    0 0 1px 1px rgba(15, 30, 50, 0.5),
-    0 0 20px rgba(30, 60, 90, 0.05);
+  color: #FFD700;
+  border-left: 3px solid #FFD700;
+  padding-left: 13px;
 }
 
-/* Brillo ambiental muy sutil sobre el bordado floral. */
-@keyframes floral-shimmer {
-  0%   { transform: translateX(-100%); opacity: 0; }
-  10%  { opacity: 0.3; }
-  40%  { opacity: 0.3; }
-  55%  { transform: translateX(200%); opacity: 0; }
-  100% { transform: translateX(200%); opacity: 0; }
-}
-
-.multimedia-sweep {
-  animation: floral-shimmer 12s ease-in-out infinite;
-}
-
-/*
-  TRAJE DE FLECOS MORADOS - BOTÓN LETRAS
-  Inspirado fielmente en el saco morado con flecos de Juan Gabriel:
-  base púrpura satinada con cientos de flecos verticales brillantes,
-  variaciones de magenta y violeta, reflejos azulados y sombras entre flecos.
-  Sin patrones geométricos — solo textura de flecos real.
-*/
 .main-nav a[href="#letras"] {
-  --fleco-oscuro: #1e0530;
-  --fleco-purpura: #2d0a3e;
-  --fleco-magenta: #c71585;
-  --fleco-violeta: #6a0dad;
-  --fleco-azul: #7c3aed;
-  position: relative;
-  isolation: isolate;
   display: flex;
   align-items: center;
-  min-height: 56px;
-  padding: 16px 12px 18px 58px;
+  min-height: 52px;
+  padding: 12px 16px;
   overflow: hidden;
   font-weight: 700;
-  font-size: 1.05rem;
-  color: #f5eaff;
-  letter-spacing: 0.8px;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.7),
-    0 0 8px rgba(200, 150, 255, 0.25),
-    0 0 20px rgba(100, 40, 160, 0.15);
-  border: 1px solid rgba(160, 80, 200, 0.35);
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-  background-color: var(--fleco-oscuro);
-  background-image: url("../assets/letras-traje-flecos.svg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("../pic_nav/foto 3.jpeg");
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  box-shadow:
-    inset 0 0 0 1px rgba(220, 180, 255, 0.08),
-    inset 0 -24px 28px rgba(0, 0, 0, 0.55),
-    inset 0 8px 12px rgba(200, 150, 255, 0.03),
-    0 0 0 1px rgba(90, 35, 130, 0.5),
-    0 8px 20px rgba(0, 0, 0, 0.35),
-    0 0 18px rgba(150, 80, 200, 0.06);
-  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-}
-
-/* Brillo satinado que recorre la superficie como tela iluminada por el escenario. */
-.main-nav a[href="#letras"]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background:
-    radial-gradient(ellipse 140% 40% at 22% 18%, rgba(220, 180, 255, 0.10), transparent 50%),
-    radial-gradient(ellipse 120% 35% at 78% 20%, rgba(200, 150, 255, 0.07), transparent 50%),
-    radial-gradient(ellipse 80% 25% at 50% 15%, rgba(240, 200, 255, 0.05), transparent 40%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.04) 0%, transparent 25%, transparent 60%, rgba(200, 150, 255, 0.06) 85%, transparent 100%);
-  opacity: 0.9;
-}
-
-/* Barra inferior tipo solapa satinada (recreación del borde del saco). */
-.main-nav a[href="#letras"]::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 8px;
-  pointer-events: none;
-  z-index: 1;
-  background: linear-gradient(90deg, #2d0a3e, #6a0dad 20%, #c71585 45%, #8b5cf6 65%, #6a0dad 85%, #2d0a3e);
-  opacity: 0.45;
-  filter: blur(0.8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
 .main-nav a[href="#letras"]:hover,
 .main-nav a[href="#letras"]:focus-visible {
-  color: #faf0ff;
-  padding-left: 44px;
-  border-color: rgba(200, 120, 240, 0.5);
-  filter: saturate(1.08) brightness(1.04);
-  background-color: #2a0840;
-  box-shadow:
-    inset 0 0 0 1px rgba(220, 180, 255, 0.10),
-    inset 0 -24px 28px rgba(0, 0, 0, 0.45),
-    inset 0 8px 12px rgba(200, 150, 255, 0.05),
-    0 0 0 1px rgba(110, 45, 155, 0.55),
-    0 10px 24px rgba(0, 0, 0, 0.4),
-    0 0 24px rgba(150, 80, 200, 0.10);
+  color: #FFD700;
+  border-color: rgba(255, 215, 0, 0.5);
+  filter: brightness(1.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 215, 0, 0.15);
 }
 
 .main-nav a[href="#letras"]:focus-visible {
-  outline: 2px solid rgba(180, 100, 220, 0.5);
+  outline: 2px solid rgba(255, 215, 0, 0.7);
   outline-offset: 3px;
 }
 
 .main-nav a[href="#letras"][aria-current="page"] {
-  color: #faf0ff;
-  padding-left: 44px;
-  border-left-color: rgba(200, 120, 240, 0.5);
-  box-shadow:
-    inset 0 0 0 1px rgba(220, 180, 255, 0.08),
-    inset 0 -24px 28px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(110, 45, 155, 0.55),
-    0 0 22px rgba(150, 80, 200, 0.08);
+  color: #FFD700;
+  border-left: 3px solid #FFD700;
+  padding-left: 13px;
 }
 
-/* Barrido de luz escénica (animación sutil tipo spotlight). */
-@keyframes fringe-shimmer {
-  0% {
-    transform: translateX(-100%) skewX(-15deg);
-    opacity: 0;
-  }
-  5% {
-    opacity: 0.6;
-  }
-  30% {
-    opacity: 0.6;
-  }
-  45% {
-    transform: translateX(200%) skewX(-15deg);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(200%) skewX(-15deg);
-    opacity: 0;
-  }
-}
-
-.fringe-sweep {
-  animation: fringe-shimmer 7s ease-in-out infinite;
-}
-
-/*
-  TRAJE BLANCO ELEGANTE - BOTÓN DISCOGRAFÍA
-  Inspirado fielmente en el traje blanco que Juan Gabriel usó en el
-  Palacio de Bellas Artes 2013. Corbata verde esmeralda al centro,
-  acentos en rojo vino. Colores de la bandera mexicana: blanco, verde y rojo.
-  Textura satinada con reflejos escénicos que evocan las luces de Bellas Artes.
-*/
-.main-nav a[href="#discografia"] {
-  --disc-negro: #0d0d0d;
-  --disc-negro-claro: #1a1a1a;
-  position: relative;
-  isolation: isolate;
+.main-nav a[href="#fotos-iconicas"] {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 56px;
-  padding: 24px 10px 6px;
+  min-height: 60px;
+  padding: 12px 16px;
   overflow: hidden;
   font-weight: 700;
-  font-size: 1.05rem;
-  color: #f0e8d8;
-  letter-spacing: 0.8px;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.8),
-    0 0 12px rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(180, 180, 200, 0.12);
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-  background-color: var(--disc-negro);
-  background-image:
-    url("../assets/discografia-traje-bellas-artes.svg"),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.012) 0 2px,
-      transparent 2px 4px,
-      rgba(255, 255, 255, 0.008) 4px 6px,
-      transparent 6px 10px
-    ),
-    linear-gradient(
-      180deg,
-      #141414 0%,
-      #0d0d0d 15%,
-      #0a0a0a 40%,
-      #080808 100%
-    );
-  background-position:
-    center top,
-    center top,
-    center;
-  background-repeat:
-    no-repeat,
-    repeat,
-    no-repeat;
-  background-size:
-    100% 100%,
-    10px 100%,
-    100% 100%;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
-    inset 0 -24px 28px rgba(0, 0, 0, 0.6),
-    inset 0 8px 12px rgba(255, 255, 255, 0.015),
-    0 0 1px 1px rgba(80, 80, 100, 0.15),
-    0 8px 20px rgba(0, 0, 0, 0.4),
-    0 0 18px rgba(80, 80, 120, 0.04);
-  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url("../pic_nav/foto 2.jpeg");
+  background-size: cover;
+  background-position: center 27%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
-/* Brillo satinado escénico sobre la tela negra — luces del Palacio de Bellas Artes. */
-.main-nav a[href="#discografia"]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background:
-    radial-gradient(ellipse 160% 35% at 25% 15%, rgba(255, 255, 255, 0.05), transparent 50%),
-    radial-gradient(ellipse 120% 30% at 75% 12%, rgba(200, 200, 220, 0.03), transparent 45%),
-    linear-gradient(115deg, rgba(255, 255, 255, 0.03) 0%, transparent 20%, transparent 70%, rgba(200, 200, 220, 0.02) 90%);
-  opacity: 0.8;
+.main-nav a[href="#fotos-iconicas"]:hover,
+.main-nav a[href="#fotos-iconicas"]:focus-visible {
+  color: #FFD700;
+  border-color: rgba(255, 215, 0, 0.5);
+  filter: brightness(1.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 215, 0, 0.15);
 }
 
-/* Sutil línea de solapa inferior satinada. */
-.main-nav a[href="#discografia"]::after {
-  content: "";
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  bottom: 0;
-  height: 4px;
-  pointer-events: none;
-  z-index: 1;
-  background: linear-gradient(90deg, transparent, rgba(180, 180, 200, 0.08), transparent);
-  opacity: 0.4;
+.main-nav a[href="#fotos-iconicas"]:focus-visible {
+  outline: 2px solid rgba(255, 215, 0, 0.7);
+  outline-offset: 3px;
+}
+
+.main-nav a[href="#fotos-iconicas"][aria-current="page"] {
+  color: #FFD700;
+  border-left: 3px solid #FFD700;
+  padding-left: 13px;
+}
+
+.main-nav a[href="#discografia"] {
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+  padding: 12px 16px;
+  overflow: hidden;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background-image: url("../pic_nav/foto 6.jpeg");
+  background-size: cover;
+  background-position: center 45%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
 .main-nav a[href="#discografia"]:hover,
 .main-nav a[href="#discografia"]:focus-visible {
-  color: #f8f0e0;
-  border-color: rgba(200, 200, 220, 0.2);
-  filter: brightness(1.04);
-  background-color: #121212;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-    inset 0 -24px 28px rgba(0, 0, 0, 0.5),
-    inset 0 8px 12px rgba(255, 255, 255, 0.02),
-    0 0 1px 1px rgba(100, 100, 120, 0.2),
-    0 10px 24px rgba(0, 0, 0, 0.45),
-    0 0 24px rgba(100, 100, 140, 0.06);
+  color: #FFD700;
+  border-color: rgba(255, 215, 0, 0.5);
+  filter: brightness(1.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 215, 0, 0.15);
 }
 
 .main-nav a[href="#discografia"]:focus-visible {
-  outline: 2px solid rgba(180, 180, 200, 0.3);
+  outline: 2px solid rgba(255, 215, 0, 0.7);
   outline-offset: 3px;
 }
 
 .main-nav a[href="#discografia"][aria-current="page"] {
-  color: #f8f0e0;
-  border-left-color: rgba(200, 200, 220, 0.25);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
-    inset 0 -24px 28px rgba(0, 0, 0, 0.5),
-    0 0 1px 1px rgba(100, 100, 120, 0.2),
-    0 0 22px rgba(100, 100, 140, 0.05);
-}
-
-/* Brillo satinado ambiental — luz muy lenta que recorre la tela negra. */
-@keyframes satin-shimmer {
-  0% {
-    transform: translateX(-100%) skewX(-10deg);
-    opacity: 0;
-  }
-  8% {
-    opacity: 0.4;
-  }
-  35% {
-    opacity: 0.4;
-  }
-  50% {
-    transform: translateX(200%) skewX(-10deg);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(200%) skewX(-10deg);
-    opacity: 0;
-  }
-}
-
-.discografia-sweep {
-  animation: satin-shimmer 10s ease-in-out infinite;
+  color: #FFD700;
+  border-left: 3px solid #FFD700;
+  padding-left: 13px;
 }
 
 /* Vista móvil/tablet: el panel ocupa más alto para facilitar scroll táctil. */
