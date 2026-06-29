@@ -2,25 +2,36 @@
    MULTIMEDIA.CSS - Estilos multimedia
    ===========================================
 
-   Este archivo contiene los estilos para las secciones multimedia
-   incluyendo la grilla de tarjetas, fotos icónicas, Netflix y YouTube.
+   CONCEPTOS CLAVE:
+   - CSS GRID: sistema de maquetación en 2D (filas y columnas).
+     Se define con display: grid y grid-template-columns.
+   - ASPECT-RATIO: mantiene la proporción ancho/alto de un elemento (ej: 16/9 = formato cine).
+   - PSEUDO-ELEMENTO (::after): crea un "elemento fantasma" dentro de otro.
+     Se usa aquí para dibujar el triángulo del botón de YouTube.
+   - BACKDROP-FILTER: aplica un filtro (desenfoque) al fondo que está DETRÁS del elemento.
+   - POSITION: absolute + relative para superponer elementos (ej: botón play sobre la imagen).
 
    Contenido:
-   - Grilla multimedia
+   - Grilla multimedia (CSS Grid)
    - Tarjetas multimedia
-   - Sección de fotos icónicas
+   - Sección de fotos icónicas (tonos cálidos)
    - Botón y modal de YouTube
    - Llamado a la acción de Netflix
 */
 
-/* Grilla multimedia */
+/* Grilla multimedia: organiza las tarjetas de video/foto en filas y columnas.
+   display: grid activa CSS Grid, un sistema de maquetación en 2D.
+   grid-template-columns define el ancho de cada columna.
+   repeat(8, minmax(140px, 190px)) = repite 8 veces: cada columna mide al menos 140px
+   y como máximo 190px (se adapta según el espacio disponible).
+   justify-content: center centra toda la grilla horizontalmente. */
 .multimedia-grid {
   display: grid;
   /* Todas las tarjetas usan el mismo ancho máximo */
-  grid-template-columns: repeat(8, minmax(140px, 190px));
+  grid-template-columns: repeat(8, minmax(140px, 190px)); /* 8 columnas que se adaptan entre 140px y 190px */
   justify-content: center;
-  gap: 16px;
-  align-items: start;
+  gap: 16px;            /* espacio de 16px entre cada tarjeta */
+  align-items: start;   /* alinea las tarjetas arriba si tienen diferente altura */
 }
 
 #multimedia h2 {
@@ -39,8 +50,8 @@
 .multimedia-card video {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  aspect-ratio: 16 / 9; /* mantiene proporción de cine: 16 unidades de ancho por 9 de alto */
+  object-fit: cover;    /* si el video no encaja exacto, se recorta para cubrir el espacio */
   border-radius: 8px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
   background: #000;
@@ -56,7 +67,7 @@
   display: block;
   width: 100%;
   max-width: none;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 9; /* misma proporción de cine que los videos */
   height: auto;
   object-fit: cover;
   margin: 0 auto;
@@ -68,22 +79,25 @@
   margin-top: 8px;
 }
 
-/* Sección de fotos icónicas */
+/* Sección de fotos icónicas: fondo con tonos cálidos (beige, crema, dorado)
+   para crear un contraste acogedor con el tema oscuro del resto del sitio.
+   radial-gradient crea un destello cálido desde la esquina superior izquierda.
+   linear-gradient hace un degradado vertical de beige claro a beige más oscuro. */
 #fotos-iconicas {
   width: calc(100% - 8px);
   margin: 0 auto 42px;
   padding: 40px 18px 44px;
   background:
-    radial-gradient(circle at top left, rgba(255, 227, 179, 0.24), transparent 30%),
-    linear-gradient(180deg, #f7efe4 0%, #efe3d3 100%);
-  border: 1px solid rgba(184, 139, 84, 0.2);
-  border-radius: 28px;
+    radial-gradient(circle at top left, rgba(255, 227, 179, 0.24), transparent 30%), /* destello dorado desde arriba-izquierda */
+    linear-gradient(180deg, #f7efe4 0%, #efe3d3 100%); /* degradado vertical beige */
+  border: 1px solid rgba(184, 139, 84, 0.2);   /* borde dorado sutil */
+  border-radius: 28px;                           /* esquinas muy redondeadas */
   box-shadow: 0 20px 44px rgba(27, 41, 62, 0.12);
 }
 
 #fotos-iconicas h2 {
-  color: #b27a3f;
-  font-size: clamp(2rem, 3vw, 3rem);
+  color: #b27a3f;                               /* color dorado/marrón para el título */
+  font-size: clamp(2rem, 3vw, 3rem);             /* clamp(): tamaño fluido, mínimo 2rem, máximo 3rem */
   letter-spacing: 0.6px;
   margin-bottom: 10px;
 }
@@ -91,9 +105,9 @@
 #fotos-iconicas p {
   max-width: 760px;
   margin: 0 0 26px;
-  color: #614e3e;
+  color: #614e3e;                               /* texto en marrón suave */
   font-size: 1.04rem;
-  line-height: 1.7;
+  line-height: 1.7;                              /* interlineado amplio para mejor lectura */
 }
 
 /* Mosaico de fotos */
@@ -111,23 +125,25 @@
   min-width: 0;
 }
 
-/* Tarjetas de foto */
+/* Tarjetas de foto individuales.
+   Fondo blanco cálido (casi crema) y bordes redondeados (border-radius: 24px).
+   overflow: hidden evita que las esquinas de las imágenes se salgan del borde redondeado. */
 .foto-card {
   display: block;
   width: 100%;
   margin: 0;
   background: rgba(255, 250, 244, 0.98);
   border-radius: 24px;
-  overflow: hidden;
+  overflow: hidden;                     /* oculta lo que sobresalga de las esquinas redondeadas */
   box-shadow: 0 14px 34px rgba(20, 35, 53, 0.1);
-  border: 1px solid rgba(120, 86, 47, 0.14);
+  border: 1px solid rgba(120, 86, 47, 0.14); /* borde marrón muy sutil */
 }
 
 .foto-card img {
   display: block;
   width: 100%;
   height: auto;
-  background: #ead8c2;
+  background: #ead8c2;                  /* color de fondo mientras carga la imagen */
 }
 
 .foto-card--vinyl {
@@ -138,22 +154,22 @@
 
 .foto-card__duo {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columnas iguales que se reparten el espacio */
   gap: 8px;
   padding: 8px;
   background: #ead8c2;
 }
 
 .foto-card__duo img {
-  aspect-ratio: 1;
+  aspect-ratio: 1;       /* 1:1 = cuadrado perfecto */
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;     /* recorta la imagen para que llene el cuadrado */
   border-radius: 16px;
 }
 
 .foto-card figcaption {
   padding: 16px 18px 18px;
-  color: #5d4b3c;
+  color: #5d4b3c;                          /* texto marrón */
   font-size: 0.98rem;
   line-height: 1.55;
   text-align: center;
@@ -192,55 +208,61 @@
   transform: translateY(-1px);
 }
 
-/* Modal de YouTube */
+/* Modal de YouTube: ventana emergente que cubre toda la pantalla para reproducir videos.
+   position: fixed + inset: 0 = cubre toda la ventana.
+   z-index: 3000 = encima de casi todo (debajo del botón hamburguesa que tiene 2200... espera,
+   esto es más alto, así que el modal está por encima del menú).
+   opacity: 0 + visibility: hidden + pointer-events: none = oculto por defecto.
+   Con la clase .is-open se vuelve visible. */
 .youtube-modal {
   position: fixed;
-  inset: 0;
+  inset: 0;                              /* ocupa toda la pantalla */
   display: block;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  z-index: 3000;
+  z-index: 3000;                         /* capa alta para estar encima del contenido */
   transition: opacity 0.28s ease, visibility 0.28s ease;
 }
 
 .youtube-modal.is-open {
-  opacity: 1;
+  opacity: 1;                            /* se vuelve visible */
   visibility: visible;
-  pointer-events: auto;
+  pointer-events: auto;                  /* se puede hacer clic */
 }
 
 .youtube-modal__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  /* backdrop-filter aplica desenfoque al fondo detrás del overlay */
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.75);        /* fondo negro semitransparente (75%) */
+  /* backdrop-filter: blur desenfoca el contenido que está DETRÁS del overlay.
+     Crea el efecto "vidrio esmerilado" en el fondo. */
+  backdrop-filter: blur(4px);              /* desenfoque de 4px al fondo */
+  -webkit-backdrop-filter: blur(4px);      /* mismo efecto para navegadores WebKit (Safari) */
 }
 
 .youtube-modal__content {
   position: relative;
   /* modo cine: el modal ocupa casi todo el ancho visible */
-  width: min(1540px, 99vw);
-  margin: 1.2vh auto 0;
+  width: min(1540px, 99vw);            /* se adapta: máximo 1540px, mínimo 99% del ancho de pantalla */
+  margin: 1.2vh auto 0;                /* centrado horizontal, un poco separado del borde superior */
   background: #000;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: hidden;                     /* esquinas redondeadas sin que el iframe se salga */
   z-index: 1;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-  transform: scale(0.97);
+  transform: scale(0.97);               /* empieza ligeramente reducido (efecto zoom al abrir) */
   transition: transform 0.28s ease;
 }
 
 .youtube-modal.is-open .youtube-modal__content {
-  transform: scale(1);
+  transform: scale(1);                  /* al abrirse, vuelve a tamaño normal (zoom in suave) */
 }
 
 .youtube-modal__content iframe {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 9;                 /* el video de YouTube mantiene proporción 16:9 */
   border: 0;
 }
 
@@ -272,9 +294,11 @@
   transform: scale(1.05);
 }
 
-/* Botón para abrir YouTube */
+/* Botón para abrir YouTube: al hacer clic abre el modal con el video.
+   position: relative en el contenedor para que los hijos con position: absolute
+   se posicionen RELATIVO a este elemento (no a toda la página). */
 .youtube-open {
-  position: relative;
+  position: relative;    /* necesario para que .youtube-play se posicione dentro de este recuadro */
   display: block;
   width: 100%;
   padding: 0;
@@ -292,34 +316,44 @@
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }
 
+/* Botón rojo de "play" que se superpone sobre la imagen.
+   position: absolute + top: 50% + left: 50% lo centra dentro del contenedor padre.
+   transform: translate(-50%, -50%) ajusta el centro exacto (si no, la esquina superior
+   izquierda del botón quedaría en el centro). */
 .youtube-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: absolute;    /* se posiciona dentro del .youtube-open (que tiene position: relative) */
+  top: 50%;              /* empieza en el 50% desde arriba */
+  left: 50%;             /* empieza en el 50% desde la izquierda */
+  transform: translate(-50%, -50%); /* desplaza -50% de su propio ancho/alto para centrarlo exacto */
   width: 52px;
   height: 36px;
   border-radius: 8px;
-  background: #ff0000;
+  background: #ff0000;   /* rojo de YouTube */
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+/* ::after es un PSEUDO-ELEMENTO: un "elemento fantasma" que se inserta DENTRO del botón.
+   Se usa para dibujar el triángulo blanco del ícono de "play".
+   border crea el triángulo con la técnica "CSS triangle":
+   - border-width: 9px 0 9px 16px (ancho 0 arriba/abajo, 16px a la izquierda)
+   - border-color: transparent en 3 lados, blanco en el izquierdo
+   - width: 0 + height: 0 = solo existe el borde */
 .youtube-play::after {
-  content: "";
+  content: "";           /* obligatorio en ::after y ::before, aunque esté vacío */
   display: block;
-  width: 0;
-  height: 0;
+  width: 0;              /* el elemento no tiene ancho propio */
+  height: 0;             /* ni alto propio; solo existe por los bordes */
   border-style: solid;
-  border-width: 9px 0 9px 16px;
-  border-color: transparent transparent transparent #ffffff;
+  border-width: 9px 0 9px 16px; /* triángulo: 9px arriba/abajo, 16px a la izquierda */
+  border-color: transparent transparent transparent #ffffff; /* solo borde izquierdo blanco, el resto invisible */
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-45%, -50%);
+  transform: translate(-45%, -50%); /* centrado con leve ajuste horizontal */
 }
 
 .youtube-open:hover .youtube-play,
 .youtube-open:focus-visible .youtube-play {
-  background: #cc0000;
-  transform: translate(-50%, -50%) scale(1.05);
+  background: #cc0000;             /* rojo más oscuro al pasar el mouse */
+  transform: translate(-50%, -50%) scale(1.05); /* se agranda un 5% (efecto hover) */
 }

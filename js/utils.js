@@ -30,26 +30,6 @@
 let audioFondo;
 
 /*
-  FUNCIÓN: colocarAnioActual()
-  OBJETIVO: Mostrar el año actual en el footer
-  CONCEPTO: Manipulación del DOM - cambiar contenido de elementos
-*/
-export function colocarAnioActual() {
-  // getElementById() - Busca elemento por su atributo id
-  const anioActual = document.getElementById("anio-actual");
-
-  // IF - Condicional: "si existe el elemento"
-  if (anioActual) {
-    // new Date() - Objeto que representa la fecha/hora actual
-    const hoy = new Date();
-    // getFullYear() - Método que devuelve el año (2024)
-    const anio = hoy.getFullYear();
-    // textContent - Propiedad que cambia el texto dentro del elemento
-    anioActual.textContent = anio;
-  }
-}
-
-/*
   FUNCIÓN: marcarEnlaceActivo()
   OBJETIVO: Resaltar el enlace del menú que corresponde a la sección actual
   CONCEPTO: querySelectorAll() - seleccionar múltiples elementos
@@ -335,14 +315,15 @@ export function inicializarAudioFondo() {
   }
 
   const canciones = [
-    "audios/amor eterno.mp3",
-    "audios/de mi enamorate.mp3",
-    "audios/fue un placer conocerte.mp3",
-    "audios/te lo pido por favor.mp3",
-    "audios/debo hacerlo.mp3",
     "audios/se me olvido otra vez.mp3",
+    "audios/fue un placer conocerte.mp3",
+    "audios/abuso.mp3",
+    "audios/debo hacerlo.mp3",
+    "audios/de mi enamorate.mp3",
+    "audios/amor eterno.mp3",
+    "audios/que chasco me lleve.mp3",
     "audios/dejame vivir.mp3",
-    "audios/me nace del corazon.mp3"
+    "audios/te lo pido por favor.mp3" 
   ];
 
   let indiceActual = Math.floor(Math.random() * canciones.length);

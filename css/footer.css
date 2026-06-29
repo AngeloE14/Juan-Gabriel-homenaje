@@ -1,111 +1,135 @@
-/* ===========================================
-   FOOTER.CSS - Estilos del pie de página
-   ===========================================
+/* ==========================================================================
+   FOOTER.CSS — Estilos del pie de página y firma final
+   ==========================================================================
 
-   Este archivo contiene los estilos del pie de página y la firma final.
+   ¿QUÉ HACE ESTE ARCHIVO?
+   Define el footer (parte inferior de la página) que contiene los enlaces
+   a plataformas de streaming (Spotify, YouTube, etc.) y la sección #firma
+   con el nombre artístico de Juan Gabriel.
 
-   Contenido:
-   - Estilos del footer
-   - Enlaces de plataformas en formato de logos
-   - Firma final con marco decorativo
+   ────────────────────────────────────────────────────────────────────────────
+   CONCEPTOS CSS EXPLICADOS:
+
+   1. FLEXBOX (display: flex)
+      Sistema de layout que distribuye elementos en una fila.
+      - justify-content: center → centra los hijos horizontalmente
+      - align-items: center     → centra los hijos verticalmente
+      - flex-wrap: wrap         → si no caben, bajan a la siguiente línea
+      - gap: 12px               → espacio ENTRE los hijos (no margin)
+
+   2. RADIAL-GRADIENT (Degradado radial)
+      Crea un degradado que irradia desde un punto central hacia afuera
+      en forma circular. radial-gradient(circle at top center, ...) =
+      parte del centro superior y se difumina en círculo.
+
+   3. ::before (Pseudo-elemento)
+      Crea un elemento "fantasma" antes del contenido real. Es como una
+      capa invisible que podemos decorar. Lo usamos para dibujar un borde
+      interno decorativo dentro de #firma.
+
+   4. CLAMP()
+      Función CSS que establece un valor con límites:
+      clamp(MÍNIMO, IDEAL, MÁXIMO) = el tamaño fluye entre el mínimo
+      y el máximo según el ancho de la pantalla.
+      Ej: clamp(1.5rem, 2.4vw, 2.15rem)
+      → mínimo 24px, ideal 2.4% del ancho, máximo ~34px
+
+   5. BOX-SHADOW con inset
+      inset hace que la sombra se dibuje hacia DENTRO del elemento en
+      lugar de hacia afuera. Crea un efecto de borde interno brillante.
+
+   6. @MEDIA QUERY
+      Regla que aplica estilos solo si se cumple una condición.
+      @media (max-width: 560px) = "si la pantalla mide 560px o menos".
+
+   7. TRANSITION
+      transition: transform 0.2s ease → cuando cambie transform, que sea
+      animado en 0.2 segundos con una curva suave (ease).
+
+   ────────────────────────────────────────────────────────────────────────────
+   PALETA DE COLORES:
+
+   #27486b, #1c3550  → degradado azul oscuro en footer
+   rgba(212,175,55)  → dorado semitransparente (bordes, fondo decorativo)
+   #13100d, #0b0908  → degradado marrón muy oscuro (casi negro) en firma
+   #f3dfb1           → dorado claro para el texto de la firma
+
+   ────────────────────────────────────────────────────────────────────────────
+   LAYOUT:
+
+   - Footer: ancho completo, contenido centrado, fondo degradado
+   - .social-links: fila flexible con logos que se reordena en móvil
+   - #firma: tarjeta centrada con ancho variable (min(760px, 92%))
+
+   ────────────────────────────────────────────────────────────────────────────
+   EFECTOS / TRANSICIONES:
+
+   - .social-links a:hover: translateY(-2px) eleva el icono 2px
+   - #firma: múltiples sombras para efecto "elevado" + borde dorado sutil
+   - ::before: borde interno decorativo (simula un marco dentro de otro)
+   ==========================================================================
 */
 
-/* Pie de página */
+/* Pie de página — barra inferior con enlaces a plataformas musicales */
 footer {
   background: linear-gradient(180deg, #27486b 0%, #1c3550 100%);
+  /* degradado azul marino que continúa el tema del cielo nocturno */
   color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 0;
+  text-align: center;     /* centra el texto y los enlaces inline */
+  padding: 20px;          /* espacio interno en todos los lados */
+  margin-top: 0;          /* sin margen superior — pegado al contenido */
 }
 
-/* Enlaces de plataformas: solo logos */
+/* Enlaces de plataformas: solo logos (Spotify, YouTube, Apple Music, etc.) */
 .social-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 12px;
+  display: flex;              /* activa flexbox: los hijos se alinean en fila */
+  justify-content: center;    /* centra los logos horizontalmente */
+  align-items: center;        /* centra los logos verticalmente (misma altura) */
+  flex-wrap: wrap;            /* si no caben, saltan a la siguiente línea */
+  gap: 12px;                  /* espacio de 12px entre cada logo (sin margins) */
+  margin-top: 12px;           /* separación respecto al contenido de arriba */
 }
 
 .social-links a {
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;          /* quita el subrayado azul típico de los enlaces */
+  display: inline-flex;           /* flexbox en línea para centrar el icono */
+  align-items: center;            /* centra la imagen verticalmente dentro del enlace */
+  justify-content: center;        /* centra horizontalmente */
+  padding: 6px;                   /* área clickeable un poco más grande que el icono */
+  transition: transform 0.2s ease, opacity 0.2s ease;  /* anima el hover */
 }
 
-.social-links a:hover,
-.social-links a:focus-visible {
-  transform: translateY(-2px);
-  opacity: 0.85;
+.social-links a:hover,                          /* al pasar el mouse */
+.social-links a:focus-visible {                 /* al enfocar con teclado (accesibilidad) */
+  transform: translateY(-2px);                  /* se eleva 2 píxeles hacia arriba */
+  opacity: 0.85;                                /* se vuelve ligeramente transparente */
 }
 
 .social-links img {
-  display: block;
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
+  display: block;                   /* elimina espacio fantasma debajo de la imagen */
+  width: 26px;                      /* tamaño fijo para todos los iconos */
+  height: 26px;                     /* mismos 26px de alto — logos cuadrados */
+  object-fit: contain;              /* la imagen se ajusta sin deformarse */
 }
 
+/* MÓVIL (pantallas de 560px o menos) — logos más pequeños y compactos */
 @media (max-width: 560px) {
   .social-links {
-    gap: 6px;
+    gap: 6px;             /* menos espacio entre logos en pantalla pequeña */
   }
 
   .social-links a {
-    padding: 4px;
+    padding: 4px;         /* área táctil más pequeña */
   }
 
   .social-links img {
-    width: 22px;
+    width: 22px;          /* iconos más pequeños para ahorrar espacio */
     height: 22px;
   }
 
   footer {
-    padding: 16px 12px;
+    padding: 16px 12px;   /* menos padding para no desperdiciar espacio */
   }
 }
 
-/* Firma final */
-#firma {
-  width: min(760px, 92%);
-  margin: 48px auto 18px;
-  padding: 28px 24px 30px;
-  text-align: center;
-  background:
-    radial-gradient(circle at top center, rgba(212, 175, 55, 0.16), transparent 34%),
-    linear-gradient(180deg, #13100d 0%, #0b0908 100%);
-  border: 1px solid rgba(212, 175, 55, 0.36);
-  border-radius: 24px;
-  box-shadow:
-    0 18px 34px rgba(0, 0, 0, 0.22),
-    inset 0 0 0 1px rgba(255, 236, 184, 0.05);
-  position: relative;
-  overflow: hidden;
-}
 
-#firma::before {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(212, 175, 55, 0.15);
-  border-radius: 18px;
-  pointer-events: none;
-}
-
-#firma h2 {
-  max-width: 700px;
-  margin: 0 auto;
-  color: #f3dfb1;
-  font-size: clamp(1.5rem, 2.4vw, 2.15rem);
-  font-style: italic;
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: 0.2px;
-  position: relative;
-  z-index: 1;
-}

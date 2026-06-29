@@ -1,18 +1,132 @@
 /* ===========================================
-   BELLAS-ARTES.CSS - Estilos de Bellas Artes
+   BELLAS-ARTES.CSS - ESTILOS DE LOS CONCIERTOS DE BELLAS ARTES
    ===========================================
 
-   Este archivo contiene los estilos para la funcionalidad especial
-   de los conciertos de Bellas Artes.
+   ╔══════════════════════════════════════════════════════════════╗
+   ║  EXPLICACIÓN PARA PRINCIPIANTES                             ║
+   ║                                                            ║
+   ║  Este archivo CSS es el MÁS IMPORTANTE del proyecto.       ║
+   ║  Crea ¡UN TEATRO COMPLETO EN TU PANTALLA! cuando haces     ║
+   ║  clic en los botones de concierto.                          ║
+   ║                                                            ║
+   ║  ¿QUÉ PASA CUANDO HACES CLIC?                               ║
+   ║  1. Ves unos botones con temática de cada concierto        ║
+   ║  2. Al hacer clic → se abre un MODAL (como una ventana     ║
+   ║     emergente que cubre toda la pantalla)                   ║
+   ║  3. Dentro del modal → TELONES DE TEATRO ROJOS que se     ║
+   ║     ABREN DRAMÁTICAMENTE (se deslizan a los lados)         ║
+   ║  4. Detrás de los telones → un video del concierto        ║
+   ║                                                            ║
+   ║  CONCEPTOS CSS QUE APRENDERÁS:                              ║
+   ║                                                            ║
+   ║  1. ::before y ::after (PSEUDO-ELEMENTOS)                   ║
+   ║     Son elementos "fantasma" que creas desde CSS.           ║
+   ║     No existen en el HTML, pero los dibuja el navegador.   ║
+   ║     Ejemplo: .caja::before { content: "✨"; }              ║
+   ║     → Muestra un emoji de estrella DENTRO de la caja        ║
+   ║     Sin escribir nada en el HTML.                           ║
+   ║                                                            ║
+   ║  2. POSITION (POSICIONAMIENTO)                              ║
+   ║     relative = "posición normal, pero puedo moverlo"        ║
+   ║     absolute = "sale del flujo, lo pongo donde quiera"     ║
+   ║     fixed = "se queda fijo aunque hagas scroll"            ║
+   ║     Con top, left, right, bottom lo colocas.               ║
+   ║                                                            ║
+   ║  3. Z-INDEX (CAPAS, como Photoshop)                         ║
+   ║     Número más alto = más al frente.                        ║
+   ║     z-index: 1 → atrás     z-index: 9999 → adelante        ║
+   ║     Solo funciona si el elemento tiene position.            ║
+   ║                                                            ║
+   ║  4. TRANSITION (TRANSICIONES = ANIMACIONES SUAVES)          ║
+   ║     transition: color 0.3s ease;                           ║
+   ║     "Cuando el color cambie, tarda 0.3s en hacerlo"        ║
+   ║     ease = acelera al inicio, desacelera al final           ║
+   ║                                                            ║
+   ║  5. TRANSFORM (TRANSFORMACIONES)                            ║
+   ║     scale(1.5) = agrandar 150%                              ║
+   ║     translateX(-100%) = mover a la izquierda                ║
+   ║     translateY(50px) = mover hacia abajo                    ║
+   ║     rotate(45deg) = rotar                                   ║
+   ║                                                            ║
+   ║  6. GRADIENTES (DEGRADADOS)                                 ║
+   ║     linear-gradient(180deg, rojo, azul) = degradado recto   ║
+   ║     radial-gradient(circle, rojo, azul) = degradado circular║
+   ║     repeating-linear-gradient() = rayas que se repiten      ║
+   ║                                                            ║
+   ║  7. BOX-SHADOW (SOMBRAS)                                    ║
+   ║     box-shadow: X Y blur spread color;                      ║
+   ║     inset = sombra hacia adentro (como un hueco)            ║
+   ║                                                            ║
+   ║  8. RGBa (COLORES CON TRANSPARENCIA)                        ║
+   ║     rgba(255, 0, 0, 0.5) = rojo al 50% de opacidad         ║
+   ║     El 4to número es la opacidad (0=invisible, 1=sólido)   ║
+   ╚══════════════════════════════════════════════════════════════╝
 
-   Contenido:
-   - Botones de concierto (1990 y 2013)
-   - Modal de Bellas Artes
-   - Marco escénico
-   - Reproductor de video
+   ESTRUCTURA DE ESTE ARCHIVO (1385 líneas):
+   ─────────────────────────────────────
+   1.  CONTENEDOR DEL SWITCH    (línea 16)
+   2.  BOTONES BASE             (línea 44)
+   3.  BOTÓN 1990 (dorado)      (línea 133)
+   4.  BOTÓN CELEBRANDO (blanco)(línea 310)
+   5.  BOTÓN 2013 (plateado)    (línea 474)
+   6.  MODAL (la ventana)       (línea 626)
+   7.  TELONES DE TEATRO        (línea 794) ← MÁS IMPORTANTE
+   8.  MARCO ESCÉNICO           (línea 1229)
+   9.  VIDEO                    (línea 1237)
+   10. DESCARGA                 (línea 1253)
+   11. BOTÓN CERRAR             (línea 1352)
+
+   CÓMO FUNCIONAN LOS MODALES (VENTANAS EMERGENTES):
+   ──────────────────────────────────
+   Un modal es una "ventana" que aparece encima de todo.
+   Así se hace en CSS:
+   
+   1. position: fixed - cubre toda la pantalla (inset: 0)
+   2. z-index: 4000 - está sobre todo lo demás
+   3. opacity: 0 + visibility: hidden - invisible cuando cerrado
+   4. .is-open → opacity: 1 + visibility: visible - se muestra
+   5. transition - todo el cambio es suave
+
+   CÓMO FUNCIONAN LOS TELONES DE TEATRO (¡100% CSS!):
+   ──────────────────────────────────────
+   Todo está hecho con CSS, sin usar imágenes de cortinas.
+   
+   ▸ TELA ROJA: Se crea con un linear-gradient que va cambiando
+     de rojo oscuro (#3a0808) a rojo más claro (#7a1515) y 
+     viceversa, simulando pliegues de terciopelo.
+   
+   ▸ PLIEGUES VERTICALES: Se crean con repeating-linear-gradient
+     que dibuja franjas verticales semitransparentes, simulando
+     los dobleces de la tela.
+   
+   ▸ FLECOS DORADOS: Son líneas con gradient dorado y un patrón
+     de rayas finas (repeating-linear-gradient).
+   
+   ▸ ATADURAS (tie-backs): Son formas elípticas con gradient
+     dorado que aparecen cuando las cortinas se abren.
+   
+   ▸ ANIMACIÓN DE APERTURA:
+     - Cortina izquierda → translateX(-102%) (se va a la izquierda)
+     - Cortina derecha   → translateX(102%)  (se va a la derecha)
+     - Valance (galería) → translateY(-100%) (sube hacia arriba)
+     - Ataduras aparecen con opacity: 1
+   
+   ▸ BORDES DORADOS: Los bordes interiores de las cortinas usan
+     linear-gradient con tonos dorados para dar brillo.
+
+   CADA CONCIERTO TIENE SU COLOR:
+   ───────────────────────────
+   ● 1990 (Torero):    Negro + dorado
+   ● Celebracion (25 Años): Blanco + plata
+   ● 2013 (40 Años):   Gris + plateado
 */
 
-/* Contenedor del interruptor */
+/* ===========================================
+   1. CONTENEDOR DEL SWITCH
+   ===========================================
+   Este div (#modo-bellas-artes-switch) envuelve todos los botones
+   de selección de concierto. Le da espaciado a la sección.
+ */
 #modo-bellas-artes-switch {
   text-align: center;
   padding: 40px 20px;
@@ -792,10 +906,55 @@
 }
 
 /* ===========================================
-   TELÓN DE TEATRO
-   =========================================== */
+   TELÓN DE TEATRO (¡LA PARTE MÁS IMPRESIONANTE!)
+   ===========================================
 
-/* Barra de cortina (cornisa) */
+   EXPLICACIÓN DEL SISTEMA DE TELONES:
+   ─────────────────────────────────
+   Todo esto está hecho ÚNICAMENTE con CSS. No hay imágenes
+   de cortinas, todo son gradientes y pseudo-elementos.
+
+   ESTRUCTURA DE LOS TELONES (de arriba a abajo):
+   
+   1. bellas-curtain__rod (BARRA/CORNISA)
+      ↓ La barra dorada de donde cuelgan las cortinas
+   
+   2. bellas-curtain__valance (GALERÍA / DRAPEADO)
+      ↓ La parte decorativa de arriba que se pliega
+   
+   3. bellas-curtain (CORTINAS IZQUIERDA Y DERECHA)
+      ↓ Los dos paneles de tela que se abren
+      ├── bellas-curtain__fabric (la tela de terciopelo)
+      ├── bellas-curtain__fringe (flecos dorados abajo)
+      └── bellas-curtain__tieback (ataduras laterales)
+
+   CÓMO SE ABRE EL TELÓN:
+   ────────────────────
+   Cuando el modal tiene la clase .is-open:
+   
+   .bellas-curtain--left  → translateX(-102%)
+     La cortina izquierda se desliza hacia la izquierda
+     
+   .bellas-curtain--right → translateX(102%)
+     La cortina derecha se desliza hacia la derecha
+     
+   .bellas-curtain__valance → translateY(-100%)
+     La galería superior se eleva hacia arriba
+     
+   .bellas-curtain__tieback → opacity: 1
+     Las ataduras aparecen sosteniendo las cortinas
+
+   Los números cubic-bezier(0.65, 0, 0.35, 1) crean
+   una curva de animación que simula el movimiento
+   real de una cortina (acelera lento, termina suave).
+*/
+
+/* BARRA O CORNISA (donde cuelgan las cortinas)
+   Es la barra horizontal dorada en la parte superior.
+   position: absolute → se coloca exactamente arriba del todo.
+   z-index: 6 → está sobre las cortinas (que tienen z-index: 3)
+   pointer-events: none → no se puede hacer clic (deja pasar el clic)
+*/
 .bellas-curtain__rod {
   position: absolute;
   top: 0;
@@ -834,68 +993,143 @@
   right: 4px;
 }
 
-/* Cortina izquierda y derecha */
+/* CORTINAS IZQUIERDA Y DERECHA (los paneles que se abren)
+   
+   ¿CÓMO FUNCIONA?
+   ──────────────
+   Hay DOS cortinas: una izquierda y una derecha.
+   Cada una ocupa el 51% del ancho (así se traslapan un poco).
+   
+   POSITION: absolute
+   → Se colocan una a la izquierda (left: 0) y otra a la derecha (right: 0)
+   → top: 0 y bottom: 0 para que ocupen todo el alto
+   
+   TRANSITION con cubic-bezier
+   → La transición usa una curva especial (cubic-bezier) que hace
+     que la cortina primero se mueva lento, luego rápido, luego
+     desacelere al final → como una cortina REAL
+   → 0.9s de duración = se abre lentamente, con dramatismo
+   
+   Z-INDEX: 3
+   → Las cortinas están sobre el video pero debajo de la barra (z-index: 6)
+   
+   OVERFLOW: hidden
+   → Esconde cualquier parte de la tela que se salga de la cortina
+*/
+
+/* CORTINA IZQUIERDA */
 .bellas-curtain {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 51%;
-  z-index: 3;
-  pointer-events: none;
-  overflow: hidden;
+  position: absolute;   /* Se coloca exactamente donde le digamos */
+  top: 0;               /* Pegada arriba */
+  bottom: 0;            /* Hasta abajo */
+  width: 51%;           /* Cada cortina ocupa un poquito más de la mitad */
+  z-index: 3;           /* Capa 3: sobre el video, bajo la barra */
+  pointer-events: none; /* Los clics pasan a través */
+  overflow: hidden;     /* Esconde lo que sobresalga */
   transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+  /* ANIMACIÓN: Cuando cambie el transform, tarda 0.9s con una curva
+     especial que simula el movimiento real de una cortina */
 }
 
 .bellas-curtain--left {
-  left: 0;
-  transform: translateX(0);
-  border-right: 2px solid rgba(180, 120, 60, 0.15);
+  left: 0;                               /* Pegada al borde izquierdo */
+  transform: translateX(0);              /* En reposo: no se ha movido */
+                                           /* Al abrir: translateX(-102%) → se va a la izquierda */
+  border-right: 2px solid rgba(180, 120, 60, 0.15);  /* Borde sutil donde se juntan */
 }
 
 .bellas-curtain--right {
-  right: 0;
-  transform: translateX(0);
-  border-left: 2px solid rgba(180, 120, 60, 0.15);
+  right: 0;                              /* Pegada al borde derecho */
+  transform: translateX(0);              /* En reposo: no se ha movido */
+                                           /* Al abrir: translateX(102%) → se va a la derecha */
+  border-left: 2px solid rgba(180, 120, 60, 0.15);   /* Borde sutil donde se juntan */
 }
-
-/* Base de terciopelo de las cortinas */
+/* TELA DE TERCIOPELO (el cuerpo de la cortina)
+   
+   ¿CÓMO SE HACE LA TELA ROJA SIN UNA IMAGEN?
+   ─────────────────────────────────────────
+   Se usan dos capas:
+   
+   1. Un radial-gradient que ilumina la parte de abajo
+      → rgba(100, 15, 15, 0.5) = rojo oscuro semitransparente
+      → Crea un efecto de luz escénica desde el piso
+   
+   2. Un linear-gradient vertical con 9 paradas
+      → Va cambiando de rojo oscuro (#3a0808) a rojo más vivo
+        (#7a1515) y de regreso a oscuro
+      → ESTO SIMULA LOS PLIEGUES DEL TERCIOPELO
+      → Como la tela tiene ondas, unas partes reciben más luz
+        (rojo más claro) y otras menos (rojo más oscuro)
+   
+   #3a0808 = rojo oscuro (casi granate)
+   #7a1515 = rojo más brillante
+   #2a0505 = rojo muy oscuro (casi negro)
+*/
 .bellas-curtain--left .bellas-curtain__fabric,
 .bellas-curtain--right .bellas-curtain__fabric {
-  position: absolute;
-  inset: 0;
-  background:
+  position: absolute;    /* Se coloca dentro de la cortina */
+  inset: 0;              /* Ocupa todo el espacio disponible */
+  background:            /* Fondo: ¡TERCIOPELO SIMULADO! */
     radial-gradient(ellipse 120% 30% at 50% 100%, rgba(100, 15, 15, 0.5) 0%, transparent 100%),
+       /* Brillo rojizo desde abajo → luz del escenario */
     linear-gradient(180deg,
-      #3a0808 0%, #520c0c 10%, #6b1010 20%, #7a1515 30%,
-      #701212 40%, #5c0e0e 55%, #4a0a0a 70%, #3a0808 85%, #2a0505 100%
+      #3a0808 0%,      /* Rojo oscuro arriba */
+      #520c0c 10%,      /* Un poco más claro */
+      #6b1010 20%,      /* Subiendo tono */
+      #7a1515 30%,      /* Rojo más vivo */
+      #701212 40%,      /* Bajando tono */
+      #5c0e0e 55%,      /* Oscureciendo */
+      #4a0a0a 70%,      /* Más oscuro */
+      #3a0808 85%,      /* Volviendo al tono inicial */
+      #2a0505 100%      /* Casi negro en el borde inferior */
     );
+    /* Los cambios de tono crean la ilusión de pliegues verticales */
 }
 
-/* Pliegues verticales con sombras profundas */
+/* PLIEGUES VERTICALES (sombras de los dobleces de la cortina)
+   
+   ¿CÓMO FUNCIONA repeating-linear-gradient?
+   ───────────────────────────────────────
+   Es un degradado que se REPITE cada 100px.
+   
+   PATRÓN (se lee de izquierda a derecha, 90° = horizontal):
+   0px-24px:   transparente (tela visible)
+   24px-26px:  sombra oscura (pliegue profundo)
+   26px-50px:  transparente (tela visible)
+   50px-52px:  sombra suave (pliegue ligero)
+   52px-76px:  transparente (tela visible)
+   76px-78px:  sombra media (otro pliegue)
+   78px-100px: transparente (tela visible)
+   
+   Luego se REPITE desde 0px otra vez → crea pliegues cada 100px.
+   
+   Esto le da TEXTURA a la cortina, como si tuviera dobleces
+   verticales de tela real.
+*/
 .bellas-curtain--left .bellas-curtain__fabric::after,
 .bellas-curtain--right .bellas-curtain__fabric::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+  content: "";              /* Necesario para que el pseudo-elemento exista */
+  position: absolute;       /* Se coloca sobre la tela */
+  inset: 0;                 /* Cubre toda la cortina */
   background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 24px,
-      rgba(0, 0, 0, 0.2) 24px,
-      rgba(0, 0, 0, 0.35) 26px,
-      transparent 26px,
-      transparent 50px,
-      rgba(0, 0, 0, 0.08) 50px,
-      rgba(0, 0, 0, 0.15) 52px,
-      transparent 52px,
-      transparent 76px,
-      rgba(0, 0, 0, 0.12) 76px,
-      rgba(0, 0, 0, 0.22) 78px,
-      transparent 78px,
-      transparent 100px
+    repeating-linear-gradient(  /* ← rayas que se repiten */
+      90deg,                    /* Dirección: horizontal (izquierda a derecha) */
+      transparent 0px,           /* Empieza transparente */
+      transparent 24px,          /* 24px de tela visible */
+      rgba(0, 0, 0, 0.2) 24px,  /* Franja oscura comienza (sombra suave) */
+      rgba(0, 0, 0, 0.35) 26px, /* Se vuelve más oscura (pliegue profundo) */
+      transparent 26px,          /* Fin de la sombra */
+      transparent 50px,          /* Más tela visible */
+      rgba(0, 0, 0, 0.08) 50px, /* Sombra muy suave */
+      rgba(0, 0, 0, 0.15) 52px, /* Se intensifica un poco */
+      transparent 52px,          /* Fin */
+      transparent 76px,          /* Tela visible */
+      rgba(0, 0, 0, 0.12) 76px, /* Sombra media */
+      rgba(0, 0, 0, 0.22) 78px, /* Un poco más oscura */
+      transparent 78px,          /* Fin */
+      transparent 100px          /* Tela visible, luego se REPITE */
     );
-  pointer-events: none;
+  pointer-events: none;     /* No bloquea los clics */
 }
 
 /* Brillo lateral que simula luz escénica */
@@ -927,33 +1161,45 @@
   pointer-events: none;
 }
 
-/* Borde interior dorado (donde se juntan las cortinas) */
+/* BORDE INTERIOR DORADO (la orilla donde se juntan las cortinas)
+   
+   Cuando las cortinas están cerradas, el borde donde se tocan
+   tiene un filete dorado. Esto se logra con:
+   - ::after en la cortina izquierda: borde derecho (right: 0)
+   - ::after en la cortina derecha: borde izquierdo (left: 0)
+   
+   El linear-gradient vertical va cambiando la intensidad del dorado
+   para simular luz que brilla a diferentes alturas.
+   
+   rgba(207, 166, 111, 0.9) = dorado intenso casi opaco
+   rgba(140, 100, 40, 0.4)  = dorado oscuro más transparente
+*/
 .bellas-curtain--left::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 8px;
-  height: 100%;
-  background: linear-gradient(180deg,
-    rgba(207, 166, 111, 0.5) 0%,
-    rgba(207, 166, 111, 0.8) 20%,
-    rgba(207, 166, 111, 0.9) 40%,
-    rgba(180, 140, 80, 0.8) 60%,
-    rgba(160, 120, 60, 0.6) 80%,
-    rgba(140, 100, 40, 0.4) 100%
+  content: "";                     /* Pseudo-elemento necesario */
+  position: absolute;              /* Se coloca dentro de la cortina */
+  top: 0;                          /* Desde arriba */
+  right: 0;                        /* En el borde derecho (donde se junta con la otra) */
+  width: 8px;                      /* 8 píxeles de ancho */
+  height: 100%;                    /* Todo el alto */
+  background: linear-gradient(180deg,  /* Degradado vertical: más claro arriba, más oscuro abajo */
+    rgba(207, 166, 111, 0.5) 0%,     /* Dorado suave arriba */
+    rgba(207, 166, 111, 0.8) 20%,    /* Más intenso */
+    rgba(207, 166, 111, 0.9) 40%,    /* Máximo dorado */
+    rgba(180, 140, 80, 0.8) 60%,     /* Bronce */
+    rgba(160, 120, 60, 0.6) 80%,     /* Dorado más apagado */
+    rgba(140, 100, 40, 0.4) 100%     /* Dorado oscuro abajo */
   );
-  pointer-events: none;
+  pointer-events: none;            /* No bloquea clics */
 }
 
 .bellas-curtain--right::after {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0;                         /* En el borde izquierdo (donde se junta con la otra) */
   width: 8px;
   height: 100%;
-  background: linear-gradient(180deg,
+  background: linear-gradient(180deg,  /* Mismo degradado dorado vertical */
     rgba(207, 166, 111, 0.5) 0%,
     rgba(207, 166, 111, 0.8) 20%,
     rgba(207, 166, 111, 0.9) 40%,
@@ -964,81 +1210,118 @@
   pointer-events: none;
 }
 
-/* Flecos dorados en la parte inferior */
+/* FLECOS DORADOS (el borde inferior decorativo de la cortina)
+   
+   ¿CÓMO SE HACEN?
+   ──────────────
+   Se usan dos pseudo-elementos:
+   
+   ::before → Una barra dorada horizontal de 4px de alto
+              con un glow (box-shadow) que brilla
+   
+   ::after  → Rayas verticales doradas finas que cuelgan
+              Creadas con repeating-linear-gradient
+              Patrón: 2px dorado, 3px transparente, 1px dorado suave...
+              Esto simula hilos dorados colgando
+*/
 .bellas-curtain--left .bellas-curtain__fringe,
 .bellas-curtain--right .bellas-curtain__fringe {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: absolute;   /* Se coloca en la parte inferior de la cortina */
+  bottom: 0;            /* Pegado abajo */
+  left: 0;              /* De izquierda a derecha */
   right: 0;
-  height: 20px;
-  z-index: 1;
-  pointer-events: none;
+  height: 20px;          /* 20 píxeles de alto */
+  z-index: 1;           /* Capa 1: sobre la tela */
+  pointer-events: none; /* No bloquea clics */
 }
 
+/* BARRA DORADA HORIZONTAL (::before)
+   Es el borde dorado en la parte superior del fleco */
 .bellas-curtain--left .bellas-curtain__fringe::before,
 .bellas-curtain--right .bellas-curtain__fringe::before {
-  content: "";
+  content: "";                    /* Necesario para pseudo-elemento */
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg,
-    rgba(207, 166, 111, 0.9),
-    rgba(255, 215, 0, 0.8),
-    rgba(207, 166, 111, 0.9)
+  height: 4px;                    /* Borde de 4px */
+  background: linear-gradient(90deg,  /* Gradient horizontal dorado */
+    rgba(207, 166, 111, 0.9),       /* Dorado suave */
+    rgba(255, 215, 0, 0.8),         /* Dorado brillante (más amarillo) */
+    rgba(207, 166, 111, 0.9)        /* Dorado suave otra vez */
   );
-  box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);  /* Brillo dorado alrededor */
   pointer-events: none;
 }
 
+/* HILITOS DORADOS COLGANDO (::after)
+   repeating-linear-gradient crea rayas verticales que parecen hilos */
 .bellas-curtain--left .bellas-curtain__fringe::after,
 .bellas-curtain--right .bellas-curtain__fringe::after {
   content: "";
   position: absolute;
-  top: 4px;
+  top: 4px;             /* Empieza debajo de la barra dorada */
   left: 0;
   right: 0;
   bottom: 0;
   background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
+    repeating-linear-gradient(    /* Rayas que se repiten cada 8px */
+      90deg,                        /* Horizontal */
+      transparent 0px,              /* 0-2px: vacío */
       transparent 2px,
-      rgba(207, 166, 111, 0.7) 2px,
+      rgba(207, 166, 111, 0.7) 2px, /* 2-3px: hilo dorado */
       rgba(207, 166, 111, 0.7) 3px,
-      transparent 3px,
+      transparent 3px,              /* 3-5px: vacío */
       transparent 5px,
-      rgba(180, 140, 80, 0.5) 5px,
+      rgba(180, 140, 80, 0.5) 5px,  /* 5-6px: hilo dorado más suave */
       rgba(180, 140, 80, 0.5) 6px,
-      transparent 6px,
+      transparent 6px,              /* 6-8px: vacío, luego se REPITE */
       transparent 8px
     );
   pointer-events: none;
 }
 
-/* Ataduras (tie-backs) visibles solo al abrir */
+/* ATADURAS (tie-backs) - las cintas que sostienen las cortinas abiertas
+   
+   ¿CÓMO FUNCIONAN?
+   ───────────────
+   opacity: 0 → Cuando el modal está cerrado, son INVISIBLES
+   Cuando se abre (is-open) → opacity: 1 → APARECEN
+   
+   Están en el medio de la cortina (top: 50%) y son pequeñas
+   (24px × 10px). Usan radial-gradient para simular un cilindro
+   dorado (la cinta enrollada).
+   
+   ::after en cada una → una BORLA (bolita decorativa dorada)
+   Es un círculo (border-radius: 50%) con gradient radial que
+   simula una esfera metálica brillante.
+   
+   #cfa66f = dorado antiguo
+   #8a6520 = marrón dorado (sombra)
+   #ffd700 = dorado brillante
+*/
 .bellas-curtain--left .bellas-curtain__tieback,
 .bellas-curtain--right .bellas-curtain__tieback {
-  position: absolute;
-  top: 50%;
-  width: 24px;
+  position: absolute;   /* Se coloca dentro de la cortina */
+  top: 50%;             /* En la mitad de la altura */
+  width: 24px;          /* Cinta pequeña */
   height: 10px;
-  margin-top: -5px;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  margin-top: -5px;     /* Centrado vertical (mitad de 10px) */
+  z-index: 2;           /* Capa 2: sobre los flecos, bajo la barra */
+  pointer-events: none; /* No bloquea clics */
+  opacity: 0;           /* INVISIBLE al inicio (cuando cortina está cerrada) */
+  transition: opacity 0.4s ease;  /* Aparece suavemente */
 }
 
+/* Atadura izquierda: sale desde el borde derecho */
 .bellas-curtain--left .bellas-curtain__tieback {
-  right: 0;
+  right: 0;             /* Pegada al borde interior */
   background:
     radial-gradient(ellipse 100% 100% at 100% 50%, #cfa66f, #8a6520);
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;  /* Redondeada solo del lado visible */
 }
 
+/* Atadura derecha: sale desde el borde izquierdo */
 .bellas-curtain--right .bellas-curtain__tieback {
   left: 0;
   background:
@@ -1046,18 +1329,22 @@
   border-radius: 0 5px 5px 0;
 }
 
-/* Borlas en las ataduras */
+/* BORLAS en las puntas de las ataduras */
 .bellas-curtain--left .bellas-curtain__tieback::after {
   content: "";
   position: absolute;
-  right: -6px;
+  right: -6px;                /* Sale hacia afuera de la atadura */
   top: 50%;
   margin-top: -5px;
-  width: 10px;
+  width: 10px;                /* Círculo de 10px */
   height: 10px;
-  border-radius: 50%;
+  border-radius: 50%;         /* ¡ES UN CÍRCULO! */
   background: radial-gradient(circle at 40% 35%, #ffd700, #8a6520);
-  box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+    /* Degradado circular que simula una esfera brillante:
+       - Punto de luz en 40% 35% → parece que la luz viene de arriba-izquierda
+       - #ffd700 = dorado brillante (el punto de luz)
+       - #8a6520 = dorado oscuro (la sombra) */
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);  /* Brillo alrededor */
 }
 
 .bellas-curtain--right .bellas-curtain__tieback::after {
@@ -1073,7 +1360,31 @@
   box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
 }
 
-/* Valance / Galería superior drapeada */
+/* GALERÍA SUPERIOR (valance) - el adorno drapeado de arriba
+   
+   ¿QUÉ ES?
+   ────────
+   Es la parte decorativa de tela que va en la parte superior
+   del escenario, encima de las cortinas principales. Como
+   una "cenefa" de tela con pliegues colgando.
+   
+   ¿CÓMO SE ABRE?
+   ─────────────
+   Cuando el modal se abre (is-open):
+   → transform: translateY(-100%)  →  ¡SUBE hacia arriba!
+   Sale de la pantalla hacia arriba, como cuando sube el telón.
+   
+   ESTRUCTURA:
+   ──────────
+   .bellas-curtain__valance (contenedor)
+     ├── .bellas-curtain__valance-body (la tela)
+     │     ├── ::before → pliegues verticales
+     │     └── ::after  → festón ondulado inferior
+     ├── .bellas-curtain__valance-trim (fleco dorado)
+     │     ├── ::before → barra dorada
+     │     └── ::after  → hilitos dorados
+     └── .bellas-curtain__valance::before → luces escénicas
+*/
 .bellas-curtain__valance {
   position: absolute;
   top: 8px;
@@ -1203,26 +1514,73 @@
   pointer-events: none;
 }
 
-/* Estado abierto: cortinas se apartan */
+/* ═══════════════════════════════════════════════════
+   APERTURA DE TELONES (¡EL MOMENTO MÁGICO!)
+   ═══════════════════════════════════════════════════
+   
+   ¿QUÉ PASA CUANDO SE ABRE EL MODAL?
+   ─────────────────────────────────
+   Cuando JavaScript añade la clase .is-open al modal,
+   pasan estas cosas EN ORDEN:
+   
+   1. (0.0s) Modal se vuelve visible
+   2. (0.2s) Cortinas empiezan a abrirse → 1s de duración
+   3. (0.4s) Galería (valance) empieza a subir → 0.7s
+   4. (0.6s) Ataduras aparecen (opacity: 1) → 0.6s
+   
+   Todo esto crea una COREOGRAFÍA de apertura dramática.
+   
+   ¿QUÉ SIGNIFICA cubic-bezier(0.65, 0, 0.35, 1)?
+   ──────────────────────────────────────────────
+   Es una curva de animación PERSONALIZADA.
+   Los 4 números controlan la velocidad en el tiempo:
+   • 0.65 = acelera rápido al inicio
+   • 0    = punto de control 1
+   • 0.35 = punto de control 2
+   • 1    = termina lento
+   
+   El efecto: la cortina empieza a moverse lentamente,
+   acelera en el medio, y frena suavemente al final.
+   ¡Como una cortina REAL!
+   
+   El tercer número (0.2s, 0.4s, 0.6s) es el RETARDO:
+   ► 0.2s de retardo para cortinas
+   ► 0.4s de retardo para galería
+   ► 0.6s de retardo para ataduras
+   Esto crea la secuencia: primero cortinas, luego galería,
+   luego ataduras.
+*/
+
+/* CORTINA IZQUIERDA: se desliza hacia la izquierda
+   translateX(-102%) = se mueve -102% de su ancho (desaparece a la izq) */
 .bellas-modal.is-open .bellas-curtain--left {
   transform: translateX(-102%);
   transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
+    /* 1s de duración, retardo de 0.2s */
 }
 
+/* CORTINA DERECHA: se desliza hacia la derecha
+   translateX(102%) = se mueve +102% de su ancho (desaparece a la der) */
 .bellas-modal.is-open .bellas-curtain--right {
   transform: translateX(102%);
   transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
 }
 
+/* GALERÍA SUPERIOR: sube hacia arriba
+   translateY(-100%) = sube -100% de su alto (desaparece arriba) */
 .bellas-modal.is-open .bellas-curtain__valance {
   transform: translateY(-100%);
   transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.4s;
+    /* 0.7s de duración, retardo de 0.4s (empieza después que las cortinas) */
 }
 
+/* ATADURAS: aparecen sosteniendo las cortinas abiertas
+   opacity: 0 → opacity: 1 (se vuelven visibles) */
 .bellas-modal.is-open .bellas-curtain--left .bellas-curtain__tieback,
 .bellas-modal.is-open .bellas-curtain--right .bellas-curtain__tieback {
   opacity: 1;
   transition: opacity 0.6s ease 0.6s;
+    /* 0.6s de duración, retardo de 0.6s (aparecen al final) */
 }
 
 /* Marco dorado tipo escenario */

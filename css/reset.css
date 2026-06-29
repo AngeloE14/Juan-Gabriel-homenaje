@@ -46,6 +46,10 @@
   El elemento <body> contiene todo el contenido visible.
   Aquí definimos los estilos base que heredarán todos los elementos.
 */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   /* FONT-FAMILY: Define qué fuente (tipo de letra) usar */
   font-family: 'Segoe UI', sans-serif;

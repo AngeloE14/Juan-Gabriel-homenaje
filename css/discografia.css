@@ -2,134 +2,153 @@
    DISCOGRAFIA.CSS - Estilos de la discografía
    ===========================================
 
-   Este archivo contiene los estilos para la sección de discografía,
-   incluyendo la galería de álbumes, citas y firma.
+   CONCEPTOS CLAVE:
+   - RADIAL-GRADIENT: degradado en forma de círculo/elipse (como un reflector).
+   - LINEAR-GRADIENT: degradado en línea recta (de arriba abajo, izquierda a derecha).
+   - CLAMP(): función que ajusta un valor entre un mínimo y un máximo (responsive).
+   - DROP-SHADOW: sombra que respeta la forma del elemento (útil para imágenes con transparencia).
+   - PSEUDO-ELEMENTO (::after, ::before): elementos extra que se crean con CSS.
+   - TRANSFORM: rotate() para girar elementos (efecto de "marco desordenado").
+   - FILTER: brightness, contrast, saturate ajustan el aspecto visual de imágenes.
 
    Contenido:
-   - Contenedor de discografía
-   - Galería de álbumes
-   - Marcos de álbumes
-   - Citas y firma
+   - Contenedor de discografía (fondos degradados)
+   - Galería de álbumes (CSS Grid)
+   - Marcos de álbumes (oro, sombras, rotaciones)
+   - Marcador póstumo (::after con cruz)
+   - Citas y firma (con filtros y brillos)
    - Frases rotativas
 */
 
-/* Sección de discografía */
+/* Sección de discografía.
+   Tiene un fondo con dos DEGRADADOS superpuestos (como capas):
+   1. radial-gradient: un círculo/óvalo dorado (207,166,111) que parece un "reflector"
+      desde arriba (at 50% -80px) de 980x340px de tamaño, que se desvanece a transparente.
+   2. linear-gradient: degradado vertical de marrón oscuro (#211812) a casi negro (#14100d).
+   border-top dorado sutil separa esta sección de la anterior. */
 #discografia {
   padding: 64px 20px 80px;
   background:
     radial-gradient(980px 340px at 50% -80px, rgba(207, 166, 111, 0.2), transparent 72%),
+    /* ↑ círculo dorado enorme que simula iluminación desde arriba */
     linear-gradient(180deg, #211812 0%, #14100d 100%);
-  border-top: 1px solid rgba(207, 166, 111, 0.35);
+    /* ↑ degradado vertical de marrón oscuro a casi negro */
+  border-top: 1px solid rgba(207, 166, 111, 0.35); /* línea dorada sutil arriba */
 }
 
-/* Título de discografía */
+/* Título de discografía.
+   width: fit-content = el ancho se ajusta al contenido (no ocupa toda la línea).
+   font-size usa clamp(): el texto se adapta al tamaño de pantalla,
+   mínimo 1.35rem, ideal 2.8vw, máximo 2rem.
+   text-transform: uppercase = todo en MAYÚSCULAS.
+   box-shadow tiene dos sombras: una exterior (glow dorado) y una INTERIOR
+   (inset) que simula un brillo sutil desde dentro del borde.
+   text-shadow agrega un resplandor dorado al texto. */
 .discografia-title {
   margin: 0 auto 28px;
-  width: fit-content;
+  width: fit-content;                    /* el ancho se ajusta al texto */
   padding: 10px 22px;
   color: #f2d9a0;
-  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  font-size: clamp(1.35rem, 2.8vw, 2rem); /* responsive: fluye entre 1.35rem y 2rem */
   letter-spacing: 1.4px;
-  text-transform: uppercase;
+  text-transform: uppercase;              /* convierte el texto a mayúsculas */
   background: linear-gradient(180deg, rgba(38, 28, 20, 0.95) 0%, rgba(20, 14, 10, 0.95) 100%);
-  border: 1px solid rgba(207, 166, 111, 0.75);
+  border: 1px solid rgba(207, 166, 111, 0.75); /* borde dorado */
   border-radius: 3px;
   box-shadow:
-    0 0 14px rgba(207, 166, 111, 0.2),
-    inset 0 0 8px rgba(255, 215, 130, 0.08);
-  text-shadow: 0 0 10px rgba(242, 217, 160, 0.28);
+    0 0 14px rgba(207, 166, 111, 0.2),      /* brillo exterior dorado */
+    inset 0 0 8px rgba(255, 215, 130, 0.08); /* sombra INTERIOR (inset) dorada sutil */
+  text-shadow: 0 0 10px rgba(242, 217, 160, 0.28); /* resplandor en el texto */
 }
 
-/* Galería de álbumes */
+/* Galería de álbumes: usa CSS Grid para mostrar los discos ordenados.
+   grid-template-columns con repeat(auto-fit, minmax(180px, 210px)):
+   - auto-fit = crea tantas columnas como quepan en el espacio disponible
+   - minmax(180px, 210px) = cada columna mide al menos 180px y máximo 210px
+   Esto hace que la galería se adapte sola a cualquier ancho de pantalla (responsive sin @media). */
 .discografia-gallery {
-  width: min(1500px, 96vw);
-  margin: 0 auto;
+  width: min(1500px, 96vw);            /* máximo 1500px, mínimo 96% del ancho de pantalla */
+  margin: 0 auto;                      /* centrado horizontal */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 210px));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 210px)); /* columnas que se auto-ajustan */
   justify-content: center;
   grid-auto-rows: auto;
-  gap: 24px;
+  gap: 24px;                           /* espacio de 24px entre cada álbum */
 }
 
-/* Cita de discografía */
-.discografia-cita {
-  width: fit-content;
-  max-width: min(760px, 92%);
-  margin: 34px auto 0;
-  padding: 14px 22px;
-  color: #f2ddb0;
-  font-size: clamp(1.05rem, 2vw, 1.22rem);
-  font-style: italic;
-  line-height: 1.65;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(207, 166, 111, 0.26);
-  border-radius: 999px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 240, 200, 0.03),
-    0 12px 24px rgba(0, 0, 0, 0.16);
-}
-
-/* Firma de discografía */
+/* Firma de discografía: la firma de Juan Gabriel (imagen SVG/PNG).
+   position: relative en el contenedor para que ::before se posicione dentro.
+   ::before crea un resplandor dorado DETRÁS de la firma (radial-gradient + blur). */
 .discografia-firma {
   width: fit-content;
   max-width: 100%;
   margin: 34px auto 0;
   padding: 8px 12px;
-  position: relative;
+  position: relative;                  /* para que ::before se posicione dentro de aquí */
 }
 
 .discografia-firma::before {
+  /* Pseudo-elemento que dibuja un resplandor dorado detrás de la firma */
   content: "";
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(500px, 88vw);
+  width: min(500px, 88vw);            /* ancho adaptable */
   height: 150px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);   /* centrado exacto */
   background: radial-gradient(circle, rgba(255, 236, 190, 0.34) 0%, rgba(212, 175, 55, 0.16) 42%, transparent 76%);
-  filter: blur(18px);
-  pointer-events: none;
+  filter: blur(18px);                  /* desenfoque para que el resplandor se vea suave */
+  pointer-events: none;                /* no interfiere con clics */
 }
 
 .discografia-firma img {
   position: relative;
-  z-index: 1;
+  z-index: 1;                          /* encima del resplandor ::before */
   display: block;
-  width: min(460px, 86vw);
+  width: min(460px, 86vw);            /* responsive: máximo 460px, mínimo 86% del ancho */
   height: auto;
   margin: 0 auto;
+  /* filter aplica múltiples efectos a la imagen:
+     - brightness(1.1) = 10% más brillante
+     - contrast(1.14) = 14% más contraste
+     - drop-shadow() = sombras que SIGUEN LA FORMA de la imagen (a diferencia de box-shadow)
+       drop-shadow se puede apilar (múltiples sombras): dos doradas y una negra */
   filter:
-    brightness(1.1)
-    contrast(1.14)
-    drop-shadow(0 0 12px rgba(255, 238, 198, 0.28))
-    drop-shadow(0 0 28px rgba(212, 175, 55, 0.14))
-    drop-shadow(0 8px 14px rgba(0, 0, 0, 0.28));
+    brightness(1.1)                                              /* más brillante */
+    contrast(1.14)                                               /* más contraste */
+    drop-shadow(0 0 12px rgba(255, 238, 198, 0.28))             /* resplandor crema */
+    drop-shadow(0 0 28px rgba(212, 175, 55, 0.14))              /* resplandor dorado */
+    drop-shadow(0 8px 14px rgba(0, 0, 0, 0.28));                /* sombra negra de profundidad */
 }
 
-/* Frases rotativas */
+/* Frases rotativas: sección que muestra citas que cambian automáticamente.
+   position: relative para que ::before dibuje una línea decorativa arriba.
+   Las frases están apiladas con position: absolute (una encima de otra)
+   y la clase .is-active controla cuál es visible (opacity: 0 → 1). */
 .frases-rotativas {
   position: relative;
-  width: min(860px, 92%);
+  width: min(860px, 92%);             /* ancho adaptable */
   min-height: 116px;
   margin: 24px auto 0;
   padding-top: 20px;
 }
 
 .frases-rotativas::before {
+  /* Línea decorativa dorada arriba de las frases, se desvanece en los bordes */
   content: "";
   position: absolute;
   top: 0;
   left: 50%;
   width: min(180px, 40%);
-  height: 1px;
-  transform: translateX(-50%);
+  height: 1px;                         /* línea muy fina */
+  transform: translateX(-50%);         /* centrada horizontalmente */
   background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.7), transparent);
+  /* degradado horizontal: transparente → dorado → transparente (efecto desvanece) */
 }
 
 .frase-rotativa {
-  position: absolute;
-  inset: 20px 0 0;
+  position: absolute;                  /* todas las frases ocupan el mismo espacio */
+  inset: 20px 0 0;                     /* top: 20px, left/right: 0 */
   margin: 0;
   padding: 0 18px;
   display: flex;
@@ -137,90 +156,104 @@
   justify-content: center;
   text-align: center;
   color: #f3dfb1;
-  font-size: clamp(1.02rem, 2vw, 1.28rem);
+  font-size: clamp(1.02rem, 2vw, 1.28rem); /* tamaño de texto responsive */
   font-style: italic;
   line-height: 1.7;
   letter-spacing: 0.2px;
-  opacity: 0;
-  transition: opacity 0.6s ease;
+  opacity: 0;                          /* oculta por defecto */
+  transition: opacity 0.6s ease;       /* cambio suave de opacidad */
 }
 
 .frase-rotativa.is-active {
-  opacity: 1;
+  opacity: 1;                          /* la frase activa se vuelve visible */
 }
 
-/* Marcos de álbum */
+/* Marcos de álbum: cada disco se muestra dentro de un marco con borde dorado.
+   aspect-ratio: 1 / 1 = el marco es cuadrado perfecto.
+   background: linear-gradient marrón oscuro simula un marco de madera/metal oscuro.
+   border: 2px solid #cfa66f = borde dorado alrededor del álbum.
+   box-shadow tiene dos sombras: una negra de profundidad y un resplandor dorado.
+   ::before crea un borde interior secundario (inset: 3px = a 3px del borde). */
 .album-frame {
   margin: 0;
   padding: 6px;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1;                  /* cuadrado perfecto */
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #302418 0%, #1a130e 100%);
-  border: 2px solid #cfa66f;
+  background: linear-gradient(145deg, #302418 0%, #1a130e 100%); /* degradado madera oscura */
+  border: 2px solid #cfa66f;            /* borde dorado */
   border-radius: 4px;
   box-shadow:
-    0 12px 24px rgba(0, 0, 0, 0.48),
-    0 0 16px rgba(207, 166, 111, 0.2);
+    0 12px 24px rgba(0, 0, 0, 0.48),    /* sombra negra (profundidad) */
+    0 0 16px rgba(207, 166, 111, 0.2);  /* resplandor dorado (glow) */
   position: relative;
 }
 
 .album-frame::before {
+  /* Borde interior secundario que simula el bisel de un marco de cuadro */
   content: "";
   position: absolute;
-  inset: 3px;
-  border: 1px solid rgba(255, 215, 142, 0.25);
+  inset: 3px;                           /* 3px de separación desde cada borde */
+  border: 1px solid rgba(255, 215, 142, 0.25); /* línea dorada muy sutil */
   pointer-events: none;
 }
 
 .album-frame img {
   width: auto;
   height: auto;
-  max-width: 100%;
+  max-width: 100%;                      /* no se sale del marco */
   max-height: 100%;
-  object-fit: contain;
+  object-fit: contain;                  /* la imagen completa se ve sin recortarse */
   object-position: center;
   display: block;
-  background: #130d09;
-  border: 1px solid #8f6a3c;
-  filter: saturate(1.02) contrast(1.06);
+  background: #130d09;                  /* fondo negro mientras carga */
+  border: 1px solid #8f6a3c;            /* borde dorado oscuro alrededor de la imagen */
+  filter: saturate(1.02) contrast(1.06); /* saturación y contraste ligeramente aumentados */
 }
 
-/* Medallón negro para álbumes póstumos */
+/* Medallón negro para álbumes póstumos (lanzados después del fallecimiento del artista).
+   .postumo es una clase extra que se agrega al .album-frame.
+   overflow: visible permite que el medallón (::after) se salga del marco sin ser recortado.
+   ::after dibuja un círculo negro con borde dorado y una cruz "✝" blanca. */
 .album-frame.postumo {
-  overflow: visible;
+  overflow: visible;                    /* deja que el medallón sobresalga del marco */
 }
 
 .album-frame.postumo::after {
-  content: "✝";
+  content: "✝";                        /* símbolo de la cruz (unicode) */
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -10px;                           /* sobresale 10px por encima del marco */
+  right: -10px;                         /* sobresale 10px por la derecha */
   width: 36px;
   height: 36px;
-  background: #0d0d0d;
-  border: 2px solid #cfa66f;
-  border-radius: 50%;
+  background: #0d0d0d;                  /* fondo negro */
+  border: 2px solid #cfa66f;            /* borde dorado */
+  border-radius: 50%;                   /* círculo perfecto */
   text-align: center;
   line-height: 38px;
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
-  z-index: 10;
-  pointer-events: none;
+  color: #fff;                          /* cruz blanca */
+  z-index: 10;                          /* encima del marco */
+  pointer-events: none;                 /* no interfiere con clics */
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-/* Rotaciones sutiles para algunos marcos */
+/* Rotaciones sutiles para algunos marcos (efecto "galería de arte desordenada").
+   nth-child(6n + 2) = cada 6 elementos empezando por el 2° → gira -0.5°
+   nth-child(8n + 5) = cada 8 elementos empezando por el 5° → gira  0.5°
+   nth-child(5n)     = cada 5 elementos                       → gira -0.3°
+   Estos giros pequeños dan un aspecto orgánico, como si los discos estuvieran
+   colocados a mano sobre una mesa. */
 .album-frame:nth-child(6n + 2) {
-  transform: rotate(-0.5deg);
+  transform: rotate(-0.5deg);           /* ligeramente inclinado a la izquierda */
 }
 
 .album-frame:nth-child(8n + 5) {
-  transform: rotate(0.5deg);
+  transform: rotate(0.5deg);            /* ligeramente inclinado a la derecha */
 }
 
 .album-frame:nth-child(5n) {
-  transform: rotate(-0.3deg);
+  transform: rotate(-0.3deg);           /* ligeramente inclinado a la izquierda */
 }

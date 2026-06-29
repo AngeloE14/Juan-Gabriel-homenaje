@@ -1,22 +1,80 @@
 /*
-  ===========================================
-  CONCEPTOS CSS IMPORTANTES:
-  - CLASES: Seleccionan elementos con class="nombre-clase"
-  - SELECTORES MÚLTIPLES: h1, h2, h3 aplica a todos los títulos
-  - PSEUDO-CLASES: :hover (cuando pasas el mouse)
-  - FLEXBOX: Sistema moderno para alinear elementos
-*/
+  ==========================================================================
+  BASE.CSS — Estilos base y componentes compartidos del homenaje a Juan Gabriel
+  ==========================================================================
 
-/*
-  CONTENEDOR PRINCIPAL
-  Un contenedor limita el ancho máximo y centra el contenido.
-  Es útil para evitar que el contenido se extienda demasiado en pantallas grandes.
+  ¿QUÉ HACE ESTE ARCHIVO?
+  Define los estilos fundamentales de toda la página: botones, tipografía,
+  imágenes, citas y secciones de biografía/logros. Es la "capa base" que
+  usan todas las demás páginas.
+
+  ────────────────────────────────────────────────────────────────────────────
+  CONCEPTOS CSS EXPLICADOS:
+
+  1. SELECTORES DE ID (#)
+     Usamos #biografia y #logros para apuntar a secciones ÚNICAS de la página.
+     Diferencia: .clase se usa para VARIOS elementos, #id para UNO solo.
+
+  2. PSEUDO-CLASE :hover
+     Se activa cuando el usuario pasa el mouse encima. Ej: button:hover
+     cambia el color de fondo y agranda el botón.
+
+  3. FLEXBOX (display: flex)
+     Sistema moderno de layout que alinea elementos en fila o columna.
+     Se usa con display: flex y propiedades como justify-content.
+
+  4. BOX-SHADOW
+     Agrega sombras alrededor de un elemento. Usamos varias sombras
+     separadas por coma para crear un efecto más natural y suave.
+
+  5. BORDER-RADIUS
+     Redondea las esquinas de un elemento. A mayor valor, más redondeado.
+
+  6. BACKGROUND: TRANSPARENT
+     Hace que el fondo sea invisible para que se vea el fondo de la página
+     (en este caso, el azul marino oscuro con estrellas).
+
+  7. FONT-FAMILY con serif
+     "Palatino Linotype" es una fuente serif (con remates decorativos).
+     Se usa para dar un toque clásico y elegante a la biografía.
+
+  8. TRANSITION
+     Anima los cambios de estilo para que se vean suaves en lugar de
+     instantáneos. transition: all 0.3s ease = 0.3 segundos suaves.
+
+  ────────────────────────────────────────────────────────────────────────────
+  PALETA DE COLORES:
+
+  #FFD700  (Dorado / Gold)     → Títulos principales, énfasis — elegancia
+  #DAA520  (Dorado oscuro)     → Subtítulos, bordes de citas — calidez
+  #f7ecd5  (Crema claro)       → Texto de biografía — suave, legible
+  #3498db  (Azul)              → Botones normales
+  #2980b9  (Azul oscuro)       → Botones al pasar el mouse
+  #2c3e50  (Azul grisáceo)     → Títulos generales — sobriedad
+  #ffe7b8  (Dorado muy claro)  → Texto de citas (blockquote)
+
+  ¿POR QUÉ ESTOS COLORES?
+  La página representa el cielo nocturno (fondo azul marino oscuro).
+  El dorado y crema recuerdan las luces de las estrellas y dan un
+  toque cálido y festivo, como la música de Juan Gabriel.
+
+  ────────────────────────────────────────────────────────────────────────────
+  LAYOUT:
+
+  - .container (max-width: 1200px + margin: 0 auto) = centrado horizontal
+  - .biografia y #logros usan max-width: 800px para limitar el ancho
+    de lectura (más angosto que el container principal)
+  - La imagen dentro de figure usa max-width: 100% para que nunca
+    se desborde de su contenedor (diseño responsivo básico)
+
+  ────────────────────────────────────────────────────────────────────────────
+  EFECTOS / TRANSICIONES / ANIMACIONES:
+
+  - button:hover: scale(1.05) agranda el botón 5% al pasar el mouse
+  - transition: all 0.3s ease en botones para animación suave
+  - box-shadow con múltiples capas en figure para efecto "elevado"
+  ==========================================================================
 */
-.container {
-  max-width: 1200px;    /* MÁXIMO: No crece más allá de 1200px */
-  margin: 0 auto;       /* MARGEN: 0 arriba/abajo, auto izquierda/derecha = centrado */
-  padding: 20px;        /* PADDING: 20px de espacio interno en todos los lados */
-}
 
 /*
   BOTONES - COMPONENTE INTERACTIVO
@@ -53,64 +111,57 @@ h1, h2, h3 {
   margin-bottom: 15px;   /* MARGEN INFERIOR: Espacio debajo del título */
 }
 
-/* Contenedor principal del contenido */
+/* Contenedor principal del contenido — separa el header del contenido */
 main {
   padding-top: 24px;
 }
 
-/* Sección de biografía */
-.biografia {
-    max-width: 800px;   /* limita el ancho */
-    margin: 0 auto;     /* centra horizontalmente */
-    padding: 20px;      /* espacio interno */
-    text-align: left;   /* texto alineado normal */
-}
-
 /* Foto de Juan Gabriel: marco moderno minimalista */
 #biografia figure {
-  display: inline-block;
-  border-radius: 12px;
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.12),
-    0 12px 40px rgba(0, 0, 0, 0.08);
-  line-height: 0;
+  display: inline-block;                      /* la figura solo ocupa su contenido */
+  border-radius: 12px;                        /* esquinas redondeadas */
+  box-shadow:                                 /* sombra multi-capa para efecto flotante */
+    0 4px 16px rgba(0, 0, 0, 0.12),          /* capa cercana: sombra pequeña y suave */
+    0 12px 40px rgba(0, 0, 0, 0.08);         /* capa lejana: sombra grande y difusa */
+  line-height: 0;                             /* elimina espacio fantasma debajo de la img */
 }
 
 #biografia figure img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
+  display: block;                             /* quita espacio inferior de img inline */
+  max-width: 100%;                            /* nunca más ancha que su contenedor */
+  height: auto;                               /* mantiene proporción original */
+  border-radius: 12px;                        /* mismo radio que el figure para coincidir */
 }
 
-/* Estilos para artículos */
+/* Estilos para artículos — texto de la biografía */
 #biografia article {
     max-width: 800px;   /* limita el ancho */
     margin: 0 auto;     /* centra el bloque */
     padding: 20px;      /* espacio interno */
-    text-align: left;   /* mantiene lectura normal */
+    text-align: left;   /* mantiene lectura normal (justificado cansa la vista) */
 }
 
 /* Sección de logros */
 #logros {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 800px;   /* mismo ancho que la biografía para consistencia */
+    margin: 0 auto;     /* centrado horizontal */
+    padding: 20px;      /* espacio interno */
 }
 
 #logros ul {
-    padding-left: 20px; /* separa las viñetas del borde */
+    padding-left: 20px; /* separa las viñetas del borde izquierdo */
 }
 
 #logros li {
-    margin-bottom: 8px;
+    margin-bottom: 8px; /* espacio entre cada logro */
 }
 
-/* Estilo de texto (solo biografía y logros, no multimedia) */
+/* Estilo de texto (solo biografía y logros, no multimedia)
+   transparent = deja ver el fondo azul estrellado de la página */
 #biografia article,
 #logros {
-    background: transparent;
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    background: transparent;                                            /* fondo invisible — se ve el cielo nocturno */
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;  /* fuente serif clásica y elegante */
 }
 
 #biografia article h2,
@@ -125,13 +176,13 @@ main {
 
 #biografia article h2 {
     margin-bottom: 14px;
-    color: #FFD700;
+    color: #FFD700;     /* dorado brillante para títulos principales */
 }
 
 #biografia article h3 {
     margin-top: 18px;
     margin-bottom: 8px;
-    color: #DAA520;
+    color: #DAA520;     /* dorado más opaco para subtítulos — jerarquía visual */
 }
 
 #biografia article p {
@@ -140,16 +191,16 @@ main {
 }
 
 #biografia article em {
-    color: #FFD700;
-    font-weight: 700;
+    color: #FFD700;     /* dorado = énfasis, como resaltar una frase importante */
+    font-weight: 700;   /* negrita (700 = bold) */
 }
 
 #biografia blockquote {
-    max-width: 800px;
-    margin: 12px auto 0;
-    padding: 18px 20px;
-    background: rgba(218, 165, 32, 0.18);
-    border-left: 4px solid #DAA520;
+    max-width: 800px;                                    /* mismo ancho que biografía */
+    margin: 12px auto 0;                                 /* centrado, 12px arriba */
+    padding: 18px 20px;                                  /* espacio interno amplio */
+    background: rgba(218, 165, 32, 0.18);                /* dorado semitransparente (0.18 = 18% opaco) */
+    border-left: 4px solid #DAA520;                      /* barra dorada a la izquierda — estilo cita clásico */
 }
 
 #biografia blockquote p {

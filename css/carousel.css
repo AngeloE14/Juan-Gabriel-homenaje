@@ -1,103 +1,147 @@
-/* ===========================================
-   CAROUSEL.CSS - Estilos del carrusel multimedia
-   ===========================================
+/* ===================================================================
+   CAROUSEL.CSS  —  Carrusel / Slideshow de imágenes
+   ===================================================================
 
-   Este archivo contiene los estilos del carrusel de imágenes
-   que muestra contenido multimedia en la sección principal.
+   ¿QUÉ HACE ESTE ARCHIVO?
+   -----------------------
+   Da estilo al carrusel de imágenes (slideshow) que muestra fotos
+   de Juan Gabriel en la página. Las imágenes se deslizan/fusionan
+   una tras otra con un efecto de fundido (fade).
 
-   Contenido:
-   - Contenedor del carrusel
-   - Slides del carrusel
-   - Puntos de navegación (dots)
-   - Efectos de transición
-*/
+   CONCEPTOS CLAVE QUE APRENDERÁS AQUÍ:
+   -------------------------------------
+   1.  position: relative + absolute        → Para superponer capas
+       (como los dots sobre las imágenes).
+   2.  CSS Grid con grid-area               → Las 5 líneas de slides
+       se apilan gracias a "grid-area: 1/1" (todas ocupan la misma
+       celda de la cuadrícula).
+   3.  Opacity y transition                 → El fade entre slides
+       se logra cambiando opacity de 0 a 1 con transition.
+   4.  Pseudo-elemento ::before con blur    → La imagen se repite
+       borrosa detrás de la foto nítida (efecto "fondo borroso").
+   5.  filter: blur() + brightness()        → Desenfoca y oscurece
+       el fondo para que resalte la imagen principal.
+   6.  clamp() en height                    → La imagen se adapta
+       desde 360px en móvil hasta 680px en desktop.
+   7.  .is-active (clase de JavaScript)     → Marca qué slide o dot
+       está visible actualmente.
+   8.  Puntos de navegación (dots)          → Botones circulares
+       posicionados absolutamente en la parte inferior.
+   9.  appearance: none                     → Elimina los estilos
+       por defecto del navegador en los botones.
 
-/* Contenedor del carrusel */
+   =================================================================== */
+
+/* ─── CONTENEDOR DEL CARRUSEL ────────────────────────── */
+
 .carousel {
-  position: relative;
+  position: relative;   /* Los elementos hijos absolutos se
+                           posicionan RELATIVO a este contenedor */
   width: 100%;
   max-width: none;
   margin: 18px 0 0;
-  overflow: hidden;
+  overflow: hidden;     /* Oculta cualquier parte de las imágenes
+                           que se salga del contenedor */
   background: #111;
 }
 
-/* Grid de slides */
+/* ─── SISTEMA DE GRILLA (GRID) PARA APILAR SLIDES ──── */
+
 .carousel__slides {
   position: relative;
-  display: grid;
+  display: grid;        /* Activa CSS Grid */
+  /* IMPORTANTE: no definimos columnas ni filas explícitamente;
+     usamos grid-area en cada slide para apilarlos */
 }
 
-/* Cada slide individual */
+/* ─── CADA SLIDE ──────────────────────────────────────── */
+
 .carousel__slide {
+  /* Todas las slides ocupan la misma celda (fila 1, columna 1)
+     Así se apilan unas encima de otras */
   grid-area: 1 / 1;
   position: relative;
   display: grid;
-  place-items: center;
+  place-items: center;  /* Centra la imagen tanto vertical
+                           como horizontalmente */
   margin: 0;
-  opacity: 0;
-  transition: opacity 0.9s ease-in-out;
-  pointer-events: none;
+  opacity: 0;           /* Oculta el slide por defecto */
+  transition: opacity 0.9s ease-in-out;  /* Fundido suave */
+  pointer-events: none; /* Evita clics cuando está oculto */
   overflow: hidden;
 }
 
+/* Fondo borroso detrás de la imagen principal
+   Usa la misma imagen (variable CSS --bg-image) pero
+   desenfocada y oscurecida para dar profundidad */
 .carousel__slide::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background-image: var(--bg-image);
+  inset: 0;             /* Cubre todo el slide */
+  background-image: var(--bg-image);  /* --bg-image se define
+                           en el HTML o JavaScript */
   background-size: cover;
   background-position: center;
-  filter: blur(16px) brightness(0.45);
-  transform: scale(1.08);
+  filter: blur(16px) brightness(0.45);  /* Desenfoque + oscurecido */
+  transform: scale(1.08);  /* Agrandado para evitar bordes
+                              transparentes en el blur */
 }
 
-/* Slide activo */
+/* ─── SLIDE ACTIVO (visible) ──────────────────────────── */
+
 .carousel__slide.is-active {
-  opacity: 1;
-  pointer-events: auto;
+  opacity: 1;           /* Se vuelve visible */
+  pointer-events: auto; /* Permite interactuar con él */
 }
 
-/* Imágenes del carrusel */
+/* ─── IMAGEN PRINCIPAL DEL SLIDE ──────────────────────── */
+
 .carousel__slide img {
   position: relative;
-  z-index: 1;
+  z-index: 1;           /* Se asegura de estar ENCIMA del
+                           fondo borroso (::before) */
   display: block;
   width: auto;
   max-width: 100%;
+  /* Altura fluida: mínimo 360px, máximo 680px,
+     y 58% del ancho de la ventana en medio */
   height: clamp(360px, 58vw, 680px);
-  object-fit: contain;
+  object-fit: contain;  /* Muestra la imagen completa sin recortar */
   object-position: center;
 }
 
-/* Puntos de navegación */
+/* ─── PUNTOS DE NAVEGACIÓN (DOTS) ──────────────────────── */
+
 .carousel__dots {
-  position: absolute;
+  position: absolute;   /* Se posiciona DENTRO del carrusel */
   left: 50%;
-  bottom: 8px;
-  transform: translateX(-50%);
-  display: flex;
+  bottom: 8px;          /* Pegado abajo */
+  transform: translateX(-50%);  /* Centrado horizontalmente */
+  display: flex;        /* Los dots se alinean en fila */
   justify-content: center;
-  gap: 8px;
+  gap: 8px;             /* Espacio entre dots */
   padding: 0;
 }
 
 .carousel__dot {
   width: 7px;
   height: 7px;
-  border-radius: 50%;
+  border-radius: 50%;   /* Hace el botón completamente circular */
   border: none;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.25);  /* Blanco semitransparente */
   cursor: pointer;
-  transition: background 0.25s ease;
-  appearance: none;        /* ← elimina estilos del navegador */
+  transition: background 0.25s ease;      /* Transición al activarse */
+
+  /* appearance: none elimina los estilos nativos del botón
+     (como bordes, relieve, sombras) que cada navegador agrega */
+  appearance: none;
   -webkit-appearance: none;
-  padding: 0;              /* ← quita padding interno del botón */
+  padding: 0;
   margin: 0;
-  box-shadow: none;        /* ← quita el relieve/sombra */
+  box-shadow: none;
   outline: none;
 }
 
 .carousel__dot.is-active {
-  background: #ffffff; /* blanco puro */
+  background: #ffffff;  /* Blanco puro cuando está activo */
 }

@@ -38,7 +38,7 @@
   Sintaxis: import { función1, función2 } from './archivo.js'
   El ./ significa "en la misma carpeta"
 */
-import { colocarAnioActual, marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar, inicializarAudioFondo } from './utils.js';
+import { marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar, inicializarAudioFondo } from './utils.js';
 import { inicializarCarrusel } from './carousel.js';
 import { inicializarYouTubeModal } from './youtube-modal.js';
 import { inicializarBellasArtesModal } from './bellas-artes-modal.js';
@@ -46,6 +46,8 @@ import { inicializarFrasesRotativas } from './quotes-rotator.js';
 /* CAMBIO: Importa la lógica del carrusel 3D de Fragmentos */
 import { inicializarCarruselFragmentos3D } from './fragmentos-carousel.js';
 import { inicializarArtistasCarousel } from './artistas-carousel.js';
+import { inicializarLightbox } from './lightbox.js';
+import { inicializarBotonSubir } from './back-to-top.js';
 
 /*
   DOMContentLoaded - EVENTO DE CARGA
@@ -60,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("🚀 Inicializando aplicación Juan Gabriel...");
 
   // LLAMAR FUNCIONES - Ejecutar cada inicialización
-  colocarAnioActual();        // Pone el año actual en el footer
   marcarEnlaceActivo();       // Resalta el enlace del menú actual
   inicializarNavegacion();    // Configura clics en el menú
   reproducirIntroAlCargar();  // Reproduce intro en video al cargar
@@ -74,6 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
   /* CAMBIO: Inicializa navegación 3D (drag, teclado, click lateral) en Fragmentos */
   inicializarCarruselFragmentos3D();
   inicializarArtistasCarousel();
+  inicializarLightbox();
+  inicializarBotonSubir();
 
   console.log("✅ Aplicación inicializada correctamente");
 });

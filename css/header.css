@@ -1,38 +1,77 @@
 /*
-  ===========================================
-  HEADER.CSS - ESTILOS DEL ENCABEZADO
-  ===========================================
+  ==========================================================================
+  HEADER.CSS — Estilos del encabezado del homenaje a Juan Gabriel
+  ==========================================================================
 
-  CONCEPTO: HEADER/ENCABEZADO
-  El header es la parte superior de la página web.
-  Normalmente contiene el logo, navegación y elementos importantes.
+  ¿QUÉ HACE ESTE ARCHIVO?
+  Define la apariencia de la parte superior (header) de la página,
+  donde están el logo/título de Juan Gabriel y la imagen principal.
 
-  CONCEPTOS CSS DE LAYOUT:
-  - PADDING: Espacio interno del elemento
-  - TEXT-ALIGN: Alineación horizontal del texto
-  - BACKGROUND: Color o imagen de fondo
-  - MARGIN: Espacio exterior del elemento
+  ────────────────────────────────────────────────────────────────────────────
+  CONCEPTOS CSS EXPLICADOS:
 
-  UNIDADES CSS:
-  - px: Píxeles (fijo)
-  - rem: Relativo al tamaño base del texto
-  - %: Porcentaje del contenedor padre
-  - auto: Automático (deja que el navegador decida)
+  1. HEADER / ENCABEZADO
+     Es la etiqueta semántica <header> de HTML5 que representa la
+     introducción o zona superior de la página.
+
+  2. LINEAR-GRADIENT (Degradado lineal)
+     Crea una transición suave entre dos colores.
+     linear-gradient(180deg, color1, color2) va de arriba a abajo.
+     Es como tener un atardecer pero con colores — el color cambia
+     gradualmente en lugar de tener un borde duro.
+
+  3. PADDING (Relleno interno)
+     Espacio DENTRO del elemento entre su borde y su contenido.
+     padding: 10px 20px 48px = 10px arriba, 20px lados, 48px abajo.
+     Los valores van en sentido horario: arriba, derecha/izquierda, abajo.
+
+  4. TEXT-ALIGN: CENTER
+     Centra horizontalmente todo el texto e inline-block dentro del elemento.
+
+  5. IMÁGENES RESPONSIVAS
+     max-width: 100% + height: auto = la imagen se reduce si la pantalla
+     es pequeña, pero nunca se estira más de su tamaño real.
+
+  6. REM (Unidad relativa)
+     1rem = tamaño base del texto (normalmente 16px del navegador).
+     1.1rem = 1.1 × 16px = 17.6px. Es mejor que px porque respeta
+     la configuración de accesibilidad del usuario.
+
+  ────────────────────────────────────────────────────────────────────────────
+  PALETA DE COLORES:
+
+  #2c3e50  (Azul marino oscuro) → fondo del degradado (arriba)
+  #243447  (Azul más oscuro)    → fondo del degradado (abajo)
+  #fff8f8  (Blanco rosado)      → texto del título principal
+  #fbe7e9  (Rosa claro)         → texto del subtítulo
+
+  El degradado de azul oscuro a más oscuro simula el cielo nocturno,
+  coherente con el tema de la página.
+
+  ────────────────────────────────────────────────────────────────────────────
+  LAYOUT:
+
+  El header es un bloque de ancho completo con su contenido centrado.
+  Las imágenes se redimensionan automáticamente para no desbordarse.
+  No se usa flexbox aquí porque solo hay una columna centrada.
+  ==========================================================================
 */
 
-/* Encabezado principal */
+/* Encabezado principal — ocupa todo el ancho de la página */
 header {
   /* BACKGROUND: Degradado lineal de arriba hacia abajo */
   background: linear-gradient(180deg, #2c3e50 0%, #243447 100%);
   /* 180deg = de arriba hacia abajo, colores del azul oscuro al negro */
+  /* El degradado da profundidad: parece que el cielo se oscurece hacia abajo */
 
   /* COLOR: Color del texto dentro del header */
-  color: #fff8f8;  /* Blanco ligeramente rosado */
+  color: #fff8f8;  /* Blanco ligeramente rosado — más suave que blanco puro */
 
-  /* PADDING: Espacio interno - arriba, izquierda/derecha, abajo */
+  /* PADDING: Espacio interno - 10px arriba, 20px lados, 48px abajo */
   padding: 10px 20px 48px;
+  /* padding-bottom extra (48px) separa el header del contenido principal */
 
-  /* TEXT-ALIGN: Centra horizontalmente el contenido */
+  /* TEXT-ALIGN: Centra horizontalmente el contenido (título, imagen) */
   text-align: center;
 }
 
@@ -42,25 +81,27 @@ header {
   que tiene un contexto o necesita una descripción.
 */
 header figure {
-  margin: 0;  /* MARGEN: Sin espacio exterior */
+  margin: 0;  /* quita el margen que el navegador pone por defecto a <figure> */
 }
 
 /*
   IMÁGENES EN EL HEADER
   Reglas específicas para las imágenes dentro del header.
+  width+max-width+height = receta clásica para imágenes responsivas:
+  la imagen se encoge si el contenedor es más angosto, pero no se estira.
 */
 header img {
-  width: auto;      /* ANCHO: Automático (mantiene proporción) */
-  max-width: 100%;  /* MÁXIMO: No más ancho que su contenedor */
-  height: auto;     /* ALTO: Automático (mantiene proporción) */
+  width: auto;      /* mantiene el ancho natural de la imagen */
+  max-width: 100%;  /* límite: nunca más ancha que el header */
+  height: auto;     /* ajusta el alto proporcionalmente al ancho */
 }
 
 /*
   PÁRRAFO EN EL HEADER
-  El texto descriptivo debajo del logo.
+  El texto descriptivo debajo del logo/título.
 */
 header p {
-  margin-top: 6px;      /* MARGEN SUPERIOR: 6px de espacio arriba */
-  font-size: 1.1rem;    /* TAMAÑO: 1.1 veces el tamaño base (16px = 17.6px) */
-  color: #fbe7e9;       /* COLOR: Rosa claro */
+  margin-top: 6px;      /* pequeño espacio entre la imagen y el texto */
+  font-size: 1.1rem;    /* ligeramente más grande que el texto normal (1.1 × 16px) */
+  color: #fbe7e9;       /* rosa claro — complementa al blanco rosado del header */
 }

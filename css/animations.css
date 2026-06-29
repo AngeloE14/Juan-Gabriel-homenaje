@@ -2,58 +2,76 @@
    ANIMATIONS.CSS - Animaciones y keyframes
    ===========================================
 
-   Este archivo contiene todas las animaciones CSS, keyframes
-   y efectos de transición utilizados en el sitio.
+   CONCEPTOS CLAVE PARA PRINCIPIANTES:
+   ------------------------------------
+   1. TRANSITION: cambia propiedades suavemente (color, opacidad, posición)
+      cuando ocurre un evento (:hover, cambio de clase). Ej: opacity con transition.
+
+   2. @KEYFRAMES: define una animación paso a paso con porcentajes (0% a 100%).
+      La animación se ejecuta aunque no haya interacción del usuario.
+      Ej: el logo aparece con efecto de "rebote" al cargar la página.
+
+   3. ANIMATION vs TRANSITION:
+      - transition: "si algo cambia, que cambie suave" (ej: hover → se ilumina)
+      - animation: "reproduce estos pasos" (ej: el logo aparece al abrir la página)
 
    Contenido:
-   - Animación del logo de Juan Gabriel
-   - Animación de entrada del modal
-   - Keyframes para efectos visuales
+   - Intro-overlay: pantalla de video a fullscreen (carga inicial)
+   - Logo: aparece con rebote y brillo (aparecerLogo)
+   - Modal: se desliza al abrirse (modalSlideIn)
 */
 
-/* Intro en video a pantalla completa */
+/* Intro en video a pantalla completa.
+   Cuando la página carga, se muestra un video de bienvenida que cubre toda la pantalla.
+   Luego de unos segundos se desvanece (opacity → 0) para mostrar el contenido real. */
 #intro-overlay {
-  position: fixed;
+  position: fixed;       /* cubre toda la ventana, no se mueve al hacer scroll */
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 5000;
+  width: 100vw;          /* 100vw = todo el ancho de la ventana (viewport width) */
+  height: 100vh;         /* 100vh = todo el alto de la ventana (viewport height) */
+  z-index: 5000;         /* z-index muy alto para que esté encima de absolutamente todo */
   background: #000;
-  overflow: hidden;
+  overflow: hidden;      /* oculta cualquier parte del video que se salga del contenedor */
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.65s ease, visibility 0.65s ease;
+  transition: opacity 0.65s ease, visibility 0.65s ease; /* al ocultarse, se desvanece suavemente */
 }
 
 #intro-video {
   position: absolute;
-  inset: 0;
+  inset: 0;              /* atajo para top:0; right:0; bottom:0; left:0 */
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;     /* el video se estira para cubrir todo sin deformarse */
   object-position: center;
   background: #000;
 }
 
+/* Cuando el intro está activo (body.intro-activa):
+   - Se bloquea el scroll (overflow: hidden)
+   - El fondo se vuelve negro
+   - El contenido real (#page-content) se oculta con opacity: 0 */
 body.intro-activa {
-  overflow: hidden;
+  overflow: hidden;          /* evita hacer scroll mientras se reproduce el intro */
   background: #000;
-  overscroll-behavior: none;
+  overscroll-behavior: none; /* evita el "rebote" del scroll en Chrome/móvil */
 }
 
 #page-content {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.45s ease; /* aparece/desaparece suavemente */
 }
 
 body.intro-activa #page-content {
-  opacity: 0;
+  opacity: 0;                /* el contenido está oculto durante el intro */
   visibility: hidden;
-  pointer-events: none;
+  pointer-events: none;      /* no se puede hacer clic en nada durante el intro */
 }
 
+/* Cuando el intro termina (body.intro-finalizada), el overlay se desvanece:
+   opacity: 0 + visibility: hidden + pointer-events: none = desaparece por completo. */
 body.intro-finalizada #intro-overlay,
 #intro-overlay.is-hidden {
   opacity: 0;
@@ -61,53 +79,53 @@ body.intro-finalizada #intro-overlay,
   pointer-events: none;
 }
 
-/* Animación de aparición del logo */
+/* Animación de aparición del logo de Juan Gabriel.
+   Empieza invisible (opacity: 0) y un poco reducido (scale: 0.9).
+   body:not(.intro-activa) = se activa SOLO cuando el intro de video terminó. */
 .logo-juan {
-  opacity: 0;
-  transform: scale(0.9);
+  opacity: 0;             /* invisible al inicio */
+  transform: scale(0.9);  /* un 10% más pequeño (efecto de "crecerá") */
 }
 
 body:not(.intro-activa) .logo-juan {
+  /* animation: nombre | duración | aceleración | fill-mode
+     forwards = al final de la animación se queda en el último estado (100%) */
   animation: aparecerLogo 4s ease forwards;
 }
 
 @keyframes aparecerLogo {
+  /* @keyframes define una animación con pasos (0% = inicio, 100% = final).
+     Esta animación simula el logo "cayendo" con un rebote y un destello dorado. */
   0% {
+    /* Inicio: invisible, más pequeño, sin brillo */
     opacity: 0;
-    transform: scale(0.75);
-    filter: drop-shadow(0 0 0px rgba(255,255,255,0));
+    transform: scale(0.75);                    /* 75% del tamaño normal */
+    filter: drop-shadow(0 0 0px rgba(255,255,255,0)); /* sin sombra */
   }
 
   25% {
+    /* Pico del destello: aparece completo, más grande, con brillo blanco y dorado intenso */
     opacity: 1;
-    transform: scale(1.15);
+    transform: scale(1.15);                    /* 115% -> se agranda un poco (efecto rebote) */
     filter:
-      drop-shadow(0 0 40px rgba(255,255,255,1))
-      drop-shadow(0 0 30px rgba(212,175,55,0.9));
+      drop-shadow(0 0 40px rgba(255,255,255,1))     /* sombra blanca intensa (brillo) */
+      drop-shadow(0 0 30px rgba(212,175,55,0.9));   /* sombra dorada (brillo cálido) */
   }
 
   55% {
-    transform: scale(0.97);
+    /* Rebote: se encoge un poco, el brillo se reduce */
+    transform: scale(0.97);                    /* 97% -> casi tamaño normal ("rebote") */
     filter:
       drop-shadow(0 0 10px rgba(255,255,255,0.3))
       drop-shadow(0 0 6px rgba(212,175,55,0.2));
   }
 
   100% {
+    /* Final: tamaño normal (100%), sin sombras extra */
     opacity: 1;
     transform: scale(1);
-    filter: none; /* limpio total */
+    filter: none; /* limpio total: sin filtros, aspecto natural */
   }
 }
 
-/* Animación de entrada del modal de Bellas Artes */
-@keyframes modalSlideIn {
-  from {
-    transform: scale(0.9) translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
+

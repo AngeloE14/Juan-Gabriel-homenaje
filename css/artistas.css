@@ -1,9 +1,61 @@
+/* ===================================================================
+   ARTISTAS.CSS  —  Galería de Artistas / Compositores
+   ===================================================================
+
+   ¿QUÉ HACE ESTE ARCHIVO?
+   -----------------------
+   Da estilo a la sección de la galería donde se muestran fotos de
+   artistas y compositores (como Juan Gabriel). Cada artista aparece
+   dentro de un marco dorado ornamentado que simula un cuadro antiguo
+   de pared, con una placa debajo que lleva su nombre y alias.
+
+   CONCEPTOS CLAVE QUE APRENDERÁS AQUÍ:
+   -------------------------------------
+   1.  Gradientes radiales (radial-gradient)  → Fondo cálido oscuro
+       de la sección y puntos dorados en la placa.
+   2.  Gradientes lineales (linear-gradient)  → Tonos dorados/marrones
+       que simulan marcos de cuadro con iluminación.
+   3.  Anidamiento de cajas con padding        → Cada capa del marco
+       (portrait-frame → inner → mat → image) agrega un borde
+       simulado.
+   4.  Pseudo-elementos ::before y ::after     → Crean bordes
+       decorativos, líneas divisorias y efectos de luz SIN
+       necesidad de HTML adicional.
+   5.  Box-shadow múltiples                    → Sombras interiores
+       (inset) y exteriores para dar relieve 3D al marco.
+   6.  Aspect-ratio                            → Mantiene la
+       proporción 4:5 de las fotos sin distorsión.
+   7.  Clamp()                                → Tamaños fluidos que
+       se adaptan a cualquier pantalla.
+   8.  prefers-reduced-motion                 → Respeta los gustos
+       del usuario: solo anima si el sistema lo permite.
+   9.  Scrollbar oculta                       → Galería que se
+       desplaza horizontalmente sin mostrar la barra.
+   10. Google Fonts (Cinzel, Cormorant Garamond) → Letras elegantes
+       cargadas desde internet.
+
+   PALETA DE COLORES (dorados/marrones/cálidos):
+   ----------------------------------------------
+   #dab648, #c49a2a, #9c7420, #6b4f18  → Dorados del marco exterior
+   #8b6914, #6b4f18, #3f2e0c            → Dorados oscuros del marco interior
+   #1e1508, #150e06, #0f0a04            → Marrón oscuro del paspartú
+   #cfa66f, #d4af37, #e8d5a8            → Dorados de la placa y texto
+   #f4d794, #f0dfbb                     → Dorados claros de títulos
+
+   =================================================================== */
+
+/* ─── SECCIÓN PRINCIPAL ─────────────────────────────── */
+
 #artistas-composiciones {
   margin: 46px auto 54px;
   padding: clamp(42px, 7vw, 78px) clamp(16px, 3vw, 34px);
+  /* Gradiente radial: simula un foco de luz cálida en el centro
+     que se oscurece hacia las orillas como el cielo nocturno */
   background: radial-gradient(circle at center, #2b1808 0%, #1a0f05 35%, #080808 100%);
+  /* Bordes delgados dorados translúcidos arriba y abajo */
   border-top: 1px solid rgba(207, 166, 111, 0.38);
   border-bottom: 1px solid rgba(207, 166, 111, 0.32);
+  /* Sombras interiores (inset) que dan un sutil brillo en los bordes */
   box-shadow:
     inset 0 1px 0 rgba(255, 238, 198, 0.06),
     inset 0 -1px 0 rgba(255, 238, 198, 0.04);
@@ -11,91 +63,105 @@
 }
 
 .artistas-legado__intro {
-  width: min(920px, 100%);
+  width: min(920px, 100%);          /* Toma el menor: 920px o el 100% */
   margin: 0 auto clamp(30px, 4vw, 46px);
   text-align: center;
 }
 
 .artistas-legado__intro h2 {
   margin: 0 0 14px;
-  color: #f4d794;
+  color: #f4d794;                   /* Dorado claro */
   font-size: clamp(1.8rem, 4vw, 3rem);
   line-height: 1.15;
   letter-spacing: 0;
-  text-shadow: 0 0 16px rgba(244, 215, 148, 0.18);
+  text-shadow: 0 0 16px rgba(244, 215, 148, 0.18);  /* Resplandor dorado */
 }
 
 .artistas-legado__intro p {
   width: min(780px, 100%);
   margin: 0 auto;
-  color: #f0dfbb;
+  color: #f0dfbb;                   /* Beige/dorado muy claro */
   font-size: clamp(1.02rem, 2vw, 1.25rem);
-  line-height: 1.7;
+  line-height: 1.7;                 /* Altura de línea para mejor lectura */
 }
+
+/* ─── GALERÍA DESPLAZABLE ────────────────────────────── */
 
 .artistas-gallery {
   width: 100%;
   max-width: none;
   margin: 0 auto;
-  overflow-x: auto;
+  overflow-x: auto;        /* Permite desplazarse horizontalmente */
   overflow-y: visible;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  touch-action: pan-x;
+  scrollbar-width: none;   /* Firefox: oculta la barra de scroll */
+  -ms-overflow-style: none;/* IE/Edge: oculta la barra de scroll */
+  touch-action: pan-x;     /* Navegación táctil solo horizontal */
 }
 
 .artistas-gallery::-webkit-scrollbar {
-  display: none;
+  display: none;           /* Chrome/Safari: oculta la barra */
   width: 0;
   height: 0;
 }
 
+/* El track contiene todos los artistas en fila horizontal */
 .artistas-track {
   display: flex;
   align-items: flex-start;
   gap: clamp(22px, 3vw, 38px);
-  width: max-content;
+  width: max-content;       /* Crece según el contenido, no se envuelve */
   padding: clamp(8px, 1.5vw, 18px) clamp(12px, 3vw, 40px);
 }
+
+/* ─── MARCO EXTERIOR: CADA TARJETA DE ARTISTA ────────── */
 
 .artista-frame {
   position: relative;
   margin: 0;
-  flex: 0 0 clamp(195px, 25vw, 275px);
+  flex: 0 0 clamp(195px, 25vw, 275px);  /* Ancho fijo, no se encoge */
   display: flex;
   flex-direction: column;
 }
 
+/* Capa 1: Marco dorado exterior (el borde más ancho)
+   Gradiente lineal en diagonal (150deg) con múltiples paradas de
+   color dorado/marrón para simular el brillo metálico de un marco
+   de cuadro antiguo iluminado desde arriba a la izquierda */
 .portrait-frame {
   position: relative;
   background:
     linear-gradient(150deg,
-      #dab648 0%,
+      #dab648 0%,      /* Dorado claro (punto más iluminado) */
       #c49a2a 15%,
       #9c7420 30%,
       #6b4f18 45%,
-      #3f2e0c 50%,
+      #3f2e0c 50%,    /* Marrón oscuro (zona de sombra) */
       #5c4410 55%,
       #8b6914 70%,
       #b8962e 85%,
       #dab648 100%
     );
   padding: clamp(12px, 1.8vw, 20px);
+  /* Sombra exterior que separa el marco del fondo */
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.55),
     0 0 28px rgba(207, 166, 111, 0.08);
 }
 
+/* Pseudo-elemento: borde interior muy fino que delimita el marco
+   (solo 1px de separación desde el borde) */
 .portrait-frame::before {
-  content: "";
+  content: "";           /* Obligatorio en ::before / ::after */
   position: absolute;
-  inset: 1px;
+  inset: 1px;            /* Se posiciona 1px dentro del contenedor */
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-top-color: rgba(255, 235, 190, 0.02);
-  border-left-color: rgba(255, 235, 190, 0.02);
-  pointer-events: none;
+  border-top-color: rgba(255, 235, 190, 0.02);  /* Brillo sutil arriba */
+  border-left-color: rgba(255, 235, 190, 0.02); /* Brillo sutil izquierda */
+  pointer-events: none;  /* No interfiere con clics del ratón */
 }
 
+/* Capa 2: Marco interior (más oscuro, da profundidad)
+   El gradiente diagonal inverso simula la sombra del bisel del marco */
 .portrait-frame__inner {
   position: relative;
   background:
@@ -107,6 +173,8 @@
       #8b6914 100%
     );
   padding: clamp(6px, 0.9vw, 12px);
+  /* Múltiples sombras interiores (inset): simulan el bisel
+     con bordes iluminados arriba/izquierda y sombra abajo/derecha */
   box-shadow:
     inset 0 1px 0 rgba(255, 235, 190, 0.08),
     inset 1px 0 0 rgba(255, 235, 190, 0.06),
@@ -115,6 +183,7 @@
     inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
+/* Brillo diagonal muy sutil sobre el marco interior */
 .portrait-frame__inner::after {
   content: "";
   position: absolute;
@@ -124,6 +193,8 @@
   pointer-events: none;
 }
 
+/* Capa 3: Paspartú (la orla oscura que rodea la foto)
+   Simula el cartón oscuro que separa el marco de la fotografía */
 .portrait-mat {
   position: relative;
   background:
@@ -135,6 +206,7 @@
     inset -1px -1px 0 rgba(0, 0, 0, 0.3);
 }
 
+/* Brillo diagonal sobre el paspartú */
 .portrait-mat::after {
   content: "";
   position: absolute;
@@ -144,6 +216,9 @@
   pointer-events: none;
 }
 
+/* Capa 4: La fotografía en sí
+   aspect-ratio: 4/5  →  Mantiene proporción 4 de ancho × 5 de alto
+   (como las fotos de retrato tradicionales) */
 .portrait-image {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -153,6 +228,8 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Superposición de luz sutíl sobre la imagen
+   Degradado vertical + viñeta radial para dar ambiente */
 .portrait-image::after {
   content: "";
   position: absolute;
@@ -167,24 +244,36 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  filter: saturate(0.92) contrast(1.05);
+  object-fit: cover;         /* Recorta la imagen para llenar el espacio */
+  object-position: center top;/* Enfoca el rostro (centro y arriba) */
+  filter: saturate(0.92) contrast(1.05);  /* Sutiles ajustes de color */
 }
 
+/* ─── PLACA CON NOMBRE ────────────────────────────────── */
+
+/* Placa decorativa que va debajo de cada retrato, simulando
+   una placa de metal/madera con el nombre del artista
+   Las 4 primeras capas radiales crean puntitos dorados en cada
+   esquina (simulando tachuelas/clavos decorativos) */
 .portrait-plaque {
   position: relative;
   margin: clamp(10px, 1.4vw, 16px) 0 0;
   padding: clamp(18px, 2.2vw, 24px) clamp(14px, 1.6vw, 18px) clamp(16px, 2vw, 22px);
   background:
+    /* Punto dorado: esquina superior izquierda */
     radial-gradient(circle 3px at 9px 9px, rgba(207, 166, 111, 0.35) 0%, rgba(207, 166, 111, 0.1) 60%, transparent 100%),
+    /* Punto dorado: esquina superior derecha */
     radial-gradient(circle 3px at calc(100% - 9px) 9px, rgba(207, 166, 111, 0.35) 0%, rgba(207, 166, 111, 0.1) 60%, transparent 100%),
+    /* Punto dorado: esquina inferior izquierda */
     radial-gradient(circle 3px at 9px calc(100% - 9px), rgba(207, 166, 111, 0.35) 0%, rgba(207, 166, 111, 0.1) 60%, transparent 100%),
+    /* Punto dorado: esquina inferior derecha */
     radial-gradient(circle 3px at calc(100% - 9px) calc(100% - 9px), rgba(207, 166, 111, 0.35) 0%, rgba(207, 166, 111, 0.1) 60%, transparent 100%),
+    /* Fondo degradado marrón oscuro con centro más claro */
     linear-gradient(180deg, #2a1d0b 0%, #3a2812 12%, #150e06 40%, #120c05 55%, #2a1d0b 100%);
   border: 2px solid #cfa66f;
   border-radius: 2px;
   text-align: center;
+  /* Sombra exterior + borde interior simulado con sombras (inset) */
   box-shadow:
     0 5px 18px rgba(0, 0, 0, 0.45),
     inset 0 0 0 3px rgba(26, 18, 8, 0.3),
@@ -192,6 +281,7 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
+/* Línea decorativa horizontal antes del nombre */
 .portrait-plaque::before {
   content: "";
   display: block;
@@ -201,6 +291,8 @@
   background: rgba(207, 166, 111, 0.25);
 }
 
+/* Nombre del artista: Cinzel (Google Font) con mayúsculas
+   y espaciado entre letras (letter-spacing) */
 .plaque-name {
   display: block;
   font-family: "Cinzel", "Palatino Linotype", serif;
@@ -208,25 +300,27 @@
   font-size: clamp(0.8rem, 1.5vw, 1.05rem);
   line-height: 1.4;
   color: #e8d5a8;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.14em;      /* Espacio extra entre letras */
+  text-transform: uppercase;   /* Todo en mayúsculas */
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.75),
     0 0 4px rgba(232, 213, 168, 0.03);
 }
 
+/* Alias (apodo): Cormorant Garamond en itálicas y dorado */
 .plaque-alias {
   display: block;
   margin-top: 5px;
   font-family: "Cormorant Garamond", "Palatino Linotype", serif;
-  font-style: italic;
+  font-style: italic;          /* Letra inclinada (cursiva) */
   font-weight: 500;
   font-size: clamp(0.74rem, 1.3vw, 0.9rem);
-  color: #d4af37;
+  color: #d4af37;             /* Dorado más brillante */
   letter-spacing: 0.08em;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
 }
 
+/* Línea decorativa horizontal después del alias */
 .portrait-plaque::after {
   content: "";
   display: block;
@@ -236,9 +330,13 @@
   background: rgba(207, 166, 111, 0.18);
 }
 
+/* ─── ANIMACIONES AL PASAR EL RATÓN (hover) ──────────── */
+
+/* prefers-reduced-motion: solo anima si el usuario NO ha
+   configurado su sistema para reducir animaciones (accesibilidad) */
 @media (prefers-reduced-motion: no-preference) {
   .artista-frame {
-    transition: transform 0.4s ease;
+    transition: transform 0.4s ease;    /* Transición suave al levantarse */
   }
 
   .artista-frame .portrait-frame,
@@ -255,6 +353,7 @@
       filter 0.5s ease;
   }
 
+  /* Al hacer hover: la tarjeta se levanta 3px */
   .artista-frame:hover {
     transform: translateY(-3px);
   }
@@ -263,7 +362,7 @@
     transform: translateY(-2px);
     box-shadow:
       0 14px 38px rgba(0, 0, 0, 0.6),
-      0 0 36px rgba(207, 166, 111, 0.15);
+      0 0 36px rgba(207, 166, 111, 0.15);  /* Brillo dorado extra */
   }
 
   .artista-frame:hover .portrait-frame__inner {
@@ -282,14 +381,18 @@
       inset 0 0 0 3px rgba(26, 18, 8, 0.3),
       inset 0 1px 0 rgba(255, 235, 190, 0.1),
       inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-    border-color: #d6b144;
+    border-color: #d6b144;              /* Borde más brillante al hover */
   }
 
+  /* La imagen se agranda ligeramente (scale) al pasar el ratón */
   .artista-frame:hover .portrait-image img {
     transform: scale(1.03);
     filter: saturate(1) contrast(1.06);
   }
 }
+
+/* ─── VERSIÓN PARA TABLETS (pantallas de hasta 760px) ── */
+/* Los tamaños se reducen y los espacios se ajustan */
 
 @media (max-width: 760px) {
   #artistas-composiciones {
@@ -297,11 +400,11 @@
   }
 
   .artistas-track {
-    gap: 16px;
+    gap: 16px;                              /* Menos espacio entre tarjetas */
   }
 
   .artista-frame {
-    flex: 0 0 clamp(175px, 38vw, 245px);
+    flex: 0 0 clamp(175px, 38vw, 245px);   /* Más ancho relativo al viewport */
   }
 
   .portrait-plaque {
@@ -330,9 +433,12 @@
 
 }
 
+/* ─── VERSIÓN PARA MÓVILES (pantallas de hasta 460px) ── */
+/* Tamaños fijos más pequeños y compactos */
+
 @media (max-width: 460px) {
   .artista-frame {
-    flex: 0 0 min(74vw, 265px);
+    flex: 0 0 min(74vw, 265px);            /* Ocupa 74% del ancho visible */
   }
 
   .portrait-plaque {

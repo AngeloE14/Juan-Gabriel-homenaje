@@ -96,6 +96,12 @@
     <link rel="stylesheet" href="css/animations.css" />
     <!-- ANIMATIONS: Animaciones y transiciones -->
 
+    <link rel="stylesheet" href="css/lightbox.css" />
+    <!-- LIGHTBOX: Visor de fotos en pantalla completa -->
+
+    <link rel="stylesheet" href="css/back-to-top.css" />
+    <!-- BACK TO TOP: Botón flotante para volver al inicio -->
+
     <!-- FUENTES: Tipografías ceremoniales para galería de homenaje -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -123,15 +129,7 @@
 
     <div id="page-content">
 
-    <!--
-      ===========================================
-      HEADER - ENCABEZADO DE LA PÁGINA
-      ===========================================
-
-      El header contiene el logo y una descripción introductoria.
-      Es la primera impresión que tienen los visitantes.
-    -->
-    <header>
+      <header>
       <!-- CENTER: Centra el contenido (aunque está obsoleto, funciona) -->
       <center>
         <figure>
@@ -573,7 +571,7 @@
 
         <article class="multimedia-card">
           <video controls preload="metadata" playsinline aria-label="Video: Juan Gabriel - Ensayo Debo Hacerlo 1990">
-            <source src="videos/Juan%20Gabriel%20-%20Ensayo%20%28Debo%20Hacerlo%29.mp4" type="video/mp4">
+            <source src="videos/Juan Gabriel - Ensayo Debo hacerlo.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
           <p><strong>Juan Gabriel - Ensayo &quot;Debo Hacerlo 1990&quot;</strong></p>
@@ -951,12 +949,24 @@
             <img src="Pictures/iconic_photos/Frase.jpg"
                  alt="Frase destacada de Juan Gabriel"
                  loading="lazy">
-            <figcaption>...</figcaption>
+            <figcaption></figcaption>
           </figure>
         </div>
 
       </div>
     </section>
+
+    <!-- LIGHTBOX: Visor de fotos a pantalla completa -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <div class="lightbox__overlay" data-close-modal="true"></div>
+      <div class="lightbox__content" role="dialog" aria-modal="true" aria-label="Visor de fotos">
+        <button type="button" class="lightbox__close" id="lightbox-close" aria-label="Cerrar">&times;</button>
+        <div class="lightbox__img-wrapper">
+          <img id="lightbox-img" src="" alt="">
+        </div>
+        <p class="lightbox__caption" id="lightbox-caption"></p>
+      </div>
+    </div>
 
     <section id="discografia" aria-label="Discografía de Juan Gabriel">
       <h2 class="discografia-title">LEGADO</h2>
@@ -1004,7 +1014,7 @@
 
       <div class="discografia-firma">
         <img src="assets/Firma_de_Juan_Gabriel.svg.png"
-             alt="Firma de Juan Gabriel"po
+             alt="Firma de Juan Gabriel"
              title="La icónica firma de Juan Gabriel">
       </div>
 
@@ -1066,6 +1076,10 @@
       </a>
     </p>
   </footer>
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <button type="button" id="btn-subir" aria-label="Volver al inicio">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
   </div>
   <script type="module" src="js/index.js"></script>
 </body>

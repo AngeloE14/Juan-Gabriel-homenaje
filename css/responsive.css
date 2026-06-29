@@ -1,241 +1,339 @@
-/* ===========================================
-   RESPONSIVE.CSS - Estilos responsivos
-   ===========================================
+/* ==========================================================================
+   RESPONSIVE.CSS — Estilos responsivos (adaptación a diferentes pantallas)
+   ==========================================================================
 
-   Este archivo contiene todas las media queries y estilos responsivos
-   para diferentes tamaños de pantalla (móvil, tablet, desktop).
+   ¿QUÉ HACE ESTE ARCHIVO?
+   Hace que la página se vea bien en cualquier dispositivo: móvil, tablet
+   o computadora. Usa "media queries" para detectar el tamaño de la
+   pantalla y aplicar estilos diferentes según corresponda.
 
-   Contenido:
-   - Media queries para móviles
-   - Ajustes para tablets
-   - Estilos para pantallas grandes
-   - Preferencias de movimiento reducido
+   ═══════════════════════════════════════════════════════════════════════════
+   CONCEPTOS CSS EXPLICADOS:
+
+   1. @MEDIA QUERY (Consulta de medios)
+      Es como un "if" (si) en CSS. Le preguntamos al navegador:
+      "Si la pantalla mide 700px o menos, aplica estos estilos".
+      Sintaxis: @media (max-width: 700px) { ... }
+      - max-width: el estilo se aplica HASTA ese ancho (móvil)
+      - También podemos preguntar por prefers-reduced-motion,
+        orientation (landscape/portrait), etc.
+
+   2. PREFERS-REDUCED-MOTION
+      Consulta que respeta la configuración de accesibilidad del usuario.
+      Si el usuario prefiere NO ver animaciones, los estilos dentro
+      de @media (prefers-reduced-motion: no-preference) solo se aplican
+      si el usuario NO tiene activada esa opción.
+
+   3. SCROLL-SNAP
+      Sistema que "encaja" el scroll en puntos específicos.
+      - scroll-snap-type: x mandatory → el scroll horizontal se detiene
+        en cada tarjeta obligatoriamente.
+      - scroll-snap-align: center → cada tarjeta se alinea al centro
+        cuando haces scroll.
+      Es como pasar diapositivas: el scroll "salta" suavemente de una
+      tarjeta a la siguiente.
+
+   4. CSS CUSTOM PROPERTIES (--nombre)
+      Variables de CSS. --card-size: 300px define una variable que se
+      usa después con var(--card-size). Útil para mantener consistencia.
+
+   5. MIN()
+      Función que elige el valor MÁS PEQUEÑO entre los que se le pasan.
+      min(100%, 310px) = el menor entre 100% y 310px.
+
+   6. CALC()
+      Función que hace cálculos matemáticos en CSS.
+      calc(100vh - 150px) = alto de la ventana menos 150px.
+
+   7. ASPECT-RATIO
+      Mantiene una proporción fija entre ancho y alto.
+      aspect-ratio: 3/5 → por cada 3 de ancho, 5 de alto.
+
+   8. VH / SVH (Unidades de viewport)
+      vh = 1% del alto de la ventana. 100vh = toda la ventana.
+      svh = "small viewport height" — mejor en móvil porque ignora
+      la barra de direcciones que aparece/desaparece.
+
+   9. ENV(SAFE-AREA-INSET-TOP)
+      Espacio seguro en dispositivos con notch (iPhone X+).
+      Evita que el contenido quede detrás de la cámara o bordes.
+
+   10. GRID
+      Sistema de layout en cuadrícula. grid-template-columns define
+      cuántas columnas hay. repeat(3, 1fr) = 3 columnas iguales.
+
+   ═══════════════════════════════════════════════════════════════════════════
+   PUNTOS DE QUIEBRE (BREAKPOINTS) — En qué tamaño cambia cada cosa:
+
+   1100px → Ajustes para tablets (fotos, mosaicos)
+    900px → Discografía: de 4 a 3 columnas
+    700px → Móvil: fuente más pequeña, layout de una columna
+    640px → Discografía: de 3 a 2 columnas
+    560px → Pantallas muy pequeñas: multimedia a 1 columna
+
+   ═══════════════════════════════════════════════════════════════════════════
+   CARRUSEL DE FRAGMENTOS MUSICALES (.fragmentos-scroll):
+
+   Es un carrusel horizontal con scroll nativo (no JavaScript).
+   Funciona así:
+   1. .fragmentos-scroll: contenedor con overflow-x: auto y
+      scroll-snap-type: x mandatory
+   2. .fragmentos-track: display:flex con ancho mayor que el contenedor
+   3. .fragmento-card: cada tarjeta tiene scroll-snap-align: center
+
+   El usuario desliza horizontalmente y las tarjetas "encajan" centradas.
+
+   ═══════════════════════════════════════════════════════════════════════════
+   MODAL DE BELLAS ARTES EN MÓVIL:
+
+   En pantallas pequeñas, el modal (ventana emergente) cambia a:
+   - Pantalla completa (100vw × 100vh)
+   - Sin bordes redondeados
+   - scroll vertical interno
+   - Cortinas decorativas más pequeñas
+   - Botones en columna (vertical) en lugar de fila
+
+   ═══════════════════════════════════════════════════════════════════════════
+   DISCOGRAFÍA:
+
+   La galería de álbumes usa CSS Grid y cambia de columnas según la
+   pantalla: 4 columnas (grande) → 3 (900px) → 2 (640px)
+   ═══════════════════════════════════════════════════════════════════════════
 */
 
-/* Preferencias de movimiento reducido */
+/* Preferencias de movimiento reducido — solo anima si el usuario NO pidió quieto */
+/* prefers-reduced-motion es una configuración de accesibilidad del sistema operativo */
 @media (prefers-reduced-motion: no-preference) {
+  /* "no-preference" = el usuario NO ha pedido reducir movimiento → permitimos animaciones */
   .foto-card {
-    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;  /* anima elevación y sombra */
   }
 
   .foto-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 38px rgba(20, 35, 53, 0.14);
+    transform: translateY(-4px);                               /* se eleva 4px al pasar el mouse */
+    box-shadow: 0 18px 38px rgba(20, 35, 53, 0.14);           /* sombra más grande y difusa */
   }
 }
 
-/* CAMBIO: Carrusel 3D de Fragmentos a ancho completo sin wrapper visual extra */
+/* SECCIÓN DE LETRAS (Fragmentos) — ocupa todo el ancho disponible */
+/* En desktop tenía versión 3D; aquí se simplifica a carrusel horizontal plano */
 #letras {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
+  width: 100%;            /* ocupa todo el ancho de la pantalla */
+  max-width: none;        /* anula cualquier límite de ancho previo */
+  margin: 0;              /* sin márgenes externos */
+  padding: 0;             /* sin relleno interno */
 }
 
 #letras h2 {
-  color: #ecd59b;
-  padding-inline: clamp(12px, 2.6vw, 34px);
+  color: #ecd59b;         /* dorado claro para el título de la sección */
+  padding-inline: clamp(12px, 2.6vw, 34px);  /* padding fluido: 12px mínimo, 34px máximo */
 }
 
 #letras p {
-  margin-bottom: 14px;
-  padding-inline: clamp(12px, 2.6vw, 34px);
+  margin-bottom: 14px;    /* espacio debajo del párrafo descriptivo */
+  padding-inline: clamp(12px, 2.6vw, 34px);  /* mismo padding fluido que el h2 */
 }
 
-/* CAMBIO: Wrapper del carrusel sin fondo/borde/sombra, con scroll horizontal oculto */
+/* CONTENEDOR DEL CARRUSEL — scroll horizontal con tarjetas de canciones */
+/* overflow-x se oculta inicialmente; más abajo se reemplaza con auto para activar scroll */
 .fragmentos-scroll {
   width: 100%;
   max-width: none;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
-  padding: 12px 0 0;
-  margin-top: 0;
-  min-height: 0;
-  scroll-behavior: auto;
-  -webkit-overflow-scrolling: auto;
-  overscroll-behavior-x: none;
-  touch-action: pan-x;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+  position: relative;                     /* para posicionar elementos hijos absolutos */
+  overflow-x: hidden;                     /* oculta el desborde horizontal (se sobrescribe luego) */
+  overflow-y: visible;                    /* permite que el reflejo se vea abajo */
+  padding: 12px 0 0;                      /* espacio arriba, sin laterales ni abajo */
+  margin-top: 0;                          /* sin margen superior */
+  min-height: 0;                          /* altura mínima 0 — se ajusta al contenido */
+  scroll-behavior: auto;                  /* scroll instantáneo (no animado) */
+  -webkit-overflow-scrolling: auto;       /* comportamiento de scroll en iOS */
+  overscroll-behavior-x: none;            /* evita que el scroll se propague al fondo de la página */
+  touch-action: pan-x;                    /* solo scroll horizontal con touch */
+  scrollbar-width: none;                  /* oculta la barra de scroll en Firefox */
+  -ms-overflow-style: none;               /* oculta la barra en Edge/IE antiguo */
+  background: transparent;                /* fondo invisible */
+  border: 0;                              /* sin borde */
+  box-shadow: none;                       /* sin sombra */
 }
 
+/* Elimina cualquier pseudo-elemento decorativo que pudiera haber en la versión 3D */
 .fragmentos-scroll::before,
 .fragmentos-scroll::after {
-  content: none;
+  content: none;           /* anula cualquier contenido generado previo */
 }
 
+/* Aviso visual para navegación por teclado — borde dorado cuando el carrusel recibe foco */
 .fragmentos-scroll:focus-visible {
-  outline: 2px solid rgba(255, 215, 0, 0.75);
-  outline-offset: 3px;
+  outline: 2px solid rgba(255, 215, 0, 0.75);   /* borde dorado semitransparente */
+  outline-offset: 3px;                           /* separado 3px del borde del elemento */
 }
 
+/* Oculta la barra de scroll en Chrome/Safari (se mantiene la funcionalidad de scroll) */
 .fragmentos-scroll::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
+  display: none;    /* invisible pero scrolleable */
+  width: 0;         /* ancho 0 por si acaso */
+  height: 0;        /* alto 0 */
 }
 
-/* CAMBIO: Track horizontal plano */
+/* TRACK DEL CARRUSEL — tira horizontal que contiene las tarjetas */
+/* Es más ancha que el contenedor, lo que permite el scroll horizontal */
 .fragmentos-track {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 2.2vw, 30px);
-  width: 100%;
-  min-width: max-content;
-  overflow-x: visible;
-  overflow-y: visible;
-  background: transparent;
+  display: flex;                                        /* alinea las tarjetas en fila */
+  align-items: center;                                  /* centra verticalmente */
+  gap: clamp(16px, 2.2vw, 30px);                        /* espacio fluido entre tarjetas */
+  width: 100%;                                          /* ancho completo del contenedor */
+  min-width: max-content;                               /* mínimo: todo el contenido sin wrap */
+  overflow-x: visible;                                  /* no recorta el desborde horizontal */
+  overflow-y: visible;                                  /* deja ver el reflejo inferior */
+  background: transparent;                               /* sin fondo */
 }
 
-/* CAMBIO: Tarjetas planas sin 3D */
+/* TARJETA DE FRAGMENTO — cada tarjeta representa una canción en el carrusel */
 .fragmento-card {
-  --card-size: clamp(200px, 22vw, 300px);
-  margin: 0;
-  flex: 0 0 var(--card-size);
-  aspect-ratio: 3 / 5;
-  border-radius: 14px;
-  overflow: hidden;
-  background: transparent;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  --card-size: clamp(200px, 22vw, 300px);         /* variable: tamaño fluido entre 200px y 300px */
+  margin: 0;                                        /* sin margen */
+  flex: 0 0 var(--card-size);                       /* no crece, no encoge, ancho fijo = --card-size */
+  aspect-ratio: 3 / 5;                              /* proporción tipo póster (3:5) */
+  border-radius: 14px;                              /* esquinas redondeadas */
+  overflow: hidden;                                 /* oculta lo que sobresale del borde redondeado */
+  background: transparent;                           /* fondo invisible — se ve la imagen */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);    /* sombra grande para efecto flotante */
 }
 
 .fragmento-card img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  background: transparent;
+  display: block;               /* elimina espacio fantasma debajo de la imagen */
+  width: 100%;                  /* ocupa todo el ancho de la tarjeta */
+  height: 100%;                 /* ocupa todo el alto */
+  object-fit: contain;          /* ajusta la imagen sin deformarla */
+  object-position: center;      /* centra la imagen si sobra espacio */
+  background: transparent;      /* fondo invisible */
 }
 
-/* CAMBIO: Reflejo sutil inferior sin wrappers extra */
+/* REFLEJO INFERIOR — duplica la imagen invertida debajo de la tarjeta */
+/* Crea un efecto de reflejo como si la tarjeta estuviera sobre vidrio */
 .fragmento-card::after {
-  content: "";
-  position: absolute;
-  left: 6%;
+  content: "";                                           /* sin contenido de texto */
+  position: absolute;                                    /* posicionado respecto a .fragmento-card */
+  left: 6%;                                              /* 6% de margen a cada lado */
   right: 6%;
-  top: calc(100% + 8px);
-  height: 28%;
-  opacity: 0.15;
-  transform-origin: top center;
-  transform: scaleY(-1);
-  background-image: var(--fragmento-img);
+  top: calc(100% + 8px);                                 /* justo debajo de la tarjeta + 8px */
+  height: 28%;                                           /* alto del reflejo: 28% de la tarjeta */
+  opacity: 0.15;                                         /* muy tenue (15% visible) */
+  transform-origin: top center;                          /* punto de giro: centro arriba */
+  transform: scaleY(-1);                                 /* invierte verticalmente (espejo) */
+  background-image: var(--fragmento-img);                /* misma imagen que la tarjeta */
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
-  -webkit-mask-image: linear-gradient(transparent, transparent);
+  -webkit-mask-image: linear-gradient(transparent, transparent); /* máscara de transparencia */
   mask-image: linear-gradient(transparent, transparent);
-  pointer-events: none;
+  pointer-events: none;                                  /* el reflejo no es clickeable */
 }
 
-/* CAMBIO: Estados visuales durante arrastre */
+/* Estados visuales durante arrastre — el cursor cambia según la acción */
 .fragmentos-scroll.is-dragging {
-  cursor: grabbing;
+  cursor: grabbing;                 /* mano cerrada: mientras el usuario arrastra */
 }
 
 .fragmentos-scroll:not(.is-dragging) {
-  cursor: grab;
+  cursor: grab;                     /* mano abierta: cuando se puede arrastrar */
 }
 
-/* CAMBIO: Se desactiva 3D y se usa scroll-snap nativo en todos los tamaños */
+/* SCROLL-SNAP ACTIVADO — las tarjetas "encajan" al centro al hacer scroll */
+/* Esto sobrescribe el overflow-x: hidden de arriba para activar el desplazamiento */
 .fragmentos-scroll {
-  overflow-x: auto;
-  overflow-y: visible;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: clamp(12px, 3vw, 40px);
+  overflow-x: auto;                                          /* permite scroll horizontal */
+  overflow-y: visible;                                       /* reflejo visible abajo */
+  scroll-snap-type: x mandatory;                             /* snap OBLIGATORIO en cada tarjeta */
+  scroll-padding-inline: clamp(12px, 3vw, 40px);             /* espacio fluido a los lados al hacer snap */
 }
 
 .fragmentos-track {
-  width: max-content;
+  width: max-content;                                        /* el track es tan ancho como todo su contenido */
 }
 
 .fragmento-card {
-  scroll-snap-align: center;
-  transform: none !important;
-  opacity: 1 !important;
+  scroll-snap-align: center;                                 /* cada tarjeta se alinea al centro al scrollear */
+  transform: none !important;                                /* anula cualquier transformación 3D previa */
+  opacity: 1 !important;                                     /* asegura que las tarjetas sean visibles */
 }
 
-/* Ajustes para móviles */
+/* ==========================================================================
+   MEDIA QUERY: PANTALLAS DE 700px O MENOS (MÓVIL)
+   ==========================================================================
+   Todo lo que está dentro de @media (max-width: 700px) solo se aplica
+   cuando la pantalla mide 700 píxeles de ancho o menos (celulares).
+   ========================================================================== */
 @media (max-width: 700px) {
+  /* MÓVIL: texto general más pequeño (14px en vez de 16px) */
   body {
     font-size: 14px;
   }
 
   header {
-    padding-bottom: 34px;
+    padding-bottom: 34px;         /* menos espacio en el header para no ocupar toda la pantalla */
   }
 
   header img {
     width: auto;
-    max-width: 100%;
+    max-width: 100%;              /* la imagen del header se encoge si es necesario */
     height: auto;
   }
 
-  #firma {
-    width: calc(100% - 18px);
-    padding: 28px 16px 30px;
-    border-radius: 20px;
+  .multimedia-grid {
+    grid-template-columns: repeat(2, 1fr);  /* 2 columnas en móvil */
   }
 
-  #firma h2 {
-    margin-bottom: 18px;
-  }
-
-  .discografia-cita,
   .discografia-firma {
     margin-top: 24px;
-    padding: 12px 16px;
+    padding: 12px 16px;          /* más compacto en móvil */
     border-radius: 22px;
   }
 
   .frases-rotativas {
-    min-height: 138px;
+    min-height: 138px;           /* altura mínima más pequeña para el carrusel de frases */
     margin-top: 20px;
     padding-top: 18px;
   }
 
   .frase-rotativa {
-    inset: 18px 0 0;
+    inset: 18px 0 0;             /* posicionamiento más compacto */
     padding: 0 8px;
   }
 
   main {
-    padding-top: 16px;
+    padding-top: 16px;           /* menos separación superior en móvil */
   }
 
   #biografia article,
   #logros {
-    padding: 14px;
+    padding: 14px;               /* menos padding para aprovechar el espacio */
   }
 
   #biografia blockquote {
-    margin: 8px auto 0;
-    padding: 14px 14px;
+    margin: 8px auto 0;          /* menos margen superior */
+    padding: 14px 14px;          /* más compacto */
   }
 
-  /* En móvil usamos una sola columna para mantener lectura y scroll simples */
+  /* FOTOS ICÓNICAS — en móvil los mosaicos se apilan en UNA SOLA columna */
   #fotos-iconicas {
-    width: calc(100% - 10px);
-    padding: 28px 18px 32px;
-    border-radius: 22px;
+    width: calc(100% - 10px);       /* casi todo el ancho de la pantalla */
+    padding: 28px 18px 32px;        /* más compacto que en desktop */
+    border-radius: 22px;            /* esquinas menos redondeadas */
   }
 
   .fotos-mosaico {
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: column;         /* CAMBIO CLAVE: de fila a columna (apilado vertical) */
+    gap: 12px;                      /* espacio entre filas */
   }
 
   .fotos-mosaico__col {
-    gap: 12px;
+    gap: 12px;                      /* espacio entre fotos dentro de cada columna */
   }
 
   .foto-card {
-    margin-bottom: 18px;
-    border-radius: 20px;
+    margin-bottom: 18px;            /* espacio entre tarjetas de fotos */
+    border-radius: 20px;            /* esquinas redondeadas */
   }
 
   .foto-card--vinyl {
@@ -243,95 +341,95 @@
   }
 
   .foto-card__duo {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));  /* 2 columnas en móvil para duos */
     gap: 8px;
     padding: 8px;
   }
 
   .carousel__slide img {
-    height: 320px;
-    object-fit: contain;
+    height: 320px;                  /* alto fijo para las imágenes del carrusel */
+    object-fit: contain;            /* ajusta sin deformar */
   }
 
   .multimedia-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));  /* 2 columnas para videos/audios */
   }
 
   #letras {
-    padding: 0;
+    padding: 0;                     /* sin padding — ocupa todo el ancho */
   }
 
-  /* CAMBIO: Ajustes de layout del carrusel en móvil/tablet */
+  /* CARRUSEL DE FRAGMENTOS — más compacto en móvil */
   .fragmentos-scroll {
-    padding: 0;
+    padding: 0;                     /* sin relleno */
   }
 
   .fragmentos-track {
-    gap: 12px;
+    gap: 12px;                      /* menos espacio entre tarjetas */
   }
 
   .fragmento-card {
-    --card-size: min(68vw, 260px);
-    border-radius: 12px;
+    --card-size: min(68vw, 260px);  /* 68% del ancho de la pantalla, máximo 260px */
+    border-radius: 12px;            /* esquinas menos redondeadas */
   }
 
-  /* Modal de Bellas Artes en móvil */
+  /* MODAL DE BELLAS ARTES EN MÓVIL — pantalla completa, sin bordes, scroll vertical */
   .bellas-modal {
-    padding: 0;
-    align-items: stretch;
-    justify-items: stretch;
+    padding: 0;                             /* sin relleno */
+    align-items: stretch;                   /* estira el contenido al alto completo */
+    justify-items: stretch;                 /* estira al ancho completo */
   }
 
   .bellas-modal__content {
-    width: 100vw;
-    max-height: 100vh;
-    max-height: 100svh;
-    overflow-y: auto;
-    border-radius: 0;
-    border-left: 0;
+    width: 100vw;                           /* ancho completo de la pantalla */
+    max-height: 100vh;                      /* alto completo (viewport height) */
+    max-height: 100svh;                     /* mejor en móvil (small viewport height) */
+    overflow-y: auto;                       /* scroll vertical si el contenido es muy alto */
+    border-radius: 0;                       /* sin esquinas redondeadas — pantalla completa */
+    border-left: 0;                         /* sin bordes laterales */
     border-right: 0;
   }
 
   .bellas-stage-frame {
-    min-height: 100vh;
+    min-height: 100vh;                      /* mínimo alto de toda la ventana */
     min-height: 100svh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 58px 10px 18px;
+    flex-direction: column;                 /* contenido en columna vertical */
+    justify-content: center;                /* centrado vertical */
+    padding: 58px 10px 18px;                /* espacio para el botón de cerrar arriba */
   }
 
   .bellas-video {
-    width: min(100%, calc((100vh - 150px) * 16 / 9));
-    width: min(100%, calc((100svh - 150px) * 16 / 9));
-    border-width: 2px;
-    border-radius: 8px;
-    margin-bottom: 14px;
+    width: min(100%, calc((100vh - 150px) * 16 / 9));  /* ancho máximo manteniendo 16:9 */
+    width: min(100%, calc((100svh - 150px) * 16 / 9));  /* versión svh para móvil */
+    border-width: 2px;                      /* borde más delgado */
+    border-radius: 8px;                     /* esquinas ligeramente redondeadas */
+    margin-bottom: 14px;                    /* espacio debajo del video */
   }
 
   .bellas-download {
-    max-width: min(100%, 310px);
-    padding: 6px 12px 6px 6px;
+    max-width: min(100%, 310px);             /* máximo 310px o 100% */
+    padding: 6px 12px 6px 6px;              /* más compacto */
   }
 
   .bellas-download__cover {
-    flex-basis: 38px;
+    flex-basis: 38px;                        /* portada del álbum más pequeña */
     width: 38px;
     height: 38px;
   }
 
   .bellas-download__eyebrow {
-    font-size: 0.58rem;
-    letter-spacing: 1px;
+    font-size: 0.58rem;                      /* texto muy pequeño */
+    letter-spacing: 1px;                     /* espaciado entre letras */
   }
 
   .bellas-download__label {
-    font-size: 0.82rem;
+    font-size: 0.82rem;                      /* texto del enlace de descarga */
   }
 
   .bellas-switch {
     gap: 16px;
-    flex-direction: column;
+    flex-direction: column;                  /* los botones se apilan VERTICALMENTE */
   }
 
   .bellas-btn {
@@ -339,43 +437,45 @@
     padding: 8px 18px 8px 8px;
     font-size: 0.9rem;
     letter-spacing: 1px;
-    width: 100%;
-    max-width: 340px;
+    width: 100%;                             /* ocupa todo el ancho disponible */
+    max-width: 340px;                        /* pero no más de 340px */
   }
 
   .bellas-btn__info {
-    min-width: 0;
+    min-width: 0;                            /* anula mínimo de ancho para que quepa */
   }
 
   .bellas-btn__title,
   .bellas-btn__sub {
-    white-space: normal;
+    white-space: normal;                     /* permite que el texto se divida en varias líneas */
   }
 
   .bellas-btn__cover {
-    width: 48px;
+    width: 48px;                             /* portada del álbum más pequeña */
     height: 48px;
   }
 
   .bellas-btn__sub {
-    font-size: 0.6rem;
+    font-size: 0.6rem;                       /* texto muy pequeño */
     letter-spacing: 1px;
   }
 
   .bellas-modal__close {
+    /* respeta el notch de iPhone (safe-area) */
     top: max(10px, env(safe-area-inset-top));
     right: max(10px, env(safe-area-inset-right));
-    width: 38px;
-    height: 38px;
-    font-size: 26px;
+    width: 44px;                             /* touch target mínimo 44px */
+    height: 44px;
+    font-size: 26px;                         /* ícono X más pequeño */
   }
 
+  /* CORTINAS decorativas del escenario — más pequeñas en móvil */
   .bellas-curtain {
     width: 52%;
   }
 
   .bellas-curtain__valance {
-    height: 52px;
+    height: 52px;                            /* dosel de la cortina más bajo */
   }
 
   .bellas-curtain__valance-body::after {
@@ -384,46 +484,51 @@
   }
 
   .bellas-curtain__rod {
-    height: 12px;
+    height: 12px;                            /* barra de cortina más delgada */
   }
 
   .bellas-curtain__rod::before,
   .bellas-curtain__rod::after {
-    width: 10px;
+    width: 10px;                             /* remates de la barra más pequeños */
     height: 16px;
     top: -4px;
   }
 
   .bellas-curtain--left .bellas-curtain__fringe,
   .bellas-curtain--right .bellas-curtain__fringe {
-    height: 14px;
+    height: 14px;                            /* flecos más cortos */
   }
 
   .bellas-curtain--left .bellas-curtain__tieback,
   .bellas-curtain--right .bellas-curtain__tieback {
-    width: 18px;
+    width: 18px;                             /* ataduras de cortina más pequeñas */
     height: 8px;
     margin-top: -4px;
   }
 
-  /* Modal de YouTube en móvil */
+  /* MODAL DE YOUTUBE — botón de cerrar adaptado a móvil */
   .youtube-modal__close {
     top: 10px;
     right: 10px;
-    width: 38px;
-    height: 38px;
+    width: 44px;                             /* touch target mínimo 44px */
+    height: 44px;
     font-size: 26px;
   }
 }
 
-/* Ajustes para pantallas muy pequeñas */
+/* ==========================================================================
+   MEDIA QUERY: PANTALLAS MUY PEQUEÑAS (560px o menos)
+   ==========================================================================
+   Ajustes adicionales para celulares más angostos. Aquí la multimedia
+   pasa a UNA sola columna y los elementos se compactan aún más.
+   ========================================================================== */
 @media (max-width: 560px) {
   .multimedia-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr;           /* UNA SOLA columna para videos/audios */
   }
 
   #letras {
-    padding-left: 6px;
+    padding-left: 6px;                    /* padding mínimo a los lados */
     padding-right: 6px;
   }
 
@@ -432,55 +537,61 @@
   }
 
   .fragmentos-track {
-    gap: 10px;
+    gap: 10px;                            /* aún menos espacio entre tarjetas */
   }
 
   .bellas-btn {
-    max-width: min(320px, calc(100vw - 28px));
-    padding: 6px 12px 6px 6px;
-    font-size: 0.82rem;
+    max-width: min(320px, calc(100vw - 28px));  /* se adapta al ancho de la pantalla */
+    padding: 6px 12px 6px 6px;            /* más compacto */
+    font-size: 0.82rem;                   /* letra más pequeña */
     gap: 10px;
   }
 
   .bellas-btn__cover {
-    width: 42px;
+    width: 42px;                           /* portada aún más pequeña */
     height: 42px;
   }
 
   .bellas-btn__sub {
-    font-size: 0.54rem;
+    font-size: 0.54rem;                   /* texto muy pequeño */
     line-height: 1.25;
   }
 
   .bellas-stage-frame {
-    padding-inline: 8px;
+    padding-inline: 8px;                  /* padding lateral mínimo */
   }
 
   .bellas-download {
-    max-width: min(100%, 292px);
+    max-width: min(100%, 292px);           /* ancho máximo reducido */
   }
 }
 
+/* ==========================================================================
+   MEDIA QUERY: MÓVIL EN HORIZONTAL (landscape)
+   ==========================================================================
+   Cuando el celular está acostado (ancho ≤ 700px + orientación horizontal).
+   En landscape hay menos altura vertical, así que ajustamos el modal.
+   ========================================================================== */
 @media (max-width: 700px) and (orientation: landscape) {
   .bellas-stage-frame {
-    justify-content: flex-start;
-    padding-top: 48px;
-    padding-bottom: 12px;
+    justify-content: flex-start;            /* contenido arriba (no centrado vertical) */
+    padding-top: 48px;                      /* menos padding superior */
+    padding-bottom: 12px;                   /* menos padding inferior */
   }
 
   .bellas-video {
-    width: min(100%, calc((100vh - 118px) * 16 / 9));
+    width: min(100%, calc((100vh - 118px) * 16 / 9));  /* video más pequeño en landscape */
     width: min(100%, calc((100svh - 118px) * 16 / 9));
     margin-bottom: 10px;
   }
 
   .bellas-download {
     max-width: min(100%, 280px);
-    padding-block: 5px;
+    padding-block: 5px;                     /* menos padding vertical */
   }
 
   .bellas-download__cover {
-    flex-basis: 34px;
+    flex-basis: 34px;                        /* portada más pequeña */
     width: 34px;
     height: 34px;
   }
@@ -490,51 +601,78 @@
   }
 
   .bellas-curtain__valance {
-    height: 42px;
+    height: 42px;                            /* cortinas más pequeñas */
   }
 
   .bellas-modal__close {
-    width: 34px;
+    width: 34px;                             /* botón cerrar más pequeño */
     height: 34px;
     font-size: 23px;
   }
 }
 
-/* Ajustes para tablets */
+/* ==========================================================================
+   MEDIA QUERY: TABLETS (1100px o menos)
+   ==========================================================================
+   Ajustes para pantallas medianas como iPads. Principalmente reducimos
+   padding y espacio entre elementos de la galería de fotos.
+   ========================================================================== */
 @media (max-width: 1100px) {
   #fotos-iconicas {
-    width: calc(100% - 12px);
-    padding: 34px 20px 38px;
+    width: calc(100% - 12px);             /* casi todo el ancho */
+    padding: 34px 20px 38px;              /* menos padding que en desktop */
   }
 
   .fotos-mosaico {
-    gap: 14px;
+    gap: 14px;                            /* menos espacio entre filas/columnas */
   }
 
   .fotos-mosaico__col {
-    gap: 14px;
+    gap: 14px;                            /* menos espacio entre fotos */
   }
 }
 
-/* Ajustes para la galería de discografía */
+/* ==========================================================================
+   MULTIMEDIA Y DISCOGRAFÍA - TABLETS GRANDES (1100px o menos)
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .multimedia-grid {
+    grid-template-columns: repeat(6, minmax(140px, 1fr));  /* 6 columnas */
+  }
+}
+
+/* ==========================================================================
+   MULTIMEDIA Y DISCOGRAFÍA - TABLETS (900px o menos)
+   ========================================================================== */
 @media (max-width: 900px) {
+  .multimedia-grid {
+    grid-template-columns: repeat(4, minmax(140px, 1fr));  /* 4 columnas */
+  }
+
   .discografia-gallery {
-    width: min(100%, 900px);
-    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    width: min(100%, 900px);              /* ocupa todo el ancho disponible hasta 900px */
+    grid-template-columns: repeat(3, minmax(120px, 1fr));  /* 3 columnas de mínimo 120px */
     gap: 14px;
   }
 }
 
+/* ==========================================================================
+   DISCOGRAFÍA - CAMBIO A 2 COLUMNAS (640px o menos)
+   ==========================================================================
+   En móvil la galería de álbumes se reduce a 2 columnas.
+   Los álbumes con efectos especiales (transform, span) se resetearan
+   a su estado normal para que quepan en el grid.
+   ========================================================================== */
 @media (max-width: 640px) {
   .discografia-gallery {
-    width: min(100%, 560px);
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    width: min(100%, 560px);              /* ocupa hasta 560px de ancho */
+    grid-template-columns: repeat(2, minmax(120px, 1fr));  /* 2 columnas iguales */
     gap: 12px;
   }
 
   .album-frame {
-    transform: none !important;
-    grid-column: span 1 !important;
-    grid-row: span 1 !important;
+    transform: none !important;           /* quita cualquier efecto 3D o rotación */
+    grid-column: span 1 !important;       /* cada álbum ocupa 1 columna (sin destacados) */
+    grid-row: span 1 !important;          /* cada álbum ocupa 1 fila */
   }
 }
