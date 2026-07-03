@@ -73,63 +73,103 @@
 /* Pie de página — barra inferior con enlaces a plataformas musicales */
 footer {
   background: linear-gradient(180deg, #27486b 0%, #1c3550 100%);
-  /* degradado azul marino que continúa el tema del cielo nocturno */
   color: white;
-  text-align: center;     /* centra el texto y los enlaces inline */
-  padding: 20px;          /* espacio interno en todos los lados */
-  margin-top: 0;          /* sin margen superior — pegado al contenido */
+  padding: 28px 20px;
+  border-top: 2px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 72px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
 }
 
 /* Enlaces de plataformas: solo logos (Spotify, YouTube, Apple Music, etc.) */
 .social-links {
   display: flex;              /* activa flexbox: los hijos se alinean en fila */
-  justify-content: center;    /* centra los logos horizontalmente */
+  justify-content: flex-start; /* alinea los logos junto al logo principal */
   align-items: center;        /* centra los logos verticalmente (misma altura) */
   flex-wrap: wrap;            /* si no caben, saltan a la siguiente línea */
-  gap: 12px;                  /* espacio de 12px entre cada logo (sin margins) */
-  margin-top: 12px;           /* separación respecto al contenido de arriba */
+  gap: 14px;                  /* espacio de 14px entre cada logo (sin margins) */
+  margin: 0;                  /* el footer controla la separación */
 }
 
 .social-links a {
-  text-decoration: none;          /* quita el subrayado azul típico de los enlaces */
-  display: inline-flex;           /* flexbox en línea para centrar el icono */
-  align-items: center;            /* centra la imagen verticalmente dentro del enlace */
-  justify-content: center;        /* centra horizontalmente */
-  padding: 6px;                   /* área clickeable un poco más grande que el icono */
-  transition: transform 0.2s ease, opacity 0.2s ease;  /* anima el hover */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: rgba(9, 26, 52, 0.35);
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 0 1px rgba(207, 166, 111, 0.25) inset;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.social-links a:hover,                          /* al pasar el mouse */
-.social-links a:focus-visible {                 /* al enfocar con teclado (accesibilidad) */
-  transform: translateY(-2px);                  /* se eleva 2 píxeles hacia arriba */
-  opacity: 0.85;                                /* se vuelve ligeramente transparente */
+.social-links a:hover,
+.social-links a:focus-visible {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(207, 166, 111, 0.55) inset,
+    0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.social-links img {
-  display: block;                   /* elimina espacio fantasma debajo de la imagen */
-  width: 26px;                      /* tamaño fijo para todos los iconos */
-  height: 26px;                     /* mismos 26px de alto — logos cuadrados */
-  object-fit: contain;              /* la imagen se ajusta sin deformarse */
-}
+.social-icon-facebook { background-image: url(../assets/facebook.png); }
+.social-icon-instagram { background-image: url(../assets/instagram.png); }
+.social-icon-tiktok { background-image: url(../assets/tiktok.avif); }
+.social-icon-youtube { background-image: url(../assets/youtube.png); }
+.social-icon-spotify { background-image: url(../assets/spotify.png); }
+.social-icon-apple { background-image: url(../assets/apple%20music.png); }
+.social-icon-youtubemusic { background-image: url(../assets/Youtube%20Music.png); }
+.social-icon-amazon { background-image: url(../assets/Amazon%20music.png); }
+.social-icon-deezer { background-image: url(../assets/Deezer.svg.png); }
+
+.footer-brand { background-image: url(../assets/LOGO%202.png); }
 
 /* MÓVIL (pantallas de 560px o menos) — logos más pequeños y compactos */
 @media (max-width: 560px) {
   .social-links {
-    gap: 6px;             /* menos espacio entre logos en pantalla pequeña */
+    justify-content: center;
+    gap: 8px;            /* menos espacio entre logos en pantalla pequeña */
   }
 
   .social-links a {
-    padding: 4px;         /* área táctil más pequeña */
-  }
-
-  .social-links img {
-    width: 22px;          /* iconos más pequeños para ahorrar espacio */
-    height: 22px;
+    width: 44px;
+    height: 44px;
   }
 
   footer {
     padding: 16px 12px;   /* menos padding para no desperdiciar espacio */
   }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
-
-

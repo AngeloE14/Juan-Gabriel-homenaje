@@ -676,3 +676,66 @@
     grid-row: span 1 !important;          /* cada álbum ocupa 1 fila */
   }
 }
+
+/* Correcciones finales de cascada móvil: estas reglas quedan al final para
+   que no sean sobrescritas por los ajustes de tablet definidos arriba. */
+@media (max-width: 700px) {
+  #page-content,
+  main,
+  section {
+    max-width: 100%;
+  }
+
+  #multimedia {
+    overflow-x: hidden;
+  }
+
+  .multimedia-grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding-inline: 12px;
+  }
+
+  .multimedia-card {
+    min-width: 0;
+  }
+
+  .multimedia-card p {
+    overflow-wrap: anywhere;
+  }
+
+  .youtube-open,
+  .youtube-open img,
+  .multimedia-card video,
+  .multimedia-netflix__cover {
+    max-width: 100%;
+  }
+
+  #fotos-iconicas {
+    width: calc(100% - 10px);
+    padding: 28px 14px 32px;
+    border-radius: 22px;
+  }
+
+  .foto-card__duo {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .carousel__slide img {
+    height: clamp(240px, 72vw, 320px);
+  }
+
+}
+
+@media (max-width: 560px) {
+  .multimedia-grid {
+    grid-template-columns: 1fr;
+    padding-inline: 10px;
+  }
+
+  .foto-card__duo[style] {
+    grid-template-columns: 1fr !important;
+  }
+}

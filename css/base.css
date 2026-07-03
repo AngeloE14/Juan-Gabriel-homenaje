@@ -111,9 +111,34 @@ h1, h2, h3 {
   margin-bottom: 15px;   /* MARGEN INFERIOR: Espacio debajo del título */
 }
 
-/* Contenedor principal del contenido — separa el header del contenido */
+/* Layout general para que el contenido ocupe la altura disponible y el footer
+   permanezca al final del flujo sin quedar oculto por alturas de viewport o
+   por contenedores con overflow. */
+html {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+#page-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
 main {
   padding-top: 24px;
+  flex: 1 0 auto;
+  min-height: 0;
 }
 
 /* Foto de Juan Gabriel: marco moderno minimalista */

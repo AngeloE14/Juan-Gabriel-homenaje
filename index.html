@@ -121,10 +121,13 @@
       Aquí va todo lo que los usuarios ven y con lo que interactúan.
     -->
     <div id="intro-overlay">
-      <video id="intro-video" autoplay playsinline preload="auto" aria-hidden="true" tabindex="-1">
+      <video id="intro-video" autoplay playsinline webkit-playsinline preload="auto" aria-hidden="true" tabindex="-1">
         <source src="assets/Intro.mp4" type="video/mp4">
         Tu navegador no soporta reproducción de video.
       </video>
+      <button id="intro-skip" class="intro-skip" type="button" aria-label="Omitir video de introducción">
+        Omitir intro
+      </button>
     </div>
 
     <div id="page-content">
@@ -813,7 +816,7 @@
           <img src="Pictures/iconic_photos/BELLAS ARTES X.jpg"
                alt="Foto del vinil de Juan Gabriel en Bellas Artes 1990"
                loading="lazy">
-          <img src="Pictures/iconic_photos/BELLAS ARTES .jpg"
+          <img src="Pictures/iconic_photos/BELLAS ARTES.jpg"
                alt="Foto adicional del vinil de Juan Gabriel en Bellas Artes 1990"
                loading="lazy">
         </div>
@@ -822,6 +825,18 @@
           dirigida por Enrique Patrón de Rueda, convirtiéndose en el primer cantautor de música popular 
           mexicana en presentarse en el Palacio de Bellas Artes.
         </figcaption>
+      </figure>
+
+      <figure class="foto-card foto-card--vinyl">
+        <div class="foto-card__duo">
+          <img src="Pictures/iconic_photos/querido alberto 1.png"
+               alt="Fotografía del libro Querido Alberto"
+               loading="lazy" class="querido-alberto">
+          <img src="Pictures/iconic_photos/querido alberto 3.png"
+               alt="Fotografía del libro Querido Alberto"
+               loading="lazy" class="querido-alberto">
+        </div>
+        <figcaption>Fotografías extraídas del libro «Querido Alberto» de Eduardo Magallanes.</figcaption>
       </figure>
 
       <!-- Mosaico visual:
@@ -863,14 +878,15 @@
                  loading="lazy">
             <figcaption>Juan Gabriel en El Patio.</figcaption>
           </figure>
+
         </div>
 
         <div class="fotos-mosaico__col">
           <figure class="foto-card">
-            <img src="Pictures/iconic_photos/JG BA 1990 TX.jpg"
-                 alt="Juan Gabriel en Bellas Artes en 1990"
+            <img src="Pictures/iconic_photos/querido alberto 2.png"
+                 alt="Retrato de Juan Gabriel del libro Querido Alberto"
                  loading="lazy">
-            <figcaption>Juan Gabriel en Bellas Artes, 1990.</figcaption>
+            <figcaption>Retrato de Juan Gabriel incluido en «Querido Alberto».</figcaption>
           </figure>
 
           <figure class="foto-card">
@@ -1027,8 +1043,8 @@
         <p class="frase-rotativa"> Si me quieres, si me amas, dímelo </p>
         <p class="frase-rotativa"> Lo que se ve no se pregunta </p>
         <p class="frase-rotativa"> Mira qué el día que de mí te enamores yo voy a ser felíz y con puro amor te protegeré y será un honor dedicarme a tí </p>
-        <p class="frase-rotativa"> Ya te pedí perdón y no me quieres perdonar <br> ¿Qué quieres que yo haga?
-        <p class="frase-rotativa"> La diferencia entre tú y yo tal vez sería corazón <br> Que yo en tu lugar.... sí te amaría❤️
+        <p class="frase-rotativa"> Ya te pedí perdón y no me quieres perdonar <br> ¿Qué quieres que yo haga?</p>
+        <p class="frase-rotativa"> La diferencia entre tú y yo tal vez sería corazón <br> Que yo en tu lugar.... sí te amaría❤️</p>
         <p class="frase-rotativa"> Se me olvidó otra vez....que solo yo te quise</p>  
         <p class="frase-rotativa"> Si quieres me estoy contigo, toda la vida<br> hasta que muera </p>
         <p class="frase-rotativa"> Yo te quiero mucho como tú no sabes </p>
@@ -1040,42 +1056,21 @@
   </main>
 
   <footer>
-    <p>
-      <a href="https://www.juangabriel.com/" target="_blank" rel="noopener">
-        <img src="assets/LOGO 2.png" alt="Logo oficial de Juan Gabriel" title="Página oficial de Juan Gabriel" width="120">
-      </a>
-    </p>
-    <p class="social-links" aria-label="Redes sociales y plataformas oficiales de Juan Gabriel">
-      <!-- Enlaces externos: se abren en nueva pestaña -->
-      <a href="https://www.facebook.com/JuanGabrielPorLosSiglos/" target="_blank" rel="noopener">
-        <img src="assets/facebook.png" alt="Facebook" title="Facebook" width="24" height="24">
-      </a>
-      <a href="https://www.instagram.com/soyjuangabriel_/" target="_blank" rel="noopener">
-        <img src="assets/instagram.png" alt="Instagram" title="Instagram" width="24" height="24">
-      </a>
-      <a href="https://www.tiktok.com/@soyjuangabriel?lang=en" target="_blank" rel="noopener">
-        <img src="assets/tiktok.avif" alt="TikTok" title="TikTok" width="24" height="24">
-      </a>
-      <a href="https://www.youtube.com/channel/UCnLJnKKCxLRsAktAB9iMSeQ" target="_blank" rel="noopener">
-        <img src="assets/youtube.png" alt="YouTube" title="YouTube" width="24" height="24">
-      </a>
-      <a href="https://open.spotify.com/intl-es/artist/2MRBDr0crHWE5JwPceFncq" target="_blank" rel="noopener">
-        <img src="assets/spotify.png" alt="Spotify" title="Spotify" width="24" height="24">
-      </a>
-      <a href="https://music.apple.com/mx/artist/juan-gabriel/295294" target="_blank" rel="noopener">
-        <img src="assets/apple%20music.png" alt="Apple Music" title="Apple Music" width="24" height="24">
-      </a>
-      <a href="https://music.youtube.com/@juangabriel4391" target="_blank" rel="noopener">
-        <img src="assets/Youtube%20Music.png" alt="YouTube Music" title="YouTube Music" width="24" height="24">
-      </a>
-      <a href="https://music.amazon.com/artists/B000QJJM6I/juan-gabriel" target="_blank" rel="noopener">
-        <img src="assets/Amazon%20music.png" alt="Amazon Music" title="Amazon Music" width="24" height="24">
-      </a>
-      <a href="https://www.deezer.com/mx/artist/71813" target="_blank" rel="noopener">
-        <img src="assets/Deezer.svg.png" alt="Deezer" title="Deezer" width="24" height="24">
-      </a>
-    </p>
-  </footer>
+    <div class="footer-content">
+      <a class="footer-brand" href="https://www.juangabriel.com/" target="_blank" rel="noopener" title="Página oficial de Juan Gabriel"></a>
+      <nav class="social-links" aria-label="Redes sociales y plataformas oficiales de Juan Gabriel">
+      <a href="https://www.facebook.com/JuanGabrielPorLosSiglos/" target="_blank" rel="noopener" class="social-icon-facebook" title="Facebook"></a>
+      <a href="https://www.instagram.com/soyjuangabriel_/" target="_blank" rel="noopener" class="social-icon-instagram" title="Instagram"></a>
+      <a href="https://www.tiktok.com/@soyjuangabriel?lang=en" target="_blank" rel="noopener" class="social-icon-tiktok" title="TikTok"></a>
+      <a href="https://www.youtube.com/channel/UCnLJnKKCxLRsAktAB9iMSeQ" target="_blank" rel="noopener" class="social-icon-youtube" title="YouTube"></a>
+      <a href="https://open.spotify.com/intl-es/artist/2MRBDr0crHWE5JwPceFncq" target="_blank" rel="noopener" class="social-icon-spotify" title="Spotify"></a>
+      <a href="https://music.apple.com/mx/artist/juan-gabriel/295294" target="_blank" rel="noopener" class="social-icon-apple" title="Apple Music"></a>
+      <a href="https://music.youtube.com/@juangabriel4391" target="_blank" rel="noopener" class="social-icon-youtubemusic" title="YouTube Music"></a>
+      <a href="https://music.amazon.com/artists/B000QJJM6I/juan-gabriel" target="_blank" rel="noopener" class="social-icon-amazon" title="Amazon Music"></a>
+      <a href="https://www.deezer.com/mx/artist/71813" target="_blank" rel="noopener" class="social-icon-deezer" title="Deezer"></a>
+      </nav>
+    </div>
+    </footer>
   <!-- BOTÓN VOLVER ARRIBA -->
   <button type="button" id="btn-subir" aria-label="Volver al inicio">
     <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>

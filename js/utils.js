@@ -155,6 +155,7 @@ export function reproducirIntroAlCargar() {
   const body = document.body;
   const introOverlay = document.getElementById("intro-overlay");
   const introVideo = document.getElementById("intro-video");
+  const botonOmitirIntro = document.getElementById("intro-skip");
   const visualViewport = window.visualViewport;
 
   if (!body) {
@@ -257,6 +258,7 @@ export function reproducirIntroAlCargar() {
     body.classList.remove("intro-activa");
     body.classList.add("intro-finalizada");
     introOverlay.classList.add("is-hidden");
+    introVideo.pause();
 
     window.setTimeout(function () {
       if (introOverlay.parentElement) {
@@ -266,6 +268,12 @@ export function reproducirIntroAlCargar() {
 
     document.dispatchEvent(new Event("intro-finalizada"));
     console.log("[Intro] Intro finalizada:", motivo);
+  }
+
+  if (botonOmitirIntro) {
+    botonOmitirIntro.addEventListener("click", function () {
+      finalizarIntro("skip-button");
+    }, { once: true });
   }
 
   introVideo.addEventListener("ended", function () {
