@@ -125,8 +125,33 @@
 }
 
 #letras h2 {
-  color: #ecd59b;         /* dorado claro para el título de la sección */
-  padding-inline: clamp(12px, 2.6vw, 34px);  /* padding fluido: 12px mínimo, 34px máximo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #ecd59b;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  margin-bottom: 24px;
+  padding-inline: clamp(12px, 2.6vw, 34px);
+}
+
+#letras h2::before,
+#letras h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  max-width: 120px;
+}
+
+#letras h2::before {
+  background: linear-gradient(90deg, transparent, rgba(236, 213, 155, 0.4));
+}
+
+#letras h2::after {
+  background: linear-gradient(90deg, rgba(236, 213, 155, 0.4), transparent);
 }
 
 #letras p {

@@ -35,7 +35,33 @@
 }
 
 #multimedia h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
   color: #f3dfb1;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  margin-bottom: 24px;
+}
+
+#multimedia h2::before,
+#multimedia h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  max-width: 120px;
+  background: linear-gradient(90deg, transparent, rgba(243, 223, 177, 0.4), transparent);
+}
+
+#multimedia h2::before {
+  background: linear-gradient(90deg, transparent, rgba(243, 223, 177, 0.4));
+}
+
+#multimedia h2::after {
+  background: linear-gradient(90deg, rgba(243, 223, 177, 0.4), transparent);
 }
 
 /* Tarjetas multimedia */
@@ -96,10 +122,32 @@
 }
 
 #fotos-iconicas h2 {
-  color: #b27a3f;                               /* color dorado/marrón para el título */
-  font-size: clamp(2rem, 3vw, 3rem);             /* clamp(): tamaño fluido, mínimo 2rem, máximo 3rem */
-  letter-spacing: 0.6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #b27a3f;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
   margin-bottom: 10px;
+}
+
+#fotos-iconicas h2::before,
+#fotos-iconicas h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  max-width: 120px;
+}
+
+#fotos-iconicas h2::before {
+  background: linear-gradient(90deg, transparent, rgba(178, 122, 63, 0.4));
+}
+
+#fotos-iconicas h2::after {
+  background: linear-gradient(90deg, rgba(178, 122, 63, 0.4), transparent);
 }
 
 #fotos-iconicas p {

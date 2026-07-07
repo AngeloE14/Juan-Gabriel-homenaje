@@ -26,10 +26,10 @@
 
 /* Botón hamburguesa minimalista: solo las tres líneas, sin contenedor */
 .nav-toggle {
-  position: fixed;  /* fixed = el botón se queda fijo en la ventana aunque el usuario haga scroll hacia abajo */
+  position: fixed;
   top: 20px;
   left: 16px;
-  z-index: 2200;    /* z-index = capa en la que está el elemento. 2200 es muy alto, así el botón siempre queda visible encima de todo */
+  z-index: 2200;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,11 +40,12 @@
   color: #d4dce8;
   cursor: pointer;
   padding: 0;
-  transition: color 0.2s ease;
+  transition: background 0.25s ease, color 0.2s ease, box-shadow 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav-toggle:focus-visible {
-  outline: 2px solid #f0e6d0;
+  outline: 2px solid #d4a853;
   outline-offset: 4px;
   border-radius: 4px;
 }
@@ -55,11 +56,11 @@
 
 .nav-toggle:focus-visible,
 .nav-toggle:hover {
-  border-color: #f0e6d0;
+  background: rgba(212, 168, 83, 0.12);
   color: #f0e6d0;
   box-shadow:
-    0 0 18px rgba(240, 230, 208, 0.32),
-    0 8px 18px rgba(0, 0, 0, 0.35);
+    0 0 14px rgba(212, 168, 83, 0.3),
+    0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 .nav-toggle__icon {
