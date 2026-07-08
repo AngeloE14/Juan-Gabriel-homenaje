@@ -468,12 +468,27 @@ export function inicializarAudioFondo() {
   videosLocales.forEach(function (video) {
     video.addEventListener("play", function () {
       pausarAudioFondo();
+      videosLocales.forEach(function (otroVideo) {
+        if (otroVideo !== video && !otroVideo.paused) {
+          otroVideo.pause();
+        }
+      });
     });
     video.addEventListener("pause", function () {
-      reanudarAudioFondo();
+      const algunoReproduciendo = Array.from(videosLocales).some(function (v) {
+        return !v.paused;
+      });
+      if (!algunoReproduciendo) {
+        reanudarAudioFondo();
+      }
     });
     video.addEventListener("ended", function () {
-      reanudarAudioFondo();
+      const algunoReproduciendo = Array.from(videosLocales).some(function (v) {
+        return !v.paused;
+      });
+      if (!algunoReproduciendo) {
+        reanudarAudioFondo();
+      }
     });
   });
 
