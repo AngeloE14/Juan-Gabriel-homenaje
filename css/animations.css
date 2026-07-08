@@ -56,16 +56,33 @@
 }
 
 .intro-loading__spinner {
-  width: 48px;
-  height: 48px;
+  width: 80px;
+  height: 80px;
   border: 3px solid rgba(255, 215, 0, 0.15);
   border-top-color: #ffd700;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: introSpin 0.9s linear infinite;
+}
+
+.intro-loading__logo {
+  width: 52px;
+  height: auto;
+  border-radius: 50%;
+  animation: introSpinReverse 0.9s linear infinite;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 @keyframes introSpin {
   to { transform: rotate(360deg); }
+}
+
+@keyframes introSpinReverse {
+  to { transform: rotate(-360deg); }
 }
 
 #intro-video {
@@ -189,6 +206,12 @@
 
 .intro-unlock-btn.is-visible {
   animation: unlockPulse 2s ease-in-out infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .intro-unlock-btn {
+    display: none;
+  }
 }
 
 @media (max-width: 560px) {
