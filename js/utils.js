@@ -157,6 +157,7 @@ export function reproducirIntroAlCargar() {
   const introVideo = document.getElementById("intro-video");
   const botonOmitirIntro = document.getElementById("intro-skip");
   const botonDesbloqueoAudio = document.getElementById("intro-unlock-btn");
+  const introLoading = document.getElementById("intro-loading");
   const visualViewport = window.visualViewport;
 
   if (!body) {
@@ -173,6 +174,15 @@ export function reproducirIntroAlCargar() {
   introVideo.defaultMuted = false;
   introVideo.muted = false;
   introVideo.playsInline = true;
+
+  function ocultarLoading() {
+    if (introLoading) {
+      introLoading.classList.add("is-hidden");
+    }
+  }
+
+  introVideo.addEventListener("playing", ocultarLoading, { once: true });
+  introVideo.addEventListener("error", ocultarLoading, { once: true });
 
   let introFinalizada = false;
   let desbloqueoAudioRegistrado = false;
