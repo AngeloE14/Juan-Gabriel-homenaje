@@ -156,6 +156,7 @@ export function reproducirIntroAlCargar() {
   const introOverlay = document.getElementById("intro-overlay");
   const introVideo = document.getElementById("intro-video");
   const botonOmitirIntro = document.getElementById("intro-skip");
+  const botonDesbloqueoAudio = document.getElementById("intro-unlock-btn");
   const visualViewport = window.visualViewport;
 
   if (!body) {
@@ -204,6 +205,18 @@ export function reproducirIntroAlCargar() {
     visualViewport.addEventListener("scroll", ajustarAlturaIntro);
   }
 
+  function mostrarBotonDesbloqueo() {
+    if (botonDesbloqueoAudio) {
+      botonDesbloqueoAudio.classList.add("is-visible");
+    }
+  }
+
+  function ocultarBotonDesbloqueo() {
+    if (botonDesbloqueoAudio) {
+      botonDesbloqueoAudio.classList.remove("is-visible");
+    }
+  }
+
   function quitarDesbloqueoAudio() {
     if (!desbloqueoAudioRegistrado) {
       return;
@@ -212,13 +225,19 @@ export function reproducirIntroAlCargar() {
     document.removeEventListener("click", desbloquearAudio);
     document.removeEventListener("keydown", desbloquearAudio);
     document.removeEventListener("touchstart", desbloquearAudio);
+    if (introVideo) {
+      introVideo.removeEventListener("touchstart", desbloquearAudio);
+    }
     desbloqueoAudioRegistrado = false;
+    ocultarBotonDesbloqueo();
   }
 
-  function desbloquearAudio() {
+  function desbloquearAudio(evento) {
     if (introFinalizada) {
       return;
     }
+
+    evento.preventDefault();
 
     introVideo.muted = false;
     introVideo.defaultMuted = false;
@@ -232,6 +251,7 @@ export function reproducirIntroAlCargar() {
         })
         .catch(function (errorAudio) {
           console.warn("[Intro] Aún no se pudo activar audio tras interacción", errorAudio);
+          registrarDesbloqueoAudio();
         });
     }
   }
@@ -242,9 +262,13 @@ export function reproducirIntroAlCargar() {
     }
 
     desbloqueoAudioRegistrado = true;
-    document.addEventListener("click", desbloquearAudio, { once: true });
-    document.addEventListener("keydown", desbloquearAudio, { once: true });
-    document.addEventListener("touchstart", desbloquearAudio, { once: true });
+    mostrarBotonDesbloqueo();
+    document.addEventListener("click", desbloquearAudio);
+    document.addEventListener("keydown", desbloquearAudio);
+    document.addEventListener("touchstart", desbloquearAudio);
+    if (introVideo) {
+      introVideo.addEventListener("touchstart", desbloquearAudio);
+    }
   }
 
   function finalizarIntro(motivo) {

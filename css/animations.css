@@ -94,12 +94,87 @@
   outline-offset: 3px;
 }
 
+.intro-unlock-btn {
+  position: fixed;
+  bottom: max(32px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6001;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 14px 28px;
+  border: 2px solid rgba(255, 215, 0, 0.9);
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.88);
+  color: #ffe27a;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.52),
+    0 0 18px rgba(255, 215, 0, 0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.intro-unlock-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.intro-unlock-btn:hover,
+.intro-unlock-btn:focus-visible {
+  background: rgba(38, 30, 8, 0.94);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.intro-unlock-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 3px;
+}
+
+.intro-unlock-btn__icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+@keyframes unlockPulse {
+  0%, 100% { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.52), 0 0 18px rgba(255, 215, 0, 0.22); }
+  50% { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.52), 0 0 28px rgba(255, 215, 0, 0.5); }
+}
+
+.intro-unlock-btn.is-visible {
+  animation: unlockPulse 2s ease-in-out infinite;
+}
+
 @media (max-width: 560px) {
   .intro-skip {
     top: max(12px, env(safe-area-inset-top));
     right: max(12px, env(safe-area-inset-right));
     padding: 9px 14px;
     font-size: 0.92rem;
+  }
+
+  .intro-unlock-btn {
+    bottom: max(24px, env(safe-area-inset-bottom));
+    padding: 12px 22px;
+    font-size: 0.92rem;
+    min-height: 48px;
   }
 }
 
