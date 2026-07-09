@@ -359,12 +359,12 @@ export function inicializarAudioFondo() {
   const canciones = [
     "audios/se me olvido otra vez.mp3",
     "audios/fue un placer conocerte.mp3",
-    "audios/abuso.mp3",
     "audios/debo hacerlo.mp3",
     "audios/de mi enamorate.mp3",
     "audios/amor eterno.mp3",
     "audios/que chasco me lleve.mp3",
     "audios/dejame vivir.mp3",
+    "audios/yo no se que me paso.mp3",
     "audios/te lo pido por favor.mp3" 
   ];
 
