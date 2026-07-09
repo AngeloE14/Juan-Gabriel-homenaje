@@ -613,4 +613,24 @@ body.nav-open {
   .main-nav a[href="#letras"] {
     min-height: 44px;
   }
+
+  /* Mantener el layout lateral pero ajustar tamaños para mejor tacto en móvil */
+  .main-nav {
+    width: min(84vw, 320px);    /* conservar comportamiento lateral */
+  }
+
+  .main-nav__list {
+    gap: 8px;                   /* más separación entre botones en móvil */
+    padding: 10px 12px 14px;
+  }
+
+  .main-nav a {
+    min-height: 56px;           /* altura táctil más cómoda */
+    padding: 10px 14px;         /* padding ligeramente mayor */
+    font-size: 0.95rem;         /* texto ligeramente más grande */
+  }
+
+  .nav-overlay {
+    background: rgba(6, 15, 28, 0.6); /* volver a semitransparencia original */
+  }
 }

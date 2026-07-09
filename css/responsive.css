@@ -398,6 +398,24 @@
     border-radius: 12px;            /* esquinas menos redondeadas */
   }
 
+  /* En móvil mostramos primero el bloque azul (header) ocupando la
+     ventana para que la foto de `#biografia` quede debajo y se vea
+     después al hacer scroll. Usamos svh para respetar la barra
+     de direcciones móviles cuando sea posible. */
+  header {
+    min-height: 100svh;          /* ocupa toda la ventana en móvil */
+    display: flex;               /* centra su contenido verticalmente */
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 34px;        /* respeta el padding ya usado */
+    box-sizing: border-box;      /* incluye padding en el cálculo de altura */
+  }
+
+  /* Asegurar que la imagen de la biografía no suba encima del header */
+  #biografia {
+    margin-top: 8px;             /* separador mínimo tras el header */
+  }
+
   /* MODAL DE BELLAS ARTES EN MÓVIL — pantalla completa, sin bordes, scroll vertical */
   .bellas-modal {
     padding: 0;                             /* sin relleno */

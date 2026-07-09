@@ -104,4 +104,5 @@ header p {
   margin-top: 6px;      /* pequeño espacio entre la imagen y el texto */
   font-size: 1.1rem;    /* ligeramente más grande que el texto normal (1.1 × 16px) */
   color: #fbe7e9;       /* rosa claro — complementa al blanco rosado del header */
+  text-align: center;
 }
