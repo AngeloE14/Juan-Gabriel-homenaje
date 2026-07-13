@@ -104,32 +104,29 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 10px 18px;
-  border: 2px solid rgba(255, 215, 0, 0.9);
+  gap: 6px;
+  min-height: 32px;
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
-  background: rgba(10, 10, 10, 0.88);
-  color: #ffe27a;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
   font-family: 'Segoe UI', sans-serif;
-  font-size: 0.96rem;
-  font-weight: 700;
-  letter-spacing: 0;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   line-height: 1;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.52),
-    0 0 18px rgba(255, 215, 0, 0.22);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .intro-skip:hover,
 .intro-skip:focus-visible {
-  background: rgba(38, 30, 8, 0.94);
+  background: rgba(255, 255, 255, 0.22);
   border-color: #ffffff;
   color: #ffffff;
   transform: translateY(-1px);
@@ -149,25 +146,22 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 52px;
-  padding: 14px 28px;
-  border: 2px solid rgba(255, 215, 0, 0.9);
+  min-height: 44px;
+  padding: 10px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
-  background: rgba(10, 10, 10, 0.88);
-  color: #ffe27a;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
   font-family: 'Segoe UI', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   line-height: 1;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.52),
-    0 0 18px rgba(255, 215, 0, 0.22);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.2s ease, border-color 0.2s ease;
   cursor: pointer;
   white-space: nowrap;
@@ -184,7 +178,7 @@
 
 .intro-unlock-btn:hover,
 .intro-unlock-btn:focus-visible {
-  background: rgba(38, 30, 8, 0.94);
+  background: rgba(255, 255, 255, 0.22);
   border-color: #ffffff;
   color: #ffffff;
 }
@@ -199,34 +193,20 @@
   line-height: 1;
 }
 
-@keyframes unlockPulse {
-  0%, 100% { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.52), 0 0 18px rgba(255, 215, 0, 0.22); }
-  50% { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.52), 0 0 28px rgba(255, 215, 0, 0.5); }
-}
-
-.intro-unlock-btn.is-visible {
-  animation: unlockPulse 2s ease-in-out infinite;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .intro-unlock-btn {
-    display: none;
-  }
-}
 
 @media (max-width: 560px) {
   .intro-skip {
     top: max(12px, env(safe-area-inset-top));
     right: max(12px, env(safe-area-inset-right));
-    padding: 9px 14px;
-    font-size: 0.92rem;
+    padding: 6px 12px;
+    font-size: 0.75rem;
   }
 
   .intro-unlock-btn {
     bottom: max(24px, env(safe-area-inset-bottom));
-    padding: 12px 22px;
-    font-size: 0.92rem;
-    min-height: 48px;
+    padding: 8px 18px;
+    font-size: 0.8rem;
+    min-height: 40px;
   }
 }
 

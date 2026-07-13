@@ -321,6 +321,10 @@ export function reproducirIntroAlCargar() {
 
   const intentoReproduccion = introVideo.play();
 
+  if (window.matchMedia("(max-width: 560px)").matches) {
+    registrarDesbloqueoAudio();
+  }
+
   if (intentoReproduccion && typeof intentoReproduccion.then === "function") {
     intentoReproduccion.catch(function (errorAutoplay) {
       console.warn("[Intro] Autoplay con audio bloqueado. Activando fallback en silencio.", errorAutoplay);
