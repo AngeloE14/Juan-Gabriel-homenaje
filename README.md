@@ -1,6 +1,6 @@
 # Juan Gabriel
 <p align="center">
-  <img src="assets/Logo.png" alt="Juan Gabriel" width="250">
+  <img src="assets/Logo.webp" alt="Juan Gabriel" width="250">
 </p>
 
 <p align="center">

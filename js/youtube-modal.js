@@ -4,6 +4,15 @@
 import { pausarAudioFondo, reanudarAudioFondo } from './utils.js';
 
 /**
+ * Pausa todos los <video> locales del section #multimedia
+ */
+function pausarVideosLocales() {
+  document.querySelectorAll("#multimedia video").forEach(function (v) {
+    v.pause();
+  });
+}
+
+/**
  * Inicializa el modal de YouTube
  */
 export function inicializarYouTubeModal() {
@@ -14,15 +23,14 @@ export function inicializarYouTubeModal() {
 
   /**
    * Abre el modal de YouTube con el video especificado
-   * @param {string} videoId - ID del video de YouTube
-   * @param {string} titulo - Título del video
-   * @param {string} lista - ID de la lista de reproducción (opcional)
-   * @param {string} embedUrl - URL embed completa (opcional)
    */
   function abrirYouTube(videoId, titulo, lista, embedUrl) {
     if (!youtubeModal || !youtubeFrame) return;
 
-    // Si el HTML trae una URL embed completa, la usamos tal cual
+    /* Pausar videos locales y audio de fondo */
+    pausarVideosLocales();
+    pausarAudioFondo();
+
     let src = "";
     if (embedUrl) {
       src = embedUrl;
@@ -40,9 +48,6 @@ export function inicializarYouTubeModal() {
 
     youtubeModal.classList.add("is-open");
     youtubeModal.setAttribute("aria-hidden", "false");
-
-    /* Al abrir un video de YouTube se pausa la música de fondo */
-    pausarAudioFondo();
   }
 
   /**
@@ -54,9 +59,26 @@ export function inicializarYouTubeModal() {
     youtubeModal.setAttribute("aria-hidden", "true");
     youtubeFrame.src = "";
 
-    /* Al cerrar el modal se reanuda la música de fondo */
     reanudarAudioFondo();
   }
+
+  /* Cuando un video local empieza a reproducir, pausa YouTube */
+  document.querySelectorAll("#multimedia video").forEach(function (video) {
+    video.addEventListener("play", function () {
+      if (youtubeFrame && youtubeFrame.src) {
+        youtubeFrame.src = "";
+      }
+      if (youtubeModal && youtubeModal.classList.contains("is-open")) {
+        cerrarYouTube();
+      }
+      /* Pausar otros videos locales que estén reproduciéndose */
+      document.querySelectorAll("#multimedia video").forEach(function (otro) {
+        if (otro !== video && !otro.paused) {
+          otro.pause();
+        }
+      });
+    });
+  });
 
   // Event listeners para botones de YouTube
   botonesYouTube.forEach(function (boton) {
