@@ -54,6 +54,10 @@ export function inicializarLightbox() {
 
   lightboxClose.addEventListener("click", cerrarLightbox);
 
+  lightboxImg.addEventListener("click", function () {
+    cerrarLightbox();
+  });
+
   lightbox.addEventListener("click", function (evento) {
     if (evento.target.getAttribute("data-close-modal") === "true") {
       cerrarLightbox();
