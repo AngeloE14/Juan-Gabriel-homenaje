@@ -474,6 +474,7 @@ body.nav-open {
    Al hacer clic reproduce/pausa una canción.
    :hover cambia el color a crema (#f0e6d0). */
 .music-btn {
+  position: relative;               /* necesario para posicionar el glow ::after */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -523,47 +524,73 @@ body.nav-open {
   height: 6px;
   border-radius: 2px;
   background: #d4a857;                /* color dorado */
+  transform-origin: bottom;           /* crecen desde la base */
+  transition: height 0.3s ease, opacity 0.3s ease; /* transición suave al pausar */
 }
 
 .music-btn.is-playing .music-btn__waves span {
-  animation: music-wave 0.7s ease-in-out infinite alternate; /* animación que sube y baja sin parar */
+  animation: music-wave 0.7s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
 }
 
-/* nth-child(3n+1) = cada 3er elemento empezando desde el 1°: duración 0.65s, sin demora.
-   nth-child(3n+2) = cada 3er elemento empezando desde el 2°: duración 0.85s, demora 0.15s.
-   nth-child(3n)   = múltiplos de 3: duración 0.75s, demora 0.3s.
-   Estos delays y duraciones distintas crean el efecto "ola" (no todas las barras se mueven igual). */
-.music-btn.is-playing .music-btn__waves span:nth-child(3n+1) {
-  animation-duration: 0.65s;
-  animation-delay: 0.0s;
-}
-
-.music-btn.is-playing .music-btn__waves span:nth-child(3n+2) {
-  animation-duration: 0.85s;
-  animation-delay: 0.15s;
-}
-
-.music-btn.is-playing .music-btn__waves span:nth-child(3n) {
-  animation-duration: 0.75s;
-  animation-delay: 0.3s;
-}
+/* Cada barra tiene duración y demora únicas para un efecto más orgánico */
+.music-btn.is-playing .music-btn__waves span:nth-child(1)  { animation-duration: 0.55s; animation-delay: 0.00s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(2)  { animation-duration: 0.70s; animation-delay: 0.10s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(3)  { animation-duration: 0.60s; animation-delay: 0.05s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(4)  { animation-duration: 0.80s; animation-delay: 0.20s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(5)  { animation-duration: 0.50s; animation-delay: 0.00s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(6)  { animation-duration: 0.75s; animation-delay: 0.15s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(7)  { animation-duration: 0.65s; animation-delay: 0.25s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(8)  { animation-duration: 0.85s; animation-delay: 0.10s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(9)  { animation-duration: 0.55s; animation-delay: 0.30s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(10) { animation-duration: 0.70s; animation-delay: 0.05s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(11) { animation-duration: 0.60s; animation-delay: 0.20s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(12) { animation-duration: 0.80s; animation-delay: 0.15s; }
+.music-btn.is-playing .music-btn__waves span:nth-child(13) { animation-duration: 0.65s; animation-delay: 0.25s; }
 
 .music-btn.is-playing {
   color: #f0e6d0;
 }
 
+/* Glow radial dorado que pulsa detrás del botón cuando la música suena */
+.music-btn.is-playing::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%) scale(0.8);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 168, 87, 0.35) 0%, transparent 70%);
+  animation: music-glow 1.4s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
 @keyframes music-wave {
   /* @keyframes define los pasos de una animación.
      En 0% (inicio): altura 6px, opacidad 0.5 (bajita y tenue).
-     En 100% (final):  altura 22px, opacidad 0.9 (alta y brillante).
+     En 100% (final):  altura 26px, opacidad 0.95 (alta y brillante).
      La animación va y vuelve (alternate), creando el efecto visual de una "ola musical". */
   0% {
     height: 6px;
     opacity: 0.5;
   }
   100% {
-    height: 22px;
-    opacity: 0.9;
+    height: 26px;
+    opacity: 0.95;
+  }
+}
+
+@keyframes music-glow {
+  /* Pulso del glow: opacity de 0.3 a 0.7 y scale de 0.8 a 1.15 */
+  0% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.15);
   }
 }
 
