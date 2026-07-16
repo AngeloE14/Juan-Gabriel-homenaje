@@ -27,7 +27,14 @@
 // MODO ESTRICTO - Ayuda a encontrar errores
 "use strict";
 
+// audioFondo = elemento Audio que reproduce la canción actual
 let audioFondo;
+// audioFondoSiguiente = segundo Audio usado durante el crossfade (se crea uno nuevo al cambiar canción)
+let audioFondoSiguiente = null;
+// crossfadeActivo = bandera para evitar que se dispare más de un crossfade a la vez
+let crossfadeActivo = false;
+// intervaloCrossfade = referencia al setInterval que controla la transición de volumen
+let intervaloCrossfade = null;
 
 /*
   FUNCIÓN: marcarEnlaceActivo()
@@ -343,6 +350,18 @@ export function reproducirIntroAlCargar() {
 }
 
 export function pausarAudioFondo() {
+  // Si hay un crossfade en curso, cancelarlo: restaurar volumen, detener el segundo Audio y limpiar el intervalo
+  if (crossfadeActivo) {
+    clearInterval(intervaloCrossfade);
+    intervaloCrossfade = null;
+    audioFondo.volume = 0.46;
+    if (audioFondoSiguiente) {
+      audioFondoSiguiente.pause();
+      audioFondoSiguiente.src = "";
+      audioFondoSiguiente = null;
+    }
+    crossfadeActivo = false;
+  }
   if (typeof audioFondo !== "undefined" && audioFondo && !audioFondo.paused) {
     audioFondo.pause();
   }
@@ -368,26 +387,134 @@ export function inicializarAudioFondo() {
     "audios/amor eterno.mp3",
     "audios/que chasco me lleve.mp3",
     "audios/dejame vivir.mp3",
+    "audios/yo te perdono.mp3",
     "audios/asi se quiere.mp3",
     "audios/yo no se que me paso.mp3",
     "audios/te lo pido por favor.mp3" 
   ];
 
+  // DURACION_CROSSFADE = segundos que dura la transición entre canciones
+  // VOLUMEN_BASE = volumen máximo de la música de fondo (46%)
+  const DURACION_CROSSFADE = 2;
+  const VOLUMEN_BASE = 0.46;
   let indiceActual = Math.floor(Math.random() * canciones.length);
   audioFondo = new Audio(canciones[indiceActual]);
-  audioFondo.volume = 0.46;
+  audioFondo.volume = VOLUMEN_BASE;
   audioFondo.playsInline = true;
   audioFondo.preload = "auto";
 
   let desbloqueoRegistrado = false;
 
-  function cancionSiguiente() {
-    indiceActual = Math.floor(Math.random() * canciones.length);
-    audioFondo.src = canciones[indiceActual];
-    audioFondo.play().catch(function () {});
+  /*
+    FUNCIÓN: seleccionarSiguienteCancion()
+    OBJETIVO: Elegir una canción aleatoria que NO sea la que está sonando
+    CÓMO: Genera un índice aleatorio y repite hasta encontrar uno diferente al actual
+  */
+  function seleccionarSiguienteCancion() {
+    let siguiente;
+    do {
+      siguiente = Math.floor(Math.random() * canciones.length);
+    } while (siguiente === indiceActual && canciones.length > 1);
+    return siguiente;
   }
 
-  audioFondo.addEventListener("ended", cancionSiguiente);
+  /*
+    FUNCIÓN: onCancionTerminada()
+    OBJETIVO: Se dispara cuando la canción actual termina (evento "ended")
+    NOTA: Es un respaldo por si detectarFinCancion no se activó a tiempo.
+          Si el crossfade ya está corriendo, lo ignora para evitar duplicados.
+  */
+  function onCancionTerminada() {
+    if (crossfadeActivo) return;
+    iniciarCrossfade();
+  }
+
+  /*
+    FUNCIÓN: detectarFinCancion()
+    OBJETIVO: Detectar cuándo quedan 2 segundos o menos para que termine la canción
+    CÓMO: Se ejecuta en cada "timeupdate" (~250ms). Cuando el tiempo restante
+          es menor o igual a DURACION_CROSSFADE, inicia el crossfade antes de
+          que la canción termine, logrando una transición superpuesta.
+  */
+  function detectarFinCancion() {
+    if (crossfadeActivo || !audioFondo.duration || !isFinite(audioFondo.duration)) return;
+    const restante = audioFondo.duration - audioFondo.currentTime;
+    if (restante <= DURACION_CROSSFADE && restante > 0) {
+      iniciarCrossfade();
+    }
+  }
+
+  /*
+    FUNCIÓN: iniciarCrossfade()
+    OBJETIVO: Realizar la transición suave entre la canción actual y la siguiente
+    CÓMO FUNCIONA EL CROSSFADE:
+      1. Se crea un segundo elemento Audio con la siguiente canción (volumen 0)
+      2. Se empieza a reproducir el segundo Audio en silencio
+      3. Un setInterval cada 50ms va ajustando los volúmenes:
+         - La canción actual baja de volumen (0.46 → 0)
+         - La canción siguiente sube de volumen (0 → 0.46)
+      4. Cuando el crossfade termina (40 pasos × 50ms = 2 segundos):
+         - Se pausa y limpia el Audio anterior
+         - Se reasigna audioFondo para que apunte al nuevo Audio
+         - Se vuelven a registrar los event listeners en el nuevo Audio
+  */
+  function iniciarCrossfade() {
+    if (crossfadeActivo) return;
+
+    const siguienteIndice = seleccionarSiguienteCancion();
+    audioFondoSiguiente = new Audio(canciones[siguienteIndice]);
+    audioFondoSiguiente.volume = 0;
+    audioFondoSiguiente.playsInline = true;
+    audioFondoSiguiente.preload = "auto";
+
+    // Reproducir la siguiente canción en silencio (volumen 0)
+    audioFondoSiguiente.play().catch(function () {});
+
+    crossfadeActivo = true;
+    // pasos = DURACION_CROSSFADE * 20 porque el setInterval corre cada 50ms
+    // 2 segundos × 20 pasos/segundo = 40 pasos totales
+    const pasos = DURACION_CROSSFADE * 20;
+    let pasoActual = 0;
+
+    intervaloCrossfade = setInterval(function () {
+      pasoActual++;
+      // progreso va de 0 a 1 a lo largo del crossfade
+      const progreso = Math.min(pasoActual / pasos, 1);
+
+      // Bajar volumen de la canción actual: de VOLUMEN_BASE a 0
+      audioFondo.volume = VOLUMEN_BASE * (1 - progreso);
+      // Subir volumen de la siguiente canción: de 0 a VOLUMEN_BASE
+      audioFondoSiguiente.volume = VOLUMEN_BASE * progreso;
+
+      // Cuando terminan todos los pasos, completar la transición
+      if (pasoActual >= pasos) {
+        clearInterval(intervaloCrossfade);
+        intervaloCrossfade = null;
+
+        // Detener y limpiar el Audio anterior
+        audioFondo.pause();
+        audioFondo.removeEventListener("ended", onCancionTerminada);
+        audioFondo.removeEventListener("timeupdate", detectarFinCancion);
+        audioFondo.src = "";
+
+        // El segundo Audio pasa a ser el Audio principal
+        indiceActual = siguienteIndice;
+        audioFondo = audioFondoSiguiente;
+        audioFondoSiguiente = null;
+        crossfadeActivo = false;
+
+        // Restaurar volumen y registrar listeners en el nuevo Audio
+        audioFondo.volume = VOLUMEN_BASE;
+        audioFondo.addEventListener("ended", onCancionTerminada);
+        audioFondo.addEventListener("timeupdate", detectarFinCancion);
+        actualizarUI();
+      }
+    }, 50);
+  }
+
+  // Registrar listeners en el Audio inicial para detectar fin de canción y activar crossfade
+  audioFondo.addEventListener("ended", onCancionTerminada);
+  audioFondo.addEventListener("timeupdate", detectarFinCancion);
 
   function actualizarUI() {
     const reproduciendo = !audioFondo.paused;
@@ -407,6 +534,18 @@ export function inicializarAudioFondo() {
         });
       }
     } else {
+      // Si el usuario pausa durante un crossfade, cancelarlo y restaurar el Audio original
+      if (crossfadeActivo) {
+        clearInterval(intervaloCrossfade);
+        intervaloCrossfade = null;
+        audioFondo.volume = VOLUMEN_BASE;
+        if (audioFondoSiguiente) {
+          audioFondoSiguiente.pause();
+          audioFondoSiguiente.src = "";
+          audioFondoSiguiente = null;
+        }
+        crossfadeActivo = false;
+      }
       audioFondo.pause();
       actualizarUI();
     }
