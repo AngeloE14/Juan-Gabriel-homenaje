@@ -40,6 +40,7 @@
   color: #d4dce8;
   cursor: pointer;
   padding: 0;
+  transform: none;
   transition: background 0.25s ease, color 0.2s ease, box-shadow 0.25s ease;
   -webkit-tap-highlight-color: transparent;
 }
@@ -52,6 +53,7 @@
 
 .nav-toggle:hover {
   color: #f0e6d0;
+  transform: none;
 }
 
 .nav-toggle:focus-visible,
@@ -455,7 +457,8 @@ body.nav-open {
     top: 0;                     /* en móvil el menú empieza desde arriba */
     left: 0;                    /* pegado al borde izquierdo */
     bottom: 0;                  /* y llega hasta abajo (ocupa toda la altura) */
-    width: min(84vw, 320px);    /* min(): elige el valor más pequeño entre 84% del ancho de pantalla o 320px */
+    width: min(58vw, 230px);    /* sidebar más estrecho en tablet para mejor encuadre de imágenes de fondo */
+    max-height: none;
     max-height: none;           /* sin límite de altura (ocupa toda la pantalla) */
     border: 0;                  /* sin borde general */
     border-right: 2px solid #cfa66f; /* solo borde derecho dorado */
@@ -643,11 +646,11 @@ body.nav-open {
 
   /* Mantener el layout lateral pero ajustar tamaños para mejor tacto en móvil */
   .main-nav {
-    width: min(84vw, 320px);    /* conservar comportamiento lateral */
+    width: min(58vw, 230px);    /* sidebar más estrecho en móvil para que background-size: cover recorte menos las imágenes */
   }
 
   .main-nav__list {
-    gap: 8px;                   /* más separación entre botones en móvil */
+    gap: 10px;                  /* separación ligeramente mayor entre botones para mejor legibilidad en móvil */
     padding: 10px 12px 14px;
   }
 
@@ -658,6 +661,17 @@ body.nav-open {
   }
 
   .nav-overlay {
-    background: rgba(6, 15, 28, 0.6); /* volver a semitransparencia original */
+    background: rgba(6, 15, 28, 0.6);
+  }
+
+  /* Ajustar background-position en móvil para que las caras se vean centradas
+     igual que en escritorio. El sidebar más estrecho cambia la proporción del
+     recorte de cover, así que se recalibran las posiciones verticales. */
+  .main-nav a[href="#discografia"] {
+    background-position: center 47%;
+  }
+
+  .main-nav a[href="#multimedia"] {
+    background-position: center 61%;
   }
 }

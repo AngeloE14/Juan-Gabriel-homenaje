@@ -221,16 +221,22 @@ main {
 }
 
 #biografia blockquote {
-    max-width: 800px;                                    /* mismo ancho que biografía */
-    margin: 12px auto 0;                                 /* centrado, 12px arriba */
-    padding: 18px 20px;                                  /* espacio interno amplio */
-    background: rgba(218, 165, 32, 0.18);                /* dorado semitransparente (0.18 = 18% opaco) */
-    border-left: 4px solid #DAA520;                      /* barra dorada a la izquierda — estilo cita clásico */
+    max-width: 800px;
+    margin: 20px auto 0;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, rgba(15, 10, 5, 0.9), rgba(30, 20, 10, 0.85));
+    border-left: 3px solid #FFD700;
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 215, 0, 0.1);
 }
 
 #biografia blockquote p {
-    color: #ffe7b8;
+    color: #FFD700;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-style: italic;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 0;
 }
 
 #logros h2 {
@@ -239,4 +245,20 @@ main {
 
 #logros li {
     color: #f7ecd5;
+}
+
+#logros li a {
+    background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.3);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s ease;
+}
+
+#logros li a:hover {
+    text-decoration-color: rgba(255, 255, 255, 0.7);
 }

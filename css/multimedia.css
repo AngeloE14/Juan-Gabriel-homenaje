@@ -265,7 +265,9 @@
 .youtube-modal {
   position: fixed;
   inset: 0;                              /* ocupa toda la pantalla */
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -293,7 +295,8 @@
   position: relative;
   /* modo cine: el modal ocupa casi todo el ancho visible */
   width: min(1540px, 99vw);            /* se adapta: máximo 1540px, mínimo 99% del ancho de pantalla */
-  margin: 1.2vh auto 0;                /* centrado horizontal, un poco separado del borde superior */
+  max-height: 90vh;
+  margin: 0;
   background: #000;
   border-radius: 10px;
   overflow: hidden;                     /* esquinas redondeadas sin que el iframe se salga */

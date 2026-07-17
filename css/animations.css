@@ -56,22 +56,24 @@
 }
 
 .intro-loading__spinner {
-  width: 80px;
-  height: 80px;
-  border: 3px solid rgba(255, 215, 0, 0.15);
-  border-top-color: #ffd700;
+  width: 160px;
+  height: 160px;
+  border: 2px solid rgba(139, 92, 246, 0.15);
+  border-top-color: #8b5cf6;
+  border-right-color: rgba(212, 175, 55, 0.5);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: introSpin 0.9s linear infinite;
+  animation: introSpin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .intro-loading__logo {
-  width: 52px;
+  width: 110px;
   height: auto;
   border-radius: 50%;
-  animation: introSpinReverse 0.9s linear infinite;
+  animation: introSpinReverse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
