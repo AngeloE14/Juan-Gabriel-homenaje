@@ -4,7 +4,7 @@ import { pausarAudioFondo, reanudarAudioFondo } from './utils.js';
 
 const CONCIERTOS = {
   '1990': {
-    src: 'https://archive.org/embed/juan-gabriel-en-el-palacio-de-bellas-artes-1990',
+    src: 'https://archive.org/embed/juan-gabriel-en-el-palacio-de-bellas-artes-1990?autoplay=1',
     downloadUrl: 'https://www.mediafire.com/file/i8c7b5396ekckwx/Juan_Gabriel_En_el_Palacio_de_Bellas_Artes_1990.mp4/file',
     cover: 'albums/Juan Gabriel en el Palacio de Bellas Artes.jpg',
     coverAlt: 'Carátula de Juan Gabriel en el Palacio de Bellas Artes 1990',
@@ -12,7 +12,7 @@ const CONCIERTOS = {
     downloadAria: 'Descargar concierto Bellas Artes 1990'
   },
   'celebrando': {
-    src: 'https://archive.org/embed/juan-gabriel-celebrando-25-anos-en-el-palacio-de-bellas-artes-1998-completo._202606',
+    src: 'https://archive.org/embed/juan-gabriel-celebrando-25-anos-en-el-palacio-de-bellas-artes-1998-completo._202606?autoplay=1',
     downloadUrl: 'https://www.mediafire.com/file/qd1wboozctjlahq/Juan_Gabriel_-_Celebrando_25_A%25C3%25B1os_En_El_Palacio_De_Bellas_Artes_1998_-_Completo..mp4/file',
     cover: 'albums/Celebrando 25 años.jpeg',
     coverAlt: 'Carátula de Celebrando 25 años en Bellas Artes',
@@ -20,7 +20,7 @@ const CONCIERTOS = {
     downloadAria: 'Descargar concierto Celebrando 25 años en Bellas Artes'
   },
   '2013': {
-    src: 'https://archive.org/embed/juan-gabriel-mis-40-en-bellas-artes',
+    src: 'https://archive.org/embed/juan-gabriel-mis-40-en-bellas-artes?autoplay=1',
     downloadUrl: 'https://www.mediafire.com/file/lqnvloigup7wtcd/Juan_Gabriel_-_Mis_40_en_Bellas_Artes.mp4/file',
     cover: 'albums/Mis 40 en Bellas Artes.jpg',
     coverAlt: 'Carátula de Mis 40 en Bellas Artes',
