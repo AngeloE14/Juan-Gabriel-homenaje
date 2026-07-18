@@ -120,7 +120,31 @@
 }
 
 @media (max-width: 600px) {
+  #filmografia {
+    padding: 36px 0 40px;
+  }
+
+  .filmografia-scroll {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x;
+    scroll-snap-type: x mandatory;
+  }
+
+  .filmografia-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
   .filmografia-grid {
-    gap: 10px;
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    padding: 0 16px;
+  }
+
+  .film-card {
+    flex: 0 0 140px;
+    scroll-snap-align: center;
   }
 }
