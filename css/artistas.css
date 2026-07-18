@@ -47,18 +47,12 @@
 /* ─── SECCIÓN PRINCIPAL ─────────────────────────────── */
 
 #artistas-composiciones {
-  margin: 46px auto 54px;
-  padding: clamp(42px, 7vw, 78px) clamp(16px, 3vw, 34px);
-  /* Gradiente radial: simula un foco de luz cálida en el centro
-     que se oscurece hacia las orillas como el cielo nocturno */
-  background: radial-gradient(circle at center, #2b1808 0%, #1a0f05 35%, #080808 100%);
-  /* Bordes delgados dorados translúcidos arriba y abajo */
+  margin: 46px auto 0;
+  padding: clamp(42px, 7vw, 78px) clamp(16px, 3vw, 34px) 0;
+  background:
+    radial-gradient(circle at center, #2b1808 0%, #1a0f05 35%, #080808 100%);
   border-top: 1px solid rgba(207, 166, 111, 0.38);
-  border-bottom: 1px solid rgba(207, 166, 111, 0.32);
-  /* Sombras interiores (inset) que dan un sutil brillo en los bordes */
-  box-shadow:
-    inset 0 1px 0 rgba(255, 238, 198, 0.06),
-    inset 0 -1px 0 rgba(255, 238, 198, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 238, 198, 0.06);
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
@@ -397,7 +391,7 @@
 
 @media (max-width: 760px) {
   #artistas-composiciones {
-    margin: 34px auto 42px;
+    margin: 34px auto 0;
   }
 
   .artistas-track {
