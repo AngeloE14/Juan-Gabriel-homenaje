@@ -127,4 +127,16 @@ export function inicializarBellasArtesModal() {
       }
     });
   }
+
+  if (video) {
+    video.addEventListener("load", function () {
+      if (video.getAttribute("src")) {
+        setTimeout(function () {
+          try {
+            video.contentWindow.postMessage(JSON.stringify({ method: "play" }), "*");
+          } catch (e) { /* ignore cross-origin */ }
+        }, 2000);
+      }
+    });
+  }
 }
