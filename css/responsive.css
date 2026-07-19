@@ -281,6 +281,16 @@
     height: auto;
   }
 
+  #page-content,
+  main,
+  section {
+    max-width: 100%;             /* evita desbordamiento en móvil */
+  }
+
+  #multimedia {
+    overflow-x: hidden;           /* evita scroll horizontal con videos anchos */
+  }
+
   .discografia-firma {
     margin-top: 24px;
     padding: 12px 16px;          /* más compacto en móvil */
@@ -362,6 +372,11 @@
   .multimedia-card video,
   .multimedia-netflix__cover {
     max-width: 100%;
+  }
+
+  .foto-card__duo {
+    gap: 8px;
+    padding: 8px;
   }
 
   #fotos-iconicas {
