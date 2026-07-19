@@ -218,7 +218,7 @@
   --card-size: clamp(200px, 22vw, 300px);         /* variable: tamaño fluido entre 200px y 300px */
   margin: 0;                                        /* sin margen */
   flex: 0 0 var(--card-size);                       /* no crece, no encoge, ancho fijo = --card-size */
-  aspect-ratio: 3 / 5;                              /* proporción tipo póster (3:5) */
+
   border-radius: 14px;                              /* esquinas redondeadas */
   overflow: hidden;                                 /* oculta lo que sobresale del borde redondeado */
   background: transparent;                           /* fondo invisible — se ve la imagen */
@@ -228,7 +228,6 @@
 .fragmento-card img {
   display: block;               /* elimina espacio fantasma debajo de la imagen */
   width: 100%;                  /* ocupa todo el ancho de la tarjeta */
-  height: 100%;                 /* ocupa todo el alto */
   object-fit: contain;          /* ajusta la imagen sin deformarla */
   object-position: center;      /* centra la imagen si sobra espacio */
   background: transparent;      /* fondo invisible */
