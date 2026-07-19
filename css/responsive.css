@@ -205,7 +205,7 @@
 /* Es más ancha que el contenedor, lo que permite el scroll horizontal */
 .fragmentos-track {
   display: flex;                                        /* alinea las tarjetas en fila */
-  align-items: center;                                  /* centra verticalmente */
+  align-items: flex-start;                              /* las tarjetas se alinean por arriba */
   gap: clamp(16px, 2.2vw, 30px);                        /* espacio fluido entre tarjetas */
   width: 100%;                                          /* ancho completo del contenedor */
   min-width: max-content;                               /* mínimo: todo el contenido sin wrap */
@@ -216,22 +216,25 @@
 
 /* TARJETA DE FRAGMENTO — cada tarjeta representa una canción en el carrusel */
 .fragmento-card {
-  --card-size: clamp(200px, 22vw, 300px);         /* variable: tamaño fluido entre 200px y 300px */
-  margin: 0;                                        /* sin margen */
-  flex: 0 0 var(--card-size);                       /* no crece, no encoge, ancho fijo = --card-size */
-  aspect-ratio: 3 / 5;                              /* proporción tipo póster (3:5) */
-  border-radius: 14px;                              /* esquinas redondeadas */
-  overflow: hidden;                                 /* oculta lo que sobresale del borde redondeado */
-  background: transparent;                           /* fondo invisible — se ve la imagen */
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);    /* sombra grande para efecto flotante */
+  --card-max-width: clamp(180px, 22vw, 320px);         /* ancho máximo fluido */
+  margin: 0;                                          /* sin margen */
+  flex: 0 0 auto;                                     /* la tarjeta se adapta al contenido */
+  max-width: var(--card-max-width);                    /* no crece más allá del valor máximo */
+  min-width: 140px;                                    /* ancho mínimo para mantener legibilidad */
+  position: relative;                                 /* necesario para posicionar el reflejo con ::after */
+  border-radius: 14px;                                /* esquinas redondeadas */
+  overflow: hidden;                                   /* oculta lo que sobresale del borde redondeado */
+  background: transparent;                             /* fondo invisible — se ve la imagen */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);        /* sombra grande para efecto flotante */
 }
 
 .fragmento-card img {
   display: block;               /* elimina espacio fantasma debajo de la imagen */
-  width: 100%;                  /* ocupa todo el ancho de la tarjeta */
-  height: 100%;                 /* ocupa todo el alto */
-  object-fit: contain;          /* ajusta la imagen sin deformarla */
-  object-position: center;      /* centra la imagen si sobra espacio */
+  width: auto;                  /* la imagen usa su ancho natural */
+  max-width: 100%;              /* no sobrepasa el ancho de la tarjeta */
+  height: auto;                 /* la altura se ajusta según la proporción */
+  object-fit: contain;          /* mantiene la imagen completa sin recortar */
+  object-position: center;      /* centra la imagen si hay espacio extra */
   background: transparent;      /* fondo invisible */
 }
 
@@ -395,7 +398,9 @@
   }
 
   .fragmento-card {
-    --card-size: min(68vw, 260px);  /* 68% del ancho de la pantalla, máximo 260px */
+    flex: 0 0 auto;                 /* la tarjeta se adapta al contenido */
+    max-width: min(68vw, 260px);    /* ancho máximo en móvil */
+    min-width: 140px;               /* ancho mínimo para mantener legibilidad */
     border-radius: 12px;            /* esquinas menos redondeadas */
   }
 
