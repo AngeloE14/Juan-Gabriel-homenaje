@@ -1,9 +1,11 @@
 #btn-subir {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: calc(28px + env(safe-area-inset-bottom));
+  right: calc(28px + env(safe-area-inset-right));
   width: 52px;
   height: 52px;
+  min-width: 52px;
+  min-height: 52px;
   border: 2px solid rgba(255, 215, 0, 0.4);
   border-radius: 50%;
   background: linear-gradient(135deg, #1c2e47 0%, #0f1a2e 100%);
@@ -65,10 +67,10 @@
 
 @media (max-width: 700px) {
   #btn-subir {
-    bottom: 20px;
-    right: 20px;
-    width: 48px;
-    height: 48px;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    right: calc(20px + env(safe-area-inset-right));
+    width: 52px;
+    height: 52px;
     font-size: 1.4rem;
   }
 
@@ -80,10 +82,10 @@
 
 @media (max-width: 480px) {
   #btn-subir {
-    bottom: 16px;
-    right: 16px;
-    width: 44px;
-    height: 44px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    right: calc(16px + env(safe-area-inset-right));
+    width: 50px;
+    height: 50px;
   }
 
   #btn-subir svg {

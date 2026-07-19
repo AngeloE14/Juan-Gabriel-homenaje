@@ -1,4 +1,5 @@
 "use strict";
+import { obtenerRendimientoDispositivo } from './utils.js';
 
 export function inicializarArtistasCarousel() {
   const gallery = document.querySelector(".artistas-gallery");
@@ -25,7 +26,9 @@ export function inicializarArtistasCarousel() {
   clones.forEach(function (c) { track.appendChild(c); });
 
   const anchoOriginal = track.scrollWidth / 2;
-  const velocidad = Math.max(0.8, anchoOriginal / 3000);
+  const { isLowEnd, isMobile } = obtenerRendimientoDispositivo();
+  const velocidadBase = Math.max(0.8, anchoOriginal / 3000);
+  const velocidad = velocidadBase * (isLowEnd ? 0.55 : 1);
 
   let animId = null;
   let pausado = false;

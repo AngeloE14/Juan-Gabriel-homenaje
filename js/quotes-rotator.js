@@ -1,5 +1,6 @@
 // MODO ESTRICTO
 "use strict";
+import { obtenerRendimientoDispositivo } from './utils.js';
 
 export function inicializarFrasesRotativas() {
   const frasesRotativas = document.querySelectorAll(".frase-rotativa");
@@ -7,11 +8,13 @@ export function inicializarFrasesRotativas() {
   
   if (frasesRotativas.length > 1) {
     let indiceFraseActual = 0;
+    const { isLowEnd, isMobile } = obtenerRendimientoDispositivo();
+    const intervaloFrases = isLowEnd ? (isMobile ? 9000 : 6500) : 4000;
 
     /*
       SETINTERVAL - TEMPORIZADOR
-      Ejecuta una función cada X milisegundos (4000ms = 4 segundos)
-      SINTAXIS: setInterval(función, milisegundos)
+      Ejecuta una función cada X milisegundos
+      El intervalo se adapta a dispositivos de menos recursos.
     */
     window.setInterval(function () {
       // Quitar clase "is-active" de la frase actual (la oculta)
@@ -24,6 +27,6 @@ export function inicializarFrasesRotativas() {
 
       // Agregar clase "is-active" a la nueva frase (la muestra)
       frasesRotativas[indiceFraseActual].classList.add("is-active");
-    }, 4000); // 4000 milisegundos = 4 segundos
+    }, intervaloFrases); // Intervalo adaptado según el rendimiento del dispositivo
   }
 }

@@ -16,6 +16,7 @@
 
 // MODO ESTRICTO
 "use strict";
+import { obtenerRendimientoDispositivo } from './utils.js';
 
 /*
   FUNCIÓN: inicializarCarrusel()
@@ -93,7 +94,9 @@ export function inicializarCarrusel() {
    */
   function iniciarAutoplay() {
     if (slides.length <= 1) return;
-    autoplayId = window.setInterval(siguiente, 5200);
+    const { isLowEnd, isMobile } = obtenerRendimientoDispositivo();
+    const intervalo = isLowEnd ? (isMobile ? 9000 : 7600) : 5200;
+    autoplayId = window.setInterval(siguiente, intervalo);
   }
 
   /**

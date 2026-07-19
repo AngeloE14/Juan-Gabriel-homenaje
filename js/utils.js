@@ -27,6 +27,49 @@
 // MODO ESTRICTO - Ayuda a encontrar errores
 "use strict";
 
+/**
+ * Detecta si el dispositivo es de bajo recurso para adaptar el rendimiento.
+ * No quita animaciones ni efectos, solo ayuda a ajustar tiempos y carga.
+ */
+export function obtenerRendimientoDispositivo() {
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
+  const deviceMemory = typeof navigator !== "undefined" && "deviceMemory" in navigator ? navigator.deviceMemory : null;
+  const cores = typeof navigator !== "undefined" && "hardwareConcurrency" in navigator ? navigator.hardwareConcurrency : null;
+  const saveData = connection ? connection.saveData : false;
+  const effectiveType = connection && connection.effectiveType ? connection.effectiveType : "";
+  const downlink = connection && typeof connection.downlink === "number" ? connection.downlink : null;
+  const rtt = connection && typeof connection.rtt === "number" ? connection.rtt : null;
+
+  const hasLowMemory = deviceMemory !== null ? deviceMemory <= 2 : false;
+  const hasFewCores = cores !== null ? cores <= 2 : false;
+  const slowNetwork = saveData || ['slow-2g', '2g'].includes(effectiveType) || (downlink !== null && downlink <= 0.5) || (rtt !== null && rtt >= 300);
+  const isLowEnd = hasLowMemory || hasFewCores || slowNetwork;
+  const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 700px)").matches;
+
+  return {
+    isLowEnd,
+    isMobile,
+    deviceMemory,
+    cores,
+    effectiveType,
+    downlink,
+    rtt,
+    saveData
+  };
+}
+
+export function aplicarClaseRendimientoDelDispositivo() {
+  const body = document.body;
+  if (!body) return { isLowEnd: false, isMobile: false };
+
+  const { isLowEnd, isMobile } = obtenerRendimientoDispositivo();
+  body.dataset.performanceTier = isLowEnd ? "low" : "normal";
+  body.classList.toggle("low-end-device", isLowEnd);
+  body.classList.toggle("mobile-device", isMobile);
+
+  return { isLowEnd, isMobile };
+}
+
 // audioFondo = elemento Audio que reproduce la canción actual
 let audioFondo;
 // audioFondoSiguiente = segundo Audio usado durante el crossfade (se crea uno nuevo al cambiar canción)

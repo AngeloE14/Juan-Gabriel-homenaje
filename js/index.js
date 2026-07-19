@@ -38,7 +38,7 @@
   Sintaxis: import { función1, función2 } from './archivo.js'
   El ./ significa "en la misma carpeta"
 */
-import { marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar, inicializarAudioFondo } from './utils.js';
+import { marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar, inicializarAudioFondo, aplicarClaseRendimientoDelDispositivo } from './utils.js';
 import { inicializarCarrusel } from './carousel.js';
 import { inicializarYouTubeModal } from './youtube-modal.js';
 import { inicializarBellasArtesModal } from './bellas-artes-modal.js';
@@ -57,6 +57,7 @@ import { inicializarBotonSubir } from './back-to-top.js';
   elemento.addEventListener("evento", función);
 */
 document.addEventListener("DOMContentLoaded", function () {
+  aplicarClaseRendimientoDelDispositivo(); // Detecta equipos y etiqueta el body para adaptarse
   marcarEnlaceActivo();       // Resalta el enlace del menú actual
   inicializarNavegacion();    // Configura clics en el menú
   reproducirIntroAlCargar();  // Reproduce intro en video al cargar
