@@ -837,11 +837,7 @@
                  alt="Juan Gabriel en Bellas Artes 1990"
                  loading="lazy">
           </figure>
-          <figure class="carousel__slide" data-caption="Palacio de Bellas Artes, un símbolo del legado de Juan Gabriel.">
-            <img src="Pictures/carousel_photos/PALACIO DE BELLAS ARTES.webp"
-                 alt="Palacio de Bellas Artes en homenaje a Juan Gabriel"
-                 loading="lazy">
-          </figure>
+
           <figure class="carousel__slide" data-caption="Juan Gabriel cantando con pasión en el escenario.">
             <img src="Pictures/carousel_photos/CANTANDO.webp"
                  alt="Juan Gabriel cantando en vivo"
@@ -927,6 +923,13 @@
 
       <figure class="foto-card foto-card--vinyl">
         <div class="foto-card__duo">
+          <img src="Pictures/iconic_photos/juanga.webp"
+               alt="Juan Gabriel en Bellas Artes"
+               loading="lazy">
+          <img src="Pictures/carousel_photos/PALACIO DE BELLAS ARTES.webp"
+               alt="Palacio de Bellas Artes en homenaje a Juan Gabriel"
+               style="object-position: center 12%;"
+               loading="lazy">
           <img src="Pictures/iconic_photos/BELLAS ARTES X.webp"
                alt="Foto del vinil de Juan Gabriel en Bellas Artes 1990"
                loading="lazy">
@@ -1091,6 +1094,8 @@
       <div class="lightbox__overlay" data-close-modal="true"></div>
       <div class="lightbox__content" role="dialog" aria-modal="true" aria-label="Visor de fotos">
         <button type="button" class="lightbox__close" id="lightbox-close" aria-label="Cerrar">&times;</button>
+        <button type="button" class="lightbox__arrow lightbox__arrow--prev" id="lightbox-prev" aria-label="Foto anterior">&#10094;</button>
+        <button type="button" class="lightbox__arrow lightbox__arrow--next" id="lightbox-next" aria-label="Foto siguiente">&#10095;</button>
         <div class="lightbox__img-wrapper">
           <img id="lightbox-img" src="" alt="" decoding="async">
         </div>

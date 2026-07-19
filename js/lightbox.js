@@ -7,6 +7,8 @@ export function inicializarLightbox() {
   const lightboxImg = document.getElementById("lightbox-img");
   const lightboxCaption = document.getElementById("lightbox-caption");
   const lightboxClose = document.getElementById("lightbox-close");
+  const prevBtn = document.getElementById("lightbox-prev");
+  const nextBtn = document.getElementById("lightbox-next");
 
   if (!lightbox || !lightboxImg) return;
 
@@ -16,18 +18,11 @@ export function inicializarLightbox() {
 
   if (imagenes.length === 0) return;
 
-  function abrirLightbox(indice) {
-    const img = imagenes[indice];
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
+  let indiceActual = 0;
 
-    const figcaption = img.closest("figure").querySelector("figcaption");
-    if (figcaption && figcaption.textContent.trim()) {
-      lightboxCaption.textContent = figcaption.textContent.trim();
-      lightboxCaption.style.display = "";
-    } else {
-      lightboxCaption.style.display = "none";
-    }
+  function abrirLightbox(indice) {
+    indiceActual = indice;
+    renderLightbox();
 
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
@@ -45,6 +40,33 @@ export function inicializarLightbox() {
     reanudarAudioFondo();
   }
 
+  function renderLightbox() {
+    const img = imagenes[indiceActual];
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+
+    const figcaption = img.closest("figure, .foto-card")?.querySelector("figcaption");
+    if (figcaption && figcaption.textContent.trim()) {
+      lightboxCaption.textContent = figcaption.textContent.trim();
+      lightboxCaption.style.display = "";
+    } else {
+      lightboxCaption.style.display = "none";
+    }
+
+    if (prevBtn) prevBtn.style.display = imagenes.length > 1 ? "" : "none";
+    if (nextBtn) nextBtn.style.display = imagenes.length > 1 ? "" : "none";
+  }
+
+  function siguiente() {
+    indiceActual = (indiceActual + 1) % imagenes.length;
+    renderLightbox();
+  }
+
+  function anterior() {
+    indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
+    renderLightbox();
+  }
+
   imagenes.forEach(function (img, indice) {
     img.style.cursor = "pointer";
     img.addEventListener("click", function () {
@@ -53,6 +75,9 @@ export function inicializarLightbox() {
   });
 
   lightboxClose.addEventListener("click", cerrarLightbox);
+
+  if (prevBtn) prevBtn.addEventListener("click", anterior);
+  if (nextBtn) nextBtn.addEventListener("click", siguiente);
 
   lightboxImg.addEventListener("click", function () {
     cerrarLightbox();
@@ -68,6 +93,12 @@ export function inicializarLightbox() {
     if (!lightbox.classList.contains("is-open")) return;
     if (evento.key === "Escape") {
       cerrarLightbox();
+    }
+    if (evento.key === "ArrowRight") {
+      siguiente();
+    }
+    if (evento.key === "ArrowLeft") {
+      anterior();
     }
   });
 }
