@@ -137,12 +137,20 @@ body.nav-open .nav-toggle__icon span:nth-child(3) {
   will-change: transform, opacity;
   overflow-y: auto;
   overflow-x: hidden;
-  border: 2px solid #cfa66f;
-  border-radius: 18px;
+  scrollbar-gutter: stable;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border: 2px solid rgba(207, 166, 111, 0.55);
+  border-radius: 10px;
   background: linear-gradient(180deg, #0b1f3b 0%, #12345f 55%, #0f2746 100%);
   box-shadow:
-    0 16px 36px rgba(4, 14, 33, 0.55),
-    0 0 18px rgba(207, 166, 111, 0.18);
+    0 12px 24px rgba(4, 14, 33, 0.35),
+    0 0 12px rgba(207, 166, 111, 0.12);
+}
+
+.main-nav::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 body.nav-open .main-nav {
@@ -183,7 +191,7 @@ body.nav-open {
   padding: 0 12px 12px;
   display: flex;              /* activa flexbox para alinear los hijos */
   flex-direction: column;     /* en columna = vertical, uno abajo del otro */
-  gap: 4px;                   /* espacio de 4px entre cada enlace */
+  gap: 6px;                    /* espacio ligeramente mayor entre enlaces */
   align-items: stretch;       /* cada enlace ocupa todo el ancho disponible */
 }
 
@@ -204,19 +212,20 @@ body.nav-open {
   text-align: left;
   text-decoration: none;
   color: #d4dce8;
-  padding: 10px 16px;
-  font-weight: 500;
-  font-size: 1rem;
-  letter-spacing: 0.5px;         /* espacio entre letras */
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.35px;         /* espacio entre letras */
+  border: 1px solid transparent;
   border-radius: 8px;            /* esquinas redondeadas */
-  transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease, border-color 0.2s ease;
 }
 
 .main-nav a:hover,
 .main-nav a:focus-visible {
   color: #f0e6d0;                /* cambia a color crema al pasar el mouse o enfocar con teclado */
   background: rgba(240, 230, 208, 0.06); /* fondo crema muy sutil (6% opaco) */
-  padding-left: 22px;            /* se corre un poco a la derecha para dar sensación de movimiento */
+  padding-left: 15px;            /* se corre un poco a la derecha para dar sensación de movimiento */
 }
 
 /* [aria-current="page"] = atributo que marca el enlace de la sección donde está el usuario.
@@ -234,18 +243,18 @@ body.nav-open {
 .main-nav a[href="#biografia"] {
   display: flex;
   align-items: center;
-  min-height: 60px;
-  padding: 12px 16px;
+  min-height: 50px;
+  padding: 8px 12px;
   overflow: hidden;             /* oculta cualquier desbordamiento de la imagen de fondo */
   font-weight: 700;
   color: #fff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7); /* sombra negra para que el texto resalte */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  background-image: url("../pic_nav/foto 5.webp"); /* imagen de fondo desde la carpeta pic_nav */
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background-image: linear-gradient(90deg, rgba(6, 10, 16, 0.38) 0%, rgba(6, 10, 16, 0.12) 48%, rgba(6, 10, 16, 0.22) 100%), url("../pic_nav/foto 5.webp"); /* imagen de fondo desde la carpeta pic_nav */
   background-size: cover;       /* la imagen se estira para cubrir todo el fondo */
   background-position: center 54%; /* centra la imagen, 54% vertical para que se vea bien el rostro */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
@@ -253,8 +262,8 @@ body.nav-open {
 .main-nav a[href="#biografia"]:focus-visible {
   color: #f0e6d0;
   border-color: rgba(240, 230, 208, 0.5);
-  filter: brightness(1.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(240, 230, 208, 0.15);
+  filter: brightness(1.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), 0 0 10px rgba(240, 230, 208, 0.12);
 }
 
 .main-nav a[href="#biografia"]:focus-visible {
@@ -271,18 +280,18 @@ body.nav-open {
 .main-nav a[href="#artistas-composiciones"] {
   display: flex;
   align-items: center;
-  min-height: 60px;
-  padding: 12px 16px;
+  min-height: 50px;
+  padding: 8px 12px;
   overflow: hidden;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  background-image: url("../pic_nav/foto 1.webp");
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background-image: linear-gradient(90deg, rgba(7, 11, 17, 0.32) 0%, rgba(7, 11, 17, 0.1) 50%, rgba(7, 11, 17, 0.2) 100%), url("../pic_nav/foto 1.webp");
   background-size: cover;
   background-position: center 23%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
@@ -290,8 +299,8 @@ body.nav-open {
 .main-nav a[href="#artistas-composiciones"]:focus-visible {
   color: #f0e6d0;
   border-color: rgba(240, 230, 208, 0.5);
-  filter: brightness(1.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(240, 230, 208, 0.15);
+  filter: brightness(1.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), 0 0 10px rgba(240, 230, 208, 0.12);
 }
 
 .main-nav a[href="#artistas-composiciones"]:focus-visible {
@@ -308,18 +317,18 @@ body.nav-open {
 .main-nav a[href="#multimedia"] {
   display: flex;
   align-items: center;
-  min-height: 60px;
-  padding: 12px 16px;
+  min-height: 50px;
+  padding: 8px 12px;
   overflow: hidden;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url("../pic_nav/foto 4.webp");
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background-image: linear-gradient(90deg, rgba(6, 10, 14, 0.24) 0%, rgba(6, 10, 14, 0.08) 52%, rgba(6, 10, 14, 0.16) 100%), url("../pic_nav/foto 4.webp");
   background-size: cover;
   background-position: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
@@ -327,8 +336,8 @@ body.nav-open {
 .main-nav a[href="#multimedia"]:focus-visible {
   color: #f0e6d0;
   border-color: rgba(240, 230, 208, 0.5);
-  filter: brightness(1.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(240, 230, 208, 0.15);
+  filter: brightness(1.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), 0 0 10px rgba(240, 230, 208, 0.12);
 }
 
 .main-nav a[href="#multimedia"]:focus-visible {
@@ -345,18 +354,18 @@ body.nav-open {
 .main-nav a[href="#letras"] {
   display: flex;
   align-items: center;
-  min-height: 52px;
-  padding: 12px 16px;
+  min-height: 48px;
+  padding: 8px 12px;
   overflow: hidden;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("../pic_nav/foto 3.webp");
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background-image: linear-gradient(90deg, rgba(10, 8, 4, 0.34) 0%, rgba(10, 8, 4, 0.1) 50%, rgba(10, 8, 4, 0.18) 100%), url("../pic_nav/foto 3.webp");
   background-size: cover;
   background-position: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
@@ -364,8 +373,8 @@ body.nav-open {
 .main-nav a[href="#letras"]:focus-visible {
   color: #f0e6d0;
   border-color: rgba(240, 230, 208, 0.5);
-  filter: brightness(1.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(240, 230, 208, 0.15);
+  filter: brightness(1.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), 0 0 10px rgba(240, 230, 208, 0.12);
 }
 
 .main-nav a[href="#letras"]:focus-visible {
@@ -382,18 +391,18 @@ body.nav-open {
 .main-nav a[href="#fotos-iconicas"] {
   display: flex;
   align-items: center;
-  min-height: 60px;
-  padding: 12px 16px;
+  min-height: 50px;
+  padding: 8px 12px;
   overflow: hidden;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url("../pic_nav/foto 2.webp");
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background-image: linear-gradient(90deg, rgba(8, 10, 14, 0.26) 0%, rgba(8, 10, 14, 0.09) 50%, rgba(8, 10, 14, 0.17) 100%), url("../pic_nav/foto 2.webp");
   background-size: cover;
   background-position: center 27%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
@@ -401,8 +410,8 @@ body.nav-open {
 .main-nav a[href="#fotos-iconicas"]:focus-visible {
   color: #f0e6d0;
   border-color: rgba(240, 230, 208, 0.5);
-  filter: brightness(1.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(240, 230, 208, 0.15);
+  filter: brightness(1.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), 0 0 10px rgba(240, 230, 208, 0.12);
 }
 
 .main-nav a[href="#fotos-iconicas"]:focus-visible {
@@ -419,18 +428,18 @@ body.nav-open {
 .main-nav a[href="#discografia"] {
   display: flex;
   align-items: center;
-  min-height: 60px;
-  padding: 12px 16px;
+  min-height: 50px;
+  padding: 8px 12px;
   overflow: hidden;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  background-image: url("../pic_nav/foto 6.webp");
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background-image: linear-gradient(90deg, rgba(6, 10, 16, 0.32) 0%, rgba(6, 10, 16, 0.1) 50%, rgba(6, 10, 16, 0.2) 100%), url("../pic_nav/foto 6.webp");
   background-size: cover;
   background-position: center 45%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
@@ -438,8 +447,8 @@ body.nav-open {
 .main-nav a[href="#discografia"]:focus-visible {
   color: #f0e6d0;
   border-color: rgba(240, 230, 208, 0.5);
-  filter: brightness(1.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(240, 230, 208, 0.15);
+  filter: brightness(1.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), 0 0 10px rgba(240, 230, 208, 0.12);
 }
 
 .main-nav a[href="#discografia"]:focus-visible {
