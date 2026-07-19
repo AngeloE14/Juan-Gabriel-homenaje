@@ -2116,6 +2116,263 @@
 }
 
 /* ===========================================
+   PARTITURAS MUSALES — Fragmentos de pentagrama
+   ===========================================
+   6 fragmentos pequeños de partitura distribuidos por la vitrina.
+   Cada uno tiene 5 líneas de pentagrama (simuladas con background
+   repeating-linear-gradient) y un símbolo musical (clef, note, etc.).
+   Inspirados en la pasión de Juan Gabriel por la música clásica
+   y la diosa de la música. Opacidad muy baja (0.15-0.30) para que
+   complementen sin competir con los botones.
+   =========================================== */
+.bellas-vitrina__score {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Líneas del pentagrama — 5 líneas horizontales usando repeating-gradient */
+.bellas-vitrina__score-staff {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(212, 175, 90, 0.5) 3px,
+    rgba(212, 175, 90, 0.5) 4px,
+    transparent 4px,
+    transparent 7px
+  );
+  pointer-events: none;
+}
+
+/* Símbolo musical — positioned above the staff */
+.bellas-vitrina__score-symbol {
+  position: relative;
+  color: rgba(212, 175, 90, 0.85);
+  text-shadow: 0 0 10px rgba(212, 175, 90, 0.4);
+  line-height: 1;
+  z-index: 1;
+}
+
+/* Partitura 1 — treble clef, esquina superior izquierda */
+.bellas-vitrina__score--1 {
+  top: 5%;
+  left: 18%;
+  width: 72px;
+  height: 34px;
+  opacity: 0.45;
+  transform: rotate(-8deg);
+}
+.bellas-vitrina__score--1 .bellas-vitrina__score-symbol {
+  font-size: 24px;
+  top: 2px;
+  left: 4px;
+}
+
+/* Partitura 2 — quarter note, derecha arriba */
+.bellas-vitrina__score--2 {
+  top: 12%;
+  right: 18%;
+  width: 58px;
+  height: 28px;
+  opacity: 0.38;
+  transform: rotate(5deg);
+}
+.bellas-vitrina__score--2 .bellas-vitrina__score-symbol {
+  font-size: 18px;
+  top: 3px;
+}
+
+/* Partitura 3 — beamed notes, centro izquierda */
+.bellas-vitrina__score--3 {
+  top: 55%;
+  left: 8%;
+  width: 68px;
+  height: 32px;
+  opacity: 0.5;
+  transform: rotate(-3deg);
+}
+.bellas-vitrina__score--3 .bellas-vitrina__score-symbol {
+  font-size: 18px;
+  top: 2px;
+  left: 6px;
+}
+
+/* Partitura 4 — bass clef, derecha centro */
+.bellas-vitrina__score--4 {
+  top: 45%;
+  right: 6%;
+  width: 62px;
+  height: 30px;
+  opacity: 0.4;
+  transform: rotate(7deg);
+}
+.bellas-vitrina__score--4 .bellas-vitrina__score-symbol {
+  font-size: 22px;
+  top: 1px;
+  left: 8px;
+}
+
+/* Partitura 5 — mixed notes, centro inferior */
+.bellas-vitrina__score--5 {
+  bottom: 18%;
+  left: 30%;
+  width: 70px;
+  height: 32px;
+  opacity: 0.35;
+  transform: rotate(-6deg);
+}
+.bellas-vitrina__score--5 .bellas-vitrina__score-symbol {
+  font-size: 16px;
+  top: 4px;
+  left: 10px;
+}
+
+/* Partitura 6 — beamed notes, borde inferior derecho */
+.bellas-vitrina__score--6 {
+  bottom: 8%;
+  right: 22%;
+  width: 60px;
+  height: 28px;
+  opacity: 0.4;
+  transform: rotate(4deg);
+}
+.bellas-vitrina__score--6 .bellas-vitrina__score-symbol {
+  font-size: 17px;
+  top: 3px;
+}
+
+/* ===========================================
+   ILUMINACIÓN ESCÉNICA — Footlights + Color Wash
+   ===========================================
+   Efecto de escenario de concierto para Juan Gabriel.
+   - Footlights: 12 luces doradas en la base que brillan hacia arriba
+   - Color wash: gradiente ambiental púrpura/dorado que cambia lento (18s)
+   Ambos son decorativos y muy sutiles.
+   =========================================== */
+
+/* === FOOTLIGHTS — Luces escénicas superiores === */
+.bellas-vitrina__footlights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bellas-vitrina__footlights i {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 40px;
+  height: 60px;
+  border-radius: 50%;
+  font-style: normal;
+}
+
+/* 12 luces de colores Juan Gabriel — colores icónicos de sus conciertos:
+   dorado, púrpura, blanco, rosa fucsia, burdeos */
+.bellas-vitrina__footlights i:nth-child(1)  { left: 2%;   background: radial-gradient(ellipse at top, rgba(212, 175, 90, 0.30) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(2)  { left: 10%;  background: radial-gradient(ellipse at top, rgba(160, 80, 180, 0.25) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(3)  { left: 18%;  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.22) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(4)  { left: 28%;  background: radial-gradient(ellipse at top, rgba(212, 175, 90, 0.28) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(5)  { left: 38%;  background: radial-gradient(ellipse at top, rgba(200, 60, 120, 0.20) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(6)  { left: 48%;  background: radial-gradient(ellipse at top, rgba(212, 175, 90, 0.35) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(7)  { left: 56%;  background: radial-gradient(ellipse at top, rgba(212, 175, 90, 0.35) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(8)  { left: 64%;  background: radial-gradient(ellipse at top, rgba(200, 60, 120, 0.20) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(9)  { left: 74%;  background: radial-gradient(ellipse at top, rgba(212, 175, 90, 0.28) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(10) { left: 82%;  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.22) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(11) { left: 90%;  background: radial-gradient(ellipse at top, rgba(160, 80, 180, 0.25) 0%, transparent 70%); }
+.bellas-vitrina__footlights i:nth-child(12) { left: 96%;  background: radial-gradient(ellipse at top, rgba(212, 175, 90, 0.25) 0%, transparent 70%); }
+
+/* Luz central más intensa — foco principal del escenario */
+.bellas-vitrina__footlights i:nth-child(6),
+.bellas-vitrina__footlights i:nth-child(7) {
+  width: 50px;
+  height: 70px;
+}
+
+/* === COLOR WASH — Lavado ambiental púrpura/dorado === */
+.bellas-vitrina__wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  background: linear-gradient(
+    135deg,
+    rgba(120, 60, 150, 0.12) 0%,
+    rgba(180, 130, 50, 0.08) 35%,
+    rgba(120, 60, 150, 0.06) 65%,
+    rgba(180, 130, 50, 0.10) 100%
+  );
+}
+
+/* ===========================================
+   FILETEADOS MEXICANOS — Ornamentación de esquinas
+   ===========================================
+   4 ornamentos SVG inspirados en los fileteados de la artesanía mexicana:
+   carros alegóricos, talavera y arte popular.
+   Cada esquina usa el mismo SVG reflejado/rotado.
+   SVG embebido como data URI (zero requests HTTP).
+   =========================================== */
+.bellas-vitrina__fileteados {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.bellas-vitrina__fileteados i {
+  position: absolute;
+  display: block;
+  width: 44px;
+  height: 44px;
+  font-style: normal;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* SVG fileteado mexicano — curva con espiral y remate floral */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpath d='M8 4 C12 4, 16 6, 18 10 C20 14, 18 18, 14 20 C10 22, 8 26, 10 30 C12 34, 16 34, 18 32' fill='none' stroke='rgba(212,175,90,0.55)' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M18 32 C20 30, 22 32, 20 34 C18 36, 16 34, 18 32Z' fill='rgba(212,175,90,0.4)'/%3E%3Cpath d='M4 8 C4 12, 6 16, 10 18 C14 20, 18 18, 20 14' fill='none' stroke='rgba(212,175,90,0.45)' stroke-width='1' stroke-linecap='round'/%3E%3Ccircle cx='8' cy='6' r='1.5' fill='rgba(212,175,90,0.5)'/%3E%3C/svg%3E");
+}
+
+/* Esquina superior izquierda — original */
+.bellas-vitrina__fileteados i:nth-child(1) {
+  top: 4px;
+  left: 4px;
+}
+
+/* Esquina superior derecha — reflejo horizontal */
+.bellas-vitrina__fileteados i:nth-child(2) {
+  top: 4px;
+  right: 4px;
+  transform: scaleX(-1);
+}
+
+/* Esquina inferior izquierda — reflejo vertical */
+.bellas-vitrina__fileteados i:nth-child(3) {
+  bottom: 4px;
+  left: 4px;
+  transform: scaleY(-1);
+}
+
+/* Esquina inferior derecha — rotación 180° */
+.bellas-vitrina__fileteados i:nth-child(4) {
+  bottom: 4px;
+  right: 4px;
+  transform: rotate(180deg);
+}
+
+/* ===========================================
    RESPONSIVE VITRINA — Breakpoints del proyecto
    ===========================================
    700px (móvil): reduce padding, logo, esquinas y partículas.
@@ -2170,6 +2427,54 @@
   .bellas-vitrina__note {
     font-size: 10px;                     /* notas más pequeñas */
   }
+
+  /* Partituras reducidas para móvil */
+  .bellas-vitrina__score {
+    opacity: 0.3 !important;
+  }
+  .bellas-vitrina__score-staff {
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(212, 175, 90, 0.4) 2px,
+      rgba(212, 175, 90, 0.4) 2.5px,
+      transparent 2.5px,
+      transparent 4.5px
+    );
+  }
+  .bellas-vitrina__score--1,
+  .bellas-vitrina__score--2,
+  .bellas-vitrina__score--3,
+  .bellas-vitrina__score--4,
+  .bellas-vitrina__score--5,
+  .bellas-vitrina__score--6 {
+    width: 48px !important;
+    height: 22px !important;
+  }
+  .bellas-vitrina__score-symbol {
+    font-size: 14px !important;
+  }
+
+  /* Luces de escenario reducidas para móvil */
+  .bellas-vitrina__footlights i {
+    width: 30px !important;
+    height: 45px !important;
+  }
+  .bellas-vitrina__footlights i:nth-child(6),
+  .bellas-vitrina__footlights i:nth-child(7) {
+    width: 38px !important;
+    height: 55px !important;
+  }
+  .bellas-vitrina__wash {
+    opacity: 0.35;
+  }
+
+  /* Fileteados reducidos para móvil */
+  .bellas-vitrina__fileteados i {
+    width: 34px;
+    height: 34px;
+  }
 }
 
 /* === SMALL MOBILE (≤560px) === */
@@ -2205,5 +2510,42 @@
 
   .bellas-vitrina__note {
     font-size: 9px;
+  }
+
+  /* Partituras aún más pequeñas en small mobile */
+  .bellas-vitrina__score {
+    opacity: 0.25 !important;
+  }
+  .bellas-vitrina__score--1,
+  .bellas-vitrina__score--2,
+  .bellas-vitrina__score--3,
+  .bellas-vitrina__score--4,
+  .bellas-vitrina__score--5,
+  .bellas-vitrina__score--6 {
+    width: 38px !important;
+    height: 18px !important;
+  }
+  .bellas-vitrina__score-symbol {
+    font-size: 12px !important;
+  }
+
+  /* Luces de escenario aún más pequeñas */
+  .bellas-vitrina__footlights i {
+    width: 24px !important;
+    height: 36px !important;
+  }
+  .bellas-vitrina__footlights i:nth-child(6),
+  .bellas-vitrina__footlights i:nth-child(7) {
+    width: 30px !important;
+    height: 44px !important;
+  }
+  .bellas-vitrina__wash {
+    opacity: 0.3;
+  }
+
+  /* Fileteados aún más pequeños en small mobile */
+  .bellas-vitrina__fileteados i {
+    width: 28px;
+    height: 28px;
   }
 }
