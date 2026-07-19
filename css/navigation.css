@@ -81,9 +81,7 @@
   transition: transform 0.25s ease, opacity 0.25s ease; /* animación suave al transformarse en X */
 }
 
-.nav-toggle__text {
-  display: none;
-}
+
 
 /* Estado visual del ícono cuando el menú está abierto.
    Las 3 rayitas horizontales se transforman en una "X" para cerrar:
@@ -458,7 +456,6 @@ body.nav-open {
     left: 0;                    /* pegado al borde izquierdo */
     bottom: 0;                  /* y llega hasta abajo (ocupa toda la altura) */
     width: min(58vw, 230px);    /* sidebar más estrecho en tablet para mejor encuadre de imágenes de fondo */
-    max-height: none;
     max-height: none;           /* sin límite de altura (ocupa toda la pantalla) */
     border: 0;                  /* sin borde general */
     border-right: 2px solid #cfa66f; /* solo borde derecho dorado */

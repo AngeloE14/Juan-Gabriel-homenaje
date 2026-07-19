@@ -190,12 +190,6 @@
   outline-offset: 3px;
 }
 
-.intro-unlock-btn__icon {
-  font-size: 1.3rem;
-  line-height: 1;
-}
-
-
 @media (max-width: 560px) {
   .intro-skip {
     top: max(12px, env(safe-area-inset-top));

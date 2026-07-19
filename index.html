@@ -164,7 +164,7 @@
         <span></span>
         <span></span>
       </span>
-      <span class="nav-toggle__text">Secciones</span>
+
     </button>
 
     <nav class="main-nav" id="sidebar-nav" aria-label="Navegación principal">
@@ -627,41 +627,78 @@
       </div>
 
       <!-- Modo Bellas Artes: botones de concierto con modal propio -->
+      <!-- La vitrina es un marco decorativo tipo museo Art Nouveau que
+           envuelve los botones de Bellas Artes. Inspirada en el traje
+           dorado de Juan Gabriel de 1990 (lentejuelas, bordados, borlas).
+           Ver CSS: bellas-artes.css sección "VITRINA DECORATIVA" -->
       <section id="modo-bellas-artes-switch">
         <div class="bellas-switch">
-          <div class="bellas-concert-selector" role="group" aria-label="Elegir concierto de Bellas Artes">
-            <button class="bellas-btn bellas-btn--1990" type="button" data-concierto="1990">
-              <span class="bellas-btn__cover">
-                <img src="albums/Juan Gabriel en el Palacio de Bellas Artes.webp" alt="Concierto de 1990 en Bellas Artes" loading="lazy" decoding="async">
-                <span class="bellas-btn__play" aria-hidden="true">▶</span>
-              </span>
-              <span class="bellas-btn__info">
-                <span class="bellas-btn__title">Juan Gabriel</span>
-                <span class="bellas-btn__sub">En el Palacio de Bellas Artes</span>
-              </span>
-            </button>
+          <div class="bellas-vitrina">
+            <!-- Esquinas ornamentales Art Nouveau — 4 L-brackets dorados
+                 posicionados en cada esquina con border-top/left/right/bottom -->
+            <div class="bellas-vitrina__corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
-            <button class="bellas-btn bellas-btn--celebrando" type="button" data-concierto="celebrando">
-              <span class="bellas-btn__cover">
-                <img src="albums/Celebrando 25 años.webp" alt="Concierto celebrando 25 años" loading="lazy" decoding="async">
-                <span class="bellas-btn__play" aria-hidden="true">▶</span>
-              </span>
-              <span class="bellas-btn__info">
-                <span class="bellas-btn__title">Juan Gabriel</span>
-                <span class="bellas-btn__sub">Celebrando 25 años en Bellas Artes</span>
-              </span>
-            </button>
+            <!-- Título decorativo -->
+            <h3 class="bellas-vitrina__title">
+              <img src="assets/Titulo 4.png" alt="Juan Gabriel" class="bellas-vitrina__logo">
+              <span class="bellas-vitrina__title-sub">conciertos en bellas artes</span>
+            </h3>
 
-            <button class="bellas-btn bellas-btn--2013" type="button" data-concierto="2013">
-              <span class="bellas-btn__cover">
-                <img src="albums/Mis 40 en Bellas Artes.webp" alt="Concierto de 2013 en Bellas Artes" loading="lazy" decoding="async">
-                <span class="bellas-btn__play" aria-hidden="true">▶</span>
-              </span>
-              <span class="bellas-btn__info">
-                <span class="bellas-btn__title">Juan Gabriel</span>
-                <span class="bellas-btn__sub">Mis 40 en Bellas Artes</span>
-              </span>
-            </button>
+            <div class="bellas-concert-selector" role="group" aria-label="Elegir concierto de Bellas Artes">
+              <button class="bellas-btn bellas-btn--1990" type="button" data-concierto="1990">
+                <span class="bellas-btn__cover">
+                  <img src="albums/Juan Gabriel en el Palacio de Bellas Artes.webp" alt="Concierto de 1990 en Bellas Artes" loading="lazy" decoding="async">
+                  <span class="bellas-btn__play" aria-hidden="true">▶</span>
+                </span>
+                <span class="bellas-btn__info">
+                  <span class="bellas-btn__title">Juan Gabriel</span>
+                  <span class="bellas-btn__sub">En el Palacio de Bellas Artes</span>
+                </span>
+              </button>
+
+              <button class="bellas-btn bellas-btn--celebrando" type="button" data-concierto="celebrando">
+                <span class="bellas-btn__cover">
+                  <img src="albums/Celebrando 25 años.webp" alt="Concierto celebrando 25 años" loading="lazy" decoding="async">
+                  <span class="bellas-btn__play" aria-hidden="true">▶</span>
+                </span>
+                <span class="bellas-btn__info">
+                  <span class="bellas-btn__title">Juan Gabriel</span>
+                  <span class="bellas-btn__sub">Celebrando 25 años en Bellas Artes</span>
+                </span>
+              </button>
+
+              <button class="bellas-btn bellas-btn--2013" type="button" data-concierto="2013">
+                <span class="bellas-btn__cover">
+                  <img src="albums/Mis 40 en Bellas Artes.webp" alt="Concierto de 2013 en Bellas Artes" loading="lazy" decoding="async">
+                  <span class="bellas-btn__play" aria-hidden="true">▶</span>
+                </span>
+                <span class="bellas-btn__info">
+                  <span class="bellas-btn__title">Juan Gabriel</span>
+                  <span class="bellas-btn__sub">Mis 40 en Bellas Artes</span>
+                </span>
+              </button>
+            </div>
+
+            <!-- Decoración dorada — inspirada en el traje de 1990:
+                 - 6 lentejuelas circulares (radial-gradient + border-radius: 50%)
+                 - 4 tachuelas pequeñas (puntos dorados)
+                 - 2 borlas verticales (gradient linear + border-radius alargado)
+                 Cada <i> se posiciona con CSS nth-child. Usar <i> en vez de
+                 <span> para minimizar el peso del DOM. -->
+            <div class="bellas-vitrina__particles" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+
+            <!-- Notas musicales sutiles — como borlas doradas dispersas
+                 6 notas (♪ ♫) posicionadas manualmente con CSS.
+                 Tamaños variados (10-14px) y opacidades bajas (0.4-0.7)
+                 para que no compitan con los botones. -->
+            <span class="bellas-vitrina__note bellas-vitrina__note--1" aria-hidden="true">♪</span>
+            <span class="bellas-vitrina__note bellas-vitrina__note--2" aria-hidden="true">♫</span>
+            <span class="bellas-vitrina__note bellas-vitrina__note--3" aria-hidden="true">♪</span>
+            <span class="bellas-vitrina__note bellas-vitrina__note--4" aria-hidden="true">♫</span>
+            <span class="bellas-vitrina__note bellas-vitrina__note--5" aria-hidden="true">♪</span>
+            <span class="bellas-vitrina__note bellas-vitrina__note--6" aria-hidden="true">♫</span>
           </div>
         </div>
       </section>

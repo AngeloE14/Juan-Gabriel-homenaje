@@ -1,28 +1,21 @@
 "use strict";
 
 export function inicializarArtistasCarousel() {
-  console.log("[Artistas] Inicializando carrusel...");
-
   const gallery = document.querySelector(".artistas-gallery");
   const track = gallery ? gallery.querySelector(".artistas-track") : null;
 
   if (!gallery || !track) {
-    console.warn("[Artistas] No se encontró gallery o track");
     return;
   }
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    console.log("[Artistas] prefers-reduced-motion activo, se omite");
     return;
   }
 
   const tarjetas = Array.from(track.querySelectorAll(".artista-frame"));
   if (tarjetas.length <= 1) {
-    console.warn("[Artistas] Solo 1 tarjeta, se omite");
     return;
   }
-
-  console.log("[Artistas] Tarjetas encontradas:", tarjetas.length);
 
   const clones = tarjetas.map(function (t) {
     const c = t.cloneNode(true);
@@ -33,8 +26,6 @@ export function inicializarArtistasCarousel() {
 
   const anchoOriginal = track.scrollWidth / 2;
   const velocidad = Math.max(0.8, anchoOriginal / 3000);
-
-  console.log("[Artistas] anchoOriginal:", anchoOriginal, "velocidad:", velocidad);
 
   let animId = null;
   let pausado = false;
@@ -88,5 +79,4 @@ export function inicializarArtistasCarousel() {
   });
 
   animId = requestAnimationFrame(mover);
-  console.log("[Artistas] Carrusel iniciado");
 }

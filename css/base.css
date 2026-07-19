@@ -192,7 +192,6 @@ main {
 #biografia article h2,
 #biografia article h3,
 #biografia article p,
-#biografia article em,
 #logros h2,
 #logros li {
     color: #f7ecd5;
@@ -213,11 +212,6 @@ main {
 #biografia article p {
     margin-bottom: 12px;
     line-height: 1.55;
-}
-
-#biografia article em {
-    color: #FFD700;     /* dorado = énfasis, como resaltar una frase importante */
-    font-weight: 700;   /* negrita (700 = bold) */
 }
 
 #biografia blockquote {

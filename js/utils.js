@@ -127,7 +127,6 @@ export function inicializarNavegacion() {
   enlacesMenu.forEach(function (enlace) {
     // addEventListener() - "Escucha" cuando pasa un evento
     enlace.addEventListener("click", function () {
-      console.log("Navegando a:", enlace.getAttribute("href"));
       marcarEnlaceActivo();
       cerrarNavegacion();
     });
@@ -263,11 +262,9 @@ export function reproducirIntroAlCargar() {
     if (intentoAudio && typeof intentoAudio.then === "function") {
       intentoAudio
         .then(function () {
-          console.log("[Intro] Audio activado por interacción del usuario");
           quitarDesbloqueoAudio();
         })
         .catch(function (errorAudio) {
-          console.warn("[Intro] Aún no se pudo activar audio tras interacción", errorAudio);
           registrarDesbloqueoAudio();
         });
     }
@@ -308,7 +305,6 @@ export function reproducirIntroAlCargar() {
     }, 700);
 
     document.dispatchEvent(new Event("intro-finalizada"));
-    console.log("[Intro] Intro finalizada:", motivo);
   }
 
   if (botonOmitirIntro) {
@@ -334,15 +330,12 @@ export function reproducirIntroAlCargar() {
 
   if (intentoReproduccion && typeof intentoReproduccion.then === "function") {
     intentoReproduccion.catch(function (errorAutoplay) {
-      console.warn("[Intro] Autoplay con audio bloqueado. Activando fallback en silencio.", errorAutoplay);
       introVideo.defaultMuted = true;
       introVideo.muted = true;
 
       introVideo.play().then(function () {
-        console.log("[Intro] Reproducción iniciada en silencio por políticas del navegador");
         registrarDesbloqueoAudio();
       }).catch(function (errorFinal) {
-        console.error("[Intro] No se pudo reproducir Intro.mp4 automáticamente", errorFinal);
         finalizarIntro("autoplay-blocked");
       });
     });
@@ -530,7 +523,6 @@ export function inicializarAudioFondo() {
       const intento = audioFondo.play();
       if (intento && typeof intento.then === "function") {
         intento.then(actualizarUI).catch(function (e) {
-          console.warn("[AudioFondo] No se pudo reanudar", e);
         });
       }
     } else {
@@ -570,12 +562,10 @@ export function inicializarAudioFondo() {
     if (intento && typeof intento.then === "function") {
       intento
         .then(function () {
-          console.log("[AudioFondo] Audio activado por interacción del usuario");
           actualizarUI();
           quitarDesbloqueoAudio();
         })
         .catch(function (e) {
-          console.warn("[AudioFondo] No se pudo activar tras interacción", e);
         });
     }
   }
@@ -597,7 +587,6 @@ export function inicializarAudioFondo() {
       intento
         .then(actualizarUI)
         .catch(function () {
-          console.warn("[AudioFondo] Autoplay bloqueado. Esperando interacción.");
           audioFondo.muted = true;
           audioFondo.defaultMuted = true;
           audioFondo.play().catch(function () {});

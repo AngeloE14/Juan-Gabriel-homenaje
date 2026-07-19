@@ -49,7 +49,7 @@
    ────────────────────────────────────────────────────────────────────────────
    PALETA DE COLORES:
 
-   #27486b, #1c3550  → degradado azul oscuro en footer
+    #12345f, #0b1f3b  → degradado azul oscuro en footer (misma paleta que la navegación)
    rgba(212,175,55)  → dorado semitransparente (bordes, fondo decorativo)
    #13100d, #0b0908  → degradado marrón muy oscuro (casi negro) en firma
    #f3dfb1           → dorado claro para el texto de la firma
@@ -72,7 +72,7 @@
 
 /* Pie de página — barra inferior con enlaces a plataformas musicales */
 footer {
-  background: linear-gradient(180deg, #27486b 0%, #1c3550 100%);
+  background: linear-gradient(180deg, #12345f 0%, #0b1f3b 100%);
   color: white;
   padding: 28px 20px;
   border-top: 2px solid rgba(212, 175, 55, 0.3);

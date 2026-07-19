@@ -130,7 +130,7 @@
 #modo-bellas-artes-switch {
   text-align: center;
   padding: 40px 20px;
-  margin: 40px 0;
+  margin: 16px 0;
 }
 
 /* Contenedor flex para los botones de concierto */
@@ -147,7 +147,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 24px;
   width: 100%;
 }
 
@@ -349,7 +349,7 @@
 /* Título con brillo de bordado dorado */
 .bellas-btn--1990 .bellas-btn__title {
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
-  letter-spacing: 2.5px;
+  letter-spacing: 0.5px;
 }
 
 .bellas-btn--1990 .bellas-btn__title::before {
@@ -517,7 +517,7 @@
 
 .bellas-btn--celebrando .bellas-btn__title {
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
-  letter-spacing: 2.5px;
+  letter-spacing: 0.5px;
   font-size: 0.95rem;
 }
 
@@ -680,7 +680,7 @@
 
 /* Título con diamante plateado */
 .bellas-btn--2013 .bellas-btn__title {
-  letter-spacing: 2.5px;
+  letter-spacing: 0.5px;
 }
 
 .bellas-btn--2013 .bellas-btn__title::before {
@@ -1740,4 +1740,470 @@
   box-shadow:
     0 0 18px rgba(255, 215, 0, 0.55),
     0 8px 20px rgba(0, 0, 0, 0.65);
+}
+
+/* ===========================================
+   VITRINA DECORATIVA — Marco de museo Art Nouveau
+   ===========================================
+
+   Diseño: Simula una vitrina de museo que envuelve los botones de concierto
+   de Bellas Artes. Inspirada en el traje dorado de Juan Gabriel de 1990
+   (diseñado por Gilberto Granillo), con lentejuelas, bordados, tachuelas
+   y borlas del traje de luces torero + new romantic.
+
+   Capas (de atrás hacia adelante):
+   1. .bellas-vitrina        → Fondo oscuro degradado con borde dorado
+   2. .bellas-vitrina::before → Marco interior sutil (1px dorado)
+   3. .bellas-vitrina::after  → Reflejo diagonal de cristal (simula vitrina)
+   4. .bellas-vitrina__corners → Esquinas ornamentales L-brackets Art Nouveau
+   5. .bellas-vitrina__particles → 12 partículas estáticas (lentejuelas, tachuelas, borlas)
+   6. .bellas-vitrina__note  → 6 notas musicales sutiles (♪ ♫)
+   7. .bellas-vitrina__title → Logo neon "Titulo 4.png" + subtítulo
+   8. .bellas-concert-selector → Los 3 botones (NO modificar su HTML/estructura)
+
+   Elementos decorativos usan pointer-events: none para no bloquear clicks
+   en los botones. Todos los elementos decorativos se reducen en responsive.
+
+   Breakpoints: 700px (móvil), 560px (small mobile)
+   =========================================== */
+
+.bellas-vitrina {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 16px 24px 18px;
+  border: 2px solid #d4af5a;             /* borde dorado exterior — simula marco de vitrina */
+  border-radius: 6px;
+  /* Fondo degradado oscuro: de #0d1420 (azul oscuro) a #050709 (casi negro)
+     Simula el fondo oscuro de una vitrina de museo iluminada */
+  background: linear-gradient(170deg, #0d1420 0%, #080c14 50%, #050709 100%);
+  box-shadow:
+    0 0 50px rgba(201, 162, 74, 0.05),   /* resplandor dorado exterior sutil */
+    inset 0 0 80px rgba(0, 0, 0, 0.3);   /* sombra interior para profundidad */
+  overflow: hidden;                       /* oculta las partículas que se salen del borde */
+}
+
+/* Marco interior sutil — segundo borde fino 8px dentro del borde exterior.
+   Crea la sensación de doble marco como las vitrinas de museo reales.
+   Se posiciona con inset: 8px (equivalente a top/right/bottom/left: 8px) */
+.bellas-vitrina::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(212, 175, 90, 0.2);  /* dorado al 20% opacidad */
+  border-radius: 3px;
+  pointer-events: none;                   /* no bloquea clicks */
+  z-index: 0;
+}
+
+/* Reflejo diagonal de cristal — simula el brillo del vidrio de la vitrina.
+   Usa un gradiente diagonal (165°) que va de blanco casi invisible (4%)
+   a transparente, creando un brillo sutil en la esquina superior izquierda.
+   Es el mismo efecto que ves en una vitrina de museo real. */
+.bellas-vitrina::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.04) 0%,       /* brillo muy sutil arriba a la izquierda */
+    rgba(255, 255, 255, 0.012) 30%,      /* se desvanece */
+    transparent 55%                       /* completamente transparente */
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===========================================
+   ESQUINAS ORNAMENTALES — L-brackets Art Nouveau
+   ===========================================
+   4 elementos <i> posicionados en cada esquina de la vitrina.
+   Cada uno dibuja solo 2 bordes (ej: top+left) formando una "L".
+   border-radius redondea la esquina interior para estilo Art Nouveau.
+   Usamos <i> en vez de <span> por menor peso en el DOM.
+   =========================================== */
+.bellas-vitrina__corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;       /* no bloquea clicks en los botones */
+  z-index: 3;                 /* encima de todo excepto los botones */
+}
+
+.bellas-vitrina__corners i {
+  position: absolute;
+  display: block;
+  width: 32px;
+  height: 32px;
+  font-style: normal;         /* reset del estilo italic heredado de <i> */
+}
+
+/* Esquina superior izquierda — borde top + left */
+.bellas-vitrina__corners i:nth-child(1) {
+  top: 10px;
+  left: 10px;
+  border-top: 2px solid rgba(212, 175, 90, 0.7);
+  border-left: 2px solid rgba(212, 175, 90, 0.7);
+  border-radius: 4px 0 0 0;
+}
+
+/* Esquina superior derecha — borde top + right */
+.bellas-vitrina__corners i:nth-child(2) {
+  top: 10px;
+  right: 10px;
+  border-top: 2px solid rgba(212, 175, 90, 0.7);
+  border-right: 2px solid rgba(212, 175, 90, 0.7);
+  border-radius: 0 4px 0 0;
+}
+
+/* Esquina inferior izquierda — borde bottom + left */
+.bellas-vitrina__corners i:nth-child(3) {
+  bottom: 10px;
+  left: 10px;
+  border-bottom: 2px solid rgba(212, 175, 90, 0.7);
+  border-left: 2px solid rgba(212, 175, 90, 0.7);
+  border-radius: 0 0 0 4px;
+}
+
+/* Esquina inferior derecha — borde bottom + right */
+.bellas-vitrina__corners i:nth-child(4) {
+  bottom: 10px;
+  right: 10px;
+  border-bottom: 2px solid rgba(212, 175, 90, 0.7);
+  border-right: 2px solid rgba(212, 175, 90, 0.7);
+  border-radius: 0 0 4px 0;
+}
+
+/* Título decorativo */
+.bellas-vitrina__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 16px;
+  z-index: 2;
+}
+
+.bellas-vitrina__logo {
+  max-width: 295px;
+  height: auto;
+  display: block;
+  margin: 0 auto 2px;
+  mix-blend-mode: screen;
+}
+
+.bellas-vitrina__title-sub {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(212, 175, 90, 0.8);
+}
+
+/* Selector de concierto — preserva su layout original */
+.bellas-vitrina .bellas-concert-selector {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===========================================
+   PARTÍCULAS DECORATIVAS — Inspiradas en el traje dorado de 1990
+   ===========================================
+   12 elementos <i> posicionados con nth-child, cada uno representa
+   un elemento del traje de Juan Gabriel de 1990 (diseñado por
+   Gilberto Granillo): lentejuelas, tachuelas y borlas del traje
+   de luces torero + new romantic.
+
+   Tipos de partículas:
+   - Lentejuelas (circulares): radial-gradient + border-radius: 50%
+     Tamaños: 5-7px. Simulan las lentejuelas doradas del traje.
+   - Tachuelas (puntos pequeños): background sólido + border-radius: 50%
+     Tamaños: 3-4px. Simulan tachuelas metálicas del bordado.
+   - Borlas (verticales): linear-gradient + border-radius alargado
+     Tamaños: 3-4px × 6-9px. Simulan las borlas del traje de luces.
+
+   Todas usan pointer-events: none para no bloquear clicks.
+   Se reducen en responsive (3px en 700px, 2px en 560px).
+   Las borlas se mantienen ligeramente más altas para preservar
+   su forma vertical incluso en móvil.
+   =========================================== */
+.bellas-vitrina__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.bellas-vitrina__particles i {
+  position: absolute;
+  display: block;
+  font-style: normal;
+}
+
+/* Lentejuela grande — esquina superior izquierda */
+.bellas-vitrina__particles i:nth-child(1) {
+  left: 6%; top: 10%;
+  width: 7px; height: 7px;
+  background: radial-gradient(circle, rgba(212, 175, 90, 0.85), rgba(212, 175, 90, 0.15));
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(212, 175, 90, 0.35);
+  opacity: 0.65;
+}
+
+/* Lentejuela media — derecha arriba */
+.bellas-vitrina__particles i:nth-child(2) {
+  left: 88%; top: 8%;
+  width: 5px; height: 5px;
+  background: radial-gradient(circle, rgba(232, 197, 117, 0.9), rgba(232, 197, 117, 0.1));
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(232, 197, 117, 0.3);
+  opacity: 0.55;
+}
+
+/* Borla — izquierda centro (tassel como de la chaqueta) */
+.bellas-vitrina__particles i:nth-child(3) {
+  left: 4%; top: 52%;
+  width: 4px; height: 9px;
+  background: linear-gradient(180deg, rgba(212, 175, 90, 0.7), rgba(212, 175, 90, 0.05));
+  border-radius: 2px 2px 1px 1px;
+  opacity: 0.45;
+}
+
+/* Lentejuela — derecha centro */
+.bellas-vitrina__particles i:nth-child(4) {
+  left: 92%; top: 48%;
+  width: 6px; height: 6px;
+  background: radial-gradient(circle, rgba(232, 197, 117, 0.8), rgba(232, 197, 117, 0.1));
+  border-radius: 50%;
+  box-shadow: 0 0 7px rgba(232, 197, 117, 0.25);
+  opacity: 0.5;
+}
+
+/* Borla — centro inferior */
+.bellas-vitrina__particles i:nth-child(5) {
+  left: 48%; top: 90%;
+  width: 3px; height: 8px;
+  background: linear-gradient(180deg, rgba(212, 175, 90, 0.75), rgba(212, 175, 90, 0.05));
+  border-radius: 2px 2px 1px 1px;
+  opacity: 0.5;
+}
+
+/* Tachuela — banda central superior */
+.bellas-vitrina__particles i:nth-child(6) {
+  left: 22%; top: 68%;
+  width: 4px; height: 4px;
+  background: radial-gradient(circle, rgba(212, 175, 90, 0.7), rgba(212, 175, 90, 0.1));
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(212, 175, 90, 0.2);
+  opacity: 0.4;
+}
+
+/* Tachuela — derecha inferior */
+.bellas-vitrina__particles i:nth-child(7) {
+  left: 78%; top: 72%;
+  width: 3px; height: 3px;
+  background: rgba(232, 197, 117, 0.7);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+/* Lentejuela — centro banda superior */
+.bellas-vitrina__particles i:nth-child(8) {
+  left: 38%; top: 6%;
+  width: 4px; height: 4px;
+  background: radial-gradient(circle, rgba(212, 175, 90, 0.65), transparent);
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+/* Borla — borde inferior derecho */
+.bellas-vitrina__particles i:nth-child(9) {
+  left: 68%; top: 93%;
+  width: 3px; height: 7px;
+  background: linear-gradient(180deg, rgba(212, 175, 90, 0.6), rgba(212, 175, 90, 0.05));
+  border-radius: 2px 2px 1px 1px;
+  opacity: 0.45;
+}
+
+/* Tachuela extra — borde superior derecho (bordado) */
+.bellas-vitrina__particles i:nth-child(10) {
+  left: 62%; top: 4%;
+  width: 3px; height: 3px;
+  background: rgba(212, 175, 90, 0.5);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+/* Lentejuela — borde inferior izquierdo */
+.bellas-vitrina__particles i:nth-child(11) {
+  left: 12%; top: 82%;
+  width: 5px; height: 5px;
+  background: radial-gradient(circle, rgba(232, 197, 117, 0.65), transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(232, 197, 117, 0.2);
+  opacity: 0.35;
+}
+
+/* Borla — derecha banda central (tassel) */
+.bellas-vitrina__particles i:nth-child(12) {
+  left: 94%; top: 25%;
+  width: 3px; height: 6px;
+  background: linear-gradient(180deg, rgba(212, 175, 90, 0.55), rgba(212, 175, 90, 0.05));
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+/* ===========================================
+   NOTAS MUSICALES — ♪ ♫ distribuidas por la vitrina
+   ===========================================
+   6 notas musicales sutiles posicionadas manualmente.
+   Tamaños variados (10-14px) y opacidades bajas (0.4-0.7)
+   para que complementen sin competir con los botones.
+   Usan text-shadow con resplandor dorado para integrarse
+   con la paleta de la vitrina.
+   =========================================== */
+.bellas-vitrina__note {
+  position: absolute;
+  font-style: normal;
+  color: rgba(212, 175, 90, 0.5);
+  pointer-events: none;
+  z-index: 1;
+  text-shadow: 0 0 8px rgba(212, 175, 90, 0.2);
+}
+
+.bellas-vitrina__note--1 {
+  top: 18%;
+  left: 15%;
+  font-size: 14px;
+}
+
+.bellas-vitrina__note--2 {
+  bottom: 25%;
+  right: 10%;
+  font-size: 12px;
+}
+
+.bellas-vitrina__note--3 {
+  bottom: 8%;
+  left: 42%;
+  font-size: 11px;
+}
+
+.bellas-vitrina__note--4 {
+  top: 42%;
+  left: 5%;
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.bellas-vitrina__note--5 {
+  top: 10%;
+  right: 8%;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.bellas-vitrina__note--6 {
+  bottom: 15%;
+  left: 80%;
+  font-size: 11px;
+  opacity: 0.45;
+}
+
+/* ===========================================
+   RESPONSIVE VITRINA — Breakpoints del proyecto
+   ===========================================
+   700px (móvil): reduce padding, logo, esquinas y partículas.
+   560px (small mobile): reduce aún más todo.
+   En ambos breakpoints:
+   - Todas las partículas se reducen a 3px/2px con !important
+   - Las borlas (nth-child 3,5,9,12) se mantienen ligeramente
+     más altas (5px/4px) para preservar su forma vertical
+   - Los box-shadow se eliminan para rendimiento
+   =========================================== */
+
+/* === MÓVIL (≤700px) === */
+@media (max-width: 700px) {
+  .bellas-vitrina {
+    padding: 14px 16px 16px;             /* menos padding horizontal */
+  }
+
+  .bellas-vitrina__title {
+    margin-bottom: 12px;
+  }
+
+  .bellas-vitrina__logo {
+    max-width: 200px;                    /* logo más pequeño */
+  }
+
+  .bellas-vitrina__title-sub {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
+
+  /* Esquinas más pequeñas para proporción */
+  .bellas-vitrina__corners i {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* Todas las partículas se reducen a 3px — sin box-shadow para rendimiento */
+  .bellas-vitrina__particles i:nth-child(n) {
+    width: 3px !important;
+    height: 3px !important;
+    box-shadow: none !important;
+  }
+
+  /* Borlas (nth-child 3,5,9,12) mantienen forma vertical: 5px de alto */
+  .bellas-vitrina__particles i:nth-child(3),
+  .bellas-vitrina__particles i:nth-child(5),
+  .bellas-vitrina__particles i:nth-child(9),
+  .bellas-vitrina__particles i:nth-child(12) {
+    height: 5px !important;
+  }
+
+  .bellas-vitrina__note {
+    font-size: 10px;                     /* notas más pequeñas */
+  }
+}
+
+/* === SMALL MOBILE (≤560px) === */
+@media (max-width: 560px) {
+  .bellas-vitrina {
+    padding: 12px 12px 14px;             /* mínimo padding */
+  }
+
+  .bellas-vitrina__logo {
+    max-width: 170px;                    /* logo aún más pequeño */
+  }
+
+  /* Esquinas reducidas */
+  .bellas-vitrina__corners i {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Todas las partículas a 2px */
+  .bellas-vitrina__particles i:nth-child(n) {
+    width: 2px !important;
+    height: 2px !important;
+    box-shadow: none !important;
+  }
+
+  /* Borlas mantienen 4px de alto */
+  .bellas-vitrina__particles i:nth-child(3),
+  .bellas-vitrina__particles i:nth-child(5),
+  .bellas-vitrina__particles i:nth-child(9),
+  .bellas-vitrina__particles i:nth-child(12) {
+    height: 4px !important;
+  }
+
+  .bellas-vitrina__note {
+    font-size: 9px;
+  }
 }

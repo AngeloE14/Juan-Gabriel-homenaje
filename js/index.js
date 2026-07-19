@@ -44,7 +44,6 @@ import { inicializarYouTubeModal } from './youtube-modal.js';
 import { inicializarBellasArtesModal } from './bellas-artes-modal.js';
 import { inicializarFrasesRotativas } from './quotes-rotator.js';
 /* CAMBIO: Importa la lógica del carrusel 3D de Fragmentos */
-import { inicializarCarruselFragmentos3D } from './fragmentos-carousel.js';
 import { inicializarArtistasCarousel } from './artistas-carousel.js';
 import { inicializarLightbox } from './lightbox.js';
 import { inicializarBotonSubir } from './back-to-top.js';
@@ -58,10 +57,6 @@ import { inicializarBotonSubir } from './back-to-top.js';
   elemento.addEventListener("evento", función);
 */
 document.addEventListener("DOMContentLoaded", function () {
-  // CONSOLE.LOG - Imprime mensajes en la consola del navegador (F12)
-  console.log("🚀 Inicializando aplicación Juan Gabriel...");
-
-  // LLAMAR FUNCIONES - Ejecutar cada inicialización
   marcarEnlaceActivo();       // Resalta el enlace del menú actual
   inicializarNavegacion();    // Configura clics en el menú
   reproducirIntroAlCargar();  // Reproduce intro en video al cargar
@@ -72,11 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
   inicializarYouTubeModal();     // Configura modal de YouTube
   inicializarBellasArtesModal(); // Configura modal de Bellas Artes
   inicializarFrasesRotativas();  // Configura rotación de frases
-  /* CAMBIO: Inicializa navegación 3D (drag, teclado, click lateral) en Fragmentos */
-  inicializarCarruselFragmentos3D();
   inicializarArtistasCarousel();
   inicializarLightbox();
   inicializarBotonSubir();
-
-  console.log("✅ Aplicación inicializada correctamente");
 });
