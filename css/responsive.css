@@ -134,7 +134,6 @@
   text-transform: uppercase;
   font-weight: 700;
   font-size: clamp(1.4rem, 2.2vw, 2rem);
-  margin-top: 20px;
   margin-bottom: 24px;
   padding-inline: clamp(12px, 2.6vw, 34px);
 }
@@ -219,22 +218,41 @@
   --card-size: clamp(200px, 22vw, 300px);         /* variable: tamaño fluido entre 200px y 300px */
   margin: 0;                                        /* sin margen */
   flex: 0 0 var(--card-size);                       /* no crece, no encoge, ancho fijo = --card-size */
-
+  aspect-ratio: 3 / 5;                              /* proporción tipo póster (3:5) */
   border-radius: 14px;                              /* esquinas redondeadas */
   overflow: hidden;                                 /* oculta lo que sobresale del borde redondeado */
   background: transparent;                           /* fondo invisible — se ve la imagen */
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);    /* sombra grande para efecto flotante */
-  scroll-snap-align: center;                        /* cada tarjeta se alinea al centro al scrollear */
-  transform: none !important;                       /* anula cualquier transformación 3D previa */
-  opacity: 1 !important;                            /* asegura que las tarjetas sean visibles */
 }
 
 .fragmento-card img {
   display: block;               /* elimina espacio fantasma debajo de la imagen */
   width: 100%;                  /* ocupa todo el ancho de la tarjeta */
+  height: 100%;                 /* ocupa todo el alto */
   object-fit: contain;          /* ajusta la imagen sin deformarla */
   object-position: center;      /* centra la imagen si sobra espacio */
   background: transparent;      /* fondo invisible */
+}
+
+/* REFLEJO INFERIOR — duplica la imagen invertida debajo de la tarjeta */
+/* Crea un efecto de reflejo como si la tarjeta estuviera sobre vidrio */
+.fragmento-card::after {
+  content: "";                                           /* sin contenido de texto */
+  position: absolute;                                    /* posicionado respecto a .fragmento-card */
+  left: 6%;                                              /* 6% de margen a cada lado */
+  right: 6%;
+  top: calc(100% + 8px);                                 /* justo debajo de la tarjeta + 8px */
+  height: 28%;                                           /* alto del reflejo: 28% de la tarjeta */
+  opacity: 0.15;                                         /* muy tenue (15% visible) */
+  transform-origin: top center;                          /* punto de giro: centro arriba */
+  transform: scaleY(-1);                                 /* invierte verticalmente (espejo) */
+  background-image: var(--fragmento-img);                /* misma imagen que la tarjeta */
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  -webkit-mask-image: linear-gradient(transparent, transparent); /* máscara de transparencia */
+  mask-image: linear-gradient(transparent, transparent);
+  pointer-events: none;                                  /* el reflejo no es clickeable */
 }
 
 /* Estados visuales durante arrastre — el cursor cambia según la acción */
@@ -259,6 +277,12 @@
   width: max-content;                                        /* el track es tan ancho como todo su contenido */
 }
 
+.fragmento-card {
+  scroll-snap-align: center;                                 /* cada tarjeta se alinea al centro al scrollear */
+  transform: none !important;                                /* anula cualquier transformación 3D previa */
+  opacity: 1 !important;                                     /* asegura que las tarjetas sean visibles */
+}
+
 /* ==========================================================================
    MEDIA QUERY: PANTALLAS DE 700px O MENOS (MÓVIL)
    ==========================================================================
@@ -281,14 +305,8 @@
     height: auto;
   }
 
-  #page-content,
-  main,
-  section {
-    max-width: 100%;             /* evita desbordamiento en móvil */
-  }
-
-  #multimedia {
-    overflow-x: hidden;           /* evita scroll horizontal con videos anchos */
+  .multimedia-grid {
+    grid-template-columns: repeat(2, 1fr);  /* 2 columnas en móvil */
   }
 
   .discografia-firma {
@@ -323,6 +341,12 @@
   }
 
   /* FOTOS ICÓNICAS — en móvil los mosaicos se apilan en UNA SOLA columna */
+  #fotos-iconicas {
+    width: calc(100% - 10px);       /* casi todo el ancho de la pantalla */
+    padding: 28px 18px 32px;        /* más compacto que en desktop */
+    border-radius: 22px;            /* esquinas menos redondeadas */
+  }
+
   .fotos-mosaico {
     flex-direction: column;         /* CAMBIO CLAVE: de fila a columna (apilado vertical) */
     gap: 12px;                      /* espacio entre filas */
@@ -348,41 +372,12 @@
   }
 
   .carousel__slide img {
-    height: clamp(240px, 72vw, 320px);  /* altura adaptable en móvil */
+    height: 320px;                  /* alto fijo para las imágenes del carrusel */
     object-fit: contain;            /* ajusta sin deformar */
   }
 
   .multimedia-grid {
-    width: 100%;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    padding-inline: 12px;
-  }
-
-  .multimedia-card {
-    min-width: 0;
-  }
-
-  .multimedia-card p {
-    overflow-wrap: anywhere;
-  }
-
-  .youtube-open,
-  .youtube-open img,
-  .multimedia-card video,
-  .multimedia-netflix__cover {
-    max-width: 100%;
-  }
-
-  .foto-card__duo {
-    gap: 8px;
-    padding: 8px;
-  }
-
-  #fotos-iconicas {
-    width: calc(100% - 10px);
-    padding: 28px 14px 32px;
-    border-radius: 22px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));  /* 2 columnas para videos/audios */
   }
 
   #letras {
@@ -580,7 +575,6 @@
 @media (max-width: 560px) {
   .multimedia-grid {
     grid-template-columns: 1fr;           /* UNA SOLA columna para videos/audios */
-    padding-inline: 10px;
   }
 
   #letras {
@@ -687,7 +681,12 @@
   .fotos-mosaico__col {
     gap: 14px;                            /* menos espacio entre fotos */
   }
+}
 
+/* ==========================================================================
+   MULTIMEDIA Y DISCOGRAFÍA - TABLETS GRANDES (1100px o menos)
+   ========================================================================== */
+@media (max-width: 1100px) {
   .multimedia-grid {
     grid-template-columns: repeat(6, minmax(140px, 1fr));  /* 6 columnas */
   }
@@ -726,6 +725,69 @@
     transform: none !important;           /* quita cualquier efecto 3D o rotación */
     grid-column: span 1 !important;       /* cada álbum ocupa 1 columna (sin destacados) */
     grid-row: span 1 !important;          /* cada álbum ocupa 1 fila */
+  }
+}
+
+/* Correcciones finales de cascada móvil: estas reglas quedan al final para
+   que no sean sobrescritas por los ajustes de tablet definidos arriba. */
+@media (max-width: 700px) {
+  #page-content,
+  main,
+  section {
+    max-width: 100%;
+  }
+
+  #multimedia {
+    overflow-x: hidden;
+  }
+
+  .multimedia-grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding-inline: 12px;
+  }
+
+  .multimedia-card {
+    min-width: 0;
+  }
+
+  .multimedia-card p {
+    overflow-wrap: anywhere;
+  }
+
+  .youtube-open,
+  .youtube-open img,
+  .multimedia-card video,
+  .multimedia-netflix__cover {
+    max-width: 100%;
+  }
+
+  #fotos-iconicas {
+    width: calc(100% - 10px);
+    padding: 28px 14px 32px;
+    border-radius: 22px;
+  }
+
+  .foto-card__duo {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .carousel__slide img {
+    height: clamp(240px, 72vw, 320px);
+  }
+
+}
+
+@media (max-width: 560px) {
+  .multimedia-grid {
+    grid-template-columns: 1fr;
+    padding-inline: 10px;
+  }
+
+  .foto-card__duo[style] {
+    grid-template-columns: 1fr !important;
   }
 }
 
