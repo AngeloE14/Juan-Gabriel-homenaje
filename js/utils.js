@@ -423,7 +423,7 @@ export function inicializarAudioFondo() {
     "audios/amor eterno.mp3",
     "audios/que chasco me lleve.mp3",
     "audios/dejame vivir.mp3",
-    //"audios/yo te perdono.mp3",
+    "audios/no vale la pena.mp3",
     "audios/asi se quiere.mp3",
     "audios/yo no se que me paso.mp3",
     "audios/te lo pido por favor.mp3" 
