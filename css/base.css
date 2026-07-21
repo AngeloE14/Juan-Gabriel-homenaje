@@ -214,6 +214,11 @@ main {
     line-height: 1.55;
 }
 
+.bio-jg-nombre {
+    color: #FFD700;
+    font-weight: 700;
+}
+
 #biografia blockquote {
     max-width: 800px;
     margin: 20px auto 0;

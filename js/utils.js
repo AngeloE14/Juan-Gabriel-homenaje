@@ -425,6 +425,7 @@ export function inicializarAudioFondo() {
     "audios/dejame vivir.mp3",
     "audios/no vale la pena.mp3",
     "audios/asi se quiere.mp3",
+    "audios/yo te perdono.mp3",
     "audios/yo no se que me paso.mp3",
     "audios/te lo pido por favor.mp3" 
   ];
@@ -441,26 +442,49 @@ export function inicializarAudioFondo() {
 
   let desbloqueoRegistrado = false;
 
-  /*
-    FUNCIÓN: seleccionarSiguienteCancion()
-    OBJETIVO: Elegir una canción aleatoria que NO sea la que está sonando
-    CÓMO: Genera un índice aleatorio y repite hasta encontrar uno diferente al actual
-  */
+  // Cola de reproducción aleatoria (Fisher-Yates shuffle)
+  // Garantiza que todas las canciones suenen antes de repetir alguna
+  let colaReproduccion = [];
+
+  function mezclarFisherYates(arr) {
+    const shuffled = arr.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = shuffled[i];
+      shuffled[i] = shuffled[j];
+      shuffled[j] = temp;
+    }
+    return shuffled;
+  }
+
+  function generarColaAleatoria(excluirUltimo) {
+    const indices = [];
+    for (let i = 0; i < canciones.length; i++) {
+      indices.push(i);
+    }
+    let shuffled = mezclarFisherYates(indices);
+    if (excluirUltimo && shuffled[0] === indiceActual && canciones.length > 1) {
+      const temp = shuffled[0];
+      shuffled[0] = shuffled[shuffled.length - 1];
+      shuffled[shuffled.length - 1] = temp;
+    }
+    return shuffled;
+  }
+
   function seleccionarSiguienteCancion() {
-    let siguiente;
-    do {
-      siguiente = Math.floor(Math.random() * canciones.length);
-    } while (siguiente === indiceActual && canciones.length > 1);
-    return siguiente;
+    if (colaReproduccion.length === 0) {
+      colaReproduccion = generarColaAleatoria(true);
+    }
+    return colaReproduccion.shift();
   }
 
   /*
-    FUNCIÓN: onCancionTerminada()
+    FUNCIÓN: alTerminarCancion()
     OBJETIVO: Se dispara cuando la canción actual termina (evento "ended")
     NOTA: Es un respaldo por si detectarFinCancion no se activó a tiempo.
           Si el crossfade ya está corriendo, lo ignora para evitar duplicados.
   */
-  function onCancionTerminada() {
+  function alTerminarCancion() {
     if (crossfadeActivo) return;
     iniciarCrossfade();
   }
@@ -529,7 +553,7 @@ export function inicializarAudioFondo() {
 
         // Detener y limpiar el Audio anterior
         audioFondo.pause();
-        audioFondo.removeEventListener("ended", onCancionTerminada);
+        audioFondo.removeEventListener("ended", alTerminarCancion);
         audioFondo.removeEventListener("timeupdate", detectarFinCancion);
         audioFondo.src = "";
 
@@ -541,18 +565,18 @@ export function inicializarAudioFondo() {
 
         // Restaurar volumen y registrar listeners en el nuevo Audio
         audioFondo.volume = VOLUMEN_BASE;
-        audioFondo.addEventListener("ended", onCancionTerminada);
+        audioFondo.addEventListener("ended", alTerminarCancion);
         audioFondo.addEventListener("timeupdate", detectarFinCancion);
-        actualizarUI();
+      actualizarInterfaz();
       }
     }, 50);
   }
 
   // Registrar listeners en el Audio inicial para detectar fin de canción y activar crossfade
-  audioFondo.addEventListener("ended", onCancionTerminada);
+  audioFondo.addEventListener("ended", alTerminarCancion);
   audioFondo.addEventListener("timeupdate", detectarFinCancion);
 
-  function actualizarUI() {
+  function actualizarInterfaz() {
     const reproduciendo = !audioFondo.paused;
     btn.classList.toggle("is-playing", reproduciendo);
     btn.setAttribute(
@@ -565,7 +589,7 @@ export function inicializarAudioFondo() {
     if (audioFondo.paused) {
       const intento = audioFondo.play();
       if (intento && typeof intento.then === "function") {
-        intento.then(actualizarUI).catch(function (e) {
+        intento.then(actualizarInterfaz).catch(function (e) {
         });
       }
     } else {
@@ -582,7 +606,7 @@ export function inicializarAudioFondo() {
         crossfadeActivo = false;
       }
       audioFondo.pause();
-      actualizarUI();
+          actualizarInterfaz();
     }
   }
 
@@ -605,7 +629,7 @@ export function inicializarAudioFondo() {
     if (intento && typeof intento.then === "function") {
       intento
         .then(function () {
-          actualizarUI();
+        actualizarInterfaz();
           quitarDesbloqueoAudio();
         })
         .catch(function (e) {
@@ -628,7 +652,7 @@ export function inicializarAudioFondo() {
 
     if (intento && typeof intento.then === "function") {
       intento
-        .then(actualizarUI)
+        .then(actualizarInterfaz)
         .catch(function () {
           audioFondo.muted = true;
           audioFondo.defaultMuted = true;
