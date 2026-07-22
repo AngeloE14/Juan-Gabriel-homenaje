@@ -124,10 +124,10 @@
 /* ===========================================
    1. CONTENEDOR DEL SWITCH
    ===========================================
-   Este div (#modo-bellas-artes-switch) envuelve todos los botones
+   Este div (#bellas-artes) envuelve todos los botones
    de selección de concierto. Le da espaciado a la sección.
  */
-#modo-bellas-artes-switch {
+#bellas-artes {
   text-align: center;
   padding: 40px 20px;
   margin: 16px 0;
