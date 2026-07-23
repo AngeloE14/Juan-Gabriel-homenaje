@@ -89,18 +89,19 @@
     <link rel="stylesheet" href="css/filmografia.css" />
     <!-- FILMOGRAFIA: Estilos de la sección de filmografía -->
 
-    <!-- FUENTES: Tipografías ceremoniales para galería de homenaje -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://commons.wikimedia.org">
-    <link rel="preconnect" href="https://s3.amazonaws.com">
-    <link rel="preconnect" href="https://img.youtube.com">
+    <!-- RESOURCE HINTS: Adelantar conexiones a dominios externos -->
+    <link rel="dns-prefetch" href="//commons.wikimedia.org">
+    <link rel="dns-prefetch" href="//s3.amazonaws.com">
+    <link rel="dns-prefetch" href="//img.youtube.com">
+    <link rel="dns-prefetch" href="//archive.org">
 
     <!-- PRELOAD: Recursos críticos que el navegador debe cargar primero -->
     <link rel="preload" as="video" href="assets/Intro.mp4" type="video/mp4">
     <link rel="preload" as="image" href="assets/Logo.webp">
+    <link rel="preload" as="font" href="fonts/cinzel-latin.woff2" type="font/woff2" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <!-- FUENTES: Google Fonts self-hosted (elimina render-blocking) -->
+    <link rel="stylesheet" href="css/fonts.css">
 
     <title>Juan Gabriel - Homenaje</title>
     <!-- TITLE: Aparece en la pestaña del navegador -->
@@ -540,10 +541,11 @@
              rel="noopener noreferrer"
              aria-label="Ver documental en Netflix">
             <figure>
-              <img class="multimedia-netflix__cover"
-                   src="assets/Juan Gabriel Debo Puedo y Quiero.webp"
-                   alt="Portada del documental Juan Gabriel Debo Puedo y Quiero"
-                   loading="lazy">
+               <img class="multimedia-netflix__cover"
+                    src="assets/Juan Gabriel Debo Puedo y Quiero.webp"
+                    alt="Portada del documental Juan Gabriel Debo Puedo y Quiero"
+                    width="1280" height="720"
+                    loading="lazy">
             </figure>
           </a>
           <p class="netflix-cta">
@@ -818,83 +820,99 @@
           <figure class="carousel__slide is-active" data-caption="Juan Gabriel en Bellas Artes 1990, una noche histórica.">
             <img src="https://www.de10.com.mx/resizer/v2/HB7FP2RRQNG65FT2YCIE2WQTFA.jpg?auth=d849a544361d6879d51ad7c4e6b9f3fca549b6b921db0bce6c5c7c2484e662b8&smart=true&height=666"
                  alt="Juan Gabriel en Bellas Artes 1990"
+                 width="1000" height="666"
                  loading="lazy">
           </figure>
 
           <figure class="carousel__slide" data-caption="Juan Gabriel cantando con pasión en el escenario.">
             <img src="Pictures/carousel_photos/CANTANDO.webp"
                  alt="Juan Gabriel cantando en vivo"
+                 width="1000" height="556"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Interpretación icónica de Juan Gabriel en concierto.">
             <img src="Pictures/carousel_photos/CANTANDO 2.webp"
                  alt="Juan Gabriel en concierto cantando"
+                 width="1000" height="556"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Otro momento memorable de Juan Gabriel sobre el escenario.">
             <img src="Pictures/carousel_photos/CANTANDO 3.webp"
                alt="Juan Gabriel cantando durante presentación"
+               width="1000" height="556"
                loading="lazy">
             </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel en material documental.">
             <img src="Pictures/carousel_photos/Juan Gabriel doc.webp"
                  alt="Juan Gabriel en fotografía documental"
+                 width="960" height="540"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Retrato de perfil de Juan Gabriel.">
             <img src="Pictures/carousel_photos/Juan Gabriel Profile.webp"
                  alt="Juan Gabriel en foto de perfil"
+                 width="1000" height="1024"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Retrato adicional de Juan Gabriel.">
             <img src="Pictures/carousel_photos/Juan Gabriel.webp"
                  alt="Retrato adicional de Juan Gabriel"
+                 width="1000" height="1314"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Por los siglos, homenaje visual a Juan Gabriel.">
             <img src="Pictures/carousel_photos/Por los siglos.webp"
                  alt="Por los siglos, homenaje a Juan Gabriel"
+                 width="1000" height="1000"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel en un retrato icónico.">
             <img src="Pictures/carousel_photos/Juan Gabriel N.webp"
                  alt="Juan Gabriel en un retrato icónico"
+                 width="1000" height="418"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel">
             <img src="Pictures/carousel_photos/na.webp"
                  alt="Juan Gabriel retrato"
+                 width="942" height="628"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel con mariachi en una presentación memorable.">
             <img src="Pictures/carousel_photos/Juan Gabriel mariachi.webp"
                  alt="Juan Gabriel con mariachi"
+                 width="1000" height="675"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Cantando con su copa">
             <img src="Pictures/carousel_photos/Concierto.webp"
                  alt="Concierto de Juan Gabriel"
+                 width="1000" height="1250"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel en un momento íntimo y personal.">
             <img src="Pictures/carousel_photos/JG_home.webp"
                  alt="Juan Gabriel en casa"
+                 width="736" height="920"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel posando con estilo.">
             <img src="Pictures/carousel_photos/JG_p.webp"
                  alt="Juan Gabriel posando"
+                 width="736" height="736"
                  loading="lazy">
           </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel sonriente y carismático.">
             <img src="Pictures/carousel_photos/JG_y.webp"
                  alt="Juan Gabriel sonriente"
+                 width="720" height="960"
                  loading="lazy">
           </figure>
 
           <figure class="carousel__slide" data-caption="Juan Gabriel con mariachi, identidad pura de México.">
             <img src="Pictures/carousel_photos/juan gabriel marichi plo.webp"
                  alt="Juan Gabriel con mariachi"
+                 width="736" height="611"
                  loading="lazy">
           </figure>
 
@@ -1165,7 +1183,8 @@
       <div class="discografia-firma">
         <img src="assets/Firma_de_Juan_Gabriel.svg.png"
              alt="Firma de Juan Gabriel"
-             title="La icónica firma de Juan Gabriel">
+             title="La icónica firma de Juan Gabriel"
+             width="1920" height="710">
       </div>
 
       <div class="frases-rotativas" aria-label="Frases de Juan Gabriel">

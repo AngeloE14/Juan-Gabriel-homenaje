@@ -438,7 +438,7 @@ export function inicializarAudioFondo() {
   audioFondo = new Audio(canciones[indiceActual]);
   audioFondo.volume = VOLUMEN_BASE;
   audioFondo.playsInline = true;
-  audioFondo.preload = "auto";
+  audioFondo.preload = "metadata";
 
   let desbloqueoRegistrado = false;
 
@@ -525,7 +525,7 @@ export function inicializarAudioFondo() {
     audioFondoSiguiente = new Audio(canciones[siguienteIndice]);
     audioFondoSiguiente.volume = 0;
     audioFondoSiguiente.playsInline = true;
-    audioFondoSiguiente.preload = "auto";
+    audioFondoSiguiente.preload = "metadata";
 
     // Reproducir la siguiente canción en silencio (volumen 0)
     audioFondoSiguiente.play().catch(function () {});
