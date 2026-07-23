@@ -296,6 +296,7 @@
   right: 6%;
 }
 
+/* Esquinas ornamentales (filigrana) */
 .bellas-btn--1990 .bellas-btn__cover {
   position: relative;
   border-color: rgba(207, 166, 111, 0.7);
@@ -305,10 +306,11 @@
     inset 0 0 0 1px rgba(255, 215, 0, 0.08);
 }
 
-.bellas-btn--1990 .bellas-btn__cover::before,
-.bellas-btn--1990 .bellas-btn__cover::after {
+.bellas-btn--1990 .bellas-btn__cover::before {
   content: "✦";
   position: absolute;
+  top: -8px;
+  left: -8px;
   width: 18px;
   height: 18px;
   display: grid;
@@ -322,14 +324,22 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.bellas-btn--1990 .bellas-btn__cover::before {
-  top: -8px;
-  left: -8px;
-}
-
 .bellas-btn--1990 .bellas-btn__cover::after {
+  content: "✦";
+  position: absolute;
   bottom: -8px;
   right: -8px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: #ffd700;
+  opacity: 0.6;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .bellas-btn--1990 .bellas-btn__cover .bellas-btn__play {
@@ -465,10 +475,11 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
-.bellas-btn--celebrando .bellas-btn__cover::before,
-.bellas-btn--celebrando .bellas-btn__cover::after {
+.bellas-btn--celebrando .bellas-btn__cover::before {
   content: "✦";
   position: absolute;
+  top: -8px;
+  left: -8px;
   width: 18px;
   height: 18px;
   display: grid;
@@ -482,14 +493,22 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.bellas-btn--celebrando .bellas-btn__cover::before {
-  top: -8px;
-  left: -8px;
-}
-
 .bellas-btn--celebrando .bellas-btn__cover::after {
+  content: "✦";
+  position: absolute;
   bottom: -8px;
   right: -8px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.7;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .bellas-btn--celebrando .bellas-btn__cover .bellas-btn__play {
@@ -622,10 +641,12 @@
     inset 0 0 0 1px rgba(200, 200, 200, 0.1);
 }
 
-.bellas-btn--2013 .bellas-btn__cover::before,
-.bellas-btn--2013 .bellas-btn__cover::after {
+/* Esquinas plateadas */
+.bellas-btn--2013 .bellas-btn__cover::before {
   content: "✦";
   position: absolute;
+  top: -8px;
+  left: -8px;
   width: 18px;
   height: 18px;
   display: grid;
@@ -639,14 +660,22 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.bellas-btn--2013 .bellas-btn__cover::before {
-  top: -8px;
-  left: -8px;
-}
-
 .bellas-btn--2013 .bellas-btn__cover::after {
+  content: "✦";
+  position: absolute;
   bottom: -8px;
   right: -8px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: #ccc;
+  opacity: 0.5;
+  text-shadow: 0 0 6px rgba(200, 200, 200, 0.3);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* Título con diamante plateado */
@@ -1108,7 +1137,13 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(180, 80, 30, 0.1) 0%, transparent 15%, transparent 85%, rgba(0, 0, 0, 0.2) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(180, 80, 30, 0.1) 0%,
+    transparent 15%,
+    transparent 85%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
   pointer-events: none;
 }
 
@@ -1116,7 +1151,13 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, transparent 15%, transparent 85%, rgba(180, 80, 30, 0.1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    transparent 15%,
+    transparent 85%,
+    rgba(180, 80, 30, 0.1) 100%
+  );
   pointer-events: none;
 }
 
@@ -1289,10 +1330,27 @@
 }
 
 /* BORLAS en las puntas de las ataduras */
-.bellas-curtain--left .bellas-curtain__tieback::after,
+.bellas-curtain--left .bellas-curtain__tieback::after {
+  content: "";
+  position: absolute;
+  right: -6px;                /* Sale hacia afuera de la atadura */
+  top: 50%;
+  margin-top: -5px;
+  width: 10px;                /* Círculo de 10px */
+  height: 10px;
+  border-radius: 50%;         /* ¡ES UN CÍRCULO! */
+  background: radial-gradient(circle at 40% 35%, #ffd700, #8a6520);
+    /* Degradado circular que simula una esfera brillante:
+       - Punto de luz en 40% 35% → parece que la luz viene de arriba-izquierda
+       - #ffd700 = dorado brillante (el punto de luz)
+       - #8a6520 = dorado oscuro (la sombra) */
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);  /* Brillo alrededor */
+}
+
 .bellas-curtain--right .bellas-curtain__tieback::after {
   content: "";
   position: absolute;
+  left: -6px;
   top: 50%;
   margin-top: -5px;
   width: 10px;
@@ -1300,14 +1358,6 @@
   border-radius: 50%;
   background: radial-gradient(circle at 40% 35%, #ffd700, #8a6520);
   box-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
-}
-
-.bellas-curtain--left .bellas-curtain__tieback::after {
-  right: -6px;
-}
-
-.bellas-curtain--right .bellas-curtain__tieback::after {
-  left: -6px;
 }
 
 /* GALERÍA SUPERIOR (valance) - el adorno drapeado de arriba
