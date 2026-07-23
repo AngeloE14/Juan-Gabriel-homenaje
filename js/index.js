@@ -57,18 +57,31 @@ import { inicializarBotonSubir } from './back-to-top.js';
   elemento.addEventListener("evento", función);
 */
 document.addEventListener("DOMContentLoaded", function () {
-  aplicarClaseRendimientoDelDispositivo(); // Detecta equipos y etiqueta el body para adaptarse
-  marcarEnlaceActivo();       // Resalta el enlace del menú actual
-  inicializarNavegacion();    // Configura clics en el menú
-  reproducirIntroAlCargar();  // Reproduce intro en video al cargar
-  inicializarAudioFondo();    // Reproduce audio de fondo cuando la página queda lista
+  // CRÍTICO: Ejecutar de inmediato
+  aplicarClaseRendimientoDelDispositivo();
+  marcarEnlaceActivo();
+  inicializarNavegacion();
+  reproducirIntroAlCargar();
 
-  // INICIALIZAR COMPONENTES ESPECÍFICOS
-  inicializarCarrusel();         // Configura el carrusel de imágenes
-  inicializarYouTubeModal();     // Configura modal de YouTube
-  inicializarBellasArtesModal(); // Configura modal de Bellas Artes
-  inicializarFrasesRotativas();  // Configura rotación de frases
-  inicializarArtistasCarousel();
-  inicializarLightbox();
-  inicializarBotonSubir();
+  // IMPORTANTE pero puede esperar un frame
+  requestAnimationFrame(function () {
+    inicializarCarrusel();
+    inicializarYouTubeModal();
+    inicializarBellasArtesModal();
+    inicializarFrasesRotativas();
+    inicializarArtistasCarousel();
+    inicializarLightbox();
+    inicializarBotonSubir();
+  });
+
+  // AUDIO: Solo cuando el browser esté idle (el usuario no ha interactuado aún)
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(function () {
+      inicializarAudioFondo();
+    });
+  } else {
+    setTimeout(function () {
+      inicializarAudioFondo();
+    }, 200);
+  }
 });

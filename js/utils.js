@@ -31,7 +31,11 @@
  * Detecta si el dispositivo es de bajo recurso para adaptar el rendimiento.
  * No quita animaciones ni efectos, solo ayuda a ajustar tiempos y carga.
  */
+let _rendimientoCache = null;
+
 export function obtenerRendimientoDispositivo() {
+  if (_rendimientoCache) return _rendimientoCache;
+
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
   const deviceMemory = typeof navigator !== "undefined" && "deviceMemory" in navigator ? navigator.deviceMemory : null;
   const cores = typeof navigator !== "undefined" && "hardwareConcurrency" in navigator ? navigator.hardwareConcurrency : null;
@@ -46,7 +50,7 @@ export function obtenerRendimientoDispositivo() {
   const isLowEnd = hasLowMemory || hasFewCores || slowNetwork;
   const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 700px)").matches;
 
-  return {
+  _rendimientoCache = {
     isLowEnd,
     isMobile,
     deviceMemory,
@@ -56,6 +60,8 @@ export function obtenerRendimientoDispositivo() {
     rtt,
     saveData
   };
+
+  return _rendimientoCache;
 }
 
 export function aplicarClaseRendimientoDelDispositivo() {
