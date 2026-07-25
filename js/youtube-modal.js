@@ -91,19 +91,17 @@ export function inicializarYouTubeModal() {
         return; // deja que el enlace navegue directamente a YouTube
       }
 
-      // En móvil, abrir YouTube directamente (app o navegador)
+      var videoId = boton.dataset.videoId;
+      var url = "https://www.youtube.com/watch?v=" + videoId;
+
+      // En móvil, abrir YouTube directo (app o navegador)
       if (esMovil) {
-        var videoId = boton.dataset.videoId;
-        window.location.href = "https://www.youtube.com/watch?v=" + videoId;
+        window.location.href = url;
         return;
       }
 
-      abrirYouTube(
-        boton.dataset.videoId,
-        boton.dataset.videoTitle,
-        boton.dataset.videoList,
-        boton.dataset.embedUrl
-      );
+      // En escritorio, abrir en nueva pestaña
+      window.open(url, "_blank", "noopener,noreferrer");
     });
   });
 
