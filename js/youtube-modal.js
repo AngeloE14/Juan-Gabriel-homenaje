@@ -80,11 +80,20 @@ export function inicializarYouTubeModal() {
     });
   });
 
+  // Detección de móvil
+  var esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
   // Event listeners para botones de YouTube
   botonesYouTube.forEach(function (boton) {
     boton.addEventListener("click", function () {
       if (boton.dataset.direct === "true") {
         return; // deja que el enlace navegue directamente a YouTube
+      }
+
+      // En móvil, abrir la app nativa de YouTube
+      if (esMovil) {
+        window.location.href = "https://www.youtube.com/watch?v=" + boton.dataset.videoId;
+        return;
       }
 
       abrirYouTube(
