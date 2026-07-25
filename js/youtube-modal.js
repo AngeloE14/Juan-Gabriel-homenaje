@@ -82,6 +82,7 @@ export function inicializarYouTubeModal() {
 
   // Detección de móvil
   var esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  var esAndroid = /Android/i.test(navigator.userAgent);
 
   // Event listeners para botones de YouTube
   botonesYouTube.forEach(function (boton) {
@@ -92,7 +93,21 @@ export function inicializarYouTubeModal() {
 
       // En móvil, abrir la app nativa de YouTube
       if (esMovil) {
-        window.location.href = "https://www.youtube.com/watch?v=" + boton.dataset.videoId;
+        var videoId = boton.dataset.videoId;
+        var urlApp = esAndroid
+          ? "intent://www.youtube.com/watch?v=" + videoId + "#Intent;package=com.google.android.youtube;scheme=https;end"
+          : "youtube://watch?v=" + videoId;
+        var urlWeb = "https://www.youtube.com/watch?v=" + videoId;
+
+        // Intentar abrir app, si falla abrir web
+        var temp = document.createElement("a");
+        temp.href = urlApp;
+        temp.click();
+
+        // Fallback a web después de un breve delay
+        setTimeout(function () {
+          window.location.href = urlWeb;
+        }, 800);
         return;
       }
 
