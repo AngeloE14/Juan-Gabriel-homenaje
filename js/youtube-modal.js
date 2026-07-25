@@ -99,15 +99,23 @@ export function inicializarYouTubeModal() {
           : "youtube://watch?v=" + videoId;
         var urlWeb = "https://www.youtube.com/watch?v=" + videoId;
 
-        // Intentar abrir app, si falla abrir web
+        // Intentar abrir app nativa
         var temp = document.createElement("a");
         temp.href = urlApp;
         temp.click();
 
-        // Fallback a web después de un breve delay
-        setTimeout(function () {
+        // Fallback a web solo si la app no respondió
+        var fallbackTimer = setTimeout(function () {
           window.location.href = urlWeb;
-        }, 800);
+        }, 1500);
+
+        // Si la página pierde foco, la app se abrió — cancelar fallback
+        document.addEventListener("visibilitychange", function handler() {
+          if (document.hidden) {
+            clearTimeout(fallbackTimer);
+            document.removeEventListener("visibilitychange", handler);
+          }
+        });
         return;
       }
 
