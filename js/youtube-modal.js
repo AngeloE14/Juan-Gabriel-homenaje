@@ -91,31 +91,10 @@ export function inicializarYouTubeModal() {
         return; // deja que el enlace navegue directamente a YouTube
       }
 
-      // En móvil, abrir la app nativa de YouTube
+      // En móvil, abrir YouTube directamente (app o navegador)
       if (esMovil) {
         var videoId = boton.dataset.videoId;
-        var urlApp = esAndroid
-          ? "intent://www.youtube.com/watch?v=" + videoId + "#Intent;package=com.google.android.youtube;scheme=https;end"
-          : "youtube://watch?v=" + videoId;
-        var urlWeb = "https://www.youtube.com/watch?v=" + videoId;
-
-        // Intentar abrir app nativa
-        var temp = document.createElement("a");
-        temp.href = urlApp;
-        temp.click();
-
-        // Fallback a web solo si la app no respondió
-        var fallbackTimer = setTimeout(function () {
-          window.location.href = urlWeb;
-        }, 1500);
-
-        // Si la página pierde foco, la app se abrió — cancelar fallback
-        document.addEventListener("visibilitychange", function handler() {
-          if (document.hidden) {
-            clearTimeout(fallbackTimer);
-            document.removeEventListener("visibilitychange", handler);
-          }
-        });
+        window.location.href = "https://www.youtube.com/watch?v=" + videoId;
         return;
       }
 
