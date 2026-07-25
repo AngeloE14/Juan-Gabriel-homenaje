@@ -83,6 +83,10 @@ export function inicializarYouTubeModal() {
   // Event listeners para botones de YouTube
   botonesYouTube.forEach(function (boton) {
     boton.addEventListener("click", function () {
+      if (boton.dataset.direct === "true") {
+        return; // deja que el enlace navegue directamente a YouTube
+      }
+
       abrirYouTube(
         boton.dataset.videoId,
         boton.dataset.videoTitle,

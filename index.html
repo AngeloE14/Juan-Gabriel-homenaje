@@ -609,6 +609,58 @@
 
       </div>
 
+      <!-- Top 5 Videos más vistos del canal oficial -->
+      <section class="top5-youtube" aria-label="Top 5 videos más vistos de Juan Gabriel en YouTube">
+        <h3 class="top5-youtube__title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="currentColor"/></svg>
+          Top 5 en YouTube
+        </h3>
+        <div class="top5-youtube__content">
+          <div class="top5-youtube__list">
+            <a class="top5-youtube__item" href="https://www.youtube.com/watch?v=0O4CLgXvbjU" target="_blank" rel="noopener noreferrer" data-direct="true">
+              <span class="top5-youtube__rank">1</span>
+              <img class="top5-youtube__thumb" src="https://img.youtube.com/vi/0O4CLgXvbjU/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+              <div class="top5-youtube__info">
+                <span class="top5-youtube__name">Juan Gabriel - Así Fue (En Vivo [Desde el Instituto Nacional de Bellas Artes])</span>
+                <span class="top5-youtube__views">1,042 M de vistas</span>
+              </div>
+            </a>
+            <a class="top5-youtube__item" href="https://www.youtube.com/watch?v=ga5Bo4YdgH4" target="_blank" rel="noopener noreferrer" data-direct="true">
+              <span class="top5-youtube__rank">2</span>
+              <img class="top5-youtube__thumb" src="https://img.youtube.com/vi/ga5Bo4YdgH4/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+              <div class="top5-youtube__info">
+                <span class="top5-youtube__name">Juan Gabriel - Hasta Que Te Conocí (En Vivo [Desde el Instituto Nacional de Bellas Artes])</span>
+                <span class="top5-youtube__views">803 M de vistas</span>
+              </div>
+            </a>
+            <a class="top5-youtube__item" href="https://www.youtube.com/watch?v=_tNVEhSelH0" target="_blank" rel="noopener noreferrer" data-direct="true">
+              <span class="top5-youtube__rank">3</span>
+              <img class="top5-youtube__thumb" src="https://img.youtube.com/vi/_tNVEhSelH0/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+              <div class="top5-youtube__info">
+                <span class="top5-youtube__name">Juan Gabriel - Abrázame Muy Fuerte (En Vivo Desde Bellas Artes, México/ 2013)</span>
+                <span class="top5-youtube__views">647 M de vistas</span>
+              </div>
+            </a>
+            <a class="top5-youtube__item" href="https://www.youtube.com/watch?v=sIM4mDQJib4" target="_blank" rel="noopener noreferrer" data-direct="true">
+              <span class="top5-youtube__rank">4</span>
+              <img class="top5-youtube__thumb" src="https://img.youtube.com/vi/sIM4mDQJib4/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+              <div class="top5-youtube__info">
+                <span class="top5-youtube__name">Juan Gabriel, Natalia Lafourcade - Ya No Vivo Por Vivir (Official)</span>
+                <span class="top5-youtube__views">381 M de vistas</span>
+              </div>
+            </a>
+            <a class="top5-youtube__item" href="https://www.youtube.com/watch?v=ubgrcXB72Fk" target="_blank" rel="noopener noreferrer" data-direct="true">
+              <span class="top5-youtube__rank">5</span>
+              <img class="top5-youtube__thumb" src="https://img.youtube.com/vi/ubgrcXB72Fk/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+              <div class="top5-youtube__info">
+                <span class="top5-youtube__name">Juan Gabriel, Marc Anthony - Yo Te Recuerdo</span>
+                <span class="top5-youtube__views">337 M de vistas</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- Modo Bellas Artes: botones de concierto con modal propio -->
       <!-- La vitrina es un marco decorativo tipo museo Art Nouveau que
            envuelve los botones de Bellas Artes. Inspirada en el traje
@@ -631,7 +683,6 @@
               <button class="bellas-btn bellas-btn--1990" type="button" data-concierto="1990">
                 <span class="bellas-btn__cover">
                   <img src="albums/Juan Gabriel en el Palacio de Bellas Artes.webp" alt="Concierto de 1990 en Bellas Artes" loading="lazy" decoding="async">
-                  <span class="bellas-btn__play" aria-hidden="true">▶</span>
                 </span>
                 <span class="bellas-btn__info">
                   <span class="bellas-btn__title">Juan Gabriel</span>
@@ -642,7 +693,6 @@
               <button class="bellas-btn bellas-btn--celebrando" type="button" data-concierto="celebrando">
                 <span class="bellas-btn__cover">
                   <img src="albums/Celebrando 25 años.webp" alt="Concierto celebrando 25 años" loading="lazy" decoding="async">
-                  <span class="bellas-btn__play" aria-hidden="true">▶</span>
                 </span>
                 <span class="bellas-btn__info">
                   <span class="bellas-btn__title">Juan Gabriel</span>
@@ -653,7 +703,6 @@
               <button class="bellas-btn bellas-btn--2013" type="button" data-concierto="2013">
                 <span class="bellas-btn__cover">
                   <img src="albums/Mis 40 en Bellas Artes.webp" alt="Concierto de 2013 en Bellas Artes" loading="lazy" decoding="async">
-                  <span class="bellas-btn__play" aria-hidden="true">▶</span>
                 </span>
                 <span class="bellas-btn__info">
                   <span class="bellas-btn__title">Juan Gabriel</span>
@@ -1207,7 +1256,7 @@
     </footer>
   <!-- BOTÓN VOLVER ARRIBA -->
   <button type="button" id="btn-subir" aria-label="Volver al inicio">
-    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    <svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
   </button>
   </div>
   <script type="module" src="js/index.js"></script>

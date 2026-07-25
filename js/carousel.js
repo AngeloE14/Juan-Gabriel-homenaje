@@ -72,12 +72,26 @@ export function inicializarCarrusel() {
 
   /*
     FUNCIÓN: siguiente()
-    OBJETIVO: Ir al siguiente slide
-    CONCEPTO: Lógica modular con operador módulo (%)
+    OBJETIVO: Ir al siguiente slide en orden secuencial
   */
   function siguiente() {
-    // OPERADOR MÓDULO: Cuando llega al final, vuelve al inicio
     indiceActual = (indiceActual + 1) % slides.length;
+    renderCarrusel();
+  }
+
+  /**
+   * Avanza a un slide aleatorio sin repetir el actual
+   */
+  function siguienteRandom() {
+    if (slides.length <= 1) {
+      indiceActual = 0;
+    } else {
+      let nouveau;
+      do {
+        nouveau = Math.floor(Math.random() * slides.length);
+      } while (nouveau === indiceActual);
+      indiceActual = nouveau;
+    }
     renderCarrusel();
   }
 
@@ -95,8 +109,8 @@ export function inicializarCarrusel() {
   function iniciarAutoplay() {
     if (slides.length <= 1) return;
     const { isLowEnd, isMobile } = obtenerRendimientoDispositivo();
-    const intervalo = isLowEnd ? (isMobile ? 9000 : 7600) : 5200;
-    autoplayId = window.setInterval(siguiente, intervalo);
+    const intervalo = isLowEnd ? (isMobile ? 6000 : 5000) : 3500;
+    autoplayId = window.setInterval(siguienteRandom, intervalo);
   }
 
   /**

@@ -5,6 +5,7 @@ export function inicializarArtistasCarousel() {
   const gallery = document.querySelector(".artistas-gallery");
   const track = gallery ? gallery.querySelector(".artistas-track") : null;
 
+
   if (!gallery || !track) {
     return;
   }

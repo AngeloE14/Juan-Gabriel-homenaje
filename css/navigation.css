@@ -439,26 +439,19 @@ body.nav-open {
   font-weight: 700;
   color: #ffd700;
   letter-spacing: 0.6px;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-  border: 3px solid #cfa66f;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.6), 0 0 24px rgba(255, 215, 0, 0.2);
+  border: 1.5px solid rgba(255, 215, 0, 0.35);
   border-radius: 10px;
-  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
-  box-shadow:
-    0 0 20px rgba(207, 166, 111, 0.4),
-    inset 0 0 10px rgba(255, 215, 0, 0.1),
-    0 8px 20px rgba(0, 0, 0, 0.6);
-  transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  background: rgba(15, 15, 15, 0.9);
+  transition: color 0.18s ease, border-color 0.18s ease, text-shadow 0.18s ease, transform 0.18s ease;
 }
 
 .main-nav a[href="#bellas-artes"]:hover,
 .main-nav a[href="#bellas-artes"]:focus-visible {
   color: #ffed4e;
-  border-color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.7);
+  text-shadow: 0 0 16px rgba(255, 215, 0, 0.8), 0 0 32px rgba(255, 215, 0, 0.3);
   transform: translateY(-2px);
-  box-shadow:
-    0 0 30px rgba(255, 215, 0, 0.6),
-    inset 0 0 15px rgba(255, 215, 0, 0.2),
-    0 12px 30px rgba(0, 0, 0, 0.8);
 }
 
 .main-nav a[href="#bellas-artes"]:focus-visible {

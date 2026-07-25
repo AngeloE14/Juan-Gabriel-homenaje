@@ -310,7 +310,7 @@
   }
 
   .multimedia-grid {
-    grid-template-columns: repeat(2, 1fr);  /* 2 columnas en móvil */
+    grid-template-columns: 1fr;
   }
 
   .discografia-firma {
@@ -381,7 +381,7 @@
   }
 
   .multimedia-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));  /* 2 columnas para videos/audios */
+    grid-template-columns: 1fr;
   }
 
   #letras {
@@ -743,7 +743,7 @@
 
   .multimedia-grid {
     width: 100%;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 12px;
     padding-inline: 12px;
   }
