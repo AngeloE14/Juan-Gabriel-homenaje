@@ -92,16 +92,16 @@ export function inicializarYouTubeModal() {
       }
 
       var videoId = boton.dataset.videoId;
-      var url = "https://www.youtube.com/watch?v=" + videoId;
+      var titulo = boton.dataset.videoTitle || "Video de YouTube";
 
       // En móvil, abrir YouTube directo (app o navegador)
       if (esMovil) {
-        window.location.href = url;
+        window.location.href = "https://www.youtube.com/watch?v=" + videoId;
         return;
       }
 
-      // En escritorio, abrir en nueva pestaña
-      window.open(url, "_blank", "noopener,noreferrer");
+      // En escritorio, abrir modal embebido
+      abrirYouTube(videoId, titulo);
     });
   });
 

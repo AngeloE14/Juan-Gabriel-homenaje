@@ -505,26 +505,26 @@
       <section id="letras">
       <h2>Letras</h2>
 
-      <!-- Galería horizontal para poder crecer sin romper el layout -->
+      <!-- Galería horizontal: primero las imágenes de letras, luego las de Spotify -->
       <div class="fragmentos-scroll" tabindex="0" aria-label="Galería horizontal de fragmentos de canciones de Juan Gabriel">
         <div class="fragmentos-track">
-          <figure class="fragmento-card"><img src="Letras/Amor Eterno.webp" alt="Fragmento de Amor Eterno" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Querida.webp" alt="Fragmento de Querida" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Te Lo Pido por Favor.webp" alt="Fragmento de Te Lo Pido por Favor" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Asi fue.webp" alt="Fragmento de Así fue" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Abrazáme muy Fuerte.webp" alt="Fragmento de Abrazáme muy Fuerte" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Noche a noche.webp" alt="Fragmento de Noche a noche" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Pero que necesidad.webp" alt="Fragmento de Pero qué necesidad" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/querida.webp" alt="Fragmento de Querida" loading="lazy" decoding="async"></figure>
           <figure class="fragmento-card"><img src="Letras/Por que me haces llorar.webp" alt="Fragmento de Por qué me haces llorar" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Besame.webp" alt="Fragmento de Bésame" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/Asi fue.webp" alt="Fragmento de Así fue" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/yo te recuerdo.webp" alt="Fragmento de Yo te recuerdo" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/Pero que necesidad.webp" alt="Fragmento de Pero qué necesidad" loading="lazy" decoding="async"></figure>
           <figure class="fragmento-card"><img src="Letras/Que chasco me lleve.webp" alt="Fragmento de Que chasco me lleve" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Insensible.webp" alt="Fragmento de Insensible" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Que sea mi condena.webp" alt="Fragmento de Que sea mi condena" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Ya lo Pasado Pasado.webp" alt="Fragmento de Ya lo Pasado Pasado" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Eternamente Agradecido.webp" alt="Fragmento de Eternamente Agradecido" loading="lazy" decoding="async"></figure>
-          <figure class="fragmento-card"><img src="Letras/Asi Se Quiere.webp" alt="Fragmento de Asi se Quiere" loading="lazy" decoding="async"></figure>
           <figure class="fragmento-card"><img src="Letras/Se me olvido otra vez.webp" alt="Fragmento de Se me olvidó otra vez" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/Que sea mi condena.webp" alt="Fragmento de Que sea mi condena" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/Abrazáme muy Fuerte.webp" alt="Fragmento de Abrazáme muy Fuerte" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/no tengo dinero.webp" alt="Fragmento de No tengo dinero" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/Noche a noche.webp" alt="Fragmento de Noche a noche" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/Besame.webp" alt="Fragmento de Bésame" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/Insensible.webp" alt="Fragmento de Insensible" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/Asi Se Quiere.webp" alt="Fragmento de Asi se Quiere" loading="lazy" decoding="async"></figure>
           <figure class="fragmento-card"><img src="Letras/Si quieres.webp" alt="Fragmento de Si quieres" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/Eternamente Agradecido.webp" alt="Fragmento de Eternamente Agradecido" loading="lazy" decoding="async"></figure>
+          <figure class="fragmento-card"><img src="Letras/ya lo pasado pasado.webp" alt="Fragmento de Ya lo pasado, pasado" loading="lazy" decoding="async"></figure>
         </div>
       </div>
     </section>
@@ -568,10 +568,10 @@
         </article>
 
         <article class="multimedia-card">
-          <button class="youtube-open" type="button" data-video-id="hMyuZQWt45s" data-video-title="Juan Gabriel - Amor del Alma">
+          <a href="https://www.youtube.com/watch?v=hMyuZQWt45s" target="_blank" rel="noopener noreferrer" class="multimedia-card__link">
             <img src="https://img.youtube.com/vi/hMyuZQWt45s/hqdefault.jpg" alt="Miniatura: Juan Gabriel - Amor del Alma" loading="lazy" decoding="async">
             <span class="youtube-play" aria-hidden="true"></span>
-          </button>
+          </a>
           <p><strong>Juan Gabriel - Amor del Alma</strong></p>
         </article>
 
@@ -908,16 +908,6 @@
                  alt="Juan Gabriel en foto de perfil"
                  loading="lazy">
           </figure>
-          <figure class="carousel__slide" data-caption="Retrato adicional de Juan Gabriel.">
-            <img src="Pictures/carousel_photos/Juan Gabriel.webp"
-                 alt="Retrato adicional de Juan Gabriel"
-                 loading="lazy">
-          </figure>
-          <figure class="carousel__slide" data-caption="Por los siglos, homenaje visual a Juan Gabriel.">
-            <img src="Pictures/carousel_photos/Por los siglos.webp"
-                 alt="Por los siglos, homenaje a Juan Gabriel"
-                 loading="lazy">
-          </figure>
           <figure class="carousel__slide" data-caption="Juan Gabriel en un retrato icónico.">
             <img src="Pictures/carousel_photos/Juan Gabriel N.webp"
                  alt="Juan Gabriel en un retrato icónico"
@@ -954,9 +944,9 @@
                  loading="lazy">
           </figure>
 
-          <figure class="carousel__slide" data-caption="Juan Gabriel con mariachi, identidad pura de México.">
-            <img src="Pictures/carousel_photos/juan gabriel marichi plo.webp"
-                 alt="Juan Gabriel con mariachi"
+          <figure class="carousel__slide" data-caption="Por Siempre Juan Gabriel.">
+            <img src="Pictures/carousel_photos/por siempre juan gabriel.webp"
+                 alt="Por Siempre Juan Gabriel"
                  loading="lazy">
           </figure>
 
@@ -978,7 +968,7 @@
           <img src="Pictures/iconic_photos/juanga.webp"
                alt="Juan Gabriel en Bellas Artes"
                loading="lazy">
-          <img src="Pictures/carousel_photos/PALACIO DE BELLAS ARTES.webp"
+          <img src="Pictures/iconic_photos/PALACIO DE BELLAS ARTES.webp"
                alt="Palacio de Bellas Artes en homenaje a Juan Gabriel"
                style="object-position: center 12%;"
                loading="lazy">
@@ -1060,6 +1050,13 @@
             <figcaption>Juan Gabriel en la plaza de toros.</figcaption>
           </figure>
 
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/jg y isela vega.webp"
+                 alt="Juan Gabriel con Isela Vega"
+                 loading="lazy">
+            <figcaption>Juan Gabriel junto a la actriz Isela Vega.</figcaption>
+          </figure>
+
         </div>
 
         <div class="fotos-mosaico__col">
@@ -1110,6 +1107,13 @@
                  alt="Juan Gabriel y Luis Miguel"
                  loading="lazy">
             <figcaption>Juan Gabriel y Luis Miguel.</figcaption>
+          </figure>
+
+          <figure class="foto-card">
+            <img src="Pictures/iconic_photos/ultimo concierto.webp"
+                 alt="Último concierto de Juan Gabriel en vida"
+                 loading="lazy">
+            <figcaption>El último concierto de Juan Gabriel en su última gira.</figcaption>
           </figure>
         </div>
 

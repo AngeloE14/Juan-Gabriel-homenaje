@@ -259,7 +259,7 @@ body.intro-finalizada #intro-overlay,
 body:not(.intro-activa) .logo-juan {
   /* animation: nombre | duración | aceleración | fill-mode
      forwards = al final de la animación se queda en el último estado (100%) */
-  animation: aparecerLogo 2.4s ease forwards;
+  animation: aparecerLogo 2.2s ease forwards;
 }
 
 @keyframes aparecerLogo {

@@ -359,7 +359,8 @@
 /* Botón para abrir YouTube: al hacer clic abre el modal con el video.
    position: relative en el contenedor para que los hijos con position: absolute
    se posicionen RELATIVO a este elemento (no a toda la página). */
-.youtube-open {
+.youtube-open,
+.multimedia-card__link {
   position: relative;    /* necesario para que .youtube-play se posicione dentro de este recuadro */
   display: block;
   width: 100%;
@@ -367,9 +368,11 @@
   border: none;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.youtube-open img {
+.youtube-open img,
+.multimedia-card__link img {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -394,7 +397,9 @@
 }
 
 .youtube-open:hover .youtube-play,
-.youtube-open:focus-visible .youtube-play {
+.youtube-open:focus-visible .youtube-play,
+.multimedia-card__link:hover .youtube-play,
+.multimedia-card__link:focus-visible .youtube-play {
   border-color: transparent transparent transparent #ffffff;
   transform: translate(-50%, -50%) scale(1.1);
 }
