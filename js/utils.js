@@ -705,4 +705,15 @@ export function inicializarAudioFondo() {
   } else {
     iniciarAudioFondo();
   }
+
+  // Reanudar música al volver de una pestaña/ventana externa
+  var estabaReproduciendo = false;
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") {
+      estabaReproduciendo = !audioFondo.paused;
+    }
+    if (document.visibilityState === "visible" && estabaReproduciendo) {
+      audioFondo.play().then(actualizarInterfaz).catch(function () {});
+    }
+  });
 }
