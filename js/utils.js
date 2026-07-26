@@ -175,7 +175,12 @@ export function inicializarNavegacion() {
 
   enlacesMenu.forEach(function (enlace) {
     // addEventListener() - "Escucha" cuando pasa un evento
-    enlace.addEventListener("click", function () {
+    enlace.addEventListener("click", function (e) {
+      e.preventDefault();
+      var destino = document.querySelector(enlace.getAttribute("href"));
+      if (destino) {
+        destino.scrollIntoView({ behavior: "smooth" });
+      }
       marcarEnlaceActivo();
       cerrarNavegacion();
     });
@@ -194,9 +199,6 @@ export function inicializarNavegacion() {
       cerrarNavegacion();
     }
   });
-
-  // Evento cuando cambia el hash manualmente
-  window.addEventListener("hashchange", marcarEnlaceActivo);
 
   cerrarNavegacion();
 }
