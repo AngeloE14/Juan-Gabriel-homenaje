@@ -556,6 +556,21 @@
     margin-top: -4px;
   }
 
+  /* Apertura de cortinas — más rápida en móvil */
+  .bellas-modal.is-open .bellas-curtain--left,
+  .bellas-modal.is-open .bellas-curtain--right {
+    transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.15s;
+  }
+
+  .bellas-modal.is-open .bellas-curtain__valance {
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.3s;
+  }
+
+  .bellas-modal.is-open .bellas-curtain--left .bellas-curtain__tieback,
+  .bellas-modal.is-open .bellas-curtain--right .bellas-curtain__tieback {
+    transition: opacity 0.4s ease 0.45s;
+  }
+
   /* MODAL DE YOUTUBE — botón de cerrar adaptado a móvil */
   .youtube-modal__close {
     top: 10px;

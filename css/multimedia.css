@@ -231,6 +231,11 @@
   background: linear-gradient(180deg, rgba(234, 216, 194, 0.95), rgba(247, 238, 225, 0.98));
 }
 
+.foto-card--small img {
+  max-height: 220px;
+  object-fit: cover;
+}
+
 /* Llamado a la acción de Netflix */
 .netflix-cta,
 .spotify-cta {

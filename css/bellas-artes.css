@@ -328,17 +328,6 @@
   letter-spacing: 0.5px;
 }
 
-.bellas-btn--1990 .bellas-btn__title::before {
-  content: "◆";
-  display: inline-block;
-  margin-right: 8px;
-  font-size: 0.55em;
-  color: #ffd700;
-  opacity: 0.5;
-  vertical-align: middle;
-  text-shadow: 0 0 6px rgba(255, 215, 0, 0.2);
-}
-
 .bellas-btn--1990 .bellas-btn__sub {
   color: rgba(207, 166, 111, 0.7);
 }
@@ -493,17 +482,6 @@
   font-size: 0.95rem;
 }
 
-.bellas-btn--celebrando .bellas-btn__title::before {
-  content: "◆";
-  display: inline-block;
-  margin-right: 8px;
-  font-size: 0.55em;
-  color: #999;
-  opacity: 0.5;
-  vertical-align: middle;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-}
-
 .bellas-btn--celebrando .bellas-btn__sub {
   color: #666;
   opacity: 0.6;
@@ -653,17 +631,6 @@
 /* Título con diamante plateado */
 .bellas-btn--2013 .bellas-btn__title {
   letter-spacing: 0.5px;
-}
-
-.bellas-btn--2013 .bellas-btn__title::before {
-  content: "◆";
-  display: inline-block;
-  margin-right: 8px;
-  font-size: 0.55em;
-  color: #ccc;
-  opacity: 0.45;
-  vertical-align: middle;
-  text-shadow: 0 0 6px rgba(200, 200, 200, 0.15);
 }
 
 .bellas-btn--2013 .bellas-btn__sub {

@@ -444,6 +444,35 @@ body.nav-open {
   border-radius: 10px;
   background: rgba(15, 15, 15, 0.9);
   transition: color 0.18s ease, border-color 0.18s ease, text-shadow 0.18s ease, transform 0.18s ease;
+  position: relative;
+}
+
+.main-nav a[href="#bellas-artes"]::before {
+  content: "♪";
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 10px;
+  color: rgba(255, 215, 0, 0.3);
+  pointer-events: none;
+}
+
+.main-nav a[href="#bellas-artes"]::after {
+  content: "♫";
+  position: absolute;
+  bottom: 4px;
+  right: 20px;
+  font-size: 8px;
+  color: rgba(255, 215, 0, 0.2);
+  pointer-events: none;
+}
+
+.nav-bellas-notes {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: rgba(255, 215, 0, 0.25);
+  margin-left: 4px;
+  pointer-events: none;
 }
 
 .main-nav a[href="#bellas-artes"]:hover,
