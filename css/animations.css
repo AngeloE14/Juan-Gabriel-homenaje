@@ -35,7 +35,7 @@
   overflow: hidden;      /* oculta cualquier parte del video que se salga del contenedor */
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.65s ease, visibility 0.65s ease; /* al ocultarse, se desvanece suavemente */
+  transition: opacity 0.45s ease, visibility 0.45s ease; /* al ocultarse, se desvanece suavemente */
   isolation: isolate;
 }
 
@@ -79,7 +79,7 @@
   );
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px));
   mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px));
-  animation: introSpin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: introSpin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .intro-loading__logo {
@@ -230,7 +230,7 @@ body.intro-activa {
 #page-content {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.45s ease; /* aparece/desaparece suavemente */
+  transition: opacity 0.35s ease; /* aparece/desaparece suavemente */
 }
 
 body.intro-activa #page-content {
@@ -259,34 +259,35 @@ body.intro-finalizada #intro-overlay,
 body:not(.intro-activa) .logo-juan {
   /* animation: nombre | duración | aceleración | fill-mode
      forwards = al final de la animación se queda en el último estado (100%) */
-  animation: aparecerLogo 2.2s ease forwards;
+  animation: aparecerLogo 1.5s ease forwards;
 }
 
 @keyframes aparecerLogo {
   /* @keyframes define una animación con pasos (0% = inicio, 100% = final).
-     Esta animación simula el logo "cayendo" con un rebote y un destello dorado. */
+     Esta animación hace aparecer el logo con un sutil "asentimiento" y
+     un destello dorado discreto. */
   0% {
     /* Inicio: invisible, más pequeño, sin brillo */
     opacity: 0;
-    transform: scale(0.75);                    /* 75% del tamaño normal */
+    transform: scale(0.88);                    /* 88% del tamaño normal */
     filter: drop-shadow(0 0 0px rgba(255,255,255,0)); /* sin sombra */
   }
 
   25% {
-    /* Pico del destello: aparece completo, más grande, con brillo blanco y dorado intenso */
+    /* Pico del destello: aparece completo, un poco más grande, con brillo suave */
     opacity: 1;
-    transform: scale(1.15);                    /* 115% -> se agranda un poco (efecto rebote) */
+    transform: scale(1.06);                    /* 106% -> se agranda apenas (rebote sutil) */
     filter:
-      drop-shadow(0 0 40px rgba(255,255,255,1))     /* sombra blanca intensa (brillo) */
-      drop-shadow(0 0 30px rgba(212,175,55,0.9));   /* sombra dorada (brillo cálido) */
+      drop-shadow(0 0 16px rgba(255,255,255,0.7))    /* sombra blanca suave */
+      drop-shadow(0 0 10px rgba(212,175,55,0.5));    /* sombra dorada tenue */
   }
 
   55% {
     /* Rebote: se encoge un poco, el brillo se reduce */
-    transform: scale(0.97);                    /* 97% -> casi tamaño normal ("rebote") */
+    transform: scale(0.98);                    /* 98% -> casi tamaño normal ("rebote") */
     filter:
-      drop-shadow(0 0 10px rgba(255,255,255,0.3))
-      drop-shadow(0 0 6px rgba(212,175,55,0.2));
+      drop-shadow(0 0 6px rgba(255,255,255,0.2))
+      drop-shadow(0 0 4px rgba(212,175,55,0.15));
   }
 
   100% {

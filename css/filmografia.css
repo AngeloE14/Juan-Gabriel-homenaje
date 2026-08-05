@@ -115,7 +115,7 @@
   }
 
   .film-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
   }
 }
 
