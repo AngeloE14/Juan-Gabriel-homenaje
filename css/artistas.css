@@ -90,7 +90,7 @@
   overflow-y: visible;
   scrollbar-width: none;   /* Firefox: oculta la barra de scroll */
   -ms-overflow-style: none;/* IE/Edge: oculta la barra de scroll */
-  touch-action: pan-x;     /* Navegación táctil solo horizontal */
+  touch-action: pan-x pan-y; /* Navegación táctil horizontal + scroll vertical de la página */
 }
 
 .artistas-gallery::-webkit-scrollbar {

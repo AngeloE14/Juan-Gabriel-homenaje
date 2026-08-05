@@ -174,7 +174,7 @@
   scroll-behavior: auto;                  /* scroll instantáneo (no animado) */
   -webkit-overflow-scrolling: auto;       /* comportamiento de scroll en iOS */
   overscroll-behavior-x: none;            /* evita que el scroll se propague al fondo de la página */
-  touch-action: pan-x;                    /* solo scroll horizontal con touch */
+  touch-action: pan-x pan-y;              /* scroll horizontal + scroll vertical de la página */
   scrollbar-width: none;                  /* oculta la barra de scroll en Firefox */
   -ms-overflow-style: none;               /* oculta la barra en Edge/IE antiguo */
   background: transparent;                /* fondo invisible */

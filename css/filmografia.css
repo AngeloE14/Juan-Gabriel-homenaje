@@ -128,7 +128,7 @@
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    touch-action: pan-x;
+    touch-action: pan-x pan-y; /* scroll horizontal + scroll vertical de la página */
     scroll-snap-type: x mandatory;
   }
 
