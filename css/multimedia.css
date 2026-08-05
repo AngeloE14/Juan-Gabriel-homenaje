@@ -16,7 +16,6 @@
    - Tarjetas multimedia
    - Sección de fotos icónicas (tonos cálidos)
    - Botón y modal de YouTube
-   - Llamado a la acción de Netflix
 */
 
 /* Grilla multimedia: organiza las tarjetas de video/foto en filas y columnas.
@@ -81,28 +80,6 @@
   border-radius: 8px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
   background: #000;
-}
-
-/* Tarjeta especial de Netflix */
-.multimedia-netflix {
-  text-align: center;
-  vertical-align: top;
-}
-
-.multimedia-netflix__cover {
-  display: block;
-  width: 100%;
-  max-width: none;
-  aspect-ratio: 16 / 9; /* misma proporción de cine que los videos */
-  height: auto;
-  object-fit: cover;
-  margin: 0 auto;
-  border-radius: 8px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
-}
-
-.multimedia-netflix p {
-  margin-top: 8px;
 }
 
 /* Sección de fotos icónicas: fondo con tonos cálidos (beige, crema, dorado)
@@ -234,42 +211,6 @@
 .foto-card--small img {
   max-height: 220px;
   object-fit: cover;
-}
-
-/* Llamado a la acción de Netflix */
-.netflix-cta,
-.spotify-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-}
-
-.btn-netflix,
-.btn-spotify {
-  display: inline-block;
-  text-decoration: none;
-  line-height: 0;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.btn-netflix img,
-.btn-spotify img {
-  display: block;
-  width: 40px;
-  height: 40px;
-}
-
-.btn-netflix:hover,
-.btn-netflix:focus-visible,
-.btn-spotify:hover,
-.btn-spotify:focus-visible {
-  opacity: 0.92;
-  transform: translateY(-1px);
-}
-
-.spotify-cta {
-  color: #1db954;
 }
 
 /* Modal de YouTube: ventana emergente que cubre toda la pantalla para reproducir videos.

@@ -775,8 +775,7 @@
   .multimedia-card__link,
   .youtube-open img,
   .multimedia-card__link img,
-  .multimedia-card video,
-  .multimedia-netflix__cover {
+  .multimedia-card video {
     max-width: 100%;
   }
 
