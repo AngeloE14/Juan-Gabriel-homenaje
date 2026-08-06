@@ -556,19 +556,27 @@
     margin-top: -4px;
   }
 
-  /* Apertura de cortinas — más rápida en móvil */
+  /* Apertura y cierre de cortinas — más rápida en móvil para no saturar el dispositivo */
+  .bellas-curtain {
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .bellas-curtain__valance {
+    transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
   .bellas-modal.is-open .bellas-curtain--left,
   .bellas-modal.is-open .bellas-curtain--right {
-    transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.15s;
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1) 0.1s;
   }
 
   .bellas-modal.is-open .bellas-curtain__valance {
-    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.3s;
+    transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
   }
 
   .bellas-modal.is-open .bellas-curtain--left .bellas-curtain__tieback,
   .bellas-modal.is-open .bellas-curtain--right .bellas-curtain__tieback {
-    transition: opacity 0.4s ease 0.45s;
+    transition: opacity 0.3s ease 0.3s;
   }
 
   /* MODAL DE YOUTUBE — botón de cerrar adaptado a móvil */

@@ -63,13 +63,29 @@
   background: linear-gradient(90deg, rgba(243, 223, 177, 0.4), transparent);
 }
 
-/* Tarjetas multimedia */
+/* Tarjetas multimedia — estilo limpio:
+   sin cajas pesadas, solo miniatura redondeada + aro dorado de play (identidad JG).
+   Funciona igual en móvil: la grilla pasa a 1 columna sin perder elegancia. */
 .multimedia-card {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  transition: transform 0.25s ease;
+}
+
+.multimedia-card:hover {
+  transform: translateY(-3px);
 }
 
 .multimedia-card p {
-  margin-top: 8px;
+  margin: 8px 6px 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #d9d4c9;
+}
+
+.multimedia-card p strong {
+  font-weight: 700;
 }
 
 .multimedia-card video {
@@ -77,8 +93,8 @@
   width: 100%;
   aspect-ratio: 16 / 9; /* mantiene proporción de cine: 16 unidades de ancho por 9 de alto */
   object-fit: cover;    /* si el video no encaja exacto, se recorta para cubrir el espacio */
-  border-radius: 8px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
   background: #000;
 }
 
@@ -323,8 +339,8 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 /* Triángulo de play — estilo streaming */
