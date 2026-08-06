@@ -180,6 +180,25 @@ body.nav-open {
   height: auto;
 }
 
+/* Eslogan al fondo del panel de navegación (todos los tamaños):
+   el panel es columna flex y margin-top: auto lo empuja hasta abajo. */
+.main-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-nav__slogan {
+  margin-top: auto;               /* empuja el eslogan hasta el fondo del panel */
+  flex-shrink: 0;                 /* no se comprime si falta espacio */
+  padding: 10px 12px 14px;
+}
+
+.main-nav__slogan img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /*
   LISTA DE NAVEGACIÓN
   La lista se organiza en columna (vertical) para la barra lateral.
@@ -754,5 +773,11 @@ body.nav-open {
 
   .main-nav a[href="#multimedia"] {
     background-position: center 61%;
+  }
+
+  /* Eslogan en móvil: mismo elemento que en escritorio, solo se ajusta
+     la posición para subirlo respecto al borde inferior del panel. */
+  .main-nav__slogan {
+    padding: 10px 12px 98px;        /* margen inferior para subirlo en móvil */
   }
 }
