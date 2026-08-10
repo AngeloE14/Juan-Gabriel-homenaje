@@ -73,6 +73,7 @@ body {
   /* LINEAR-GRADIENT: Crea un degradado de color */
 
   /* OVERFLOW-X: Qué hacer con contenido que se sale horizontalmente */
-  overflow-x: hidden;
-  /* hidden = oculta el contenido que se sale */
+  overflow-x: clip;
+  /* clip = oculta el contenido que se sale SIN crear contenedor de scroll
+     (a diferencia de hidden, no rompe position:fixed en móviles) */
 }

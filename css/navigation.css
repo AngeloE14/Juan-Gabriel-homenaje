@@ -134,9 +134,15 @@ body.nav-open .nav-toggle__icon span:nth-child(3) {
   transform: translateX(calc(-100% - 24px)); /* desplazado hacia la izquierda, fuera de la pantalla */
   /* Panel más rápido y suave al abrir/cerrar */
   transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
-  will-change: transform, opacity;
+  /* IMPORTANTE: NO usar will-change/transform permanentes en este elemento fijo.
+     En iOS Safari un elemento position:fixed con transform activo deja de estar
+     fijo y se desliza con la página al hacer scroll. Solo se anima la opacidad;
+     el transform solo se aplica en el estado cerrado (invisible). */
+  will-change: opacity;
   overflow-y: auto;
   overflow-x: hidden;
+  overscroll-behavior: contain; /* el scroll interno del menú no se propaga a la página */
+  touch-action: pan-y;          /* solo desplazamiento vertical dentro del menú */
   scrollbar-gutter: stable;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -156,7 +162,7 @@ body.nav-open .nav-toggle__icon span:nth-child(3) {
 body.nav-open .main-nav {
   opacity: 1;           /* 1 = completamente visible */
   pointer-events: auto; /* se puede hacer clic en los enlaces del menú */
-  transform: translateX(0); /* vuelve a su posición original dentro de la pantalla */
+  transform: none; /* sin transform: en iOS un fixed con transform se desliza con el scroll */
 }
 
 body.nav-open .nav-overlay {
@@ -164,7 +170,9 @@ body.nav-open .nav-overlay {
   pointer-events: auto; /* se puede hacer clic en el overlay (para cerrar el menú) */
 }
 
-/* Cuando el menú está abierto, se bloquea el scroll del body */
+/* Cuando el menú está abierto, se bloquea el scroll del body (y del html)
+   para que la página no se mueva detrás del menú. */
+html:has(body.nav-open),
 body.nav-open {
   overflow: hidden;     /* oculta el scrollbar y evita hacer scroll detrás del menú */
 }
@@ -595,7 +603,14 @@ body.nav-open {
   -webkit-tap-highlight-color: transparent; /* quita el resaltado al tocar en móvil */
 }
 
-.music-btn:hover {
+.music-btn:hover,
+.music-btn:active,
+.music-btn:focus {
+  /* Anula el azul del reset/base (button:hover { background-color:#2980b9 }).
+     En móvil el :hover "queda pegado" tras tocar, así que el botón se veía
+     azul al pausar la música. Se mantiene transparente siempre. */
+  background: transparent;
+  transform: none;
   color: #f0e6d0;              /* color crema al pasar el mouse */
 }
 

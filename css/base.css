@@ -116,13 +116,17 @@ h1, h2, h3 {
    por contenedores con overflow. */
 html {
   min-height: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;   /* clip no crea contenedor de scroll: position:fixed sigue siendo fijo */
+  overflow-y: auto;   /* el viewport hace el scroll vertical de la página */
 }
 
 body {
   min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: clip;   /* IMPORTANTE: NO usar overflow-x:hidden en body/html: en Chrome
+                         un elemento position:fixed se vuelve relativo al documento y
+                         se desliza con el scroll (el menú se movía hacia arriba). */
+  /* NO poner overflow-y en body: si body es un contenedor de scroll, en iOS Safari
+     los elementos position:fixed (como el menú) se deslizan con el scroll de la página. */
   position: relative;
 }
 
@@ -132,7 +136,7 @@ body {
   flex-direction: column;
   min-height: 100dvh;
   min-height: 100svh;
-  overflow-x: hidden;
+  overflow-x: clip;   /* clip no rompe position:fixed (a diferencia de hidden) */
 }
 
 main {
