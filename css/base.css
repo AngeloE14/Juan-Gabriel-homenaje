@@ -164,10 +164,11 @@ main {
 
 /* Estilos para artículos — texto de la biografía */
 #biografia article {
-    max-width: 800px;   /* limita el ancho */
+    max-width: 1000px;  /* ancho cómodo de lectura: texto parejo sin líneas demasiado largas */
     margin: 0 auto;     /* centra el bloque */
     padding: 20px;      /* espacio interno */
-    text-align: left;   /* mantiene lectura normal (justificado cansa la vista) */
+    text-align: justify;          /* bordes izquierdo y derecho al ras */
+    text-align-last: center;      /* la última línea de cada párrafo queda centrada */
 }
 
 /* Sección de logros */
@@ -216,6 +217,13 @@ main {
 #biografia article p {
     margin-bottom: 12px;
     line-height: 1.55;
+}
+
+/* Solo los párrafos marcados con esta clase se centran (desktop).
+   Los demás párrafos de la biografía quedan justificados. */
+#biografia article p.bio-texto-centrado {
+    text-align: center;
+    text-align-last: center;  /* última línea también centrada para que el bloque se vea parejo */
 }
 
 .bio-jg-nombre {

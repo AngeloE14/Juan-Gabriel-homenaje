@@ -36,6 +36,7 @@ export function inicializarArtistasCarousel() {
   let tiempoFuera = null;
   let ultimoMovimientoAutomatico = 0;
   let envolviendo = false;
+  let ajustandoLimite = false;
 
   // Envuelve el scroll: si pasa del punto medio (mitad original + mitad clon),
   // se resta el ancho original para volver al inicio de forma imperceptible.
@@ -86,14 +87,32 @@ export function inicializarArtistasCarousel() {
     }
     // Scroll MANUAL: se detiene al llegar a Isabel Pantoja (fin de la lista
     // original). No da la vuelta; solo el scroll automático lo hace con envolver().
-    const limiteManual = Math.max(0, anchoOriginal - gallery.clientWidth);
-    if (gallery.scrollLeft > limiteManual) {
-      gallery.scrollLeft = limiteManual;
+    // El ajuste se difiere a requestAnimationFrame para NO pelear con el scroll
+    // nativo por inercia táctil (evita glitches/crash al escribir scrollLeft
+    // dentro del propio evento de scroll).
+    if (!ajustandoLimite) {
+      ajustandoLimite = true;
+      requestAnimationFrame(function () {
+        const limiteManual = Math.max(0, anchoOriginal - gallery.clientWidth);
+        if (gallery.scrollLeft > limiteManual) {
+          gallery.scrollLeft = limiteManual;
+        }
+        ajustandoLimite = false;
+      });
     }
     if (!pausado) {
       pausado = true;
       if (tiempoFuera) clearTimeout(tiempoFuera);
       tiempoFuera = setTimeout(reanudar, 3000);
+    }
+  });
+
+  // Al soltar el dedo se aplica el límite final una última vez (ya sin inercia,
+  // por lo que es seguro). Evita que quede pasado el final tras un flick fuerte.
+  gallery.addEventListener("touchend", function () {
+    const limiteManual = Math.max(0, anchoOriginal - gallery.clientWidth);
+    if (gallery.scrollLeft > limiteManual) {
+      gallery.scrollLeft = limiteManual;
     }
   });
 

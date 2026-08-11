@@ -433,6 +433,7 @@ export function inicializarAudioFondo() {
     "audios/perdoname olvidalo.mp3",
     "audios/debo hacerlo.mp3",
     "audios/insensible.mp3",
+    "audios/por que me haces llorar.mp3",
     "audios/una vez mas.mp3",
     "audios/se me olvido otra vez.mp3",
     "audios/fue un placer conocerte.mp3",

@@ -339,6 +339,16 @@
     padding: 14px;               /* menos padding para aprovechar el espacio */
   }
 
+  #biografia article {
+    text-align: left;            /* en móvil el texto queda a la izquierda para mejor lectura */
+    text-align-last: auto;       /* última línea a la izquierda, como estaba */
+  }
+
+  #biografia article p.bio-texto-centrado {
+    text-align: left;            /* en móvil estos párrafos vuelven a la izquierda */
+    text-align-last: auto;
+  }
+
   #biografia blockquote {
     margin: 8px auto 0;          /* menos margen superior */
     padding: 14px 14px;          /* más compacto */
