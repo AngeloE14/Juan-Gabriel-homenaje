@@ -84,7 +84,12 @@ export function inicializarArtistasCarousel() {
     if (performance.now() - ultimoMovimientoAutomatico < 100) {
       return;
     }
-    envolver();
+    // Scroll MANUAL: se detiene al llegar a Isabel Pantoja (fin de la lista
+    // original). No da la vuelta; solo el scroll automático lo hace con envolver().
+    const limiteManual = Math.max(0, anchoOriginal - gallery.clientWidth);
+    if (gallery.scrollLeft > limiteManual) {
+      gallery.scrollLeft = limiteManual;
+    }
     if (!pausado) {
       pausado = true;
       if (tiempoFuera) clearTimeout(tiempoFuera);
