@@ -568,6 +568,7 @@ body.nav-open {
     bottom: 0;                  /* y llega hasta abajo (ocupa toda la altura) */
     width: min(58vw, 230px);    /* sidebar más estrecho en tablet para mejor encuadre de imágenes de fondo */
     max-height: none;           /* sin límite de altura (ocupa toda la pantalla) */
+    overscroll-behavior: none;
     border: 0;                  /* sin borde general */
     border-right: 2px solid #cfa66f; /* solo borde derecho dorado */
     border-radius: 0 18px 18px 0;    /* esquinas redondeadas solo del lado derecho */
@@ -578,6 +579,14 @@ body.nav-open {
 
   .main-nav__list {
     padding: 12px 14px 20px;
+  }
+
+  /* El touch-action se evalúa en el elemento donde inicia el toque (enlaces,
+     texto, etc.), no en el contenedor. Se propaga a todo el subárbol del menú
+     para que el deslizar vertical NO desplace el menú en móvil. */
+  .main-nav,
+  .main-nav * {
+    touch-action: pan-x;
   }
 }
 

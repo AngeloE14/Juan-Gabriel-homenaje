@@ -34,13 +34,27 @@ export function inicializarArtistasCarousel() {
   let animId = null;
   let pausado = false;
   let tiempoFuera = null;
+  let ultimoMovimientoAutomatico = 0;
+  let envolviendo = false;
+
+  // Envuelve el scroll: si pasa del punto medio (mitad original + mitad clon),
+  // se resta el ancho original para volver al inicio de forma imperceptible.
+  function envolver() {
+    if (envolviendo) return;
+    envolviendo = true;
+    if (gallery.scrollLeft >= anchoOriginal) {
+      gallery.scrollLeft -= anchoOriginal;
+    } else if (gallery.scrollLeft <= 0) {
+      gallery.scrollLeft += anchoOriginal;
+    }
+    envolviendo = false;
+  }
 
   function mover() {
     if (!pausado) {
+      ultimoMovimientoAutomatico = performance.now();
       gallery.scrollLeft += velocidad;
-      if (gallery.scrollLeft >= anchoOriginal) {
-        gallery.scrollLeft = 0;
-      }
+      envolver();
     }
     animId = requestAnimationFrame(mover);
   }
@@ -66,6 +80,11 @@ export function inicializarArtistasCarousel() {
   });
 
   gallery.addEventListener("scroll", function () {
+    // Scroll programático (auto) no debe pausar ni envolver de nuevo
+    if (performance.now() - ultimoMovimientoAutomatico < 100) {
+      return;
+    }
+    envolver();
     if (!pausado) {
       pausado = true;
       if (tiempoFuera) clearTimeout(tiempoFuera);
