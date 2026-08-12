@@ -826,9 +826,7 @@
   }
 
   .youtube-open,
-  .multimedia-card__link,
   .youtube-open img,
-  .multimedia-card__link img,
   .video-frame {
     max-width: 100%;
   }
