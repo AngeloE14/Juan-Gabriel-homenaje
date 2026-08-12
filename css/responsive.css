@@ -818,6 +818,7 @@
 
   .multimedia-card {
     min-width: 0;
+    flex: 0 0 clamp(330px, 82vw, 400px);
   }
 
   .multimedia-card p {
@@ -828,7 +829,7 @@
   .multimedia-card__link,
   .youtube-open img,
   .multimedia-card__link img,
-  .multimedia-card video {
+  .video-frame {
     max-width: 100%;
   }
 

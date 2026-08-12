@@ -147,14 +147,27 @@
   color: #ce1126;
 }
 
-.multimedia-card video {
-  display: block;
+/* Marco del video: caja con proporción FIJA 16:9.
+   Evita el bug de móvil donde el recuadro "brinca" de tamaño al cargar
+   los metadatos del video y el botón de play se coloca mal (muy a la
+   izquierda) hasta que el navegador reubica los controles.
+   El video de adentro llena la caja con object-fit: cover sin deformarse. */
+.video-frame {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9; /* mantiene proporción de cine: 16 unidades de ancho por 9 de alto */
-  object-fit: cover;    /* si el video no encaja exacto, se recorta para cubrir el espacio */
+  overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
   background: #000;
+}
+
+.video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* si el video no encaja exacto, se recorta para cubrir el espacio */
+  border: 0;
 }
 
 /* Sección de fotos icónicas: fondo con tonos cálidos (beige, crema, dorado)
