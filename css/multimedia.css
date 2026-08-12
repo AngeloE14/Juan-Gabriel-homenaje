@@ -21,16 +21,19 @@
 /* Grilla multimedia: organiza las tarjetas de video/foto en filas y columnas.
    display: grid activa CSS Grid, un sistema de maquetación en 2D.
    grid-template-columns define el ancho de cada columna.
-   repeat(8, minmax(140px, 190px)) = repite 8 veces: cada columna mide al menos 140px
-   y como máximo 190px (se adapta según el espacio disponible).
+   repeat(12, minmax(0, 1fr)) = 12 columnas iguales que se adaptan al ancho
+   disponible: los 12 videos caben en UNA sola fila en escritorio.
+   width + margin-inline centran la grilla y evitan que se estire demasiado.
    justify-content: center centra toda la grilla horizontalmente. */
 .multimedia-grid {
   display: grid;
   /* Todas las tarjetas usan el mismo ancho máximo */
-  grid-template-columns: repeat(8, minmax(140px, 190px)); /* 8 columnas que se adaptan entre 140px y 190px */
+  grid-template-columns: repeat(12, minmax(0, 1fr)); /* 12 columnas que se adaptan al ancho disponible */
   justify-content: center;
   gap: 16px;            /* espacio de 16px entre cada tarjeta */
   align-items: start;   /* alinea las tarjetas arriba si tienen diferente altura */
+  width: min(100%, 1700px);
+  margin-inline: auto;
 }
 
 #multimedia h2 {
@@ -86,6 +89,19 @@
 
 .multimedia-card p strong {
   font-weight: 700;
+}
+
+/* Letras con los colores de la bandera de México */
+.flag-verde {
+  color: #006847;
+}
+
+.flag-blanco {
+  color: #ffffff;
+}
+
+.flag-rojo {
+  color: #ce1126;
 }
 
 .multimedia-card video {

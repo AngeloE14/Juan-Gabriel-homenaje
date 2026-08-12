@@ -84,6 +84,25 @@ let audioFondoSiguiente = null;
 let crossfadeActivo = false;
 // intervaloCrossfade = referencia al setInterval que controla la transición de volumen
 let intervaloCrossfade = null;
+// audioDesactivadoPorUsuario = true cuando el usuario pausó la música manualmente.
+// Evita que los modales o videos reanuden la música sin permiso del usuario.
+let audioDesactivadoPorUsuario = false;
+
+/*
+  FUNCIÓN: sincronizarEstadoBotonMusica()
+  OBJETIVO: Mantener el botón de música y sus ondas sincronizados con el
+  estado real del audio (reproduciendo = ondas animadas; pausado = quieto).
+*/
+function sincronizarEstadoBotonMusica() {
+  const btn = document.getElementById("music-btn");
+  if (!btn) return;
+  const reproduciendo = typeof audioFondo !== "undefined" && audioFondo && !audioFondo.paused;
+  btn.classList.toggle("is-playing", reproduciendo);
+  btn.setAttribute(
+    "aria-label",
+    reproduciendo ? "Pausar música de fondo" : "Reproducir música de fondo"
+  );
+}
 
 /*
   FUNCIÓN: marcarEnlaceActivo()
@@ -409,11 +428,23 @@ export function pausarAudioFondo() {
   if (typeof audioFondo !== "undefined" && audioFondo && !audioFondo.paused) {
     audioFondo.pause();
   }
+  sincronizarEstadoBotonMusica();
 }
 
 export function reanudarAudioFondo() {
+  // Si el usuario pausó la música manualmente, respetar su decisión y
+  // no reanudarla (por ejemplo, al cerrar un lightbox o un video).
+  if (audioDesactivadoPorUsuario) {
+    sincronizarEstadoBotonMusica();
+    return;
+  }
   if (typeof audioFondo !== "undefined" && audioFondo && audioFondo.paused) {
-    audioFondo.play().catch(function () {});
+    const intento = audioFondo.play();
+    if (intento && typeof intento.then === "function") {
+      intento.then(sincronizarEstadoBotonMusica).catch(function () {});
+    } else {
+      sincronizarEstadoBotonMusica();
+    }
   }
 }
 
@@ -591,22 +622,21 @@ export function inicializarAudioFondo() {
   audioFondo.addEventListener("timeupdate", detectarFinCancion);
 
   function actualizarInterfaz() {
-    const reproduciendo = !audioFondo.paused;
-    btn.classList.toggle("is-playing", reproduciendo);
-    btn.setAttribute(
-      "aria-label",
-      reproduciendo ? "Pausar música de fondo" : "Reproducir música de fondo"
-    );
+    sincronizarEstadoBotonMusica();
   }
 
   function alternarReproduccion() {
     if (audioFondo.paused) {
+      audioDesactivadoPorUsuario = false;
       const intento = audioFondo.play();
       if (intento && typeof intento.then === "function") {
         intento.then(actualizarInterfaz).catch(function (e) {
         });
       }
     } else {
+      // Si el usuario pausa la música manualmente, recordarlo para no
+      // reanudarla automáticamente más adelante.
+      audioDesactivadoPorUsuario = true;
       // Si el usuario pausa durante un crossfade, cancelarlo y restaurar el Audio original
       if (crossfadeActivo) {
         clearInterval(intervaloCrossfade);
@@ -636,6 +666,8 @@ export function inicializarAudioFondo() {
 
   function desbloquearAudio() {
     if (audioFondo.paused) return;
+    // El usuario dio su consentimiento al hacer clic: permitir reanudar después
+    audioDesactivadoPorUsuario = false;
     audioFondo.muted = false;
     audioFondo.defaultMuted = false;
 
@@ -662,6 +694,10 @@ export function inicializarAudioFondo() {
   }
 
   function iniciarAudioFondo() {
+    if (audioDesactivadoPorUsuario) {
+      sincronizarEstadoBotonMusica();
+      return;
+    }
     const intento = audioFondo.play();
 
     if (intento && typeof intento.then === "function") {
