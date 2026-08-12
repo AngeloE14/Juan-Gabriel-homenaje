@@ -25,15 +25,56 @@
    disponible: los 12 videos caben en UNA sola fila en escritorio.
    width + margin-inline centran la grilla y evitan que se estire demasiado.
    justify-content: center centra toda la grilla horizontalmente. */
-.multimedia-grid {
-  display: grid;
-  /* Todas las tarjetas usan el mismo ancho máximo */
-  grid-template-columns: repeat(12, minmax(0, 1fr)); /* 12 columnas que se adaptan al ancho disponible */
-  justify-content: center;
-  gap: 16px;            /* espacio de 16px entre cada tarjeta */
-  align-items: start;   /* alinea las tarjetas arriba si tienen diferente altura */
-  width: min(100%, 1700px);
+  .multimedia-scroll {
+  position: relative;
+  width: min(100%, 2200px);
   margin-inline: auto;
+}
+
+.multimedia-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 8px 12px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.multimedia-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.multimedia-scroll__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(243, 223, 177, 0.4);
+  border-radius: 50%;
+  background: rgba(12, 15, 22, 0.72);
+  color: #f3dfb1;
+  font-size: 1.8rem;
+  line-height: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.multimedia-scroll__button--prev {
+  left: -12px;
+}
+
+.multimedia-scroll__button--next {
+  right: -12px;
 }
 
 #multimedia h2 {
@@ -70,10 +111,12 @@
    sin cajas pesadas, solo miniatura redondeada + aro dorado de play (identidad JG).
    Funciona igual en móvil: la grilla pasa a 1 columna sin perder elegancia. */
 .multimedia-card {
+  flex: 0 0 clamp(300px, 27vw, 410px);
   display: flex;
   flex-direction: column;
   text-align: center;
   transition: transform 0.25s ease;
+  scroll-snap-align: start;
 }
 
 .multimedia-card:hover {

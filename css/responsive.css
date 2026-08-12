@@ -398,6 +398,41 @@
     padding: 0;                     /* sin padding — ocupa todo el ancho */
   }
 
+  /* TÍTULO DE LA SECCIÓN DE LETRAS EN MÓVIL — se mantienen las líneas
+     decorativas, el tamaño se reduce y se ajusta el espaciado. */
+  #letras h2 {
+    font-size: clamp(0.9rem, 3.8vw, 1.1rem);
+    letter-spacing: 1.5px;
+    line-height: 1.45;
+    gap: 8px;
+    padding-inline: 12px;
+  }
+
+  #letras h2::before,
+  #letras h2::after {
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+  }
+
+  /* TÍTULO DE LA SECCIÓN DE VIDEOS EN MÓVIL — se mantienen las líneas
+     decorativas, el título se reduce para que no se vea gigante. */
+  #multimedia h2 {
+    font-size: clamp(0.85rem, 3.6vw, 1.05rem);
+    letter-spacing: 1.5px;
+    line-height: 1.45;
+    gap: 8px;
+    padding-inline: 12px;
+    margin-top: 18px;
+  }
+
+  #multimedia h2::before,
+  #multimedia h2::after {
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+  }
+
   /* CARRUSEL DE FRAGMENTOS — más compacto en móvil */
   .fragmentos-scroll {
     padding: 0;                     /* sin relleno */
