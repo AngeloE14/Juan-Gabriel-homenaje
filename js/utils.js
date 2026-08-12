@@ -432,8 +432,6 @@ export function inicializarAudioFondo() {
     "audios/yo no se que me paso.mp3",
     "audios/perdoname olvidalo.mp3",
     "audios/debo hacerlo.mp3",
-    "audios/insensible.mp3",
-    "audios/por que me haces llorar.mp3",
     "audios/una vez mas.mp3",
     "audios/se me olvido otra vez.mp3",
     "audios/fue un placer conocerte.mp3",
@@ -441,7 +439,9 @@ export function inicializarAudioFondo() {
     "audios/dejame vivir.mp3",
     "audios/de mi enamorate.mp3",
     "audios/luna tras luna.mp3",
-    "audios/que chasco me lleve.mp3"
+    "audios/que chasco me lleve.mp3",
+    "audios/dimelo.mp3",
+    "audios/lagrimas y lluvia.mp3"
   ];
 
   // DURACION_CROSSFADE = segundos que dura la transición entre canciones
