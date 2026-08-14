@@ -45,6 +45,39 @@
   -ms-overflow-style: none;
 }
 
+/* Estilos específicos para la subsección de videos (Videos 1-5 y fragmentos)
+   Centrar título (imagen) y hacerlo más pequeño en pantallas grandes y pequeñas. */
+.multimedia-subsection__title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 18px 0;
+}
+
+.multimedia-subsection__title img {
+  width: min(50%, 210px);
+  height: auto;
+  display: block;
+}
+
+.multimedia-subsection__sub {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(212, 175, 90, 0.85);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .multimedia-subsection__title img {
+    width: 45%;
+    max-width: 160px;
+  }
+}
+
 .multimedia-grid::-webkit-scrollbar {
   display: none;
 }

@@ -44,7 +44,7 @@ import { inicializarYouTubeModal } from './youtube-modal.js';
 import { inicializarBellasArtesModal } from './bellas-artes-modal.js';
 import { inicializarFrasesRotativas } from './quotes-rotator.js';
 /* CAMBIO: Importa la lógica del carrusel 3D de Fragmentos */
-import { inicializarArtistasCarousel } from './artistas-carousel.js';
+import { inicializarArtistasCarousel, inicializarFragmentosCarousel } from './artistas-carousel.js';
 import { inicializarLightbox } from './lightbox.js';
 import { inicializarBotonSubir } from './back-to-top.js';
 
@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     inicializarBellasArtesModal();
     inicializarFrasesRotativas();
     inicializarArtistasCarousel();
+    inicializarFragmentosCarousel();
     inicializarLightbox();
     inicializarBotonSubir();
   });

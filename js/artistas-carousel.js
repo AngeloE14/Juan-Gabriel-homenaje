@@ -1,11 +1,7 @@
 "use strict";
 import { obtenerRendimientoDispositivo } from './utils.js';
 
-export function inicializarArtistasCarousel() {
-  const gallery = document.querySelector(".artistas-gallery");
-  const track = gallery ? gallery.querySelector(".artistas-track") : null;
-
-
+function inicializarCarruselInfinito(gallery, track, tarjetaSelector, pausarConCursor) {
   if (!gallery || !track) {
     return;
   }
@@ -14,7 +10,15 @@ export function inicializarArtistasCarousel() {
     return;
   }
 
-  const tarjetas = Array.from(track.querySelectorAll(".artista-frame"));
+  // Solo gira en dispositivos móviles (pantalla táctil o hasta 700px).
+  // En escritorio queda estático con scroll horizontal manual.
+  const esMovil = window.matchMedia("(pointer: coarse)").matches ||
+    window.matchMedia("(max-width: 700px)").matches;
+  if (!esMovil) {
+    return;
+  }
+
+  const tarjetas = Array.from(track.querySelectorAll(tarjetaSelector));
   if (tarjetas.length <= 1) {
     return;
   }
@@ -26,8 +30,8 @@ export function inicializarArtistasCarousel() {
   });
   clones.forEach(function (c) { track.appendChild(c); });
 
-  const anchoOriginal = track.scrollWidth / 2;
-  const { isLowEnd, isMobile } = obtenerRendimientoDispositivo();
+  let anchoOriginal = track.scrollWidth / 2;
+  const { isLowEnd } = obtenerRendimientoDispositivo();
   const velocidadBase = Math.max(0.8, anchoOriginal / 3000);
   const velocidad = velocidadBase * (isLowEnd ? 0.55 : 1);
 
@@ -68,11 +72,13 @@ export function inicializarArtistasCarousel() {
     pausado = false;
   }
 
-  gallery.addEventListener("pointerenter", function () { pausado = true; });
-  gallery.addEventListener("pointerleave", function () {
-    if (tiempoFuera) clearTimeout(tiempoFuera);
-    tiempoFuera = setTimeout(reanudar, 1500);
-  });
+  if (pausarConCursor !== false) {
+    gallery.addEventListener("pointerenter", function () { pausado = true; });
+    gallery.addEventListener("pointerleave", function () {
+      if (tiempoFuera) clearTimeout(tiempoFuera);
+      tiempoFuera = setTimeout(reanudar, 1500);
+    });
+  }
 
   gallery.addEventListener("touchstart", function () { pausado = true; });
   gallery.addEventListener("touchend", function () {
@@ -85,11 +91,9 @@ export function inicializarArtistasCarousel() {
     if (performance.now() - ultimoMovimientoAutomatico < 100) {
       return;
     }
-    // Scroll MANUAL: se detiene al llegar a Isabel Pantoja (fin de la lista
-    // original). No da la vuelta; solo el scroll automático lo hace con envolver().
+    // Scroll MANUAL: no da la vuelta; solo el scroll automático lo hace con envolver().
     // El ajuste se difiere a requestAnimationFrame para NO pelear con el scroll
-    // nativo por inercia táctil (evita glitches/crash al escribir scrollLeft
-    // dentro del propio evento de scroll).
+    // nativo por inercia táctil.
     if (!ajustandoLimite) {
       ajustandoLimite = true;
       requestAnimationFrame(function () {
@@ -125,5 +129,41 @@ export function inicializarArtistasCarousel() {
     }
   });
 
+  // Las imágenes del carrusel se cargan después de inicializar (lazy), lo que
+  // cambia el ancho real de la pista. Recalcular el punto de envoltura para
+  // que el giro sea perfecto y no "brinque" en el lugar equivocado.
+  if (typeof ResizeObserver !== "undefined") {
+    const observador = new ResizeObserver(function () {
+      const nuevoAncho = track.scrollWidth / 2;
+      if (nuevoAncho > 0) {
+        anchoOriginal = nuevoAncho;
+      }
+    });
+    observador.observe(track);
+  }
+
   animId = requestAnimationFrame(mover);
+}
+
+export function inicializarArtistasCarousel() {
+  inicializarCarruselInfinito(
+    document.querySelector(".artistas-gallery"),
+    document.querySelector(".artistas-track"),
+    ".artista-frame"
+  );
+}
+
+export function inicializarFragmentosCarousel() {
+  const gallery = document.querySelector(".fragmentos-scroll");
+  if (gallery) {
+    gallery.style.scrollSnapType = "none";
+  }
+  // pausarConCursor = false: en escritorio siempre gira aunque el mouse esté
+  // encima (en móvil se pausa al tocar, igual que antes).
+  inicializarCarruselInfinito(
+    gallery,
+    document.querySelector(".fragmentos-track"),
+    ".fragmento-card",
+    false
+  );
 }
