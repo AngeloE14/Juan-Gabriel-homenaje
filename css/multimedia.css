@@ -298,6 +298,11 @@
   margin: 0 0 18px;
 }
 
+.foto-card--estampillas {
+  max-width: 760px;
+  margin: 0 auto 18px;
+}
+
 .foto-card__duo {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columnas iguales que se reparten el espacio */
@@ -322,6 +327,26 @@
   line-height: 1.55;
   text-align: center;
   background: linear-gradient(180deg, rgba(248, 239, 228, 0.96) 0%, rgba(244, 232, 216, 0.98) 100%);
+}
+
+.foto-card__titulo {
+  display: block;
+  text-align: center;
+}
+
+.foto-card__cita {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.foto-card__cita-autor {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
 }
 
 .foto-card--frase img {

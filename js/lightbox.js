@@ -40,15 +40,54 @@ export function inicializarLightbox() {
     reanudarAudioFondo();
   }
 
+  function lineasDelCaption(figcaption) {
+    const partes = [];
+    let actual = "";
+    const separar = function () {
+      if (actual.trim()) partes.push(actual.trim());
+      actual = "";
+    };
+    Array.from(figcaption.childNodes).forEach(function (nodo) {
+      if (nodo.nodeType === Node.TEXT_NODE) {
+        actual += nodo.textContent;
+      } else if (nodo.nodeType === Node.ELEMENT_NODE) {
+        if (nodo.tagName === "BR") {
+          separar();
+        } else {
+          separar();
+          actual = nodo.textContent.trim();
+          separar();
+        }
+      }
+    });
+    separar();
+    return partes;
+  }
+
+  function renderCaption(lineas) {
+    lightboxCaption.textContent = "";
+    lineas.forEach(function (linea, i) {
+      const parte = document.createElement("span");
+      parte.className = "lightbox__caption-line";
+      parte.textContent = linea;
+      lightboxCaption.appendChild(parte);
+    });
+  }
+
   function renderLightbox() {
     const img = imagenes[indiceActual];
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
 
     const figcaption = img.closest("figure, .foto-card")?.querySelector("figcaption");
-    if (figcaption && figcaption.textContent.trim()) {
-      lightboxCaption.textContent = figcaption.textContent.trim();
-      lightboxCaption.style.display = "";
+    if (figcaption) {
+      const lineas = lineasDelCaption(figcaption);
+      if (lineas.length) {
+        renderCaption(lineas);
+        lightboxCaption.style.display = "";
+      } else {
+        lightboxCaption.style.display = "none";
+      }
     } else {
       lightboxCaption.style.display = "none";
     }

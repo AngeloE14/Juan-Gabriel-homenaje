@@ -857,4 +857,10 @@
   .foto-card__duo[style] {
     grid-template-columns: 1fr !important;
   }
+
+  .foto-card--estampillas figcaption {
+    font-size: 0.86rem;
+    line-height: 1.5;
+    padding: 12px 14px 14px;
+  }
 }

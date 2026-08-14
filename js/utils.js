@@ -461,18 +461,15 @@ export function inicializarAudioFondo() {
     "audios/te lo pido por favor.mp3",
     "audios/la farsante.mp3",
     "audios/yo no se que me paso.mp3",
-    "audios/perdoname olvidalo.mp3",
     "audios/no vale la pena.mp3",
-    "audios/una vez mas.mp3",
     "audios/se me olvido otra vez.mp3",
     "audios/fue un placer conocerte.mp3",
     "audios/dimelo.mp3",
-    "audios/dejame vivir.mp3",
     "audios/de mi enamorate.mp3",
-    "audios/luna tras luna.mp3",
+    "audios/es mejor.mp3",
+    "audios/besame.mp3",
     "audios/que chasco me lleve.mp3",
-    "audios/amor eterno.mp3",
-    "audios/lagrimas y lluvia.mp3"
+    "audios/amor eterno.mp3"
   ];
 
   // DURACION_CROSSFADE = segundos que dura la transición entre canciones

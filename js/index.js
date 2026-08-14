@@ -45,7 +45,7 @@ import { inicializarBellasArtesModal } from './bellas-artes-modal.js';
 import { inicializarFrasesRotativas } from './quotes-rotator.js';
 /* CAMBIO: Importa la lógica del carrusel 3D de Fragmentos */
 import { inicializarArtistasCarousel, inicializarFragmentosCarousel } from './artistas-carousel.js';
-import { inicializarLightbox } from './lightbox.js';
+import { inicializarLightbox } from './lightbox.js?v=2';
 import { inicializarBotonSubir } from './back-to-top.js';
 
 /*
