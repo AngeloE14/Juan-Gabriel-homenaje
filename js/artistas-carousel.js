@@ -33,10 +33,10 @@ function inicializarCarruselInfinito(gallery, track, tarjetaSelector, pausarConC
   let ajustandoLimite = false;
 
   function obtenerVelocidad() {
-    const velocidadBase = Math.max(48, anchoOriginal / 50);
+    const velocidadBase = Math.max(38, anchoOriginal / 60);
     const factorRendimiento = isLowEnd ? 0.65 : 1;
     const factorMovimiento = reducirMovimiento ? 0.75 : 1;
-    return Math.max(32, velocidadBase * factorRendimiento * factorMovimiento);
+    return Math.max(26, velocidadBase * factorRendimiento * factorMovimiento);
   }
 
   function limitarScrollManual() {
