@@ -10,14 +10,6 @@ function inicializarCarruselInfinito(gallery, track, tarjetaSelector, pausarConC
     return;
   }
 
-  // Solo gira en dispositivos móviles (pantalla táctil o hasta 700px).
-  // En escritorio queda estático con scroll horizontal manual.
-  const esMovil = window.matchMedia("(pointer: coarse)").matches ||
-    window.matchMedia("(max-width: 700px)").matches;
-  if (!esMovil) {
-    return;
-  }
-
   const tarjetas = Array.from(track.querySelectorAll(tarjetaSelector));
   if (tarjetas.length <= 1) {
     return;
