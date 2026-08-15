@@ -196,35 +196,42 @@
     <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
     <main>
       <section id="biografia">
-        <div style="text-align:center">
-          <figure>
-            <!--
-              FIGURE: Etiqueta semántica para imágenes con contexto
-              IMG: Muestra imagen externa (de internet)
-              ALT: Texto descriptivo para accesibilidad
-              WIDTH: Ancho fijo en píxeles
-            -->
-            <img src="https://s3.amazonaws.com/gex.lifeandstyle/uploads/image/file/7236/01-QUI137JUANGABRIEL1scan.jpg"
-                 alt="Foto de Juan Gabriel"
-                 width="550"
-                 loading="eager"
-                 fetchpriority="high"
-                 decoding="async">
+        <div class="bio-layout">
+          <figure class="bio-portrait">
+            <div class="portrait-frame">
+              <div class="portrait-frame__inner">
+                <div class="portrait-mat">
+                  <div class="portrait-image bio-portrait__image">
+                    <img src="assets/JuanGaF.webp"
+                         alt="Foto de Juan Gabriel"
+                         width="691"
+                         height="796"
+                         loading="eager"
+                         fetchpriority="high"
+                         decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="portrait-plaque bio-portrait__plaque">
+              <img src="assets/juan-gabriel-titulo.png" alt="Juan Gabriel" loading="lazy" decoding="async">
+              <span class="bio-plaque-name">ALBERTO AGUILERA VALADEZ</span>
+            </figcaption>
           </figure>
+          <article>
+            <p>
+              Alberto Aguilera Valadez nació el 7 de enero de 1950 en Parácuaro, Michoacán.
+            </p>
+
+            <p class="bio-texto-centrado">
+              <span class="bio-jg-nombre">Juan Gabriel</span> compuso más de 1800 temas que se cantaron en todo el mundo. Sus palabras hablan de soledad, de amor, de nostalgia — pero él sabía convertir ese dolor en fiesta, canciones tristes que terminan haciéndonos bailar.
+            </p>
+
+            <p class="bio-texto-centrado">
+              Rompió prejuicios y conquistó a todo tipo de público con su talento y su libertad de ser quien era. Su música sigue viva, cantada por nuevas generaciones que descubren en sus palabras ese mismo sentimiento que él supo plasmar.
+            </p>
+          </article>
         </div>
-        <article>
-          <p>
-            Alberto Aguilera Valadez nació el 7 de enero de 1950 en Parácuaro, Michoacán.
-          </p>
-
-          <p class="bio-texto-centrado">
-            <span class="bio-jg-nombre">Juan Gabriel</span> compuso más de 1800 temas que se cantaron en todo el mundo. Sus palabras hablan de soledad, de amor, de nostalgia — pero él sabía convertir ese dolor en fiesta, canciones tristes que terminan haciéndonos bailar.
-          </p>
-
-          <p class="bio-texto-centrado">
-            Rompió prejuicios y conquistó a todo tipo de público con su talento y su libertad de ser quien era. Su música sigue viva, cantada por nuevas generaciones que descubren en sus palabras ese mismo sentimiento que él supo plasmar.
-          </p>
-        </article>
 
         <blockquote>
           <p>
