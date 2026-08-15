@@ -188,13 +188,30 @@ body.nav-open {
   height: auto;
 }
 
-/* Eslogan al fondo del panel de navegación (todos los tamaños):
-   el panel es columna flex y margin-top: auto lo empuja hasta abajo. */
 .main-nav {
   display: flex;
   flex-direction: column;
 }
 
+.main-nav__media {
+  padding: 0 12px;
+  margin-top: 4px;
+}
+
+.main-nav__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  object-fit: cover;
+  aspect-ratio: 2 / 1;
+}
+
+/* Eslogan al fondo del panel de navegación (todos los tamaños):
+   el panel es columna flex y margin-top: auto lo empuja hasta abajo. */
 .main-nav__slogan {
   margin-top: auto;               /* empuja el eslogan hasta el fondo del panel */
   flex-shrink: 0;                 /* no se comprime si falta espacio */
@@ -477,58 +494,119 @@ body.nav-open {
   Evoca el estilo del "Modo Bellas Artes" original: lentejuelas, bordados dorados.
 */
 .main-nav a[href="#bellas-artes"] {
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   min-height: 50px;
   padding: 8px 12px;
   overflow: hidden;
   font-family: inherit;         /* se mantiene la fuente original del menú */
-  font-size: 0.9rem;            /* tamaño original, no se toca */
+  font-size: 0.92rem;           /* un poco más legible */
   font-weight: 700;
   color: #ffd700;
   letter-spacing: 0.6px;
-  text-shadow: 0 0 12px rgba(255, 215, 0, 0.6), 0 0 24px rgba(255, 215, 0, 0.2);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(255, 215, 0, 0.6),
+    0 0 24px rgba(255, 215, 0, 0.2);
   border: 1.5px solid rgba(255, 215, 0, 0.35);
   border-radius: 10px;
-  background: rgba(15, 15, 15, 0.9);
-  transition: color 0.18s ease, border-color 0.18s ease, text-shadow 0.18s ease, transform 0.18s ease;
+  background: linear-gradient(90deg,
+    rgba(8, 8, 8, 0.98) 0%,
+    rgba(8, 8, 8, 0.94) 16%,
+    rgba(8, 8, 8, 0.58) 28%,
+    rgba(8, 8, 8, 0.12) 41%,
+    rgba(8, 8, 8, 0) 50%,
+    rgba(8, 8, 8, 0.12) 59%,
+    rgba(8, 8, 8, 0.58) 72%,
+    rgba(8, 8, 8, 0.94) 84%,
+    rgba(8, 8, 8, 0.98) 100%);
+  transition: color 0.18s ease, border-color 0.18s ease, text-shadow 0.18s ease, transform 0.18s ease, filter 0.18s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+}
+
+.main-nav a[href="#bellas-artes"] > .nav-bellas-label,
+.main-nav a[href="#bellas-artes"] > .nav-bellas-notes {
   position: relative;
+  z-index: 2;
+}
+
+.main-nav a[href="#bellas-artes"] > .nav-bellas-label {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.95),
+    0 0 12px rgba(255, 215, 0, 0.7),
+    0 0 20px rgba(255, 215, 0, 0.22);
 }
 
 .main-nav a[href="#bellas-artes"]::before {
-  content: "♪";
+  content: "";
   position: absolute;
-  top: 4px;
-  right: 8px;
-  font-size: 10px;
-  color: rgba(255, 215, 0, 0.3);
+  inset: 0;
+  background:
+    linear-gradient(90deg,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.62) 10%,
+      rgba(0, 0, 0, 0.28) 18%,
+      rgba(0, 0, 0, 0.06) 26%,
+      rgba(0, 0, 0, 0) 39%,
+      rgba(0, 0, 0, 0) 58%,
+      rgba(0, 0, 0, 0.1) 72%,
+      rgba(0, 0, 0, 0.42) 84%,
+      rgba(0, 0, 0, 0.78) 100%),
+    url("../assets/hasta-que-te-conoci.webp") center center / cover no-repeat;
   pointer-events: none;
+  z-index: 0;
 }
 
 .main-nav a[href="#bellas-artes"]::after {
   content: "♫";
   position: absolute;
   bottom: 4px;
-  right: 20px;
-  font-size: 8px;
-  color: rgba(255, 215, 0, 0.2);
+  right: 8px;
+  font-size: 10px;
+  color: rgba(255, 232, 150, 0.78);
+  text-shadow: 0 0 14px rgba(255, 215, 0, 0.6);
   pointer-events: none;
+  z-index: 1;
+}
+
+.main-nav a[href="#bellas-artes"]:hover,
+.main-nav a[href="#bellas-artes"]:focus-visible {
+  filter: brightness(1.06);
 }
 
 .nav-bellas-notes {
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: rgba(255, 215, 0, 0.25);
-  margin-left: 4px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(255, 232, 150, 0.96);
+  margin-left: 16px;
   pointer-events: none;
+  position: relative;
+  z-index: 2;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.85),
+    0 0 14px rgba(255, 215, 0, 0.58);
+  transform: translateX(8px);
 }
 
 .main-nav a[href="#bellas-artes"]:hover,
 .main-nav a[href="#bellas-artes"]:focus-visible {
   color: #ffed4e;
   border-color: rgba(255, 215, 0, 0.7);
-  text-shadow: 0 0 16px rgba(255, 215, 0, 0.8), 0 0 32px rgba(255, 215, 0, 0.3);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.95),
+    0 0 12px rgba(255, 215, 0, 0.85),
+    0 0 24px rgba(255, 215, 0, 0.28);
   transform: translateY(-2px);
+}
+
+.main-nav a[href="#bellas-artes"]:hover > .nav-bellas-label,
+.main-nav a[href="#bellas-artes"]:focus-visible > .nav-bellas-label {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.98),
+    0 0 14px rgba(255, 215, 0, 0.95),
+    0 0 28px rgba(255, 215, 0, 0.32);
 }
 
 .main-nav a[href="#bellas-artes"]:focus-visible {
@@ -601,6 +679,11 @@ body.nav-open {
 
   .main-nav__list {
     padding: 12px 14px 20px;
+  }
+
+  .main-nav__media {
+    padding: 0 14px;
+    margin-top: 2px;
   }
 
   /* El touch-action se evalúa en el elemento donde inicia el toque (enlaces,
@@ -784,6 +867,18 @@ body.nav-open {
   .main-nav__list {
     padding: 8px 10px 12px;
     gap: 3px;
+  }
+
+  .main-nav__media {
+    padding: 0 10px;
+    margin-top: 0;
+  }
+
+  .main-nav__media img {
+    border-radius: 0;
+    border-width: 0;
+    height: 88px;
+    object-fit: cover;
   }
 
   .main-nav a[href="#letras"] {
