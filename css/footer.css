@@ -140,17 +140,17 @@ footer {
     0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.social-icon-facebook { background-image: url(../assets/facebook.png); }
-.social-icon-instagram { background-image: url(../assets/instagram.png); }
-.social-icon-tiktok { background-image: url(../assets/tiktok.avif); }
-.social-icon-youtube { background-image: url(../assets/youtube.png); }
-.social-icon-spotify { background-image: url(../assets/spotify.png); }
-.social-icon-apple { background-image: url(../assets/apple%20music.png); }
-.social-icon-youtubemusic { background-image: url(../assets/Youtube%20Music.png); }
-.social-icon-amazon { background-image: url(../assets/Amazon%20music.png); }
-.social-icon-deezer { background-image: url(../assets/Deezer.svg.png); }
+.social-icon-facebook { background-image: url(../assets/facebook.webp); }
+.social-icon-instagram { background-image: url(../assets/instagram.webp); }
+.social-icon-tiktok { background-image: url(../assets/tiktok.webp); }
+.social-icon-youtube { background-image: url(../assets/youtube.webp); }
+.social-icon-spotify { background-image: url(../assets/spotify.webp); }
+.social-icon-apple { background-image: url(../assets/apple-music.webp); }
+.social-icon-youtubemusic { background-image: url(../assets/youtube-music.webp); }
+.social-icon-amazon { background-image: url(../assets/amazon.webp); }
+.social-icon-deezer { background-image: url(../assets/deezer.webp); }
 
-.footer-brand { background-image: url(../assets/LOGO%202.png); }
+.footer-brand { background-image: url(../assets/logo-2.webp); }
 
 /* MÓVIL (pantallas de 560px o menos) — logos más pequeños y compactos */
 @media (max-width: 560px) {

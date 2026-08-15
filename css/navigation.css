@@ -240,8 +240,9 @@ body.nav-open {
   text-decoration: none;
   color: #d4dce8;
   padding: 8px 12px;
+  font-family: "Poppins", "Segoe UI", sans-serif;  /* fuente para los botones con foto */
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   letter-spacing: 0.35px;         /* espacio entre letras */
   border: 1px solid transparent;
   border-radius: 8px;            /* esquinas redondeadas */
@@ -310,16 +311,34 @@ body.nav-open {
   min-height: 50px;
   padding: 8px 12px;
   overflow: hidden; 
+  position: relative;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 10px;
-  background-image: linear-gradient(90deg, rgba(7, 11, 17, 0.32) 0%, rgba(7, 11, 17, 0.1) 50%, rgba(7, 11, 17, 0.2) 100%), url("../pic_nav/foto 1.webp");
-  background-size: cover;
-  background-position: center 23%;
+  background-image: linear-gradient(90deg, rgba(7, 11, 17, 0.32) 0%, rgba(7, 11, 17, 0.1) 50%, rgba(7, 11, 17, 0.2) 100%);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.main-nav a[href="#artistas-composiciones"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: -45px;
+  background-image: linear-gradient(90deg, rgba(7, 11, 17, 0.32) 0%, rgba(7, 11, 17, 0.1) 50%, rgba(7, 11, 17, 0.2) 100%), url("../pic_nav/foto 1.webp");
+  background-size: 85% auto;
+  background-position: center 23%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.main-nav a[href="#artistas-composiciones"] > span {
+  position: relative;
+  z-index: 1;
 }
 
 .main-nav a[href="#artistas-composiciones"]:hover,
@@ -390,8 +409,8 @@ body.nav-open {
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 10px;
   background-image: linear-gradient(90deg, rgba(10, 8, 4, 0.34) 0%, rgba(10, 8, 4, 0.1) 50%, rgba(10, 8, 4, 0.18) 100%), url("../pic_nav/foto 3.webp");
-  background-size: cover;
-  background-position: center;
+  background-size: 110% auto;
+  background-position: 0% center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
@@ -463,6 +482,8 @@ body.nav-open {
   min-height: 50px;
   padding: 8px 12px;
   overflow: hidden;
+  font-family: inherit;         /* se mantiene la fuente original del menú */
+  font-size: 0.9rem;            /* tamaño original, no se toca */
   font-weight: 700;
   color: #ffd700;
   letter-spacing: 0.6px;
@@ -532,9 +553,9 @@ body.nav-open {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 10px;
-  background-image: linear-gradient(90deg, rgba(6, 10, 16, 0.32) 0%, rgba(6, 10, 16, 0.1) 50%, rgba(6, 10, 16, 0.2) 100%), url("../pic_nav/foto 6.webp");
+  background-image: linear-gradient(90deg, rgba(6, 10, 16, 0.32) 0%, rgba(6, 10, 16, 0.1) 50%, rgba(6, 10, 16, 0.2) 100%), url("../pic_nav/foto 6.webp?v=2");
   background-size: cover;
-  background-position: 70% 48%;
+  background-position: center;
   background-repeat: no-repeat;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
@@ -794,7 +815,7 @@ body.nav-open {
      recorte de cover, así que se recalibran las posiciones verticales. */
   .main-nav a[href="#discografia"] {
     background-size: cover;
-    background-position: 70% 48%;
+    background-position: center;
   }
 
   .main-nav a[href="#multimedia"] {
