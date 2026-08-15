@@ -257,8 +257,15 @@ export function reproducirIntroAlCargar() {
     }
   }
 
+  introVideo.addEventListener("play", ocultarLoading, { once: true });
   introVideo.addEventListener("playing", ocultarLoading, { once: true });
   introVideo.addEventListener("error", ocultarLoading, { once: true });
+
+  // Si el video ya empezó a reproducirse antes de que corriera este script
+  // (autoplay nativo en carga local), ocultar el spinner de inmediato.
+  if (!introVideo.paused || introVideo.currentTime > 0) {
+    ocultarLoading();
+  }
 
   let introFinalizada = false;
   let desbloqueoAudioRegistrado = false;
