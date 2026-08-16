@@ -470,6 +470,7 @@ export function inicializarAudioFondo() {
     "audios/yo no se que me paso.mp3",
     "audios/no vale la pena.mp3",
     "audios/se me olvido otra vez.mp3",
+    "audios/ahora si paso.mp3",
     "audios/fue un placer conocerte.mp3",
     "audios/dimelo.mp3",
     "audios/inocente pobre amigo.mp3",

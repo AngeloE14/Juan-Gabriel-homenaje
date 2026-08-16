@@ -221,20 +221,19 @@
 }
 
 .album-frame.postumo::after {
-  content: "✝";                        /* símbolo de la cruz (unicode) */
+  content: "🕊️";                       /* paloma blanca */
   position: absolute;
-  top: -10px;                           /* sobresale 10px por encima del marco */
-  right: -10px;                         /* sobresale 10px por la derecha */
-  width: 36px;
-  height: 36px;
-  background: #0d0d0d;                  /* fondo negro */
+  top: -12px;                           /* sobresale 12px por encima del marco */
+  right: -12px;                         /* sobresale 12px por la derecha */
+  width: 38px;
+  height: 38px;
+  background: rgba(13, 13, 13, 0.9);   /* fondo negro suave */
   border: 2px solid #cfa66f;            /* borde dorado */
   border-radius: 50%;                   /* círculo perfecto */
-  text-align: center;
-  line-height: 38px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;                          /* cruz blanca */
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  line-height: 1;
   z-index: 10;                          /* encima del marco */
   pointer-events: none;                 /* no interfiere con clics */
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
