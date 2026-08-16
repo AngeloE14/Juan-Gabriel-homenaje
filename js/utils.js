@@ -472,10 +472,11 @@ export function inicializarAudioFondo() {
     "audios/se me olvido otra vez.mp3",
     "audios/fue un placer conocerte.mp3",
     "audios/dimelo.mp3",
+    "audios/inocente pobre amigo.mp3",
     "audios/de mi enamorate.mp3",
     "audios/es mejor.mp3",
     "audios/besame.mp3",
-    "audios/que chasco me lleve.mp3",
+    "audios/el dia que me acaricies llorare.mp3",
     "audios/amor eterno.mp3"
   ];
 
