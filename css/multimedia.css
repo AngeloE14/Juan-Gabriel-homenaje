@@ -318,6 +318,11 @@
   border-radius: 16px;
 }
 
+.foto-card__duo img.foto-card__principal {
+  grid-column: 1 / -1;   /* ocupa todo el ancho por encima de las demás */
+  aspect-ratio: 16 / 9;  /* cinematográfica */
+}
+
 
 
 .foto-card figcaption {
