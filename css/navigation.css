@@ -935,9 +935,14 @@ body.nav-open {
     background-position: center;
   }
 
-  /* Eslogan en móvil: mismo elemento que en escritorio, solo se ajusta
-     la posición para bajarlo un poco respecto al borde inferior del panel. */
+  /* Eslogan en móvil: anclado al fondo con position absolute para que no
+     suba/baje al hacer scroll de la página. */
   .main-nav__slogan {
-    padding: 10px 12px 84px;        /* margen inferior para bajarlo en móvil */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    padding: 10px 12px 14px;
   }
 }
