@@ -349,6 +349,23 @@
     text-align-last: auto;
   }
 
+  /* PLACA DE JUAN GABRIEL EN MÓVIL — más compacta y legible */
+  #biografia .bio-portrait .portrait-plaque {
+    width: min(180px, 75%);
+    margin: clamp(-14px, -2vw, -8px) auto 0;
+    padding: clamp(6px, 1vw, 10px) clamp(14px, 2vw, 20px);
+  }
+
+  #biografia .bio-portrait .bio-plaque-name {
+    font-size: clamp(0.45rem, 2.8vw, 0.58rem);
+    letter-spacing: 0.01em;
+  }
+
+  #biografia .bio-portrait .bio-plaque-years {
+    font-size: clamp(0.42rem, 2.4vw, 0.52rem);
+    margin-top: 3px;
+  }
+
   #biografia blockquote {
     margin: 8px auto 0;          /* menos margen superior */
     padding: 14px 14px;          /* más compacto */
