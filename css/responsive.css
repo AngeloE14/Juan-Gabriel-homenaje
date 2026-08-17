@@ -299,6 +299,11 @@
     font-size: 14px;
   }
 
+  #bellas-artes {
+    padding: 14px 10px;
+    margin: 10px 0;
+  }
+
   header {
     padding-bottom: 34px;         /* menos espacio en el header para no ocupar toda la pantalla */
   }
@@ -379,12 +384,12 @@
   }
 
   .fotos-mosaico {
-    flex-direction: column;         /* CAMBIO CLAVE: de fila a columna (apilado vertical) */
-    gap: 12px;                      /* espacio entre filas */
+    column-count: 1;                /* en móvil se apilan todas las fotos */
+    column-gap: 0;
   }
 
   .fotos-mosaico__col {
-    gap: 12px;                      /* espacio entre fotos dentro de cada columna */
+    display: contents;
   }
 
   .foto-card {
@@ -658,6 +663,11 @@
    pasa a UNA sola columna y los elementos se compactan aún más.
    ========================================================================== */
 @media (max-width: 560px) {
+  #bellas-artes {
+    padding: 10px 8px;
+    margin: 8px 0;
+  }
+
   .multimedia-grid {
     grid-template-columns: 1fr;           /* UNA SOLA columna para videos/audios */
   }

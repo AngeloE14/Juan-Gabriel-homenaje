@@ -210,7 +210,7 @@
 #fotos-iconicas {
   width: calc(100% - 8px);
   margin: 0 auto 42px;
-  padding: 40px 18px 44px;
+  padding: 40px 18px 14px;
   background:
     radial-gradient(circle at top left, rgba(255, 227, 179, 0.24), transparent 30%), /* destello dorado desde arriba-izquierda */
     linear-gradient(180deg, #f7efe4 0%, #efe3d3 100%); /* degradado vertical beige */
@@ -258,16 +258,17 @@
 
 /* Mosaico de fotos */
 .fotos-mosaico {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
+  /*
+     El mosaico se reparte como columnas independientes para que las
+     tarjetas ocupen el espacio disponible sin dejar una columna central
+     vacía cuando las imágenes tienen alturas distintas.
+  */
+  column-count: 3;
+  column-gap: 16px;
 }
 
 .fotos-mosaico__col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: contents;
   min-width: 0;
 }
 
@@ -278,6 +279,9 @@
   display: block;
   width: 100%;
   margin: 0;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin-bottom: 16px;
   background: rgba(255, 250, 244, 0.98);
   border-radius: 24px;
   overflow: hidden;                     /* oculta lo que sobresalga de las esquinas redondeadas */

@@ -129,7 +129,7 @@
  */
 #bellas-artes {
   text-align: center;
-  padding: 40px 20px;
+  padding: 20px 20px;
   margin: 16px 0;
 }
 
@@ -2431,7 +2431,7 @@
   /* Imagen mariachi en móvil — se mueve a la esquina superior derecha
      porque los botones apilados tapan la inferior */
   .bellas-vitrina__mariachi {
-    top: 100px;
+    top: 82px;
     bottom: auto;
     right: 10px;
     width: 160px;
@@ -2514,7 +2514,7 @@
 
   /* Imagen mariachi aún más pequeña en small mobile — esquina superior derecha */
   .bellas-vitrina__mariachi {
-    top: 100px;
+    top: 82px;
     bottom: auto;
     right: 6px;
     width: 85px;
