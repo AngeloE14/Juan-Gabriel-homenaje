@@ -2430,7 +2430,7 @@
   /* Imagen mariachi en móvil — se mueve a la esquina superior derecha
      porque los botones apilados tapan la inferior */
   .bellas-vitrina__mariachi {
-    top: 108px;
+    top: 88px;
     bottom: auto;
     right: 10px;
     width: 145px;
