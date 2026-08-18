@@ -467,17 +467,17 @@ export function inicializarAudioFondo() {
     "audios/debo hacerlo.mp3",
     "audios/te lo pido por favor.mp3",
     "audios/la farsante.mp3",
+    "audios/costumbres.mp3",
     "audios/yo no se que me paso.mp3",
     "audios/no vale la pena.mp3",
     "audios/se me olvido otra vez.mp3",
-    "audios/ahora si paso.mp3",
+    "audios/cada quien su camino.mp3",
     "audios/fue un placer conocerte.mp3",
     "audios/dimelo.mp3",
     "audios/inocente pobre amigo.mp3",
     "audios/de mi enamorate.mp3",
     "audios/es mejor.mp3",
-    "audios/besame.mp3",
-    "audios/el dia que me acaricies llorare.mp3",
+    "audios/dejame vivir.mp3",
     "audios/amor eterno.mp3"
   ];
 

@@ -341,7 +341,11 @@
 
   #biografia article,
   #logros {
-    padding: 14px;               /* menos padding para aprovechar el espacio */
+    padding: 14px;
+  }
+
+  #logros {
+    padding: 16px 14px;
   }
 
   #biografia article {
@@ -369,11 +373,6 @@
   #biografia .bio-portrait .bio-plaque-years {
     font-size: clamp(0.42rem, 2.4vw, 0.52rem);
     margin-top: 3px;
-  }
-
-  #biografia blockquote {
-    margin: 8px auto 0;          /* menos margen superior */
-    padding: 14px 14px;          /* más compacto */
   }
 
   /* FOTOS ICÓNICAS — en móvil los mosaicos se apilan en UNA SOLA columna */
