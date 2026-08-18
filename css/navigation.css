@@ -884,6 +884,7 @@ body.nav-open {
   /* Contenedor scrolleable: crece para llenar el nav, pero el slogan queda fuera */
   .main-nav__scroll {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -937,11 +938,18 @@ body.nav-open {
     background-position: center;
   }
 
-  /* Eslogan en móvil: fuera del scroll, pegado al fondo */
+  /* Eslogan en móvil: fuera del scroll y centrado sin quedar pegado al fondo.
+     El margen automático anterior lo bajaba demasiado en teléfonos altos. */
   .main-nav__slogan {
     flex-shrink: 0;
-    margin-top: auto;
-    padding: 10px 12px 14px;
+    margin-top: clamp(18px, 4vh, 34px);
+    padding: 0 12px 18px;
+    text-align: center;
+  }
+
+  .main-nav__slogan img {
+    width: min(100%, 190px);
+    margin-inline: auto;
   }
 
   .main-nav a[href="#multimedia"] {
