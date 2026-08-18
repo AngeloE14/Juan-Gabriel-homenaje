@@ -175,6 +175,7 @@ body.nav-open .nav-overlay {
 html:has(body.nav-open),
 body.nav-open {
   overflow: hidden;     /* oculta el scrollbar y evita hacer scroll detrás del menú */
+  overscroll-behavior: none; /* evita overscroll bounce en iOS cuando el menú está abierto */
 }
 
 /* Logo dentro del panel de navegación */
@@ -677,12 +678,10 @@ body.nav-open {
    Es decir, es CSS "responsive" que se adapta al tamaño del dispositivo. */
 @media (max-width: 900px) {
   .main-nav {
-    top: 0;                     /* en móvil el menú empieza desde arriba */
+    top: 0;                     /* anclado al borde superior del viewport */
     left: 0;                    /* pegado al borde izquierdo */
-    bottom: auto;
-    height: 100svh;              /* altura estable aunque aparezca la barra del navegador */
-    width: min(58vw, 230px);    /* sidebar más estrecho en tablet para mejor encuadre de imágenes de fondo */
-    max-height: 100svh;
+    width: min(58vw, 230px);
+    max-height: none;           /* se adapta al contenido sin límite */
     overscroll-behavior: none;
     border: 0;                  /* sin borde general */
     border-right: 2px solid #cfa66f; /* solo borde derecho dorado */
@@ -939,10 +938,10 @@ body.nav-open {
     background-position: center;
   }
 
-  /* Eslogan estático: permanece fuera del área scrolleable de los botones. */
+  /* Eslogan estático: flex con margin-top: auto lo empuja al fondo del panel. */
   .main-nav__slogan {
     flex-shrink: 0;
-    margin-top: 0;
+    margin-top: auto;
     padding: 8px 12px 18px;
     text-align: center;
   }
