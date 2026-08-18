@@ -2431,10 +2431,10 @@
   /* Imagen mariachi en móvil — se mueve a la esquina superior derecha
      porque los botones apilados tapan la inferior */
   .bellas-vitrina__mariachi {
-    top: 82px;
+    top: 60px;
     bottom: auto;
     right: 10px;
-    width: 160px;
+    width: 200px;
     opacity: 0.45;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
   }
@@ -2512,12 +2512,12 @@
     height: 28px;
   }
 
-  /* Imagen mariachi aún más pequeña en small mobile — esquina superior derecha */
+  /* Imagen mariachi en small mobile — esquina superior derecha */
   .bellas-vitrina__mariachi {
-    top: 82px;
+    top: 60px;
     bottom: auto;
     right: 6px;
-    width: 85px;
+    width: 120px;
     opacity: 0.4;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
   }
