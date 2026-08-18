@@ -679,9 +679,10 @@ body.nav-open {
   .main-nav {
     top: 0;                     /* en móvil el menú empieza desde arriba */
     left: 0;                    /* pegado al borde izquierdo */
-    bottom: 0;                  /* y llega hasta abajo (ocupa toda la altura) */
+    bottom: auto;
+    height: 100svh;              /* altura estable aunque aparezca la barra del navegador */
     width: min(58vw, 230px);    /* sidebar más estrecho en tablet para mejor encuadre de imágenes de fondo */
-    max-height: none;           /* sin límite de altura (ocupa toda la pantalla) */
+    max-height: 100svh;
     overscroll-behavior: none;
     border: 0;                  /* sin borde general */
     border-right: 2px solid #cfa66f; /* solo borde derecho dorado */

@@ -135,6 +135,33 @@ export function inicializarNavegacion() {
   const barraLateral = document.getElementById("sidebar-nav");
   const overlayNavegacion = document.getElementById("nav-overlay");
   const body = document.body;
+  let posicionScrollBloqueada = 0;
+
+  function esPantallaMovil() {
+    return window.matchMedia("(max-width: 700px)").matches;
+  }
+
+  function bloquearScrollMovil() {
+    if (!esPantallaMovil()) return;
+
+    posicionScrollBloqueada = window.scrollY || window.pageYOffset || 0;
+    body.style.position = "fixed";
+    body.style.top = `-${posicionScrollBloqueada}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+  }
+
+  function restaurarScrollMovil() {
+    if (!esPantallaMovil()) return;
+
+    body.style.position = "";
+    body.style.top = "";
+    body.style.left = "";
+    body.style.right = "";
+    body.style.width = "";
+    window.scrollTo(0, posicionScrollBloqueada);
+  }
 
   function cerrarNavegacion() {
     if (!body) {
@@ -142,6 +169,7 @@ export function inicializarNavegacion() {
     }
 
     body.classList.remove("nav-open");
+    restaurarScrollMovil();
 
     if (botonNavegacion) {
       botonNavegacion.setAttribute("aria-expanded", "false");
@@ -163,6 +191,7 @@ export function inicializarNavegacion() {
     }
 
     body.classList.add("nav-open");
+    bloquearScrollMovil();
 
     if (botonNavegacion) {
       botonNavegacion.setAttribute("aria-expanded", "true");
