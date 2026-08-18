@@ -689,6 +689,9 @@ body.nav-open {
     box-shadow:
       0 16px 40px rgba(0, 0, 0, 0.45),
       0 0 20px rgba(207, 166, 111, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
   }
 
   .main-nav__list {
@@ -878,6 +881,13 @@ body.nav-open {
     font-size: 0.85rem;           /* texto más pequeño en móvil */
   }
 
+  /* Contenedor scrolleable: crece para llenar el nav, pero el slogan queda fuera */
+  .main-nav__scroll {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .main-nav__list {
     padding: 8px 10px 12px;
     gap: 3px;
@@ -927,22 +937,18 @@ body.nav-open {
     background-position: center;
   }
 
+  /* Eslogan en móvil: fuera del scroll, pegado al fondo */
+  .main-nav__slogan {
+    flex-shrink: 0;
+    margin-top: auto;
+    padding: 10px 12px 14px;
+  }
+
   .main-nav a[href="#multimedia"] {
     background-position: center 27%;
   }
 
   .main-nav a[href="#fotos-iconicas"] {
     background-position: center;
-  }
-
-  /* Eslogan en móvil: anclado al fondo con position absolute para que no
-     suba/baje al hacer scroll de la página. */
-  .main-nav__slogan {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-top: 0;
-    padding: 10px 12px 14px;
   }
 }
