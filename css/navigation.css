@@ -914,6 +914,12 @@ body.nav-open {
   /* Mantener el layout lateral pero ajustar tamaños para mejor tacto en móvil */
   .main-nav {
     width: min(58vw, 230px);    /* sidebar más estrecho en móvil para que background-size: cover recorte menos las imágenes */
+    top: 0;
+    left: 0;
+    bottom: 0;                  /* el panel abarca exactamente el viewport visible: sin hueco abajo */
+    height: auto;
+    min-height: 0;
+    max-height: none;
     overflow-y: hidden;
     overflow-x: hidden;
   }
