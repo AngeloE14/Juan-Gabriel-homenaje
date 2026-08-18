@@ -883,11 +883,22 @@ body.nav-open {
     font-size: 0.85rem;           /* texto más pequeño en móvil */
   }
 
-  /* El contenido permanece fijo; el eslogan forma parte del mismo panel. */
+  /* El área interna (logo + botones + ondas) se ajusta al espacio que deja el
+     eslogan, dejando a la frase su espacio garantizado al fondo (ni se recorta
+     ni la empujan las ondas al animarse). Las ondas no cambian de lugar. */
   .main-nav__scroll {
-    flex: 0 0 auto;
-    min-height: auto;
-    overflow: hidden;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Ningún gesto del menú se interpreta como scroll del navegador: así la
+     barra de dirección no colapsa al arrastrar y la frase no se mueve.
+     (En pantallas donde todo cabe no hace falta desplazarse.) */
+  .main-nav,
+  .main-nav * {
+    touch-action: none;
   }
 
   .main-nav__list {
