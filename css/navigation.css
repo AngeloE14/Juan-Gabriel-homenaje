@@ -680,8 +680,11 @@ body.nav-open {
   .main-nav {
     top: 0;                     /* anclado al borde superior del viewport */
     left: 0;                    /* pegado al borde izquierdo */
+    height: auto;               /* se adapta al contenido sin recortarlo */
+    min-height: 100svh;         /* como mínimo ocupa toda la pantalla */
+    max-height: none;           /* sin límite superior: crece con el contenido */
+    box-sizing: border-box;     /* padding y border incluidos en la altura */
     width: min(58vw, 230px);
-    max-height: none;           /* se adapta al contenido sin límite */
     overscroll-behavior: none;
     border: 0;                  /* sin borde general */
     border-right: 2px solid #cfa66f; /* solo borde derecho dorado */
@@ -938,10 +941,10 @@ body.nav-open {
     background-position: center;
   }
 
-  /* Eslogan estático: flex con margin-top: auto lo empuja al fondo del panel. */
+  /* Eslogan estático: margen fijo, no se mueve aunque cambie el panel. */
   .main-nav__slogan {
     flex-shrink: 0;
-    margin-top: auto;
+    margin-top: 10px;
     padding: 8px 12px 18px;
     text-align: center;
   }
