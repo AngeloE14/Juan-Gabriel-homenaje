@@ -703,12 +703,11 @@ body.nav-open {
     margin-top: 2px;
   }
 
-  /* El touch-action se evalúa en el elemento donde inicia el toque (enlaces,
-     texto, etc.), no en el contenedor. Se propaga a todo el subárbol del menú
-     para que el deslizar vertical NO desplace el menú en móvil. */
+  /* El menú móvil es una composición fija: no se desplazan ni el panel
+     ni sus botones al deslizar el dedo. */
   .main-nav,
   .main-nav * {
-    touch-action: pan-x;
+    touch-action: none;
   }
 }
 
@@ -881,12 +880,11 @@ body.nav-open {
     font-size: 0.85rem;           /* texto más pequeño en móvil */
   }
 
-  /* Contenedor scrolleable: crece para llenar el nav, pero el slogan queda fuera */
+  /* El contenido permanece fijo; el eslogan forma parte del mismo panel. */
   .main-nav__scroll {
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    flex: 0 0 auto;
+    min-height: auto;
+    overflow: hidden;
   }
 
   .main-nav__list {
@@ -913,6 +911,8 @@ body.nav-open {
   /* Mantener el layout lateral pero ajustar tamaños para mejor tacto en móvil */
   .main-nav {
     width: min(58vw, 230px);    /* sidebar más estrecho en móvil para que background-size: cover recorte menos las imágenes */
+    overflow-y: hidden;
+    overflow-x: hidden;
   }
 
   .main-nav__list {
@@ -938,12 +938,11 @@ body.nav-open {
     background-position: center;
   }
 
-  /* Eslogan en móvil: fuera del scroll y centrado sin quedar pegado al fondo.
-     El margen automático anterior lo bajaba demasiado en teléfonos altos. */
+  /* Eslogan estático: permanece fuera del área scrolleable de los botones. */
   .main-nav__slogan {
     flex-shrink: 0;
-    margin-top: clamp(18px, 4vh, 34px);
-    padding: 0 12px 18px;
+    margin-top: 0;
+    padding: 8px 12px 18px;
     text-align: center;
   }
 
