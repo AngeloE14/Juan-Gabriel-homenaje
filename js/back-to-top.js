@@ -48,9 +48,9 @@ export function inicializarBotonSubir() {
     if (startY <= 0) return;
 
     const { isLowEnd, isMobile } = obtenerRendimientoDispositivo();
-    const minDuration = isMobile ? 950 : 700;
+    const minDuration = isMobile ? 550 : 600;
     const extraDuration = isLowEnd ? 500 : 0;
-    const duration = Math.min(1800, Math.max(minDuration + extraDuration, startY * (isMobile ? 0.35 : 0.22)));
+    const duration = Math.min(1400, Math.max(minDuration + extraDuration, startY * (isMobile ? 0.18 : 0.22)));
     const startTime = performance.now();
 
     cancelScrollAnimation();

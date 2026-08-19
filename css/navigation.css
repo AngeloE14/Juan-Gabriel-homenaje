@@ -923,6 +923,8 @@ body.nav-open {
     min-height: 56px;           /* altura táctil más cómoda */
     padding: 10px 14px;         /* padding ligeramente mayor */
     font-size: 0.82rem;         /* texto más pequeño en móvil */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   .nav-overlay {

@@ -198,7 +198,8 @@ export function inicializarNavegacion() {
       e.preventDefault();
       var destino = document.querySelector(enlace.getAttribute("href"));
       if (destino) {
-        destino.scrollIntoView({ behavior: "smooth" });
+        var esMovil = window.matchMedia("(max-width: 700px)").matches;
+        destino.scrollIntoView({ behavior: esMovil ? "instant" : "smooth" });
       }
       marcarEnlaceActivo();
       cerrarNavegacion();

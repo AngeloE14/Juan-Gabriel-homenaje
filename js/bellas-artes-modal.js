@@ -135,7 +135,7 @@ export function inicializarBellasArtesModal() {
           try {
             video.contentWindow.postMessage(JSON.stringify({ method: "play" }), "*");
           } catch (e) { /* ignore cross-origin */ }
-        }, 2000);
+        }, 1000);
       }
     });
   }

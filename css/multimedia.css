@@ -250,10 +250,11 @@
 
 #fotos-iconicas p {
   max-width: 760px;
-  margin: 0 0 26px;
+  margin: 0 auto 26px;
   color: #614e3e;                               /* texto en marrón suave */
   font-size: 1.04rem;
   line-height: 1.7;                              /* interlineado amplio para mejor lectura */
+  text-align: center;
 }
 
 /* Mosaico de fotos */
