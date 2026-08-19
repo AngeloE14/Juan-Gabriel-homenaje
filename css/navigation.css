@@ -22,6 +22,8 @@
      --nav-offset = margen de separación desde el borde de la pantalla. */
   --nav-drawer-width: 200px;
   --nav-offset: 16px;
+  /* Posición vertical de la imagen usada en el botón 'Letras' (50% = center) */
+  --nav-letras-vertical: 40%;
 }
 
 /* Botón hamburguesa minimalista: solo las tres líneas, sin contenedor */
@@ -428,7 +430,7 @@ body.nav-open {
   border-radius: 10px;
   background-image: linear-gradient(90deg, rgba(10, 8, 4, 0.34) 0%, rgba(10, 8, 4, 0.1) 50%, rgba(10, 8, 4, 0.18) 100%), url("../pic_nav/nav-letras.webp");
   background-size: 110% auto;
-  background-position: 0% center;
+  background-position: 0% var(--nav-letras-vertical);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
   transition: color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
