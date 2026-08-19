@@ -479,7 +479,8 @@ export function inicializarAudioFondo() {
     "audios/de mi enamorate.mp3",
     "audios/es mejor.mp3",
     "audios/dejame vivir.mp3",
-    "audios/amor eterno.mp3"
+    "audios/amor eterno.mp3",
+    "audios/perdoname olvidalo.mp3"
   ];
 
   // DURACION_CROSSFADE = segundos que dura la transición entre canciones
