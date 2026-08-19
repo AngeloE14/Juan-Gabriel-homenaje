@@ -694,7 +694,7 @@ body.nav-open {
       0 0 20px rgba(207, 166, 111, 0.2);
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
+    overflow-y: auto;
   }
 
   .main-nav__list {
@@ -704,13 +704,6 @@ body.nav-open {
   .main-nav__media {
     padding: 0 14px;
     margin-top: 2px;
-  }
-
-  /* El menú móvil es una composición fija: no se desplazan ni el panel
-     ni sus botones al deslizar el dedo. */
-  .main-nav,
-  .main-nav * {
-    touch-action: none;
   }
 }
 
@@ -883,24 +876,6 @@ body.nav-open {
     font-size: 0.85rem;           /* texto más pequeño en móvil */
   }
 
-  /* El área interna (logo + botones + ondas) se ajusta al espacio que deja el
-     eslogan, dejando a la frase su espacio garantizado al fondo (ni se recorta
-     ni la empujan las ondas al animarse). Las ondas no cambian de lugar. */
-  .main-nav__scroll {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  /* Ningún gesto del menú se interpreta como scroll del navegador: así la
-     barra de dirección no colapsa al arrastrar y la frase no se mueve.
-     (En pantallas donde todo cabe no hace falta desplazarse.) */
-  .main-nav,
-  .main-nav * {
-    touch-action: none;
-  }
-
   .main-nav__list {
     padding: 8px 10px 12px;
     gap: 3px;
@@ -922,16 +897,18 @@ body.nav-open {
     min-height: 44px;
   }
 
-  /* Mantener el layout lateral pero ajustar tamaños para mejor tacto en móvil */
+  /* El panel es una sola unidad desplazable: ocupa todo el viewport y si el
+     contenido no cabe, se desplaza todo junto (logo, botones, ondas y frase),
+     como en escritorio. bottom: 0 evita huecos al cambiar la barra de dirección. */
   .main-nav {
     width: min(58vw, 230px);    /* sidebar más estrecho en móvil para que background-size: cover recorte menos las imágenes */
     top: 0;
     left: 0;
-    bottom: 0;                  /* el panel abarca exactamente el viewport visible: sin hueco abajo */
+    bottom: 0;
     height: auto;
     min-height: 0;
     max-height: none;
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: hidden;
   }
 
@@ -958,16 +935,9 @@ body.nav-open {
     background-position: center;
   }
 
-  /* Eslogan estático: margen fijo, no se mueve aunque cambie el panel. */
-  .main-nav__slogan {
-    flex-shrink: 0;
-    margin-top: 10px;
-    padding: 8px 12px 18px;
-    text-align: center;
-  }
-
   .main-nav__slogan img {
     width: min(100%, 190px);
+    aspect-ratio: 500 / 333;    /* reserva la altura aunque la imagen aún no cargue */
     margin-inline: auto;
   }
 
