@@ -247,9 +247,10 @@ export function reproducirIntroAlCargar() {
     return;
   }
 
-  // Se intenta con audio primero.
-  introVideo.defaultMuted = false;
-  introVideo.muted = false;
+  // En móvil el autoplay con audio suele ser bloqueado. Iniciar en silencio
+  // evita un intento fallido y permite que el video comience sin espera.
+  introVideo.defaultMuted = true;
+  introVideo.muted = true;
   introVideo.playsInline = true;
 
   function ocultarLoading() {
