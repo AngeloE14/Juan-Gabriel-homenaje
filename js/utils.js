@@ -468,7 +468,7 @@ export function inicializarAudioFondo() {
     "audios/debo hacerlo.mp3",
     "audios/te lo pido por favor.mp3",
     "audios/la farsante.mp3",
-    "audios/costumbres.mp3",
+    "audios/es mi vida.mp3",
     "audios/yo no se que me paso.mp3",
     "audios/no vale la pena.mp3",
     "audios/se me olvido otra vez.mp3",
