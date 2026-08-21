@@ -150,6 +150,21 @@
   outline-offset: 3px;
 }
 
+/* Móvil: eliminar el destello azul nativo y el anillo de foco al tocar el
+   botón Omitir. En escritorio no aplica nada de este bloque. */
+@media (max-width: 700px) {
+  .intro-skip {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .intro-skip:focus {
+    outline: none;
+  }
+}
+
 .intro-unlock-btn {
   position: fixed;
   bottom: max(32px, env(safe-area-inset-bottom));

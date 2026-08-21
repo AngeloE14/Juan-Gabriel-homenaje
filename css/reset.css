@@ -28,6 +28,11 @@
   margin: 0;      /* MARGIN: Espacio exterior (fuera del borde del elemento) */
   padding: 0;     /* PADDING: Espacio interior (dentro del borde del elemento) */
   box-sizing: border-box;  /* BOX-SIZING: Cómo se calcula el tamaño total del elemento */
+
+  /* Sin destello azul/gris al tocar elementos en pantallas táctiles.
+     Esta propiedad solo se pinta durante el toque físico: en escritorio
+     no hace nada, por eso es segura aplicarla a todo sin media query. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 /*

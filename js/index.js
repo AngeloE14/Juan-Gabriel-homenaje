@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if ("requestIdleCallback" in window) {
     requestIdleCallback(function () {
       inicializarAudioFondo();
-    });
+    }, { timeout: 1500 });
   } else {
     setTimeout(function () {
       inicializarAudioFondo();

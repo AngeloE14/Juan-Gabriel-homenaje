@@ -247,10 +247,9 @@ export function reproducirIntroAlCargar() {
     return;
   }
 
-  // En móvil el autoplay con audio suele ser bloqueado. Iniciar en silencio
-  // evita un intento fallido y permite que el video comience sin espera.
-  introVideo.defaultMuted = true;
-  introVideo.muted = true;
+  // Se intenta con audio primero.
+  introVideo.defaultMuted = false;
+  introVideo.muted = false;
   introVideo.playsInline = true;
 
   function ocultarLoading() {
@@ -702,22 +701,79 @@ export function inicializarAudioFondo() {
     document.addEventListener("touchstart", desbloquearAudio, { once: true });
   }
 
+  let primadoRegistrado = false;
+
+  function quitarPrimadoGesto() {
+    if (!primadoRegistrado) {
+      return;
+    }
+    document.removeEventListener("pointerdown", primarEnGesto);
+    document.removeEventListener("keydown", primarEnGesto);
+    primadoRegistrado = false;
+  }
+
+  /*
+    FUNCIÓN: primarEnGesto()
+    OBJETIVO: iOS solo permite sonar un elemento de audio si su primer play()
+              ocurrió dentro de un gesto real. Este listener hace ese play()
+              (en silencio) con el primer toque durante la intro.
+  */
+  function primarEnGesto() {
+    if (audioFondo.paused) {
+      audioFondo.play().catch(function () {});
+    }
+    quitarPrimadoGesto();
+  }
+
+  /*
+    FUNCIÓN: primarAudioEnSilencio() — SOLO MÓVIL (≤700px)
+    OBJETIVO: Durante la intro, mantener el Audio de fondo reproduciendo en
+              silencio. La canción se descarga y bufferiza mientras dura la
+              intro; al terminar basta quitar el mute (instantáneo) en lugar
+              de descargar la canción desde cero.
+  */
+  function primarAudioEnSilencio() {
+    audioFondo.muted = true;
+    audioFondo.defaultMuted = true;
+    audioFondo.play().catch(function () {});
+    if (!primadoRegistrado) {
+      primadoRegistrado = true;
+      document.addEventListener("pointerdown", primarEnGesto, { capture: true });
+      document.addEventListener("keydown", primarEnGesto, { capture: true });
+    }
+  }
+
   function iniciarAudioFondo() {
     if (audioDesactivadoPorUsuario) {
       sincronizarEstadoBotonMusica();
       return;
     }
-    const intento = audioFondo.play();
+    quitarPrimadoGesto();
 
-    if (intento && typeof intento.then === "function") {
-      intento
-        .then(actualizarInterfaz)
-        .catch(function () {
-          audioFondo.muted = true;
-          audioFondo.defaultMuted = true;
-          audioFondo.play().catch(function () {});
-          registrarDesbloqueoAudio();
-        });
+    if (audioFondo.paused) {
+      const intento = audioFondo.play();
+
+      if (intento && typeof intento.then === "function") {
+        intento
+          .then(actualizarInterfaz)
+          .catch(function () {
+            audioFondo.muted = true;
+            audioFondo.defaultMuted = true;
+            audioFondo.play().catch(function () {});
+            registrarDesbloqueoAudio();
+          });
+      }
+    } else {
+      // Móvil: el Audio ya venía sonando en silencio (primado durante la
+      // intro). Volverlo audible es instantáneo: no hay que descargar nada.
+      audioFondo.muted = false;
+      audioFondo.defaultMuted = false;
+      if (audioFondo.paused) {
+        audioFondo.muted = true;
+        audioFondo.play().catch(function () {});
+      }
+      registrarDesbloqueoAudio();
+      actualizarInterfaz();
     }
   }
 
@@ -751,7 +807,14 @@ export function inicializarAudioFondo() {
     });
   });
 
+  // El primado del audio es una optimización exclusiva de móvil (≤700px):
+  // en escritorio este bloque se comporta igual que siempre.
+  const esMovil = window.matchMedia("(max-width: 700px)").matches;
+
   if (document.body.classList.contains("intro-activa")) {
+    if (esMovil) {
+      primarAudioEnSilencio();
+    }
     document.addEventListener("intro-finalizada", iniciarAudioFondo, { once: true });
   } else {
     iniciarAudioFondo();
