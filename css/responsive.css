@@ -299,6 +299,20 @@
     font-size: 14px;
   }
 
+  /* Eslogan del encabezado: centrado de forma explícita sólo en móvil. */
+  header p {
+    display: block;
+    width: 100%;
+    margin-inline: auto;
+    margin-top: -4px;
+    text-align: center;
+    text-align-last: center;
+  }
+
+  .header-slogan__line {
+    display: block;
+  }
+
   #bellas-artes {
     padding: 14px 10px;
     margin: 10px 0;
@@ -479,6 +493,7 @@
     display: flex;               /* centra su contenido verticalmente */
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding-bottom: 34px;        /* respeta el padding ya usado */
     box-sizing: border-box;      /* incluye padding en el cálculo de altura */
   }
