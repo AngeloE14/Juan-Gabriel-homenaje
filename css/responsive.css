@@ -853,15 +853,25 @@
   }
 
   .multimedia-grid {
+    /* El contenedor es display:flex (no grid), por lo que un
+       grid-template-columns aquí no tenía ningún efecto y las tarjetas
+       seguían en tira horizontal. Para lograr UNA sola columna real
+       hay que cambiar la dirección del flex. */
     width: 100%;
-    grid-template-columns: 1fr;
-    gap: 12px;
+    flex-direction: column;
+    gap: 16px;
     padding-inline: 12px;
+    overflow-x: hidden;              /* ya no hay desplazamiento horizontal */
   }
 
   .multimedia-card {
+    /* En móvil cada tarjeta ocupa su fila completa, sin comprimirse
+       ni dejarse ver como franja lateral del carrusel. */
+    width: 100%;
+    max-width: 480px;
+    margin-inline: auto;
     min-width: 0;
-    flex: 0 0 clamp(330px, 82vw, 400px);
+    flex: 0 0 auto;
   }
 
   .multimedia-card p {
@@ -892,8 +902,10 @@
 }
 
 @media (max-width: 560px) {
+  /* El apilado en una columna ya lo hace el breakpoint de 700px;
+     aquí solo se compacta el espaciado. */
   .multimedia-grid {
-    grid-template-columns: 1fr;
+    gap: 12px;
     padding-inline: 10px;
   }
 

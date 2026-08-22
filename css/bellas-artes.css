@@ -1871,6 +1871,22 @@
   pointer-events: none;
 }
 
+/* Retrato de Juan Gabriel — pegado al costado izquierdo del logo
+   (Titulo 4.webp). El logo está centrado con max-width 295px, así que
+   se ancla desde el centro: 50% - mitad del logo - gap - ancho imagen.
+   Así queda siempre junto a las letras sin importar el ancho de pantalla. */
+.bellas-vitrina__b98 {
+  position: absolute;
+  top: 48px;
+  left: calc(50% - 310px);       /* logo 295/2=148 + gap 12 + imagen 150 */
+  width: 150px;
+  height: auto;
+  display: block;
+  opacity: 0.45;                 /* mismo nivel que mariachi y por-siempre */
+  z-index: 1;                    /* detrás del selector de botones (z-index: 2) */
+  pointer-events: none;          /* no bloquea clicks en los botones */
+}
+
 /* Selector de concierto — preserva su layout original */
 .bellas-vitrina .bellas-concert-selector {
   position: relative;
@@ -2463,6 +2479,11 @@
     opacity: 0.45;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
   }
+
+  /* Retrato oculto en móvil — solo se muestra en desktop junto al logo */
+  .bellas-vitrina__b98 {
+    display: none;
+  }
 }
 
 /* === SMALL MOBILE (≤560px) === */
@@ -2555,5 +2576,10 @@
     height: auto;
     opacity: 0.4;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  }
+
+  /* Retrato oculto en small mobile */
+  .bellas-vitrina__b98 {
+    display: none;
   }
 }

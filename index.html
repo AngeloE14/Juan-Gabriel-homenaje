@@ -94,7 +94,6 @@
     <!-- FUENTES: Tipografías ceremoniales para galería de homenaje -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://commons.wikimedia.org">
     <link rel="preconnect" href="https://s3.amazonaws.com">
     <link rel="preconnect" href="https://img.youtube.com">
 
@@ -253,7 +252,7 @@
         Esta sección muestra un carrusel horizontal de artistas
         que cantaron canciones escritas por Juan Gabriel.
         Cada artista aparece en una tarjeta con foto y nombre.
-        Las fotos vienen de Wikimedia Commons (licencias libres).
+        Las fotos son locales, en formato .webp (Pictures/artistas/).
       -->
       <section id="artistas-composiciones" class="artistas-legado" aria-labelledby="artistas-composiciones-title">
         <div class="artistas-legado__intro">
@@ -278,14 +277,13 @@
           <!--
             Cada artista es un <figure> con:
             - .artista-frame__image: Contenedor cuadrado con marco dorado
-            - <img>: Foto del artista (desde Wikimedia Commons)
+            - <img>: Foto del artista (archivos locales .webp)
             - <figcaption>: Nombre del artista
 
             FIGURE: Etiqueta semántica de HTML5 para contenido multimedia con caption
             FIGCAPTION: Texto descriptivo (leyenda) asociado a la figura
 
-            SRC (Special:FilePath): Endpoint de Wikimedia para servir imágenes directamente
-            ?width=720: Pide la imagen redimensionada a 720px de ancho
+            SRC: Ruta local del retrato en formato .webp (Pictures/artistas/)
             loading="lazy": Carga diferida — la imagen solo se descarga cuando está cerca de verse
             decoding="async": Decodificación asíncrona — no bloquea el renderizado
             alt: Texto alternativo para accesibilidad (lectores de pantalla)
@@ -302,7 +300,7 @@
                 <div class="portrait-mat">
                   <div class="portrait-image">
                     <img
-                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Mexican_singer_La_Prieta_Linda.jpg?width=720"
+                    src="Pictures/artistas/la_prieta_linda.webp"
                     alt="Enriqueta Jiménez «La Prieta Linda»"
                     loading="lazy"
                     decoding="async">
@@ -322,7 +320,7 @@
                 <div class="portrait-mat">
                   <div class="portrait-image">
                     <img
-                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Lola_Beltr%C3%A1n_portrait,_c._1956_%28cropped%29.jpg?width=720"
+                    src="Pictures/artistas/lola_beltran.webp"
                     alt="Lola Beltrán"
                     loading="lazy"
                     decoding="async">
@@ -341,7 +339,7 @@
                 <div class="portrait-mat">
                   <div class="portrait-image">
                     <img
-                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Lucha_Villa_en_1961_%28cropped%29.jpg?width=720"
+                    src="Pictures/artistas/lucha_villa.webp"
                     alt="Lucha Villa"
                     loading="lazy"
                     decoding="async">
@@ -360,7 +358,7 @@
                 <div class="portrait-mat">
                   <div class="portrait-image">
                     <img
-                    src="assets/angelica%20maria.webp"
+                    src="Pictures/artistas/angelica%20maria.webp"
                     alt="Angélica María"
                     loading="lazy"
                     decoding="async">
@@ -379,7 +377,7 @@
                 <div class="portrait-mat">
                   <div class="portrait-image">
                     <img
-                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Rocio_Durcal_1962.jpg?width=720"
+                    src="Pictures/artistas/rocio_durcal.webp"
                     alt="Rocío Dúrcal"
                     loading="lazy"
                     decoding="async">
@@ -398,7 +396,7 @@
                 <div class="portrait-mat">
                   <div class="portrait-image">
                     <img
-                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Jos%C3%A9_Jos%C3%A9_en_1982_%28cropped%29_%28cropped%29.jpg?width=720"
+                    src="Pictures/artistas/jose_jose.webp"
                     alt="José José"
                     loading="lazy"
                     decoding="async">
@@ -417,7 +415,7 @@
                 <div class="portrait-mat">
                   <div class="portrait-image">
                     <img
-                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Anagabrielguate.jpg?width=720"
+                    src="Pictures/artistas/ana_gabriel.webp"
                     alt="Ana Gabriel"
                     loading="lazy"
                     decoding="async">
@@ -436,7 +434,7 @@
                 <div class="portrait-mat">
                   <div class="portrait-image">
                     <img
-                    src="assets/daniela%20romo.webp"
+                    src="Pictures/artistas/daniela_romo.webp"
                     alt="Daniela Romo"
                     loading="lazy"
                     decoding="async">
@@ -455,7 +453,7 @@
                 <div class="portrait-mat">
                   <div class="portrait-image">
                     <img
-                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Isabel_Pantoja_-_03.jpg?width=720"
+                    src="Pictures/artistas/isabel_pantoja.webp"
                     alt="Isabel Pantoja"
                     loading="lazy"
                     decoding="async">
@@ -566,6 +564,14 @@
               </video>
             </div>
             <p><strong>La Diferencia</strong></p>
+          </article>
+
+          <article class="multimedia-card">
+            <button class="youtube-open" type="button" data-video-id="jD6Sb_ENf3g" data-video-title="Rocio Durcal, Juan Gabriel - Fue Un Placer Conocerte (En Vivo)" data-direct-desktop="true">
+              <img src="https://img.youtube.com/vi/jD6Sb_ENf3g/hqdefault.jpg" alt="Miniatura: Rocio Durcal, Juan Gabriel - Fue Un Placer Conocerte (En Vivo)" loading="lazy" decoding="async">
+              <span class="youtube-play" aria-hidden="true"></span>
+            </button>
+            <p><strong>Rocio Durcal, Juan Gabriel - Fue Un Placer Conocerte (En Vivo)</strong></p>
           </article>
 
           <article class="multimedia-card">
@@ -710,6 +716,8 @@
           <div class="bellas-vitrina">
             <img src="assets/mariachis.webp" alt="" class="bellas-vitrina__mariachi" loading="lazy" decoding="async" aria-hidden="true">
             <img src="assets/por-siempre.webp" alt="" class="bellas-vitrina__por-siempre" loading="lazy" decoding="async" aria-hidden="true">
+            <!-- Retrato de Juan Gabriel — al costado de las letras del título -->
+            <img src="assets/juan_gabriel_b98.webp" alt="" class="bellas-vitrina__b98" loading="lazy" decoding="async" aria-hidden="true">
             <!-- Esquinas ornamentales Art Nouveau — 4 L-brackets dorados
                  posicionados en cada esquina con border-top/left/right/bottom -->
             <div class="bellas-vitrina__corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
