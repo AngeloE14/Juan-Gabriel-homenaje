@@ -84,6 +84,8 @@ export function inicializarBellasArtesModal() {
     modal.classList.remove("bellas-modal--2013");
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
+    document.documentElement.classList.add("bellas-modal-open");
+    document.body.classList.add("bellas-modal-open");
 
     if (anio === "celebrando") {
       modal.classList.add("bellas-modal--celebrando");
@@ -101,6 +103,8 @@ export function inicializarBellasArtesModal() {
     modal.classList.remove("bellas-modal--2013");
     modal.setAttribute("aria-hidden", "true");
     video.setAttribute("src", "");
+    document.documentElement.classList.remove("bellas-modal-open");
+    document.body.classList.remove("bellas-modal-open");
     reanudarAudioFondo();
   }
 

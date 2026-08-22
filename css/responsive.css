@@ -508,16 +508,26 @@
     padding: 0;                             /* sin relleno */
     align-items: stretch;                   /* estira el contenido al alto completo */
     justify-items: stretch;                 /* estira al ancho completo */
+    overflow: hidden;                       /* no permite deslizar el modal */
+    touch-action: none;
   }
 
   .bellas-modal__content {
     width: 100vw;                           /* ancho completo de la pantalla */
     max-height: 100vh;                      /* alto completo (viewport height) */
     max-height: 100svh;                     /* mejor en móvil (small viewport height) */
-    overflow-y: auto;                       /* scroll vertical si el contenido es muy alto */
+    overflow: hidden;                       /* no permite scroll dentro del modal */
+    touch-action: none;
     border-radius: 0;                       /* sin esquinas redondeadas — pantalla completa */
     border-left: 0;                         /* sin bordes laterales */
     border-right: 0;
+  }
+
+  html.bellas-modal-open,
+  body.bellas-modal-open {
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
   }
 
   .bellas-stage-frame {
