@@ -96,7 +96,9 @@ let audioDesactivadoPorUsuario = false;
 function sincronizarEstadoBotonMusica() {
   const btn = document.getElementById("music-btn");
   if (!btn) return;
-  const reproduciendo = typeof audioFondo !== "undefined" && audioFondo && !audioFondo.paused;
+  // "Reproduciendo" solo si suena DE VERDAD: un audio muteado (el primado
+  // silencioso de la intro en móvil) NO debe activar las ondas del botón.
+  const reproduciendo = typeof audioFondo !== "undefined" && audioFondo && !audioFondo.paused && !audioFondo.muted;
   btn.classList.toggle("is-playing", reproduciendo);
   btn.setAttribute(
     "aria-label",
@@ -447,6 +449,9 @@ export function reanudarAudioFondo() {
     return;
   }
   if (typeof audioFondo !== "undefined" && audioFondo && audioFondo.paused) {
+    // Reanudar implica que se debe escuchar: sin mute residual.
+    audioFondo.muted = false;
+    audioFondo.defaultMuted = false;
     const intento = audioFondo.play();
     if (intento && typeof intento.then === "function") {
       intento.then(sincronizarEstadoBotonMusica).catch(function () {});
@@ -635,6 +640,10 @@ export function inicializarAudioFondo() {
   function alternarReproduccion() {
     if (audioFondo.paused) {
       audioDesactivadoPorUsuario = false;
+      // El usuario pidió música: quitar cualquier mute residual del primado
+      // silencioso para que se escuche sí o sí.
+      audioFondo.muted = false;
+      audioFondo.defaultMuted = false;
       const intento = audioFondo.play();
       if (intento && typeof intento.then === "function") {
         intento.then(actualizarInterfaz).catch(function (e) {
@@ -764,29 +773,28 @@ export function inicializarAudioFondo() {
     }
     quitarPrimadoGesto();
 
-    if (audioFondo.paused) {
-      const intento = audioFondo.play();
+    // CLAVE iOS/MÓVIL: quitar el mute Y volver a pedir play(). Solo cambiar
+    // .muted sobre un elemento que ya corre (primado silencioso) NO produce
+    // sonido fuera de un gesto; re-emitir play() sí (y si esta llamada llega
+    // dentro del clic en "Omitir", suena al instante incluso en iOS).
+    audioFondo.muted = false;
+    audioFondo.defaultMuted = false;
 
-      if (intento && typeof intento.then === "function") {
-        intento
-          .then(actualizarInterfaz)
-          .catch(function () {
-            audioFondo.muted = true;
-            audioFondo.defaultMuted = true;
-            audioFondo.play().catch(function () {});
-            registrarDesbloqueoAudio();
-          });
-      }
+    const intento = audioFondo.play();
+
+    if (intento && typeof intento.then === "function") {
+      intento
+        .then(actualizarInterfaz)
+        .catch(function () {
+          // Autoplay audible bloqueado (p. ej. intro terminó sola sin ningún
+          // toque): primar en silencio para tenerla bufferizada y esperar el
+          // primer gesto del usuario para volverla audible.
+          audioFondo.muted = true;
+          audioFondo.defaultMuted = true;
+          audioFondo.play().catch(function () {});
+          registrarDesbloqueoAudio();
+        });
     } else {
-      // Móvil: el Audio ya venía sonando en silencio (primado durante la
-      // intro). Volverlo audible es instantáneo: no hay que descargar nada.
-      audioFondo.muted = false;
-      audioFondo.defaultMuted = false;
-      if (audioFondo.paused) {
-        audioFondo.muted = true;
-        audioFondo.play().catch(function () {});
-      }
-      registrarDesbloqueoAudio();
       actualizarInterfaz();
     }
   }
@@ -850,6 +858,9 @@ export function inicializarAudioFondo() {
       if (hayModalAbierto || hayVideoActivo || audioDesactivadoPorUsuario) {
         return;
       }
+      // Reanudar implica sonido audible: sin mute residual.
+      audioFondo.muted = false;
+      audioFondo.defaultMuted = false;
       audioFondo.play().then(actualizarInterfaz).catch(function () {});
     }
   });

@@ -16,7 +16,7 @@
 
 // MODO ESTRICTO
 "use strict";
-import { obtenerRendimientoDispositivo } from './utils.js';
+import { obtenerRendimientoDispositivo } from './utils.js?v=2';
 
 /*
   FUNCIÓN: inicializarCarrusel()

@@ -38,7 +38,7 @@
   Sintaxis: import { función1, función2 } from './archivo.js'
   El ./ significa "en la misma carpeta"
 */
-import { marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar, inicializarAudioFondo, aplicarClaseRendimientoDelDispositivo } from './utils.js';
+import { marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar, inicializarAudioFondo, aplicarClaseRendimientoDelDispositivo } from './utils.js?v=2';
 import { inicializarCarrusel } from './carousel.js';
 import { inicializarYouTubeModal } from './youtube-modal.js';
 import { inicializarBellasArtesModal } from './bellas-artes-modal.js';
@@ -63,6 +63,13 @@ document.addEventListener("DOMContentLoaded", function () {
   inicializarNavegacion();
   reproducirIntroAlCargar();
 
+  // AUDIO: inicializar DE INMEDIATO, no en idle. Si el usuario oprime
+  // "Omitir" antes del idle callback, el evento intro-finalizada se pierde
+  // y la música arrancaría fuera de su gesto (los navegadores móviles la
+  // bloquean o dejan muda). Inicializado ya, el play() corre DENTRO del
+  // clic en Omitir → suena al instante.
+  inicializarAudioFondo();
+
   // IMPORTANTE pero puede esperar un frame
   requestAnimationFrame(function () {
     inicializarCarrusel();
@@ -74,15 +81,4 @@ document.addEventListener("DOMContentLoaded", function () {
     inicializarLightbox();
     inicializarBotonSubir();
   });
-
-  // AUDIO: Solo cuando el browser esté idle (el usuario no ha interactuado aún)
-  if ("requestIdleCallback" in window) {
-    requestIdleCallback(function () {
-      inicializarAudioFondo();
-    }, { timeout: 1500 });
-  } else {
-    setTimeout(function () {
-      inicializarAudioFondo();
-    }, 200);
-  }
 });

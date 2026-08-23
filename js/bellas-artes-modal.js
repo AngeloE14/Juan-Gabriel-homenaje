@@ -1,6 +1,6 @@
 "use strict";
 
-import { pausarAudioFondo, reanudarAudioFondo } from './utils.js';
+import { pausarAudioFondo, reanudarAudioFondo } from './utils.js?v=2';
 
 const CONCIERTOS = {
   '1990': {
