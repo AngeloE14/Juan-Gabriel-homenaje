@@ -1,6 +1,6 @@
 // MODO ESTRICTO
 "use strict";
-import { obtenerRendimientoDispositivo } from './utils.js?v=2';
+import { obtenerRendimientoDispositivo } from './utils.js';
 
 export function inicializarFrasesRotativas() {
   const frasesRotativas = document.querySelectorAll(".frase-rotativa");

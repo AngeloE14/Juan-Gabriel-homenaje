@@ -1,6 +1,6 @@
 "use strict";
 
-import { pausarAudioFondo, reanudarAudioFondo } from './utils.js?v=2';
+import { pausarAudioFondo, reanudarAudioFondo } from './utils.js';
 
 export function inicializarLightbox() {
   const lightbox = document.getElementById("lightbox");

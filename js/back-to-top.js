@@ -1,5 +1,5 @@
 "use strict";
-import { obtenerRendimientoDispositivo } from './utils.js?v=2';
+import { obtenerRendimientoDispositivo } from './utils.js';
 
 export function inicializarBotonSubir() {
   const btn = document.getElementById("btn-subir");

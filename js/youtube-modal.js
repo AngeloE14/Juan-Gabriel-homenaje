@@ -1,7 +1,7 @@
 
 "use strict";
 
-import { pausarAudioFondo, reanudarAudioFondo } from './utils.js?v=2';
+import { pausarAudioFondo, reanudarAudioFondo } from './utils.js';
 
 /**
  * Pausa todos los <video> locales del section #multimedia

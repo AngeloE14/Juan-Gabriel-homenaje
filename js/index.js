@@ -38,7 +38,7 @@
   Sintaxis: import { función1, función2 } from './archivo.js'
   El ./ significa "en la misma carpeta"
 */
-import { marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar, inicializarAudioFondo, aplicarClaseRendimientoDelDispositivo } from './utils.js?v=2';
+import { marcarEnlaceActivo, inicializarNavegacion, reproducirIntroAlCargar, inicializarAudioFondo, aplicarClaseRendimientoDelDispositivo } from './utils.js';
 import { inicializarCarrusel } from './carousel.js';
 import { inicializarYouTubeModal } from './youtube-modal.js';
 import { inicializarBellasArtesModal } from './bellas-artes-modal.js';

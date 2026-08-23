@@ -1,5 +1,5 @@
 "use strict";
-import { obtenerRendimientoDispositivo } from './utils.js?v=2';
+import { obtenerRendimientoDispositivo } from './utils.js';
 
 function inicializarCarruselInfinito(gallery, track, tarjetaSelector, pausarConCursor) {
   if (!gallery || !track) {
