@@ -706,8 +706,11 @@ export function inicializarAudioFondo() {
     if (!primadoRegistrado) {
       return;
     }
-    document.removeEventListener("pointerdown", primarEnGesto);
-    document.removeEventListener("keydown", primarEnGesto);
+    // IMPORTANTE: el listener se registró con { capture: true }, por lo que
+    // hay que eliminarlo con la MISMA opción. Sin esto el listener queda
+    // "zombi" para siempre y cada toque en pantalla reanudaría la música.
+    document.removeEventListener("pointerdown", primarEnGesto, { capture: true });
+    document.removeEventListener("keydown", primarEnGesto, { capture: true });
     primadoRegistrado = false;
   }
 
@@ -718,10 +721,22 @@ export function inicializarAudioFondo() {
               (en silencio) con el primer toque durante la intro.
   */
   function primarEnGesto() {
+    // Limpiar el listener de inmediato: este primado solo debe ocurrir una vez.
+    quitarPrimadoGesto();
+
+    // NO revivir la música si el usuario la apagó manualmente, ni fuera de
+    // la intro (por ejemplo mientras se ve un video o un concierto en modal).
+    if (audioDesactivadoPorUsuario || !document.body.classList.contains("intro-activa")) {
+      return;
+    }
+
     if (audioFondo.paused) {
+      // Primar SIEMPRE en silencio: durante la intro la música debe seguir
+      // inaudible; desbloquearAudio/iniciarAudioFondo la volverán audible.
+      audioFondo.muted = true;
+      audioFondo.defaultMuted = true;
       audioFondo.play().catch(function () {});
     }
-    quitarPrimadoGesto();
   }
 
   /*
@@ -826,6 +841,15 @@ export function inicializarAudioFondo() {
       estabaReproduciendo = !audioFondo.paused;
     }
     if (document.visibilityState === "visible" && estabaReproduciendo) {
+      // No reanudar si el usuario está viendo un video local o un modal
+      // (YouTube / Bellas Artes): ahí la música debe seguir apagada.
+      const hayModalAbierto = document.querySelector(".bellas-modal.is-open, .youtube-modal.is-open");
+      const hayVideoActivo = Array.from(document.querySelectorAll("#multimedia video")).some(function (v) {
+        return !v.paused;
+      });
+      if (hayModalAbierto || hayVideoActivo || audioDesactivadoPorUsuario) {
+        return;
+      }
       audioFondo.play().then(actualizarInterfaz).catch(function () {});
     }
   });
