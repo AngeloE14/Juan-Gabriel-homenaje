@@ -94,6 +94,13 @@ export function inicializarBotonSubir() {
       visible = debeSerVisible;
       btn.classList.toggle("is-visible", visible);
     }
+
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const distAlFinal = scrollHeight - clientHeight - scrollTop;
+    const cercaDelFinal = distAlFinal < 120;
+    btn.classList.toggle("is-near-footer", cercaDelFinal);
   }
 
   btn.addEventListener("click", onClick);

@@ -88,4 +88,11 @@
     width: 16px;
     height: 16px;
   }
+
+  #btn-subir.is-near-footer {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
+    transform: scale(0.7) translateY(8px);
+  }
 }
