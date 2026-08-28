@@ -196,6 +196,19 @@ body.nav-open {
   flex-direction: column;
 }
 
+/* Contenedor y cabecera (logo + eslogan agrupados).
+   En móvil la cabecera se pone en fila; en escritorio se mantiene
+   en columna (logo arriba, eslogan debajo) sin cambiar el resto. */
+.main-nav__scroll {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-nav__cabecera {
+  display: flex;
+  flex-direction: column;
+}
+
 .main-nav__media {
   padding: 0 12px;
   margin-top: 4px;
@@ -951,5 +964,226 @@ body.nav-open {
 
   .main-nav a[href="#fotos-iconicas"] {
     background-position: center;
+  }
+}
+
+/* =====================================================
+   MENÚ MÓVIL: CORTINA DE PANTALLA COMPLETA (rediseñado)
+   =====================================================
+   SOLO para pantallas táctiles de 700px o menos.
+   Cortina que siempre cubre el viewport (position: fixed; inset: 0)
+   y hace scroll interno si el contenido excede.
+   Disposición centrada y proporcionada.
+   El escritorio (más de 700px) NO se toca.
+===================================================== */
+@media (max-width: 700px) {
+  /* ---- PANEL: cortina fullscreen que cubre SIEMPRE ---- */
+  .main-nav {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 0;
+    /* Fondo oscuro denso para que los botones resalten sobre las fotos */
+    background: linear-gradient(165deg, #07172e 0%, #0f2f57 45%, #0a1f3b 100%);
+    /* Cerrado: la cortina queda fuera de pantalla, hacia arriba */
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+    touch-action: auto;
+    /* El scroll interno vive en .main-nav__scroll; el nav siempre cubre */
+  }
+
+  body.nav-open .main-nav {
+    opacity: 1;
+    transform: none;          /* abierto: cubre todo; sin transform evita bug iOS */
+  }
+
+  /* El overlay no hace falta con cortina (queda tapado), se oculta */
+  .nav-overlay {
+    display: none;
+  }
+
+  /* ---- Contenedor interno: columna que rellena, centra y scrollea ---- */
+  .main-nav__scroll {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: 64px 22px 8px;
+    overflow-y: auto;           /* el scroll vive aquí, dentro de la cortina */
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ---- CABECERA: logo y eslogan lado a lado, centrados arriba ---- */
+  .main-nav__cabecera {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex: 0 0 auto;             /* nunca se encoge, pase lo que pase el scroll */
+    margin: 0 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .main-nav__logo {
+    flex: 0 0 auto;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    min-width: 0;
+  }
+
+  .main-nav__logo img {
+    width: min(255px, 53vw);
+    height: auto;
+    margin-inline: 0;
+    vertical-align: middle;
+  }
+
+  .main-nav__slogan {
+    flex: 0 0 auto;
+    text-align: center;
+    min-width: 0;
+    margin: 0 0 0 -14px;        /* margen negativo: pega el eslogan sobre el logo */
+    padding: 0;
+  }
+
+  .main-nav__slogan img {
+    width: min(250px, 50vw);
+    height: auto;
+    display: block;
+    margin-inline: 0;
+    vertical-align: middle;
+  }
+
+  /* ---- LISTA: grid de 2 columnas, alineada arriba debajo de la cabecera ---- */
+  .main-nav__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    align-content: start;       /* botones pegados arriba, justo bajo logo/eslogan */
+    flex-grow: 0;
+  }
+
+  .main-nav__list li {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* ---- BOTONES: tarjetas uniformes (no desproporcionadas) ---- */
+  .main-nav a {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;    /* texto abajo, no en medio del botón */
+    width: 100%;
+    aspect-ratio: 2 / 1;          /* misma proporción en todos */
+    padding: 6px 10px 5px;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 1.1;
+    letter-spacing: 0.3px;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-size: cover !important;   /* todas las tarjetas cubren bien su celda */
+    background-position: center !important;
+    color: #fff;
+    /* Oscurece la base de la foto sin tapar el texto (se dibuja bajo el contenido) */
+    box-shadow: inset 0 -22px 18px -14px rgba(0, 0, 0, 0.7), 0 2px 6px rgba(0, 0, 0, 0.35);
+    text-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.95),
+      0 0 8px rgba(0, 0, 0, 0.75);
+  }
+
+  .main-nav a > span:not(.nav-bellas-note) {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .main-nav a:active {
+    transform: scale(0.96);
+    filter: brightness(1.08);
+  }
+
+  /* ----- El Divo: fila completa pero botón centrado, no a todo el ancho ----- */
+  .main-nav__list li:has(a[href="#discografia"]) {
+    grid-column: 1 / -1;          /* el li ocupa la fila completa... */
+    display: flex;
+    justify-content: center;      /* ...y el botón se centra dentro */
+    align-items: flex-end;        /* botón anclado abajo de la fila */
+    padding-top: 6px;
+  }
+
+  .main-nav a[href="#discografia"] {
+    width: 64%;
+    max-width: 320px;
+    aspect-ratio: 2.8 / 1;
+    justify-content: center;      /* texto centrado: no tapa la boca */
+  }
+
+  /* ----- Botón Bellas Artes (dorado): tarjeta normal, borde dorado ----- */
+  .main-nav a[href="#bellas-artes"] {
+    border: 1.5px solid rgba(255, 215, 0, 0.45);
+    font-size: 0.84rem;
+  }
+
+  .main-nav a[href="#bellas-artes"]::before,
+  .main-nav a[href="#bellas-artes"]::after {
+    border-radius: 12px;
+  }
+
+  /* ----- Enlace activo: recuadro dorado completo (no barra izquierda) ----- */
+  /* !important para derrotar las reglas específicas por sección (barra izquierda) */
+  .main-nav a[aria-current="page"] {
+    color: #f0e6d0 !important;
+    border: 2px solid #ffd700 !important;
+    border-left-width: 2px !important;
+    padding-left: 8px !important;
+    box-shadow:
+      0 0 0 2px rgba(255, 215, 0, 0.25),
+      0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  /* "Reseña": sin marco dorado, como el resto de botones */
+  .main-nav a[href="#biografia"][aria-current="page"] {
+    color: inherit !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-left-width: 1px !important;
+    padding-left: 8px !important;
+    box-shadow: none !important;
+  }
+
+  /* "Reseña": sube la imagen de fondo para que el título no tape los ojos */
+  .main-nav a[href="#biografia"] {
+    background-position: 75% 64% !important;
+    background-size: cover !important;
+  }
+
+  /* ----- Bloque música: centrado verticalmente, con aire entre botones y ondas ----- */
+  .music-btn {
+    flex-shrink: 0;
+    width: auto;
+    align-self: center;
+    margin: 64px auto 0;        /* espacio moderado bajo botones, hueco sobrante abajo */
+    padding: 10px 22px;
   }
 }
