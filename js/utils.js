@@ -496,6 +496,9 @@ export function inicializarAudioFondo() {
   audioFondo.volume = VOLUMEN_BASE;
   audioFondo.playsInline = true;
   audioFondo.preload = "auto";
+  // Empezar a descargar la primera canción de inmediato (durante la intro),
+  // para que al terminar ya esté bufferizada y suene sin retraso.
+  audioFondo.load();
 
   let desbloqueoRegistrado = false;
 
@@ -514,12 +517,34 @@ export function inicializarAudioFondo() {
     return shuffled;
   }
 
+  // Devuelve true si dos canciones que en la playlist original son vecinas
+  // (|a-b| === 1) quedaron contiguas en la cola. Evita que canciones del mismo
+  // "bloque" del setlist suenen seguidas, haciendo la mezcla mucho más pareja.
+  function tieneVecinosAdyacentes(arr) {
+    for (let k = 0; k < arr.length - 1; k++) {
+      if (Math.abs(arr[k] - arr[k + 1]) === 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   function generarColaAleatoria(excluirUltimo) {
-    const indices = [];
+    let indices = [];
     for (let i = 0; i < canciones.length; i++) {
       indices.push(i);
     }
     let shuffled = mezclarFisherYates(indices);
+
+    // Re-mezclar (con límite de intentos) para dispersar las canciones del
+    // setlist: es lo que da esa sensación de "sí randomea todas", no solo
+    // las de arriba o las de abajo.
+    let intentos = 0;
+    while (tieneVecinosAdyacentes(shuffled) && intentos < 30) {
+      shuffled = mezclarFisherYates(indices);
+      intentos++;
+    }
+
     if (excluirUltimo && shuffled[0] === indiceActual && canciones.length > 1) {
       const temp = shuffled[0];
       shuffled[0] = shuffled[shuffled.length - 1];
