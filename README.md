@@ -15,3 +15,39 @@ La página reúne material del maestro Alberto Aguilera Valadez de manera respet
 
 ## Nota personal
 Un homenaje digital a Juan Gabriel 💛
+
+## Capturas
+
+<p align="center">
+  <img src="Pictures/Capturas/Captura-1.webp" alt="Captura 1" width="760">
+</p>
+
+<p align="center">
+  <img src="Pictures/Capturas/Captura-2.webp" alt="Captura 2" width="760">
+</p>
+
+<p align="center">
+  <img src="Pictures/Capturas/Captura-3.webp" alt="Captura 3" width="760">
+</p>
+
+<p align="center">
+  <img src="Pictures/Capturas/Captura-4.webp" alt="Captura 4" width="760">
+</p>
+
+<p align="center">
+  <img src="Pictures/Capturas/Captura-5.webp" alt="Captura 5" width="760">
+</p>
+
+<div align="center">
+  <img src="Pictures/Capturas/modal-1.webp" alt="Modal 1" width="240">
+  <img src="Pictures/Capturas/modal-2.webp" alt="Modal 2" width="240">
+  <img src="Pictures/Capturas/modal-3.webp" alt="Modal 3" width="240">
+</div>
+
+<p align="center">
+  <img src="Pictures/Capturas/Captura-6.webp" alt="Captura 6" width="760">
+</p>
+
+<p align="center">
+  <img src="Pictures/Capturas/Captura-7.webp" alt="Captura 7" width="760">
+</p>
