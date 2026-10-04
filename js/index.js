@@ -48,6 +48,55 @@ import { inicializarArtistasCarousel, inicializarFragmentosCarousel } from './ar
 import { inicializarLightbox } from './lightbox.js?v=2';
 import { inicializarBotonSubir } from './back-to-top.js';
 
+function inicializarRetratoDiscografia() {
+  const section = document.querySelector('#discografia');
+  const firma = document.querySelector('#discografia .discografia-firma');
+  const retrato = document.querySelector('#discografia .discografia-retrato');
+
+  if (!section || !firma || !retrato) {
+    return;
+  }
+
+  const ajustarPosicion = function () {
+    const sectionRect = section.getBoundingClientRect();
+    const firmaRect = firma.getBoundingClientRect();
+    const esMovil = window.matchMedia('(max-width: 900px)').matches;
+
+    if (esMovil) {
+      retrato.style.top = `${firmaRect.top - sectionRect.top + 340}px`;
+      retrato.style.right = '8px';
+      retrato.style.zIndex = '2';
+      return;
+    }
+
+    retrato.style.top = `${firmaRect.top - sectionRect.top + 10}px`;
+    retrato.style.right = 'clamp(24px, 8vw, 144px)';
+  };
+
+  const ajustarEnFrame = function () {
+    window.requestAnimationFrame(ajustarPosicion);
+  };
+
+  if (retrato.complete) {
+    ajustarEnFrame();
+  } else {
+    retrato.addEventListener('load', ajustarEnFrame, { once: true });
+  }
+
+  section.querySelectorAll('.discografia-gallery img').forEach(function (imagen) {
+    imagen.addEventListener('load', ajustarEnFrame, { once: true });
+  });
+
+  window.addEventListener('load', ajustarEnFrame, { once: true });
+
+  if ('ResizeObserver' in window) {
+    const observador = new ResizeObserver(ajustarEnFrame);
+    observador.observe(section);
+  }
+
+  window.addEventListener('resize', ajustarEnFrame, { passive: true });
+}
+
 /*
   DOMContentLoaded - EVENTO DE CARGA
   Se ejecuta cuando el HTML está completamente cargado.
@@ -62,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
   marcarEnlaceActivo();
   inicializarNavegacion();
   reproducirIntroAlCargar();
+  inicializarRetratoDiscografia();
 
   // AUDIO: inicializar DE INMEDIATO, no en idle. Si el usuario oprime
   // "Omitir" antes del idle callback, el evento intro-finalizada se pierde

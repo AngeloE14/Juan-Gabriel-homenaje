@@ -27,6 +27,8 @@
    2. linear-gradient: degradado vertical de marrón oscuro (#211812) a casi negro (#14100d).
    border-top dorado sutil separa esta sección de la anterior. */
 #discografia {
+  position: relative;
+  isolation: isolate;
   padding: 64px 20px 80px;
   background:
     radial-gradient(980px 340px at 50% -80px, rgba(207, 166, 111, 0.2), transparent 72%),
@@ -74,6 +76,43 @@
   justify-content: center;
   grid-auto-rows: auto;
   gap: 24px;                           /* espacio de 24px entre cada álbum */
+}
+
+/* Retrato decorativo: marca de agua discreta en el espacio libre de la galería.
+   No participa en el flujo para conservar intacta la distribución de álbumes. */
+.discografia-retrato {
+  position: absolute;
+  z-index: 0;
+  top: clamp(500px, 30vw, 540px);
+  right: clamp(24px, 8vw, 144px);
+  width: clamp(150px, 13vw, 220px);
+  margin: 0;
+  opacity: 0.2;
+  pointer-events: none;
+  transform: none;
+}
+
+.discografia-retrato img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+  filter: grayscale(0.35) sepia(0.28) saturate(0.8) contrast(0.88);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 42%, rgba(0, 0, 0, 0.8) 68%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 42%, rgba(0, 0, 0, 0.8) 68%, transparent 100%);
+}
+
+@media (min-width: 901px) {
+  .discografia-retrato {
+    z-index: 2;
+  }
+}
+
+.discografia-gallery,
+.discografia-firma,
+.frases-rotativas {
+  position: relative;
+  z-index: 1;
 }
 
 /* Firma de discografía: la firma de Juan Gabriel (imagen SVG/PNG).

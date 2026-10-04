@@ -841,6 +841,16 @@
     grid-template-columns: repeat(3, minmax(120px, 1fr));  /* 3 columnas de mínimo 120px */
     gap: 14px;
   }
+
+  .discografia-retrato {
+    width: min(180px, 30vw);
+    max-width: 100%;
+    right: clamp(10px, 3vw, 24px);
+    opacity: 0.18;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
 }
 
 /* ==========================================================================
@@ -861,6 +871,15 @@
     transform: none !important;           /* quita cualquier efecto 3D o rotación */
     grid-column: span 1 !important;       /* cada álbum ocupa 1 columna (sin destacados) */
     grid-row: span 1 !important;          /* cada álbum ocupa 1 fila */
+  }
+
+  .discografia-retrato {
+    width: min(120px, 30vw);
+    max-width: 100%;
+    right: 8px;
+    opacity: 0.17;
+    transform: translateY(-50%);
+    z-index: 2;
   }
 }
 
