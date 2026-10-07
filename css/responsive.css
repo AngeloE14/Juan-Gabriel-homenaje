@@ -752,6 +752,27 @@
   }
 }
 
+@media (max-width: 640px) {
+  .album-archivo-link {
+    top: 9px;
+    right: 9px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .album-archivo-link svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .album-archivo-caption {
+    right: 8px;
+    bottom: 8px;
+    padding: 3px 5px;
+    font-size: 0.55rem;
+  }
+}
+
 /* ==========================================================================
    MEDIA QUERY: MÓVIL EN HORIZONTAL (landscape)
    ==========================================================================
