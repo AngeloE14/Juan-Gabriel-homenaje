@@ -72,6 +72,46 @@
       letter-spacing: .18em;
     }
 
+    .audio-control {
+      display: grid;
+      justify-items: center;
+      gap: 9px;
+      margin: 24px auto 0;
+    }
+
+    .audio-toggle {
+      display: inline-flex;
+      min-width: 210px;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      padding: 10px 20px;
+      border: 1px solid #a9afb577;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #272a2d, #151719);
+      color: #f0e8db;
+      font: 500 .9rem/1.2 'Cinzel', Georgia, serif;
+      letter-spacing: .035em;
+      box-shadow: 0 5px 18px #0007, inset 0 1px 0 #ffffff12;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    }
+
+    .audio-toggle:hover { border-color: #d8c18e; background: linear-gradient(180deg, #333638, #1a1c1e); }
+    .audio-toggle:active { transform: scale(.98); }
+    .audio-toggle:focus-visible { outline: 2px solid #e6d4ad; outline-offset: 4px; }
+    .audio-toggle svg { width: 17px; height: 17px; flex: 0 0 auto; fill: currentColor; }
+
+    .audio-status {
+      min-height: 1.2em;
+      margin: 0;
+      color: #a9a6a0;
+      font-size: .98rem;
+      line-height: 1.2;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
     }
@@ -103,17 +143,49 @@
       </figure>
       <p class="message">Este homenaje vuelve pronto.</p>
       <p class="signature" aria-label="Firma anónima">A.</p>
+      <div class="audio-control">
+        <button class="audio-toggle" id="audio-toggle" type="button" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <span>Reproducir canción</span>
+        </button>
+        <p class="audio-status" id="audio-status" role="status" aria-live="polite">Si no empieza sola, toca para escuchar.</p>
+      </div>
     </section>
   </main>
-  <audio id="aviso-musica" src="audios/de mi enamorate.mp3" autoplay loop preload="auto"></audio>
+  <audio id="aviso-musica" src="audios/de mi enamorate.mp3" autoplay loop preload="auto" playsinline></audio>
   <script>
     const avisoMusica = document.getElementById('aviso-musica');
-    const intentarMusica = () => avisoMusica.play().catch(() => {
-      const reintentar = () => avisoMusica.play().catch(() => {});
-      document.addEventListener('pointerdown', reintentar, { once: true });
-      document.addEventListener('keydown', reintentar, { once: true });
+    const botonAudio = document.getElementById('audio-toggle');
+    const etiquetaAudio = botonAudio.querySelector('span');
+    const estadoAudio = document.getElementById('audio-status');
+
+    function sincronizarAudio() {
+      const reproduciendo = !avisoMusica.paused;
+      botonAudio.setAttribute('aria-pressed', String(reproduciendo));
+      etiquetaAudio.textContent = reproduciendo ? 'Pausar canción' : 'Reproducir canción';
+      botonAudio.querySelector('svg path').setAttribute('d', reproduciendo
+        ? 'M6 5h4v14H6zm8 0h4v14h-4z'
+        : 'M8 5v14l11-7z');
+      estadoAudio.textContent = reproduciendo
+        ? 'De mí enamórate'
+        : 'Si no empieza sola, toca para escuchar.';
+    }
+
+    botonAudio.addEventListener('click', () => {
+      if (avisoMusica.paused) {
+        avisoMusica.play().then(sincronizarAudio).catch(() => {
+          estadoAudio.textContent = 'No se pudo reproducir. Toca de nuevo para intentarlo.';
+        });
+      } else {
+        avisoMusica.pause();
+        sincronizarAudio();
+      }
     });
-    intentarMusica();
+
+    avisoMusica.addEventListener('play', sincronizarAudio);
+    avisoMusica.addEventListener('pause', sincronizarAudio);
+    avisoMusica.addEventListener('ended', sincronizarAudio);
+    avisoMusica.play().then(sincronizarAudio).catch(sincronizarAudio);
   </script>
 </body>
 </html>
