@@ -967,6 +967,29 @@ body.nav-open {
   }
 }
 
+/* Escritorio: mantiene el panel dentro del viewport y deja visible el pie.
+   El contenido sube lo necesario para que aparezcan las ondas y el borde
+   inferior desde que se abre el menú. El diseño táctil móvil queda intacto. */
+@media (min-width: 701px) {
+  .main-nav {
+    top: 6px;
+    left: 10px;
+    width: var(--nav-drawer-width);
+    height: calc(100vh - 12px);
+    min-height: 0;
+    max-height: calc(100vh - 12px);
+    box-sizing: border-box;
+    overflow-y: hidden;
+    border: 2px solid rgba(207, 166, 111, 0.55);
+    border-radius: 10px;
+  }
+
+  .main-nav__scroll {
+    flex: 0 0 auto;
+    margin-top: -5px;
+  }
+}
+
 /* =====================================================
    MENÚ MÓVIL: CORTINA DE PANTALLA COMPLETA (rediseñado)
    =====================================================
