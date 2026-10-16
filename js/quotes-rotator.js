@@ -3,30 +3,54 @@
 import { obtenerRendimientoDispositivo } from './utils.js';
 
 export function inicializarFrasesRotativas() {
-  const frasesRotativas = document.querySelectorAll(".frase-rotativa");
+  const frasesRotativas = Array.from(
+    document.querySelectorAll(".frase-rotativa")
+  );
 
-  
-  if (frasesRotativas.length > 1) {
-    let indiceFraseActual = 0;
-    const { isLowEnd, isMobile } = obtenerRendimientoDispositivo();
-    const intervaloFrases = isLowEnd ? (isMobile ? 9000 : 6500) : 4000;
+  if (frasesRotativas.length <= 1) return;
 
-    /*
-      SETINTERVAL - TEMPORIZADOR
-      Ejecuta una función cada X milisegundos
-      El intervalo se adapta a dispositivos de menos recursos.
-    */
-    window.setInterval(function () {
-      // Quitar clase "is-active" de la frase actual (la oculta)
-      frasesRotativas[indiceFraseActual].classList.remove("is-active");
+  const mezclarFrases = (ultimaFrase = null) => {
+    const mezcla = [...frasesRotativas];
 
-      // OPERADOR MÓDULO (%) - Cuando llega al final, vuelve al inicio
-      // Ejemplo: si hay 3 frases (índices 0,1,2):
-      // (0 + 1) % 3 = 1, (1 + 1) % 3 = 2, (2 + 1) % 3 = 0
-      indiceFraseActual = (indiceFraseActual + 1) % frasesRotativas.length;
+    for (let indice = mezcla.length - 1; indice > 0; indice--) {
+      const indiceAleatorio = Math.floor(Math.random() * (indice + 1));
+      [mezcla[indice], mezcla[indiceAleatorio]] = [
+        mezcla[indiceAleatorio],
+        mezcla[indice],
+      ];
+    }
 
-      // Agregar clase "is-active" a la nueva frase (la muestra)
-      frasesRotativas[indiceFraseActual].classList.add("is-active");
-    }, intervaloFrases); // Intervalo adaptado según el rendimiento del dispositivo
-  }
+    // Evita repetir la frase anterior al comenzar una nueva ronda.
+    if (mezcla[0] === ultimaFrase) {
+      const indiceAlternativo =
+        1 + Math.floor(Math.random() * (mezcla.length - 1));
+      [mezcla[0], mezcla[indiceAlternativo]] = [
+        mezcla[indiceAlternativo],
+        mezcla[0],
+      ];
+    }
+
+    return mezcla;
+  };
+
+  let ordenFrases = mezclarFrases();
+  let indiceFraseActual = 0;
+  const { isLowEnd, isMobile } = obtenerRendimientoDispositivo();
+  const intervaloFrases = isLowEnd ? (isMobile ? 9000 : 6500) : 4000;
+
+  frasesRotativas.forEach((frase) => frase.classList.remove("is-active"));
+  ordenFrases[indiceFraseActual].classList.add("is-active");
+
+  window.setInterval(() => {
+    ordenFrases[indiceFraseActual].classList.remove("is-active");
+    indiceFraseActual++;
+
+    if (indiceFraseActual === ordenFrases.length) {
+      const ultimaFrase = ordenFrases[indiceFraseActual - 1];
+      ordenFrases = mezclarFrases(ultimaFrase);
+      indiceFraseActual = 0;
+    }
+
+    ordenFrases[indiceFraseActual].classList.add("is-active");
+  }, intervaloFrases);
 }
