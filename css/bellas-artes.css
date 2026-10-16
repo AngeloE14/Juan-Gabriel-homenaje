@@ -1765,6 +1765,98 @@
   }
 }
 
+/* En escritorio, sube la lista y compacta el contenido vertical del modal. */
+@media (min-width: 701px) {
+  .bellas-modal--1990 .bellas-modal__content,
+  .bellas-modal--celebrando .bellas-modal__content,
+  .bellas-modal--2013 .bellas-modal__content {
+    width: min(1120px, 94vw);
+    box-sizing: border-box;
+  }
+
+  .bellas-modal--1990 .bellas-stage-frame,
+  .bellas-modal--celebrando .bellas-stage-frame,
+  .bellas-modal--2013 .bellas-stage-frame {
+    max-width: 1040px;
+    box-sizing: border-box;
+    padding-inline: clamp(16px, 2vw, 24px);
+    padding-top: clamp(50px, 5vh, 64px);
+    padding-bottom: 8px;
+  }
+
+  .bellas-modal--1990 .bellas-video,
+  .bellas-modal--celebrando .bellas-video,
+  .bellas-modal--2013 .bellas-video {
+    width: min(100%, 960px, calc((100vh - 200px) * 16 / 9));
+    margin-bottom: 8px;
+  }
+
+  .bellas-modal--1990 .bellas-setlist,
+  .bellas-modal--celebrando .bellas-setlist,
+  .bellas-modal--2013 .bellas-setlist {
+    margin-top: 4px;
+  }
+
+  .bellas-download {
+    --download-accent: #ffd700;
+    --download-glow: rgba(255, 215, 0, 0.3);
+    --download-focus: rgba(255, 215, 0, 0.84);
+    --download-hover-color: #fff2b8;
+    box-sizing: border-box;
+    min-height: 70px;
+    gap: 12px;
+    padding: 8px 12px 8px 8px;
+    border-radius: 12px;
+  }
+
+  .bellas-download__cover {
+    flex-basis: 56px;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    border-color: rgba(255, 236, 184, 0.42);
+    box-shadow: 0 0 11px var(--download-glow);
+  }
+
+  .bellas-download__text {
+    gap: 3px;
+  }
+
+  .bellas-download__label {
+    font-size: 0.94rem;
+  }
+
+  .bellas-download:hover,
+  .bellas-download:focus-visible {
+    color: var(--download-hover-color);
+    border-color: var(--download-accent);
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 22px var(--download-glow),
+      0 16px 30px rgba(0, 0, 0, 0.38),
+      inset 0 1px 0 rgba(255, 236, 184, 0.12);
+  }
+
+  .bellas-download:focus-visible {
+    outline: 2px solid var(--download-focus);
+    outline-offset: 4px;
+  }
+
+  .bellas-modal--celebrando .bellas-download {
+    --download-accent: #f0f0f0;
+    --download-glow: rgba(230, 230, 230, 0.28);
+    --download-focus: rgba(255, 255, 255, 0.86);
+    --download-hover-color: #fff;
+  }
+
+  .bellas-modal--2013 .bellas-download {
+    --download-accent: #c8c8c8;
+    --download-glow: rgba(190, 190, 190, 0.3);
+    --download-focus: rgba(220, 220, 220, 0.84);
+    --download-hover-color: #fff;
+  }
+}
+
 /* Botón de cerrar */
 .bellas-modal__close {
   position: absolute;
@@ -1799,6 +1891,199 @@
   box-shadow:
     0 0 18px rgba(255, 215, 0, 0.55),
     0 8px 20px rgba(0, 0, 0, 0.65);
+}
+
+/* Emblema del homenaje, ubicado en el espacio libre del modal en escritorio. */
+.bellas-modal__brand-mark {
+  display: none;
+}
+
+@media (min-width: 701px) {
+  .bellas-modal__brand-mark {
+    position: absolute;
+    right: 3%;
+    bottom: 10px;
+    display: block;
+    width: 116px;
+    height: 116px;
+    object-fit: contain;
+    opacity: 0.95;
+    pointer-events: none;
+    z-index: 2;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.42));
+  }
+
+  .bellas-modal--1990 .bellas-modal__brand-mark {
+    filter: drop-shadow(0 0 9px rgba(228, 189, 104, 0.28));
+  }
+
+  .bellas-modal--celebrando .bellas-modal__brand-mark {
+    filter: drop-shadow(0 0 9px rgba(235, 235, 235, 0.24));
+  }
+
+  .bellas-modal--2013 .bellas-modal__brand-mark {
+    filter: drop-shadow(0 0 9px rgba(197, 197, 197, 0.2));
+  }
+
+  .bellas-modal--1990 .bellas-modal__close,
+  .bellas-modal--celebrando .bellas-modal__close,
+  .bellas-modal--2013 .bellas-modal__close {
+    top: 16px;
+    right: 16px;
+    box-sizing: border-box;
+    width: 38px;
+    height: 38px;
+    border-width: 1px;
+    background: rgba(8, 8, 8, 0.78);
+    font-size: 24px;
+    font-weight: 400;
+    box-shadow:
+      0 3px 12px rgba(0, 0, 0, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+  }
+
+  .bellas-modal--1990 .bellas-modal__close {
+    --close-accent: #e4bd68;
+    --close-hover-bg: linear-gradient(145deg, rgba(232, 194, 105, 0.42), rgba(63, 46, 18, 0.96));
+    --close-glow: rgba(228, 189, 104, 0.32);
+    border-color: rgba(228, 189, 104, 0.82);
+    background: linear-gradient(145deg, #5d451d 0%, #21180b 48%, #080706 100%);
+    color: #ffe19a;
+    box-shadow:
+      0 0 10px rgba(228, 189, 104, 0.2),
+      inset 0 1px 0 rgba(255, 239, 191, 0.34),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.75);
+  }
+
+  .bellas-modal--celebrando .bellas-modal__close {
+    --close-accent: #dedede;
+    --close-hover-bg: linear-gradient(145deg, rgba(245, 245, 245, 0.46), rgba(91, 91, 91, 0.96));
+    --close-glow: rgba(222, 222, 222, 0.3);
+    border-color: rgba(235, 235, 235, 0.82);
+    background: linear-gradient(145deg, #777 0%, #393939 48%, #111 100%);
+    color: #fff;
+    box-shadow:
+      0 0 10px rgba(225, 225, 225, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.42),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.72);
+  }
+
+  .bellas-modal--2013 .bellas-modal__close {
+    --close-accent: #c5c5c5;
+    --close-hover-bg: linear-gradient(145deg, rgba(216, 216, 216, 0.34), rgba(75, 75, 75, 0.96));
+    --close-glow: rgba(197, 197, 197, 0.26);
+    border-color: rgba(190, 190, 190, 0.76);
+    background: linear-gradient(145deg, #555 0%, #303030 50%, #1b1b1b 100%);
+    color: #e8e8e8;
+    box-shadow:
+      0 0 9px rgba(197, 197, 197, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.72);
+  }
+
+  .bellas-modal--1990 .bellas-modal__close:hover,
+  .bellas-modal--1990 .bellas-modal__close:focus-visible,
+  .bellas-modal--celebrando .bellas-modal__close:hover,
+  .bellas-modal--celebrando .bellas-modal__close:focus-visible,
+  .bellas-modal--2013 .bellas-modal__close:hover,
+  .bellas-modal--2013 .bellas-modal__close:focus-visible {
+    background: var(--close-hover-bg);
+    border-color: var(--close-accent);
+    color: #fff;
+    transform: scale(1.04);
+    box-shadow:
+      0 0 14px var(--close-glow),
+      0 5px 14px rgba(0, 0, 0, 0.5);
+  }
+
+  .bellas-modal--1990 .bellas-modal__close:focus-visible,
+  .bellas-modal--celebrando .bellas-modal__close:focus-visible,
+  .bellas-modal--2013 .bellas-modal__close:focus-visible {
+    outline: 2px solid var(--close-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* El emblema también aparece en móvil sin alterar las dimensiones del modal. */
+@media (max-width: 700px) {
+  .bellas-modal__brand-mark {
+    position: absolute;
+    top: calc(clamp(50px, 7vh, 64px) + env(safe-area-inset-top, 0px));
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    display: block;
+    width: clamp(132px, 32vw, 168px);
+    height: clamp(132px, 32vw, 168px);
+    object-fit: contain;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 2;
+    transform: translateX(-50%);
+  }
+
+  .bellas-modal--1990 .bellas-modal__brand-mark {
+    filter: drop-shadow(0 0 8px rgba(228, 189, 104, 0.28));
+  }
+
+  .bellas-modal--celebrando .bellas-modal__brand-mark {
+    filter: drop-shadow(0 0 8px rgba(235, 235, 235, 0.24));
+  }
+
+  .bellas-modal--2013 .bellas-modal__brand-mark {
+    filter: drop-shadow(0 0 8px rgba(197, 197, 197, 0.2));
+  }
+
+  .bellas-modal--2013 .bellas-modal__brand-mark {
+    top: calc(clamp(54px, 8vh, 70px) + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+  .bellas-modal__brand-mark {
+    top: calc(12px + env(safe-area-inset-top, 0px));
+    width: 60px;
+    height: 60px;
+  }
+
+  .bellas-modal--2013 .bellas-modal__brand-mark {
+    top: calc(12px + env(safe-area-inset-top, 0px));
+  }
+}
+
+/* En móvil, la expansión queda anclada arriba; el emblema se mueve de forma independiente. */
+@media (max-width: 700px) {
+  .bellas-modal.bellas-modal--setlist-open,
+  .bellas-modal:has(.bellas-setlist[open]) {
+    place-items: start center;
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .bellas-modal--setlist-open .bellas-modal__brand-mark,
+  .bellas-modal:has(.bellas-setlist[open]) .bellas-modal__brand-mark {
+    position: absolute;
+    top: env(safe-area-inset-top, 0px);
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    display: block;
+    width: clamp(132px, 32vw, 168px);
+    height: clamp(132px, 32vw, 168px);
+    margin: 0;
+    transform: translateX(-50%);
+  }
+
+  .bellas-modal--setlist-open .bellas-stage-frame,
+  .bellas-modal:has(.bellas-setlist[open]) .bellas-stage-frame {
+    padding-top: clamp(142px, 33vw, 176px);
+  }
+
+  .bellas-modal--setlist-open .bellas-setlist__tracks,
+  .bellas-modal:has(.bellas-setlist[open]) .bellas-setlist__tracks {
+    max-height: clamp(150px, 30vh, 260px);
+  }
 }
 
 /* ===========================================

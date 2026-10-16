@@ -144,6 +144,12 @@ export function inicializarBellasArtesModal() {
   const closeBtn = document.querySelector(".bellas-modal__close");
   const botones = document.querySelectorAll(".bellas-btn");
 
+  if (setlist && modal) {
+    setlist.addEventListener("toggle", function () {
+      modal.classList.toggle("bellas-modal--setlist-open", setlist.open);
+    });
+  }
+
   function detenerOtrosMedios() {
     pausarAudioFondo();
 
@@ -169,6 +175,7 @@ export function inicializarBellasArtesModal() {
     setlistTracks.replaceChildren();
     setlist.hidden = !canciones || canciones.length === 0;
     setlist.open = false;
+    if (modal) modal.classList.remove("bellas-modal--setlist-open");
     if (!canciones || canciones.length === 0) return;
 
     canciones.forEach(function (disco) {
@@ -207,6 +214,7 @@ export function inicializarBellasArtesModal() {
     modal.classList.remove("bellas-modal--1990");
     modal.classList.remove("bellas-modal--celebrando");
     modal.classList.remove("bellas-modal--2013");
+    modal.classList.remove("bellas-modal--setlist-open");
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.documentElement.classList.add("bellas-modal-open");
@@ -230,6 +238,7 @@ export function inicializarBellasArtesModal() {
     modal.classList.remove("bellas-modal--1990");
     modal.classList.remove("bellas-modal--celebrando");
     modal.classList.remove("bellas-modal--2013");
+    modal.classList.remove("bellas-modal--setlist-open");
     modal.setAttribute("aria-hidden", "true");
     video.setAttribute("src", "");
     mostrarSetlist(null);
