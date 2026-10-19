@@ -160,12 +160,7 @@
       aria-label: Atributo de accesibilidad para lectores de pantalla
     -->
     <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="sidebar-nav" aria-expanded="false" aria-label="Abrir navegación">
-      <span class="nav-toggle__icon" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-
+      <img class="nav-toggle__icon" src="assets/iconojg.ico" alt="" aria-hidden="true">
     </button>
 
     <nav class="main-nav" id="sidebar-nav" aria-label="Navegación principal">
@@ -574,7 +569,15 @@
             <p><strong>La Diferencia</strong></p>
           </article>
 
-          <article class="multimedia-card">
+          <article class="multimedia-card multimedia-card--youtube">
+            <button class="youtube-open" type="button" data-video-id="taOGGNPa0gA" data-video-title="La muerte es temporal, el amor es eterno — con Amor Eterno de Juan Gabriel">
+              <img src="https://img.youtube.com/vi/taOGGNPa0gA/hqdefault.jpg" alt="Miniatura del video El amor es eterno, musicalizado con Amor Eterno de Juan Gabriel" loading="lazy" decoding="async">
+              <span class="youtube-play" aria-hidden="true"></span>
+            </button>
+            <p class="multimedia-card__title"><strong>La muerte es temporal, el amor es eterno</strong></p>
+          </article>
+
+          <article class="multimedia-card multimedia-card--youtube">
             <button class="youtube-open" type="button" data-video-id="jD6Sb_ENf3g" data-video-title="Rocio Durcal, Juan Gabriel - Fue Un Placer Conocerte (En Vivo)" data-direct-desktop="true">
               <img src="https://img.youtube.com/vi/jD6Sb_ENf3g/hqdefault.jpg" alt="Miniatura: Rocio Durcal, Juan Gabriel - Fue Un Placer Conocerte (En Vivo)" loading="lazy" decoding="async">
               <span class="youtube-play" aria-hidden="true"></span>
@@ -582,7 +585,7 @@
             <p><strong>Rocio Durcal, Juan Gabriel - Fue Un Placer Conocerte (En Vivo)</strong></p>
           </article>
 
-          <article class="multimedia-card">
+          <article class="multimedia-card multimedia-card--youtube">
             <button class="youtube-open" type="button" data-video-id="dbH6dJCYWpw" data-video-title="Homenaje a Juan Gabriel - Google Doodle">
               <img src="https://img.youtube.com/vi/dbH6dJCYWpw/hqdefault.jpg" alt="Miniatura: Homenaje de Google Doodle a Juan Gabriel" loading="lazy" decoding="async">
               <span class="youtube-play" aria-hidden="true"></span>
@@ -590,7 +593,7 @@
             <p><strong>Google Doodles - Juan Gabriel</strong></p>
           </article>
 
-           <article class="multimedia-card">
+           <article class="multimedia-card multimedia-card--youtube">
             <button class="youtube-open" type="button" data-video-id="5HrqtftOc5U" data-video-title="Juan Gabriel | Video de YouTube">
               <img src="https://img.youtube.com/vi/5HrqtftOc5U/hqdefault.jpg" alt="Miniatura: Juan Gabriel en YouTube" loading="lazy" decoding="async">
               <span class="youtube-play" aria-hidden="true"></span>

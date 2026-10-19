@@ -167,6 +167,11 @@
   font-weight: 700;
 }
 
+/* Unifica el color de los títulos de videos de YouTube. */
+.multimedia-card--youtube p strong {
+  color: #f3dfb1;
+}
+
 /* Letras con los colores de la bandera de México */
 .flag-verde {
   color: #006847;
