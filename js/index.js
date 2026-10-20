@@ -47,6 +47,7 @@ import { inicializarFrasesRotativas } from './quotes-rotator.js';
 import { inicializarArtistasCarousel, inicializarFragmentosCarousel } from './artistas-carousel.js';
 import { inicializarLightbox } from './lightbox.js?v=2';
 import { inicializarBotonSubir } from './back-to-top.js';
+import { inicializarBocadilloNavegacion } from './nav-speech-bubble.js';
 
 function inicializarRetratoDiscografia() {
   const section = document.querySelector('#discografia');
@@ -110,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
   aplicarClaseRendimientoDelDispositivo();
   marcarEnlaceActivo();
   inicializarNavegacion();
+  inicializarBocadilloNavegacion();
   reproducirIntroAlCargar();
   inicializarRetratoDiscografia();
 
