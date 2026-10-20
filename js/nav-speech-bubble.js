@@ -34,17 +34,59 @@ export function inicializarBocadilloNavegacion() {
   bocadillo.dataset.speechInitialized = "true";
 
   let fraseAnterior = "";
+  let primeraEleccion = true;
+  let frasesPendientes = [];
   let temporizadorOcultar;
 
-  function mostrarBocadillo() {
-    const frasesDisponibles = fraseAnterior
-      ? FRASES_BOCADILLO.filter(function (frase) {
-          return frase !== fraseAnterior;
+  function mezclarFrases() {
+    const frasesMezcladas = Array.from(new Set(FRASES_BOCADILLO));
+
+    for (let i = frasesMezcladas.length - 1; i > 0; i -= 1) {
+      const indiceAleatorio = Math.floor(Math.random() * (i + 1));
+      [frasesMezcladas[i], frasesMezcladas[indiceAleatorio]] = [
+        frasesMezcladas[indiceAleatorio],
+        frasesMezcladas[i]
+      ];
+    }
+
+    const frasesAExcluirAlInicio = new Set([fraseAnterior]);
+    if (primeraEleccion) {
+      // Queridaaa sigue en la rotación, pero no queda fija como apertura.
+      frasesAExcluirAlInicio.add(FRASES_BOCADILLO[0]);
+    }
+
+    if (frasesMezcladas.length > 1 && frasesAExcluirAlInicio.has(frasesMezcladas[0])) {
+      const indicesAlternativos = frasesMezcladas
+        .map(function (frase, indice) {
+          return frasesAExcluirAlInicio.has(frase) ? -1 : indice;
         })
-      : [FRASES_BOCADILLO[0]];
-    const fraseElegida = frasesDisponibles[
-      Math.floor(Math.random() * frasesDisponibles.length)
-    ];
+        .filter(function (indice) {
+          return indice > 0;
+        });
+      const indiceAlternativo = indicesAlternativos[
+        Math.floor(Math.random() * indicesAlternativos.length)
+      ];
+
+      [frasesMezcladas[0], frasesMezcladas[indiceAlternativo]] = [
+        frasesMezcladas[indiceAlternativo],
+        frasesMezcladas[0]
+      ];
+    }
+
+    frasesPendientes = frasesMezcladas;
+  }
+
+  function elegirFraseAleatoria() {
+    if (frasesPendientes.length === 0) {
+      mezclarFrases();
+    }
+
+    primeraEleccion = false;
+    return frasesPendientes.shift();
+  }
+
+  function mostrarBocadillo() {
+    const fraseElegida = elegirFraseAleatoria();
 
     fraseAnterior = fraseElegida;
     bocadillo.textContent = fraseElegida;
