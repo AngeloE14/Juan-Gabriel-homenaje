@@ -183,6 +183,13 @@ body.nav-open .nav-overlay {
   pointer-events: auto; /* se puede hacer clic en el overlay (para cerrar el menú) */
 }
 
+/* Cuando el menú está abierto, el bocadillo se oculta (en móvil y escritorio)
+   para que no flote encima del panel de navegación. */
+body.nav-open .nav-toggle__speech {
+  opacity: 0;
+  visibility: hidden;
+}
+
 /* Cuando el menú está abierto, se bloquea el scroll del body (y del html)
    para que la página no se mueva detrás del menú. */
 html:has(body.nav-open),

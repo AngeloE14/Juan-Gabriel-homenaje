@@ -9,12 +9,12 @@
 
 const FRASES_BOCADILLO = [
   "Queridaaa!🎵",
-  "Pero qué necesidad, para qué tanto problema",
   "No me vuelvo a enamorar, totalmente, ¿para qué? 🎶",
-  "Pero por fuera me digo que palo dado ni Dios lo quita.🤷‍♂️",
-  "Te pareces tanto a mi que no puedes engañarme",
+  "Pero por fuera me digo que palo dado ni Dios lo quita🤷‍♂️",
   "No cabe duda que es verdad que la costumbre es más fuerte que el amor",
   "Lo que se ve no se pregunta",
+  "Cuando este amor tan bonito se acabe, no se, si pueda olvidarte",
+  "Ya lo Pasado, Pasado",
   "Si me buscas es porque te conviene 😏",
   "Lloviendo está y por eso es que no vez mis lágrimas☔",
   "Se me olvidó otra vez, que sólo yo te quise 💔",
