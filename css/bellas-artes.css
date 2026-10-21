@@ -678,6 +678,90 @@
   color: rgba(220, 220, 220, 0.85);
 }
 
+/* Mantener las carátulas limpias, sin el marco exterior */
+.bellas-btn--1990 .bellas-btn__cover,
+.bellas-btn--1990:hover .bellas-btn__cover,
+.bellas-btn--celebrando .bellas-btn__cover,
+.bellas-btn--celebrando:hover .bellas-btn__cover,
+.bellas-btn--2013 .bellas-btn__cover,
+.bellas-btn--2013:hover .bellas-btn__cover {
+  border: 0;
+  box-shadow: none;
+}
+
+/* En escritorio, los botones se compactan en la carátula y se expanden al interactuar. */
+@media (hover: hover) and (min-width: 701px) {
+  .bellas-vitrina .bellas-btn {
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 88px;
+    gap: 0;
+    padding: 6px;
+    overflow: hidden;
+    transition:
+      max-width 0.12s ease-out,
+      gap 0.12s ease-out,
+      padding 0.12s ease-out,
+      transform 0.12s ease-out,
+      border-color 0.14s ease-out,
+      box-shadow 0.14s ease-out;
+  }
+
+  .bellas-vitrina .bellas-btn__cover {
+    width: 72px;
+    height: 72px;
+    transition: width 0.12s ease-out, height 0.12s ease-out;
+  }
+
+  .bellas-vitrina .bellas-btn__cover img {
+    transition: transform 0.12s ease-out;
+  }
+
+  .bellas-vitrina .bellas-btn__info {
+    min-width: 0;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: max-width 0.12s ease-out, opacity 0.1s ease-out, transform 0.12s ease-out;
+  }
+
+  .bellas-vitrina .bellas-btn:hover,
+  .bellas-vitrina .bellas-btn:focus-visible {
+    max-width: 460px;
+    gap: 20px;
+    padding: 10px 36px 10px 10px;
+  }
+
+  .bellas-vitrina .bellas-btn:hover .bellas-btn__cover,
+  .bellas-vitrina .bellas-btn:focus-visible .bellas-btn__cover {
+    width: 64px;
+    height: 64px;
+  }
+
+  .bellas-vitrina .bellas-btn:hover .bellas-btn__info,
+  .bellas-vitrina .bellas-btn:focus-visible .bellas-btn__info {
+    max-width: 340px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* En móvil, limpia el marco de la carátula y conserva intacto el botón. */
+@media (max-width: 700px) {
+  .bellas-vitrina .bellas-btn .bellas-btn__cover {
+    border: 0;
+    box-shadow: none;
+    outline: 0;
+  }
+
+  .bellas-vitrina .bellas-btn .bellas-btn__cover img {
+    border: 0;
+    box-shadow: none;
+    outline: 0;
+  }
+}
+
 /* ===========================================
    MODAL DE BELLAS ARTES
    =========================================== */
@@ -1857,6 +1941,12 @@
   }
 }
 
+/* Mantener limpias también las carátulas de los botones de descarga */
+.bellas-download__cover {
+  border-color: transparent;
+  box-shadow: none;
+}
+
 /* Botón de cerrar */
 .bellas-modal__close {
   position: absolute;
@@ -2015,8 +2105,8 @@
     bottom: auto;
     left: 50%;
     display: block;
-    width: clamp(132px, 32vw, 168px);
-    height: clamp(132px, 32vw, 168px);
+    width: clamp(148px, 36vw, 184px);
+    height: clamp(148px, 36vw, 184px);
     object-fit: contain;
     opacity: 1;
     pointer-events: none;
@@ -2044,8 +2134,8 @@
 @media (max-width: 700px) and (orientation: landscape) {
   .bellas-modal__brand-mark {
     top: calc(12px + env(safe-area-inset-top, 0px));
-    width: 60px;
-    height: 60px;
+    width: 72px;
+    height: 72px;
   }
 
   .bellas-modal--2013 .bellas-modal__brand-mark {
@@ -2069,15 +2159,15 @@
     bottom: auto;
     left: 50%;
     display: block;
-    width: clamp(132px, 32vw, 168px);
-    height: clamp(132px, 32vw, 168px);
+    width: clamp(148px, 36vw, 184px);
+    height: clamp(148px, 36vw, 184px);
     margin: 0;
     transform: translateX(-50%);
   }
 
   .bellas-modal--setlist-open .bellas-stage-frame,
   .bellas-modal:has(.bellas-setlist[open]) .bellas-stage-frame {
-    padding-top: clamp(142px, 33vw, 176px);
+    padding-top: calc(clamp(148px, 36vw, 184px) + 10px);
   }
 
   .bellas-modal--setlist-open .bellas-setlist__tracks,

@@ -592,8 +592,8 @@
   }
 
   .bellas-btn__cover {
-    width: 48px;                             /* portada del álbum más pequeña */
-    height: 48px;
+    width: 54px;                             /* carátula un poco más visible en móvil */
+    height: 54px;
   }
 
   .bellas-btn__sub {
@@ -734,8 +734,8 @@
   }
 
   .bellas-btn__cover {
-    width: 42px;                           /* portada aún más pequeña */
-    height: 42px;
+    width: 48px;                           /* mantiene proporción en pantallas angostas */
+    height: 48px;
   }
 
   .bellas-btn__sub {
@@ -1058,6 +1058,11 @@
     max-width: none;
   }
 
+  .bellas-modal--2013 .bellas-video {
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
   .bellas-download {
     width: auto;
     max-width: min(100%, 310px);
@@ -1135,9 +1140,5 @@
   .bellas-modal--1990 .bellas-video,
   .bellas-modal--celebrando .bellas-video {
     aspect-ratio: 4 / 3;
-  }
-
-  .bellas-modal--2013 .bellas-video {
-    aspect-ratio: 16 / 9;
   }
 }
