@@ -84,6 +84,39 @@ header figure {
   margin: 0;  /* quita el margen que el navegador pone por defecto a <figure> */
 }
 
+/* El escenario conserva el ancho y la posición actuales del logo. */
+header .header-brand-stage {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 1200px);
+  margin: 0 auto;
+}
+
+header .header-portrait {
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: 56%;
+  width: clamp(140px, 16vw, 210px);
+  aspect-ratio: 525 / 721;
+  object-fit: cover;
+  object-position: center 14%;
+}
+
+header .logo-juan {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 700px) {
+  header .header-portrait {
+    top: 17%;
+    left: 56%;
+    width: clamp(68px, 20vw, 100px);
+    z-index: 1;
+  }
+}
+
 /*
   IMÁGENES EN EL HEADER
   Reglas específicas para las imágenes dentro del header.
