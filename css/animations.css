@@ -266,12 +266,14 @@ body.intro-finalizada #intro-overlay,
 /* Animación de aparición del logo de Juan Gabriel.
    Empieza invisible (opacity: 0) y un poco reducido (scale: 0.9).
    body:not(.intro-activa) = se activa SOLO cuando el intro de video terminó. */
-.logo-juan {
+.logo-juan,
+.header-portrait {
   opacity: 0;             /* invisible al inicio */
   transform: scale(0.9);  /* un 10% más pequeño (efecto de "crecerá") */
 }
 
-body:not(.intro-activa) .logo-juan {
+body:not(.intro-activa) .logo-juan,
+body:not(.intro-activa) .header-portrait {
   /* animation: nombre | duración | aceleración | fill-mode
      forwards = al final de la animación se queda en el último estado (100%) */
   animation: aparecerLogo 1.5s ease forwards;

@@ -109,10 +109,15 @@ header .logo-juan {
 }
 
 @media (max-width: 700px) {
+  header .header-brand-stage {
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+  }
+
   header .header-portrait {
     top: 17%;
     left: 56%;
-    width: clamp(68px, 20vw, 100px);
+    width: clamp(66px, 20vw, 100px);
     z-index: 1;
   }
 }
