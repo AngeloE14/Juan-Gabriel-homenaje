@@ -167,6 +167,61 @@
   font-weight: 700;
 }
 
+/* Tarjetas de la primera sección: videos locales con marco cálido y enlaces
+   de YouTube con una apariencia propia. */
+.multimedia-subsection .video-frame,
+.multimedia-scroll .multimedia-card--local .video-frame {
+  border-radius: 15px;
+  box-shadow: none;
+}
+
+.multimedia-scroll .multimedia-card--local p {
+  margin: 12px 8px 0;
+  color: #f5f3f1;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.multimedia-scroll .multimedia-card--youtube {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  overflow: hidden;
+  background: #171615;
+  border: 1px solid rgba(243, 223, 177, 0.18);
+  border-radius: 20px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
+}
+
+.multimedia-scroll .multimedia-card--youtube .youtube-open {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.multimedia-scroll .multimedia-card--youtube .youtube-open img {
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.multimedia-scroll .multimedia-card--youtube p {
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 0;
+  margin: 0;
+  padding: 38px 15px 14px;
+  background: linear-gradient(transparent, rgba(13, 12, 12, 0.94));
+  color: #f5f3f1;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  text-align: left;
+}
+
 .multimedia-subsection .multimedia-card__title {
   margin: 12px 8px 0;
   color: #f5f3f1;
@@ -193,7 +248,8 @@
   align-items: stretch;
 }
 
-.multimedia-subsection .multimedia-card {
+.multimedia-subsection .multimedia-card,
+.multimedia-scroll .multimedia-card--local {
   padding: 11px;
   overflow: hidden;
   background: linear-gradient(145deg, #363435, #2d2b2c);
@@ -201,11 +257,6 @@
   border-radius: 21px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
   text-align: left;
-}
-
-.multimedia-subsection .video-frame {
-  border-radius: 15px;
-  box-shadow: none;
 }
 
 /* Unifica el color de los títulos de videos de YouTube. */
