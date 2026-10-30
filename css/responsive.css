@@ -579,7 +579,7 @@
     font-size: 0.9rem;
     letter-spacing: 1px;
     width: 100%;                             /* ocupa todo el ancho disponible */
-    max-width: min(330px, calc(100vw - 28px)); /* ancho moderado en móvil */
+    max-width: min(300px, calc(100vw - 28px)); /* ancho moderado en móvil */
   }
 
   .bellas-btn__info {
@@ -727,7 +727,7 @@
   }
 
   .bellas-btn {
-    max-width: min(330px, calc(100vw - 28px));  /* se adapta al ancho de la pantalla */
+    max-width: min(300px, calc(100vw - 28px));  /* se adapta al ancho de la pantalla */
     padding: 6px 12px 6px 6px;            /* más compacto */
     font-size: 0.82rem;                   /* letra más pequeña */
     gap: 10px;
