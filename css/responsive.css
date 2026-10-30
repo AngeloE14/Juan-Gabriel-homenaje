@@ -592,13 +592,28 @@
   }
 
   .bellas-btn__cover {
-    width: 48px;                             /* carátula equilibrada para el botón móvil */
-    height: 48px;
+    width: 54px;                             /* carátula más visible en móvil */
+    height: 54px;
   }
 
   .bellas-btn__cover img {
     filter: brightness(1.03) contrast(1.08) saturate(1.1);
     transform: scale(1.06);
+  }
+
+  .bellas-vitrina .bellas-concert-selector {
+    gap: 12px;
+  }
+
+  .bellas-vitrina .bellas-btn {
+    width: fit-content;
+    max-width: none;
+    padding: 5px;
+    gap: 0;
+  }
+
+  .bellas-vitrina .bellas-btn__info {
+    display: none;
   }
 
   .bellas-btn__sub {
@@ -739,8 +754,8 @@
   }
 
   .bellas-btn__cover {
-    width: 42px;                           /* mantiene proporción en pantallas angostas */
-    height: 42px;
+    width: 48px;                           /* mantiene proporción en pantallas angostas */
+    height: 48px;
   }
 
   .bellas-btn__sub {
