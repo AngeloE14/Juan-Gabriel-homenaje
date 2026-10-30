@@ -575,7 +575,7 @@
 
   .bellas-btn {
     gap: 12px;
-    padding: 8px 18px 8px 8px;
+    padding: 3px 18px 3px 8px;
     font-size: 0.9rem;
     letter-spacing: 1px;
     width: 100%;                             /* ocupa todo el ancho disponible */
@@ -592,8 +592,13 @@
   }
 
   .bellas-btn__cover {
-    width: 54px;                             /* carátula un poco más visible en móvil */
-    height: 54px;
+    width: 48px;                             /* carátula equilibrada para el botón móvil */
+    height: 48px;
+  }
+
+  .bellas-btn__cover img {
+    filter: brightness(1.03) contrast(1.08) saturate(1.1);
+    transform: scale(1.06);
   }
 
   .bellas-btn__sub {
@@ -728,14 +733,14 @@
 
   .bellas-btn {
     max-width: min(306px, calc(100vw - 28px));  /* se adapta al ancho de la pantalla */
-    padding: 6px 12px 6px 6px;            /* más compacto */
+    padding: 4px 12px 4px 6px;            /* reduce un poco más la altura en móviles pequeños */
     font-size: 0.82rem;                   /* letra más pequeña */
     gap: 10px;
   }
 
   .bellas-btn__cover {
-    width: 48px;                           /* mantiene proporción en pantallas angostas */
-    height: 48px;
+    width: 42px;                           /* mantiene proporción en pantallas angostas */
+    height: 42px;
   }
 
   .bellas-btn__sub {
