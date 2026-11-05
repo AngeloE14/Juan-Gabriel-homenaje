@@ -3,9 +3,7 @@
 
 import { pausarAudioFondo, reanudarAudioFondo } from './utils.js';
 
-/**
- * Pausa todos los <video> locales del section #multimedia
- */
+
 function pausarVideosLocales() {
   document.querySelectorAll("#multimedia video").forEach(function (v) {
     v.pause();

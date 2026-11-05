@@ -1,8 +1,4 @@
 /*
-  ===========================================
-  NAV-SPEECH-BUBBLE.JS - FRASES DEL BOCADILLO
-  ===========================================
-
   Controla de forma independiente las frases que aparecen junto al botón
   de navegación y su rotación aleatoria.
 */

@@ -1,4 +1,3 @@
-// MODO ESTRICTO
 "use strict";
 import { obtenerRendimientoDispositivo } from './utils.js';
 

@@ -1,20 +1,3 @@
-/*
-  ===========================================
-  UTILS.JS - UTILIDADES GENERALES
-  ===========================================
-
-  CONCEPTO: FUNCIONES REUTILIZABLES
-  Este archivo contiene funciones que se usan en múltiples partes del sitio.
-  Son como "herramientas" que puedes llamar cuando las necesitas.
-
-  CONCEPTOS JAVASCRIPT BÁSICOS:
-  - FUNCIONES: Bloques de código reutilizables
-  - VARIABLES: Almacenan datos (const = constante, let = variable)
-  - DOM: Manipular elementos HTML desde JavaScript
-  - EVENTOS: Responder a acciones del usuario
-  - EXPORT: Compartir funciones con otros archivos
-*/
-
 /**
  * UTILS.JS - Utilidades generales de la aplicación
  *
@@ -24,12 +7,11 @@
  * - Reproducción de intro en video
  */
 
-// MODO ESTRICTO - Ayuda a encontrar errores
 "use strict";
 
 /**
  * Detecta si el dispositivo es de bajo recurso para adaptar el rendimiento.
- * No quita animaciones ni efectos, solo ayuda a ajustar tiempos y carga.
+ * Solo ayuda a ajustar tiempos y carga.
  */
 let _rendimientoCache = null;
 
@@ -198,8 +180,15 @@ export function inicializarNavegacion() {
     // addEventListener() - "Escucha" cuando pasa un evento
     enlace.addEventListener("click", function (e) {
       e.preventDefault();
-      var destino = document.querySelector(enlace.getAttribute("href"));
+      const hashDestino = enlace.getAttribute("href");
+      const destino = document.querySelector(hashDestino);
       if (destino) {
+        // Mantener la dirección sincronizada con la sección seleccionada.
+        // Así marcarEnlaceActivo() puede identificar el enlace correcto.
+        if (window.location.hash !== hashDestino) {
+          window.history.pushState(null, "", hashDestino);
+        }
+
         var esMovil = window.matchMedia("(max-width: 700px)").matches;
         destino.scrollIntoView({ behavior: esMovil ? "instant" : "smooth" });
       }
@@ -207,6 +196,9 @@ export function inicializarNavegacion() {
       cerrarNavegacion();
     });
   });
+
+  // Actualizar el marcador al volver o avanzar entre secciones con el navegador.
+  window.addEventListener("popstate", marcarEnlaceActivo);
 
   if (botonNavegacion) {
     botonNavegacion.addEventListener("click", alternarNavegacion);
