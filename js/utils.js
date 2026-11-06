@@ -180,15 +180,8 @@ export function inicializarNavegacion() {
     // addEventListener() - "Escucha" cuando pasa un evento
     enlace.addEventListener("click", function (e) {
       e.preventDefault();
-      const hashDestino = enlace.getAttribute("href");
-      const destino = document.querySelector(hashDestino);
+      var destino = document.querySelector(enlace.getAttribute("href"));
       if (destino) {
-        // Mantener la dirección sincronizada con la sección seleccionada.
-        // Así marcarEnlaceActivo() puede identificar el enlace correcto.
-        if (window.location.hash !== hashDestino) {
-          window.history.pushState(null, "", hashDestino);
-        }
-
         var esMovil = window.matchMedia("(max-width: 700px)").matches;
         destino.scrollIntoView({ behavior: esMovil ? "instant" : "smooth" });
       }
@@ -196,9 +189,6 @@ export function inicializarNavegacion() {
       cerrarNavegacion();
     });
   });
-
-  // Actualizar el marcador al volver o avanzar entre secciones con el navegador.
-  window.addEventListener("popstate", marcarEnlaceActivo);
 
   if (botonNavegacion) {
     botonNavegacion.addEventListener("click", alternarNavegacion);
@@ -480,7 +470,8 @@ export function inicializarAudioFondo() {
     "audios/es mejor.mp3",
     "audios/dejame vivir.mp3",
     "audios/amor eterno.mp3",
-    "audios/perdoname olvidalo.mp3"
+    "audios/perdoname olvidalo.mp3",
+    "audios/que sea mi condena.mp3"
   ];
 
   // DURACION_CROSSFADE = segundos que dura la transición entre canciones
