@@ -3076,3 +3076,11 @@
     display: none;
   }
 }
+
+/* En tabletas se oculta el retrato decorativo para que no se cruce
+   con las tarjetas de la vitrina a este ancho intermedio. */
+@media (min-width: 701px) and (any-pointer: coarse) {
+  .bellas-vitrina__b98 {
+    display: none;
+  }
+}

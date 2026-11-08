@@ -221,34 +221,38 @@ footer {
 /* iPad y otras tabletas táctiles: mantiene la firma dentro del footer. */
 @media (min-width: 701px) and (any-pointer: coarse) {
   .footer-content {
-    max-width: 1120px;
-    gap: clamp(12px, 2vw, 24px);
+    width: fit-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: clamp(10px, 1.5vw, 16px);
   }
 
   .footer-brand {
-    width: clamp(68px, 8vw, 96px);
-    height: clamp(52px, 6vw, 72px);
+    width: clamp(68px, 8vw, 86px);
+    height: clamp(52px, 6vw, 64px);
   }
 
   .social-links {
-    flex: 1 1 0;
+    flex: 0 1 auto;
     min-width: 0;
+    width: fit-content;
+    max-width: 100%;
     justify-content: center;
-    gap: clamp(8px, 1.2vw, 14px);
+    gap: clamp(6px, 1vw, 10px);
   }
 
   .social-links a {
-    width: clamp(42px, 4.8vw, 52px);
-    height: clamp(42px, 4.8vw, 52px);
+    width: clamp(40px, 4.4vw, 48px);
+    height: clamp(40px, 4.4vw, 48px);
   }
 
   .footer-youtube-signature {
-    gap: clamp(8px, 1.3vw, 18px);
+    gap: clamp(6px, 0.8vw, 8px);
   }
 
   .footer-signature {
-    width: clamp(36px, 3.6vw, 40px);
-    height: clamp(36px, 3.6vw, 40px);
-    transform: translateX(clamp(44px, 6vw, 82px));
+    width: clamp(32px, 3vw, 38px);
+    height: clamp(32px, 3vw, 38px);
+    transform: none;
   }
 }
