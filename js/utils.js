@@ -463,6 +463,7 @@ export function inicializarAudioFondo() {
     "audios/hasta que te conoci.mp3",
     "audios/fue un placer conocerte.mp3",
     "audios/pero que necesidad.mp3",
+    "audios/insensible.mp3",
     "audios/yo me voy.mp3",
     "audios/caray.mp3",
     "audios/de mi enamorate.mp3",
