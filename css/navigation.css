@@ -35,8 +35,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -56,10 +56,94 @@
 }
 
 .nav-toggle__icon {
+  position: absolute;
+  inset: 0;
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-toggle__images {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.nav-toggle__icon--brand {
   object-fit: contain;
+  animation: nav-toggle-brand-cycle 6s ease-in-out infinite;
+}
+
+.nav-toggle__icon--profile {
+  object-fit: cover;
+  object-position: center 42%;
+  border-radius: 50%;
+  animation: nav-toggle-profile-cycle 6s ease-in-out infinite;
+}
+
+/* El tercer retrato se recorta en círculo y se acerca al rostro. */
+.nav-toggle__young-crop {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+  animation: nav-toggle-young-cycle 6s ease-in-out infinite;
+}
+
+.nav-toggle__young-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: translateY(-1px) scale(1.05);
+  transform-origin: center;
+}
+
+@keyframes nav-toggle-brand-cycle {
+  0%, 30%, 100% {
+    opacity: 1;
+  }
+  33%, 97% {
+    opacity: 0;
+  }
+}
+
+@keyframes nav-toggle-profile-cycle {
+  0%, 30%, 66%, 100% {
+    opacity: 0;
+  }
+  33%, 63% {
+    opacity: 1;
+  }
+}
+
+@keyframes nav-toggle-young-cycle {
+  0%, 63%, 100% {
+    opacity: 0;
+  }
+  66%, 97% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Alterna sin fundido para respetar la preferencia de movimiento reducido. */
+  .nav-toggle__icon--brand {
+    animation: nav-toggle-brand-cycle 6s steps(1, end) infinite;
+  }
+
+  .nav-toggle__icon--profile {
+    animation: nav-toggle-profile-cycle 6s steps(1, end) infinite;
+  }
+
+  .nav-toggle__young-crop {
+    animation: nav-toggle-young-cycle 6s steps(1, end) infinite;
+  }
 }
 
 .nav-toggle__speech {
@@ -888,11 +972,18 @@ body.nav-open {
     left: 12px;
     width: 44px;                             /* touch target mínimo 44px */
     height: 44px;
+    min-width: 56px;
+    min-height: 56px;
   }
 
   .nav-toggle__icon {
-    width: 36px;
-    height: 36px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav-toggle__images {
+    width: 48px;
+    height: 48px;
   }
 
   .nav-toggle__speech {
