@@ -153,6 +153,21 @@ footer {
 
 .footer-brand { background-image: url(../assets/logo-2.webp); }
 
+.footer-youtube-signature {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 18px;
+}
+
+.footer-signature {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transform: translateX(220px);
+}
+
 /* MÓVIL (pantallas de 560px o menos) — logos más pequeños y compactos */
 @media (max-width: 560px) {
   .social-links {
@@ -163,6 +178,16 @@ footer {
   .social-links a {
     width: 44px;
     height: 44px;
+  }
+
+  .footer-signature {
+    width: 36px;
+    height: 36px;
+    transform: translateX(96px);
+  }
+
+  .footer-youtube-signature {
+    gap: 12px;
   }
 
   footer {
