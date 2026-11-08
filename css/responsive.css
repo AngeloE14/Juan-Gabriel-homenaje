@@ -1147,3 +1147,52 @@
     aspect-ratio: 4 / 3;
   }
 }
+
+/* iPad y tabletas táctiles: límites fluidos para ambas orientaciones. */
+@media (min-width: 701px) and (any-pointer: coarse) {
+  #page-content {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  header,
+  main,
+  footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  header {
+    padding-inline: clamp(16px, 3vw, 36px);
+  }
+
+  main {
+    padding-inline: clamp(16px, 3vw, 40px);
+  }
+
+  main > section {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 701px) and (any-pointer: coarse) and (orientation: portrait) {
+  main {
+    padding-inline: clamp(16px, 2.5vw, 26px);
+  }
+}
+
+@media (min-width: 701px) and (any-pointer: coarse) and (orientation: landscape) {
+  main {
+    padding-inline: clamp(24px, 3vw, 44px);
+  }
+}

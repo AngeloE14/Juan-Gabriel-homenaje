@@ -1325,3 +1325,36 @@ body.nav-open {
     padding: 10px 22px;
   }
 }
+
+/* Tabletas: todo el contenido del menú se puede recorrer aunque no quepa
+   en la altura disponible, por ejemplo en iPad en orientación horizontal. */
+@media (min-width: 701px) and (any-pointer: coarse) {
+  .main-nav {
+    width: min(34vw, 280px);
+    height: calc(100vh - 12px);
+    height: calc(100dvh - 12px);
+    max-height: calc(100vh - 12px);
+    max-height: calc(100dvh - 12px);
+  }
+
+  .main-nav__scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-top: 0;
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(207, 166, 111, 0.55) transparent;
+  }
+
+  .main-nav__scroll::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .main-nav__scroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(207, 166, 111, 0.55);
+  }
+}
