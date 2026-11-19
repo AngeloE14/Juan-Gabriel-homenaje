@@ -457,21 +457,20 @@ export function inicializarAudioFondo() {
     "audios/con todo y mi tristeza.mp3",
     "audios/te lo pido por favor.mp3",
     "audios/la farsante.mp3",
-    "audios/yo no se que me paso.mp3",
     "audios/no vale la pena.mp3",
     "audios/cada quien su camino.mp3",
-    "audios/hasta que te conoci.mp3",
     "audios/fue un placer conocerte.mp3",
     "audios/pero que necesidad.mp3",
     "audios/insensible.mp3",
-    "audios/yo me voy.mp3",
-    "audios/caray.mp3",
     "audios/de mi enamorate.mp3",
     "audios/es mejor.mp3",
     "audios/dejame vivir.mp3",
-    "audios/amor eterno.mp3",
     "audios/perdoname olvidalo.mp3",
-    "audios/que sea mi condena.mp3"
+    "audios/no discutamos.mp3",
+    "audios/juro que nunca volvere.mp3",
+    "audios/dimelo.mp3",
+    "audios/siempre estoy pensando en ti.mp3",
+    "audios/el dia que me acaricies llorare.mp3"
   ];
 
   // DURACION_CROSSFADE = segundos que dura la transición entre canciones
