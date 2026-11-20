@@ -477,6 +477,7 @@ export function inicializarAudioFondo() {
   // VOLUMEN_BASE = volumen máximo de la música de fondo (46%)
   const DURACION_CROSSFADE = 2;
   const VOLUMEN_BASE = 0.46;
+  const indicesBase = canciones.map(function (_, indice) { return indice; });
   let indiceActual = Math.floor(Math.random() * canciones.length);
   audioFondo = new Audio(canciones[indiceActual]);
   audioFondo.volume = VOLUMEN_BASE;
@@ -517,18 +518,14 @@ export function inicializarAudioFondo() {
   }
 
   function generarColaAleatoria(excluirUltimo) {
-    let indices = [];
-    for (let i = 0; i < canciones.length; i++) {
-      indices.push(i);
-    }
-    let shuffled = mezclarFisherYates(indices);
+    let shuffled = mezclarFisherYates(indicesBase);
 
     // Re-mezclar (con límite de intentos) para dispersar las canciones del
     // setlist: es lo que da esa sensación de "sí randomea todas", no solo
     // las de arriba o las de abajo.
     let intentos = 0;
     while (tieneVecinosAdyacentes(shuffled) && intentos < 30) {
-      shuffled = mezclarFisherYates(indices);
+      shuffled = mezclarFisherYates(indicesBase);
       intentos++;
     }
 

@@ -33,6 +33,7 @@ export function inicializarCarrusel() {
   // querySelectorAll() - Obtener todos los slides (imágenes)
   const slides = carrusel.querySelectorAll(".carousel__slide");
   const dotsContainer = carrusel.querySelector(".carousel__dots");
+  const dots = [];
 
   // VARIABLES DE ESTADO - Recordar el estado actual
   let indiceActual = 0;    // Índice del slide visible (empieza en 0)
@@ -64,7 +65,6 @@ export function inicializarCarrusel() {
     });
 
     // Actualizar los indicadores (dots)
-    const dots = carrusel.querySelectorAll(".carousel__dot");
     dots.forEach(function (dot, indice) {
       dot.classList.toggle("is-active", indice === indiceActual);
     });
@@ -129,6 +129,7 @@ export function inicializarCarrusel() {
     dot.type = "button";
     dot.className = "carousel__dot";
     dot.setAttribute("aria-label", "Ir a foto " + (indice + 1));
+    dots.push(dot);
     dot.addEventListener("click", function () {
       indiceActual = indice;
       renderCarrusel();
