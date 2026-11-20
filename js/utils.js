@@ -491,6 +491,7 @@ export function inicializarAudioFondo() {
   // Cola de reproducción aleatoria (Fisher-Yates shuffle)
   // Garantiza que todas las canciones suenen antes de repetir alguna
   let colaReproduccion = [];
+  let posicionColaReproduccion = 0;
 
   function mezclarFisherYates(arr) {
     const shuffled = arr.slice();
@@ -540,10 +541,11 @@ export function inicializarAudioFondo() {
   }
 
   function seleccionarSiguienteCancion() {
-    if (colaReproduccion.length === 0) {
+    if (posicionColaReproduccion >= colaReproduccion.length) {
       colaReproduccion = generarColaAleatoria(true);
+      posicionColaReproduccion = 0;
     }
-    return colaReproduccion.shift();
+    return colaReproduccion[posicionColaReproduccion++];
   }
 
   /*

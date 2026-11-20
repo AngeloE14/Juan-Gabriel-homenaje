@@ -144,6 +144,8 @@ export function inicializarBellasArtesModal() {
   const closeBtn = document.querySelector(".bellas-modal__close");
   const botones = document.querySelectorAll(".bellas-btn");
 
+  const setlistsPreparados = {};
+
   if (setlist && modal) {
     setlist.addEventListener("toggle", function () {
       modal.classList.toggle("bellas-modal--setlist-open", setlist.open);
@@ -169,7 +171,7 @@ export function inicializarBellasArtesModal() {
     }
   }
 
-  function mostrarSetlist(canciones) {
+  function mostrarSetlist(canciones, idConcierto) {
     if (!setlist || !setlistTracks) return;
 
     setlistTracks.replaceChildren();
@@ -178,13 +180,23 @@ export function inicializarBellasArtesModal() {
     if (modal) modal.classList.remove("bellas-modal--setlist-open");
     if (!canciones || canciones.length === 0) return;
 
-    canciones.forEach(function (disco) {
-      disco.tracks.forEach(function (titulo) {
-        const item = document.createElement("li");
-        item.textContent = titulo;
-        setlistTracks.appendChild(item);
+    let items = setlistsPreparados[idConcierto];
+
+    if (!items) {
+      items = [];
+
+      canciones.forEach(function (disco) {
+        disco.tracks.forEach(function (titulo) {
+          const item = document.createElement("li");
+          item.textContent = titulo;
+          items.push(item);
+        });
       });
-    });
+
+      setlistsPreparados[idConcierto] = items;
+    }
+
+    setlistTracks.append(...items);
   }
 
   function abrirConcierto(anio) {
@@ -194,7 +206,7 @@ export function inicializarBellasArtesModal() {
     if (!datos) return;
 
     detenerOtrosMedios();
-    mostrarSetlist(datos.setlist);
+    mostrarSetlist(datos.setlist, anio);
     video.setAttribute("src", datos.src);
 
     if (downloadLink) {
