@@ -451,7 +451,7 @@ export function inicializarAudioFondo() {
 
   const canciones = [
     "audios/asi se quiere.mp3",
-    "audios/yo te perdo.mp3",
+    "audios/yo te perdono.mp3",
     "audios/me desperto la realidad.mp3",
     "audios/debo hacerlo.mp3",
     "audios/con todo y mi tristeza.mp3",
