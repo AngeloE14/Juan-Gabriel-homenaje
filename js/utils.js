@@ -451,7 +451,7 @@ export function inicializarAudioFondo() {
 
   const canciones = [
     "audios/asi se quiere.mp3",
-    "audios/yo te perdono.mp3",
+    "audios/yo te perdo.mp3",
     "audios/me desperto la realidad.mp3",
     "audios/debo hacerlo.mp3",
     "audios/con todo y mi tristeza.mp3",
@@ -470,7 +470,8 @@ export function inicializarAudioFondo() {
     "audios/juro que nunca volvere.mp3",
     "audios/dimelo.mp3",
     "audios/siempre estoy pensando en ti.mp3",
-    "audios/el dia que me acaricies llorare.mp3"
+    "audios/el dia que me acaricies llorare.mp3",
+    "audios/inocente pobre amigo.mp3"
   ];
 
   // DURACION_CROSSFADE = segundos que dura la transición entre canciones
